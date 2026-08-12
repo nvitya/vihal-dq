@@ -1,0 +1,15 @@
+use ^/platform
+
+function ClockCntInit()
+
+function ClockCnt() -> uint32 [[inline]]:
+    return DWT.CYCCNT
+endfunc
+
+implementation
+
+function ClockCntInit():
+	CoreDebug.DEMCR =OR= CoreDebug_DEMCR_TRCENA_Msk
+	DWT.LAR  = 0xC5ACCE55	// this is requied for Cortex M7
+	DWT.CTRL =OR= 1
+endfunc
