@@ -1,0 +1,7 @@
+// Clock Configuration Constants
+
+const(uint32):
+    HWCLK_EXTCLK_BYPASS  = 0x80000000
+    HWCLK_EXTCLK_MASK    = 0x0FFFFFFF
+endconst
+
