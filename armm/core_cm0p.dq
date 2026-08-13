@@ -1,0 +1,184 @@
+
+struct NVIC_Type:
+    ISER         : [[regrw]]  [1] uint32  // Offset: 0x000 (R/W)  Interrupt Set Enable Register
+    RESERVED0    :            [31] uint32
+    ICER         : [[regrw]]  [1] uint32  // Offset: 0x080 (R/W)  Interrupt Clear Enable Register
+    RESERVED1    :            [31] uint32
+    ISPR         : [[regrw]]  [1] uint32  // Offset: 0x100 (R/W)  Interrupt Set Pending Register
+    RESERVED2    :            [31] uint32
+    ICPR         : [[regrw]]  [1] uint32  // Offset: 0x180 (R/W)  Interrupt Clear Pending Register
+    RESERVED3    :            [31] uint32
+    RESERVED4    :            [64] uint32
+    IP           : [[regrw]]  [8] uint32  // Offset: 0x300 (R/W)  Interrupt Priority Register
+endstruct
+
+struct SCB_Type:
+    CPUID        : [[regro]]  uint32    // Offset: 0x000 (R/ )  CPUID Base Register
+    ICSR         : [[regrw]]  uint32    // Offset: 0x004 (R/W)  Interrupt Control and State Register
+    VTOR         : [[regrw]]  uint32    // Offset: 0x008 (R/W)  Vector Table Offset Register
+    AIRCR        : [[regrw]]  uint32    // Offset: 0x00C (R/W)  Application Interrupt and Reset Control Register
+    SCR          : [[regrw]]  uint32    // Offset: 0x010 (R/W)  System Control Register
+    CCR          : [[regrw]]  uint32    // Offset: 0x014 (R/W)  Configuration Control Register
+    RESERVED1    :            uint32
+    SHP          : [[regrw]]  [2] uint32  // Offset: 0x01C (R/W)  System Handlers Priority Registers. [0] is RESERVED
+    SHCSR        : [[regrw]]  uint32    // Offset: 0x024 (R/W)  System Handler Control and State Register
+endstruct
+
+const(uint32):
+    SCB_CPUID_IMPLEMENTER_Pos = 24
+    SCB_CPUID_IMPLEMENTER_Msk = (0xFF << SCB_CPUID_IMPLEMENTER_Pos)
+    SCB_CPUID_VARIANT_Pos = 20
+    SCB_CPUID_VARIANT_Msk = (0xF << SCB_CPUID_VARIANT_Pos)
+    SCB_CPUID_ARCHITECTURE_Pos = 16
+    SCB_CPUID_ARCHITECTURE_Msk = (0xF << SCB_CPUID_ARCHITECTURE_Pos)
+    SCB_CPUID_PARTNO_Pos = 4
+    SCB_CPUID_PARTNO_Msk = (0xFFF << SCB_CPUID_PARTNO_Pos)
+    SCB_CPUID_REVISION_Pos = 0
+    SCB_CPUID_REVISION_Msk = 0xF
+    SCB_ICSR_NMIPENDSET_Pos = 31
+    SCB_ICSR_NMIPENDSET_Msk = (1 << SCB_ICSR_NMIPENDSET_Pos)
+    SCB_ICSR_PENDSVSET_Pos = 28
+    SCB_ICSR_PENDSVSET_Msk = (1 << SCB_ICSR_PENDSVSET_Pos)
+    SCB_ICSR_PENDSVCLR_Pos = 27
+    SCB_ICSR_PENDSVCLR_Msk = (1 << SCB_ICSR_PENDSVCLR_Pos)
+    SCB_ICSR_PENDSTSET_Pos = 26
+    SCB_ICSR_PENDSTSET_Msk = (1 << SCB_ICSR_PENDSTSET_Pos)
+    SCB_ICSR_PENDSTCLR_Pos = 25
+    SCB_ICSR_PENDSTCLR_Msk = (1 << SCB_ICSR_PENDSTCLR_Pos)
+    SCB_ICSR_ISRPREEMPT_Pos = 23
+    SCB_ICSR_ISRPREEMPT_Msk = (1 << SCB_ICSR_ISRPREEMPT_Pos)
+    SCB_ICSR_ISRPENDING_Pos = 22
+    SCB_ICSR_ISRPENDING_Msk = (1 << SCB_ICSR_ISRPENDING_Pos)
+    SCB_ICSR_VECTPENDING_Pos = 12
+    SCB_ICSR_VECTPENDING_Msk = (0x1FF << SCB_ICSR_VECTPENDING_Pos)
+    SCB_ICSR_VECTACTIVE_Pos = 0
+    SCB_ICSR_VECTACTIVE_Msk = 0x1FF
+    SCB_VTOR_TBLOFF_Pos  = 8
+    SCB_VTOR_TBLOFF_Msk  = (0xFFFFFF << SCB_VTOR_TBLOFF_Pos)
+    SCB_AIRCR_VECTKEY_Pos = 16
+    SCB_AIRCR_VECTKEY_Msk = (0xFFFF << SCB_AIRCR_VECTKEY_Pos)
+endconst
+
+const(uint32):
+    SCB_AIRCR_VECTKEYSTAT_Pos = 16
+    SCB_AIRCR_VECTKEYSTAT_Msk = (0xFFFF << SCB_AIRCR_VECTKEYSTAT_Pos)
+    SCB_AIRCR_ENDIANESS_Pos = 15
+    SCB_AIRCR_ENDIANESS_Msk = (1 << SCB_AIRCR_ENDIANESS_Pos)
+    SCB_AIRCR_SYSRESETREQ_Pos = 2
+    SCB_AIRCR_SYSRESETREQ_Msk = (1 << SCB_AIRCR_SYSRESETREQ_Pos)
+    SCB_AIRCR_VECTCLRACTIVE_Pos = 1
+    SCB_AIRCR_VECTCLRACTIVE_Msk = (1 << SCB_AIRCR_VECTCLRACTIVE_Pos)
+    SCB_SCR_SEVONPEND_Pos = 4
+    SCB_SCR_SEVONPEND_Msk = (1 << SCB_SCR_SEVONPEND_Pos)
+    SCB_SCR_SLEEPDEEP_Pos = 2
+    SCB_SCR_SLEEPDEEP_Msk = (1 << SCB_SCR_SLEEPDEEP_Pos)
+    SCB_SCR_SLEEPONEXIT_Pos = 1
+    SCB_SCR_SLEEPONEXIT_Msk = (1 << SCB_SCR_SLEEPONEXIT_Pos)
+    SCB_CCR_STKALIGN_Pos = 9
+    SCB_CCR_STKALIGN_Msk = (1 << SCB_CCR_STKALIGN_Pos)
+    SCB_CCR_UNALIGN_TRP_Pos = 3
+    SCB_CCR_UNALIGN_TRP_Msk = (1 << SCB_CCR_UNALIGN_TRP_Pos)
+    SCB_SHCSR_SVCALLPENDED_Pos = 15
+    SCB_SHCSR_SVCALLPENDED_Msk = (1 << SCB_SHCSR_SVCALLPENDED_Pos)
+endconst
+
+struct SysTick_Type:
+    CTRL         : [[regrw]]  uint32    // Offset: 0x000 (R/W)  SysTick Control and Status Register
+    LOAD         : [[regrw]]  uint32    // Offset: 0x004 (R/W)  SysTick Reload Value Register
+    VAL          : [[regrw]]  uint32    // Offset: 0x008 (R/W)  SysTick Current Value Register
+    CALIB        : [[regro]]  uint32    // Offset: 0x00C (R/ )  SysTick Calibration Register
+endstruct
+
+const(uint32):
+    SysTick_CTRL_COUNTFLAG_Pos = 16
+    SysTick_CTRL_COUNTFLAG_Msk = (1 << SysTick_CTRL_COUNTFLAG_Pos)
+    SysTick_CTRL_CLKSOURCE_Pos = 2
+    SysTick_CTRL_CLKSOURCE_Msk = (1 << SysTick_CTRL_CLKSOURCE_Pos)
+    SysTick_CTRL_TICKINT_Pos = 1
+    SysTick_CTRL_TICKINT_Msk = (1 << SysTick_CTRL_TICKINT_Pos)
+    SysTick_CTRL_ENABLE_Pos = 0
+    SysTick_CTRL_ENABLE_Msk = 1
+    SysTick_LOAD_RELOAD_Pos = 0
+    SysTick_LOAD_RELOAD_Msk = 0xFFFFFF
+    SysTick_VAL_CURRENT_Pos = 0
+    SysTick_VAL_CURRENT_Msk = 0xFFFFFF
+    SysTick_CALIB_NOREF_Pos = 31
+    SysTick_CALIB_NOREF_Msk = (1 << SysTick_CALIB_NOREF_Pos)
+    SysTick_CALIB_SKEW_Pos = 30
+    SysTick_CALIB_SKEW_Msk = (1 << SysTick_CALIB_SKEW_Pos)
+    SysTick_CALIB_TENMS_Pos = 0
+    SysTick_CALIB_TENMS_Msk = 0xFFFFFF
+endconst
+
+struct MPU_Type:
+    TYPE         : [[regro]]  uint32    // Offset: 0x000 (R/ )  MPU Type Register
+    CTRL         : [[regrw]]  uint32    // Offset: 0x004 (R/W)  MPU Control Register
+    RNR          : [[regrw]]  uint32    // Offset: 0x008 (R/W)  MPU Region RNRber Register
+    RBAR         : [[regrw]]  uint32    // Offset: 0x00C (R/W)  MPU Region Base Address Register
+    RASR         : [[regrw]]  uint32    // Offset: 0x010 (R/W)  MPU Region Attribute and Size Register
+endstruct
+
+const(uint32):
+    MPU_TYPE_RALIASES    = 1
+    MPU_TYPE_IREGION_Pos = 16
+    MPU_TYPE_IREGION_Msk = (0xFF << MPU_TYPE_IREGION_Pos)
+    MPU_TYPE_DREGION_Pos = 8
+    MPU_TYPE_DREGION_Msk = (0xFF << MPU_TYPE_DREGION_Pos)
+    MPU_TYPE_SEPARATE_Pos = 0
+    MPU_TYPE_SEPARATE_Msk = 1
+    MPU_CTRL_PRIVDEFENA_Pos = 2
+    MPU_CTRL_PRIVDEFENA_Msk = (1 << MPU_CTRL_PRIVDEFENA_Pos)
+    MPU_CTRL_HFNMIENA_Pos = 1
+    MPU_CTRL_HFNMIENA_Msk = (1 << MPU_CTRL_HFNMIENA_Pos)
+    MPU_CTRL_ENABLE_Pos  = 0
+    MPU_CTRL_ENABLE_Msk  = 1
+    MPU_RNR_REGION_Pos   = 0
+    MPU_RNR_REGION_Msk   = 0xFF
+    MPU_RBAR_ADDR_Pos    = 8
+    MPU_RBAR_ADDR_Msk    = (0xFFFFFF << MPU_RBAR_ADDR_Pos)
+    MPU_RBAR_VALID_Pos   = 4
+    MPU_RBAR_VALID_Msk   = (1 << MPU_RBAR_VALID_Pos)
+    MPU_RBAR_REGION_Pos  = 0
+    MPU_RBAR_REGION_Msk  = 0xF
+    MPU_RASR_ATTRS_Pos   = 16
+    MPU_RASR_ATTRS_Msk   = (0xFFFF << MPU_RASR_ATTRS_Pos)
+    MPU_RASR_XN_Pos      = 28
+    MPU_RASR_XN_Msk      = (1 << MPU_RASR_XN_Pos)
+    MPU_RASR_AP_Pos      = 24
+    MPU_RASR_AP_Msk      = (0x7 << MPU_RASR_AP_Pos)
+    MPU_RASR_TEX_Pos     = 19
+    MPU_RASR_TEX_Msk     = (0x7 << MPU_RASR_TEX_Pos)
+    MPU_RASR_S_Pos       = 18
+    MPU_RASR_S_Msk       = (1 << MPU_RASR_S_Pos)
+    MPU_RASR_C_Pos       = 17
+    MPU_RASR_C_Msk       = (1 << MPU_RASR_C_Pos)
+    MPU_RASR_B_Pos       = 16
+    MPU_RASR_B_Msk       = (1 << MPU_RASR_B_Pos)
+    MPU_RASR_SRD_Pos     = 8
+    MPU_RASR_SRD_Msk     = (0xFF << MPU_RASR_SRD_Pos)
+    MPU_RASR_SIZE_Pos    = 1
+    MPU_RASR_SIZE_Msk    = (0x1F << MPU_RASR_SIZE_Pos)
+    MPU_RASR_ENABLE_Pos  = 0
+    MPU_RASR_ENABLE_Msk  = 1
+endconst
+
+const(uint32):
+    SCS_BASE             = 0xE000E000
+    SysTick_BASE         = (SCS_BASE +  0x0010)
+    NVIC_BASE            = (SCS_BASE +  0x0100)
+    SCB_BASE             = (SCS_BASE +  0x0D00)
+    MPU_BASE             = (SCS_BASE +  0x0D90)
+endconst
+
+const SCB          :? = ^SCB_Type(SCB_BASE)
+const SysTick      :? = ^SysTick_Type(SysTick_BASE)
+const NVIC         :? = ^NVIC_Type(NVIC_BASE)
+const MPU          :? = ^MPU_Type(MPU_BASE)
+
+const(uint32):
+    NVIC_USER_IRQ_OFFSET = 16
+    EXC_RETURN_HANDLER   = 0xFFFFFFF1
+    EXC_RETURN_THREAD_MSP = 0xFFFFFFF9
+    EXC_RETURN_THREAD_PSP = 0xFFFFFFFD
+endconst
+

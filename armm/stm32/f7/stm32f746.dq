@@ -1,6 +1,18 @@
 // DQ Register Definitions for the STM32F746
 
+// VIHAL configuration
+
+const(bool):
+  CPU_ARMM    = true
+  CPU_ARM_M7F = true
+  MCUF_STM32  = true
+  MCUSF_F7    = true
+endconst
+
+// CMSIS Configuration
+
 const(uint):
+    __CORTEX_M             = 7
     __CM7_REV              = 0x0001
     __MPU_PRESENT          = 1
     __NVIC_PRIO_BITS       = 4

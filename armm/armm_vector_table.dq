@@ -158,5 +158,7 @@ const armm_vector_table : [16 + 32] FVectorTableEntry =
 ]
 
 function ArmmVectorTableInit()  [[inline]]:
-    SCB.VTOR = uint(&armm_vector_table[0])
+    #if not FirstBool(SCB_NO_VTOR, false)
+        SCB.VTOR = uint(&armm_vector_table[0])
+    #endif
 endfunc
