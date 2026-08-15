@@ -9,6 +9,9 @@ use board      reexport  // the project must define this !
 
     #if FirstBool(CPU_ARM_M7F, false)
         use ^/armm/core_cm7             reexport
+
+        const MCU_INTERNAL_RC_SPEED : uint = 8000000
+
     #elif FirstBool(CPU_ARM_M33, false)
         use ^/armm/core_cm33            reexport
     #elif FirstBool(CPU_ARM_M4, false)

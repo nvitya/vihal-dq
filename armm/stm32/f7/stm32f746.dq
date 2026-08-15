@@ -3,10 +3,10 @@
 // VIHAL configuration
 
 const(bool):
-  CPU_ARMM    = true
-  CPU_ARM_M7F = true
-  MCUF_STM32  = true
-  MCUSF_F7    = true
+    CPU_ARMM    = true
+    CPU_ARM_M7F = true
+    MCUF_STM32  = true
+    MCUSF_F7    = true
 endconst
 
 // CMSIS Configuration
