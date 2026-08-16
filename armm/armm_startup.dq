@@ -8,7 +8,7 @@ function soft_entry()  [[cexport, section('.startup'), asm]]:
     ldr    r0, =__stack
     mov    sp, r0
 
-    mov    r0, #1
+    movs   r0, #1
     b      _start
 endfunc
 
@@ -16,7 +16,7 @@ function cold_entry()  [[cexport, section('.startup'), asm]]:
     ldr    r0, =__stack
     mov    sp, r0
 
-    mov    r0, #0
+    movs   r0, #0
     b      _start
 endfunc
 
