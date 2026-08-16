@@ -5,7 +5,7 @@ const(uint32):
     HWCLK_EXTCLK_MASK    = 0x0FFFFFFF
 endconst
 
-function HwclkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool
+function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool
 
 implementation
 
@@ -30,6 +30,19 @@ function StartExcOscillator(aextspeed : uint):
         // wait
     endwhile
 endfunc
+
+#if Defined(@.MCUSF_F0) or Defined(@.MCUSF_L0)
+
+function PrepareHiSpeed(acpuspeed : uint):
+    // Enable Prefetch Buffer and set Flash Latency
+    #ifdef @.FLASH_ACR_PRFTBE
+        FLASH.ACR = FLASH_ACR_PRFTBE OR FLASH_ACR_LATENCY
+    #else
+        FLASH.ACR = FLASH_ACR_LATENCY OR FLASH_ACR_PRFTEN
+    #endif
+endfunc
+
+#elif Defined(@.MCUSF_F7)
 
 function PrepareHiSpeed(acpuspeed : uint):
     RCC.APB1ENR =OR= RCC_APB1ENR_PWREN  // Enable Power Control clock
@@ -58,12 +71,20 @@ function PrepareHiSpeed(acpuspeed : uint):
     FLASH.ACR =OR= FLASH_ACR_ARTEN OR FLASH_ACR_PRFTEN  // turn on the ART accelerator
 endfunc
 
+#else
+    #error "PrepareHiSpeed() is not implmented for this MCU sub-family"
+#endif
+
 function IsDivisble(anum : uint, adivisor : uint) -> bool:
     var res : uint = anum IDIV adivisor
     return res * adivisor == anum
 endfunc
 
-function HwclkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
+//---------------------------------------------------------------------------------------------------------------------------
+#if Defined(@.MCUSF_F7)
+//---------------------------------------------------------------------------------------------------------------------------
+
+function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
 
     // select the HSI as clock source (required if this is called more times)
 
@@ -73,7 +94,7 @@ function HwclkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
     tmp =AND= NOT 3
     tmp =OR= RCC_CFGR_SW_HSI
     RCC.CFGR = tmp
-    while (RCC.CFGR >> 2) AND 3 != RCC_CFGR_SW_HSI:
+    while (RCC.CFGR >> 2) AND 3 <> RCC_CFGR_SW_HSI:
         // wait until it is set
     endwhile
 
@@ -148,7 +169,7 @@ function HwclkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
     tmp =AND= NOT 3
     tmp =OR= RCC_CFGR_SW_PLL
     RCC.CFGR = tmp
-    while (RCC.CFGR >> 2) AND 3 != RCC_CFGR_SW_PLL:
+    while (RCC.CFGR >> 2) AND 3 <> RCC_CFGR_SW_PLL:
         // wait until it is set
     endwhile
 
@@ -160,3 +181,121 @@ function HwclkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
 
     return true
 endfunc
+
+//---------------------------------------------------------------------------------------------------------------------------
+#elif Defined(@.MCUSF_F0) or Defined(@.MCUSF_L0)
+//---------------------------------------------------------------------------------------------------------------------------
+
+function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
+
+    // select the HSI as clock source (required if this is called more times)
+
+    var cfgr : uint
+
+    cfgr = RCC.CFGR
+    cfgr =AND= NOT 3
+    cfgr =OR= RCC_CFGR_SW_HSI
+    RCC.CFGR = cfgr
+    while (RCC.CFGR >> 2) AND 3 <> RCC_CFGR_SW_HSI:
+        // wait until it is set
+    endwhile
+
+    RCC.CR =AND= NOT RCC_CR_PLLON  // disable the PLL
+    while RCC.CR AND RCC_CR_PLLRDY <> 0:
+        // Wait until the PLL is ready
+    endwhile
+
+    SystemCoreClock = MCU_INTERNAL_RC_SPEED  // set the global variable for the fall error happens
+
+    PrepareHiSpeed(target_speed_hz)
+
+    var basespeed : uint
+    var pllsrc    : uint
+    if external_clock_hz <> 0:
+        StartExcOscillator(external_clock_hz)
+        basespeed = external_clock_hz AND HWCLK_EXTCLK_MASK
+    else:
+        // the internal oscillator is usually 8 MHz, but it will be divided by 2 at the PLL input
+        basespeed = (MCU_INTERNAL_RC_SPEED >> 1);
+    endif
+
+    var freqmul : uint = target_speed_hz IDIV basespeed
+    if freqmul < 2  or  freqmul > 16:
+        return false
+    endif
+
+    cfgr = RCC.CFGR
+
+    #if Defined(@.MCUSF_L0)
+
+        // only a few combinations supported, but usually the max speed will be used.
+
+        var plldiv : uint = 1  // = 2, using this fix value
+        var pllmul : uint = 0
+
+        if   freqmul ==  2:  pllmul = 1
+        elif freqmul ==  3:  pllmul = 2
+        elif freqmul ==  4:  pllmul = 3
+        elif freqmul ==  5:  pllmul = 4
+        elif freqmul ==  8:  pllmul = 5
+        elif freqmul == 12:  pllmul = 6
+        elif freqmul == 16:  pllmul = 7
+        elif freqmul == 24:  pllmul = 8
+        else:                pllmul = 0
+        endif
+
+        // do not divide the peripheral clocks:
+        cfgr =AND= NOT (RCC_CFGR_HPRE OR RCC_CFGR_PPRE1 OR RCC_CFGR_PPRE2)
+
+        /* PLL configuration = HSE * 6 = 48 MHz */
+        cfgr =AND= NOT (RCC_CFGR_PLLSRC OR RCC_CFGR_PLLDIV OR RCC_CFGR_PLLMUL)
+        cfgr =OR= (pllmul << 18) OR (plldiv << 22)
+        if external_clock_hz <> 0:
+            cfgr =OR= RCC_CFGR_PLLSRC_HSE
+        endif
+
+    #else
+
+        var pllmul : uint = (freqmul - 2) AND 0xF  // STM32F0 multiplyer code
+
+        // setup bus dividers AHB=1, PERIPH=1
+        cfgr =AND= NOT (RCC_CFGR_HPRE OR RCC_CFGR_PPRE)
+        cfgr =OR= (RCC_CFGR_HPRE_DIV1 OR RCC_CFGR_PPRE_DIV1)
+
+        cfgr =AND= NOT (RCC_CFGR_PLLSRC OR RCC_CFGR_PLLXTPRE OR RCC_CFGR_PLLMUL)
+        cfgr =OR= (pllmul << 18)
+
+        if external_clock_hz <> 0:
+            cfgr =OR= (RCC_CFGR_PLLSRC_HSE_PREDIV OR RCC_CFGR_PLLXTPRE_HSE_PREDIV_DIV1)
+        else:
+            #ifdef @.RCC_CFGR_PLLSRC_HSI_DIV2
+                cfgr =OR= RCC_CFGR_PLLSRC_HSI_DIV2
+            #else
+                cfgr =OR= RCC_CFGR_PLLSRC_HSI_PREDIV
+            #endif
+        endif
+
+    #endif
+
+    RCC.CFGR = cfgr
+
+    RCC.CR =OR= RCC_CR_PLLON  // enable the PLL
+    while RCC.CR AND RCC_CR_PLLRDY == 0:
+        // Wait till PLL is ready
+    endwhile
+
+    // Select PLL as system clock source
+    cfgr =AND= NOT 3
+    cfgr =OR= RCC_CFGR_SW_PLL
+    RCC.CFGR = cfgr
+    while (RCC.CFGR >> 2) AND 3 <> RCC_CFGR_SW_PLL:
+        // wait until it is set
+    endwhile
+
+    SystemCoreClock = target_speed_hz
+    return true
+endfunc
+
+#else
+    #error "HwClkInit() is not implmented for this MCU sub-family"
+#endif

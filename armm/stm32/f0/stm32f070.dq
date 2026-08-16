@@ -9,6 +9,11 @@ const(bool):
     MCUSF_F0    = true
 endconst
 
+const(uint):
+    MCU_INTERNAL_RC_SPEED = 8000000
+    MAX_CLOCK_SPEED       = 48000000
+endconst
+
 // CMSIS Configuration
 
 const(uint32):
