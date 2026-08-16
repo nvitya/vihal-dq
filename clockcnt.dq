@@ -2,14 +2,62 @@ use ^/platform
 
 function ClockCntInit()
 
-function ClockCnt() -> uint32 [[inline]]:
-    return DWT.CYCCNT
-endfunc
+#ifdef @.CPU_ARMM
+	#if __CORTEX_M >= 3
+
+		function ClockCnt() -> uint32  [[inline]]:
+			return DWT.CYCCNT
+		endfunc
+	#else
+		// soc specific solution using a timer
+
+		var clockcnt32_high : uint32
+		var last_clockcnt16 : uint16
+
+		function ClockCnt() -> uint32  [[inline]]:
+			var t0 : uint16 = #{ifdef @.TIM14} TIM14.CNT #{else} TIM21.CNT #{endif}
+			if t0 < last_clockcnt16:
+				clockcnt32_high += 0x10000
+			endif
+			last_clockcnt16 = t0
+			return clockcnt32_high + t0
+		endfunc
+
+	#endif
+#endif
 
 implementation
 
-function ClockCntInit():
-	CoreDebug.DEMCR =OR= CoreDebug_DEMCR_TRCENA_Msk
-	DWT.LAR  = 0xC5ACCE55	// this is requied for Cortex M7
-	DWT.CTRL =OR= 1
-endfunc
+#if __CORTEX_M >= 3
+
+	function ClockCntInit():
+		CoreDebug.DEMCR =OR= CoreDebug_DEMCR_TRCENA_Msk
+		#ifdef @.CPU_ARM_M7F
+			DWT.LAR  = 0xC5ACCE55	// this is requied for Cortex M7
+		#endif
+		DWT.CTRL =OR= 1
+	endfunc
+
+#else  // Cortex-M0
+
+	function ClockCntInit():
+
+		#ifdef @.TIM14
+			#ifdef @.RCC_APBENR2_TIM14EN
+				RCC.APBENR2 =OR= RCC_APBENR2_TIM14EN
+			#else
+				RCC.APB1ENR =OR= RCC_APB1ENR_TIM14EN
+			#endif
+			const CCTIMER :? = TIM14
+		#else
+			RCC.APB2ENR =OR= RCC_APB2ENR_TIM21EN
+			const CCTIMER :? = TIM21
+		#endif
+
+		CCTIMER.CR1 = 0
+		CCTIMER.PSC = 0 // count every clock
+		CCTIMER.CR1 = 1
+		CCTIMER.EGR = 1 // reinit, start the timer
+	endfunc
+
+#endif

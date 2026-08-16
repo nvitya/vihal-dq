@@ -12,6 +12,7 @@ endconst
 // CMSIS Configuration
 
 const(uint32):
+    __CORTEX_M           = 0
     __CM0_REV            = 0
     __MPU_PRESENT        = 0
     __NVIC_PRIO_BITS     = 2

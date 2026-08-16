@@ -137,7 +137,35 @@ implementation
 
 use ^/platform
 
-const MAX_PORT_NUMBER : int = 7
+#ifdef   @.GPIOP_BASE
+  const MAX_PORT_NUMBER : int = 16
+#elifdef @.GPIOO_BASE
+  const MAX_PORT_NUMBER : int = 15
+#elifdef @.GPION_BASE
+  const MAX_PORT_NUMBER : int = 14
+#elifdef @.GPIOM_BASE
+  const MAX_PORT_NUMBER : int = 13
+#elifdef @.GPIOL_BASE
+  const MAX_PORT_NUMBER : int = 12
+#elifdef @.GPIOK_BASE
+  const MAX_PORT_NUMBER : int = 11
+#elifdef @.GPIOJ_BASE
+  const MAX_PORT_NUMBER : int = 10
+#elifdef @.GPIOI_BASE
+  const MAX_PORT_NUMBER : int = 9
+#elifdef @.GPIOH_BASE
+  const MAX_PORT_NUMBER : int = 8
+#elifdef @.GPIOG_BASE
+  const MAX_PORT_NUMBER : int = 7
+#elifdef @.GPIOF_BASE
+  const MAX_PORT_NUMBER : int = 6
+#elifdef @.GPIOE_BASE
+  const MAX_PORT_NUMBER : int = 5
+#elifdef @.GPIOC_BASE
+  const MAX_PORT_NUMBER : int = 4
+#else
+  const MAX_PORT_NUMBER : int = 3
+#endif
 
 function GetGpioRegs(aportnum : int) -> ^GPIO_TypeDef:
 	if aportnum < 0  or  aportnum >= MAX_PORT_NUMBER:
@@ -150,9 +178,29 @@ function GpioPortEnable(aportnum : int) -> bool:
 	if aportnum < 0  or  aportnum >= MAX_PORT_NUMBER:
 		return false
     endif
-    RCC.AHB1ENR =OR= (RCC_AHB1ENR_GPIOAEN << aportnum)
+    #ifdef @.RCC_IOPENR_IOPAEN
+        RCC.IOPENR =OR= RCC_IOPENR_IOPAEN << aportnum
+    #elifdef @.RCC_AHBENR_GPIOAEN
+        RCC.AHBENR =OR= RCC_AHBENR_GPIOAEN << aportnum
+    #elifdef @.RCC_APB2ENR_IOPAEN
+        RCC.APB2ENR =OR= RCC_APB2ENR_IOPAEN << aportnum
+    #elifdef @.RCC_AHB2ENR_GPIOAEN
+        RCC.AHB2ENR =OR= RCC_AHB2ENR_GPIOAEN << aportnum
+    #elifdef @.RCC_AHB4ENR_GPIOAEN
+        RCC.AHB4ENR =OR= RCC_AHB4ENR_GPIOAEN << aportnum
+    #elifdef @.RCC_IOPENR_GPIOAEN
+        RCC.IOPENR =OR= RCC_IOPENR_GPIOAEN << aportnum
+    #else
+        RCC.AHB1ENR =OR= RCC_AHB1ENR_GPIOAEN << aportnum
+    #endif
     return true
 endfunc
+
+#ifdef @.MCUSF_F1
+
+    #error "Pin setup for STM32F1 is not implemented yet"
+
+#else
 
 function PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
 
@@ -230,6 +278,8 @@ function PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
 
     return true
 endfunc
+
+#endif
 
 function OGpioPin.*Create(aportnum : int, apinnum : int, ainvert : bool):
     Assign(aportnum, apinnum, ainvert)

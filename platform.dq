@@ -40,3 +40,7 @@ use board      reexport  // the project must define this !
 #if not CPU_ARMM
     //qqcs
 #endif
+
+// Common variables
+
+var SystemCoreClock : uint  [[section('.noinit')]]
