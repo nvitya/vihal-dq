@@ -18,7 +18,7 @@ use board      reexport  // the project must define this !
         use ^/armm/core_cm4             reexport
     #elif FirstBool(CPU_ARM_M3, false)
         use ^/armm/core_cm3             reexport
-    #elif FirstBool(CPU_ARM_M0P, false)
+    #elif FirstBool(CPU_ARM_M0PLUS, false)
         use ^/armm/core_cm0p            reexport
     #elif FirstBool(CPU_ARM_M0, false)
         use ^/armm/core_cm0             reexport

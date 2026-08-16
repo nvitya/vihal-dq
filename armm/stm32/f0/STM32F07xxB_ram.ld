@@ -1,0 +1,15 @@
+
+MEMORY
+{
+  CODERAM(xrw)        : ORIGIN = 0x20000000, LENGTH = 12K
+  RAM (xrw)           : ORIGIN = 0x20003000, LENGTH =  4K
+}
+
+REGION_ALIAS("TEXT", CODERAM);
+
+REGION_ALIAS("ITCRAM", RAM);
+REGION_ALIAS("DTCRAM", RAM);
+REGION_ALIAS("RAM2", RAM);
+
+INCLUDE armm_default_noflash.ld
+
