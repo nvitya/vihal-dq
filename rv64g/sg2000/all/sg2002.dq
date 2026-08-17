@@ -1,0 +1,807 @@
+struct plic_regs:
+    PRIO         : [[regrw]]  [1024] uint32
+    IP           : [[regrw]]  [32] uint32
+    _pad_001080  :            [(0x2000-0x1080) IDIV 4] uint32
+    H0_MIE       : [[regrw]]  [32] uint32
+    H0_SIE       : [[regrw]]  [32] uint32
+    _pad_002100  :            [(0x1FFFFC-0x2100) IDIV 4] uint32
+    PER          : [[regrw]]  uint32  
+    H0_MTH       : [[regrw]]  uint32  
+    H0_MCLAIM    : [[regrw]]  uint32  
+    _pad_200008  :            [(0x201000-0x200008) IDIV 4] uint32
+    H0_STH       : [[regrw]]  uint32  
+    H0_SCLAIM    : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    PLIC_BASE_ADDR       = 0x70000000
+endconst
+
+const PLIC         :? = ^plic_regs(PLIC_BASE_ADDR)
+struct clint_regs:
+    MSIP0        : [[regrw]]  uint32  
+    MSIP1        : [[regrw]]  uint32  
+    MSIP2        : [[regrw]]  uint32  
+    MSIP3        : [[regrw]]  uint32  
+    RESERVED0    :            [(0x4004000 - 0x400000C)  IDIV  4 - 1] uint32
+    MTIMECMPL0   : [[regrw]]  uint32  
+    MTIMECMPH0   : [[regrw]]  uint32  
+    MTIMECMPL1   : [[regrw]]  uint32  
+    MTIMECMPH1   : [[regrw]]  uint32  
+    MTIMECMPL2   : [[regrw]]  uint32  
+    MTIMECMPH2   : [[regrw]]  uint32  
+    MTIMECMPL3   : [[regrw]]  uint32  
+    MTIMECMPH3   : [[regrw]]  uint32  
+    RESERVED1    :            [(0x400C000 - 0x400401C)  IDIV  4 - 1] uint32
+    SSIP0        : [[regrw]]  uint32  
+    SSIP1        : [[regrw]]  uint32  
+    SSIP2        : [[regrw]]  uint32  
+    SSIP3        : [[regrw]]  uint32  
+    RESERVED2    :            [(0x400D000 - 0x400C00C)  IDIV  4 - 1] uint32
+    STIMECMPL0   : [[regrw]]  uint32  
+    STIMECMPH0   : [[regrw]]  uint32  
+    STIMECMPL1   : [[regrw]]  uint32  
+    STIMECMPH1   : [[regrw]]  uint32  
+    STIMECMPL2   : [[regrw]]  uint32  
+    STIMECMPH2   : [[regrw]]  uint32  
+    STIMECMPL3   : [[regrw]]  uint32  
+    STIMECMPH3   : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    CLINT_BASE_ADDR      = 0x74000000
+endconst
+
+const CLINT        :? = ^clint_regs(CLINT_BASE_ADDR)
+struct clk_div_regs:
+    CLK_EN       : [[regrw]]  [5] uint32
+    _pad_014     :            [3] uint32
+    CLK_SEL      : [[regrw]]  [4] uint32
+    CLK_BYP      : [[regrw]]  [2] uint32
+    _pad_038     :            [4] uint32
+    DIV_CLK_CPU_AXI0 : [[regrw]]  uint32  
+    _pad_04C     :            [(0x054-0x04C) IDIV 4] uint32
+    DIV_CLK_TPU  : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    CLK_DIV_BASE_ADDR    = 0x03002000
+endconst
+
+const CLK_DIV      :? = ^clk_div_regs(CLK_DIV_BASE_ADDR)
+struct sdma_chregs:
+    SAR          : [[regrw]]  uint64  
+    DAR          : [[regrw]]  uint64  
+    BLOCK_TS     : [[regrw]]  uint64  
+    CTL          : [[regrw]]  uint64  
+    CFG          : [[regrw]]  uint64  
+    LLP          : [[regrw]]  uint64  
+    STATUS       : [[regrw]]  uint64  
+    SWHSSRCREG   : [[regrw]]  uint64  
+    SWHSDSTREG   : [[regrw]]  uint64  
+    BLK_TFR_RESUMEREQREG : [[regrw]]  uint64  
+    AXI_IDREG    : [[regrw]]  uint64  
+    AXI_QOSREG   : [[regrw]]  uint64  
+    SSTAT        : [[regrw]]  uint64  
+    DSTAT        : [[regrw]]  uint64  
+    SSTATAR      : [[regrw]]  uint64  
+    DSTATAR      : [[regrw]]  uint64  
+    INTSTATUS_ENABLEREG : [[regrw]]  uint64  
+    INTSTATUS    : [[regrw]]  uint64  
+    INTSIGNAL_ENABLEREG : [[regrw]]  uint64  
+    INTCLEARREG  : [[regrw]]  uint64  
+    __reserved1  :            [12] uint64
+endstruct
+
+const(uint32):
+    HWDMA_MAX_CHANNELS   = 8
+endconst
+
+struct sdma_regs:
+    ID           : [[regrw]]  uint64  
+    COMPVER      : [[regrw]]  uint64  
+    CFG          : [[regrw]]  uint64  
+    CH_EN        : [[regrw]]  uint64  
+    _pad_020     :            [2] uint64
+    INTSTATUS    : [[regrw]]  uint64  
+    COMM_INTCLEAR : [[regrw]]  uint64  
+    COMM_INTSTATUS_EN : [[regrw]]  uint64  
+    COMM_INTSIGNAL_EN : [[regrw]]  uint64  
+    COMM_INTSTATUS : [[regrw]]  uint64  
+    RESET        : [[regrw]]  uint64  
+    _pad_060     :            [20] uint64
+    CHAN         :            [HWDMA_MAX_CHANNELS] sdma_chregs
+endstruct
+
+struct dma_ch_remap_regs:
+    CH_REMAP     : [[regrw]]  [2] uint32
+endstruct
+
+const(uint32):
+    SDMA_BASE_ADDR       = 0x04330000
+endconst
+
+const SDMA         :? = ^sdma_regs(SDMA_BASE_ADDR)
+const(uint32):
+    DMA_CH_REMAP_ADDR    = 0x03000154
+endconst
+
+const DMA_CH_REMAP :? = ^dma_ch_remap_regs(DMA_CH_REMAP_ADDR)
+const(uint32):
+    DMA_INT_MUX_REG_ADDR = 0x03000298
+    DMA_CLK_EN_REG_ADDR  = 0x03002004
+    DMA_CLK_EN_BIT_ENABLE = (1 << 1)
+endconst
+
+struct gpio_regs:
+    SWPORTA_DR   : [[regrw]]  uint32  
+    SWPORTA_DDR  : [[regrw]]  uint32  
+    _pad_08      :            [(0x30-0x08) IDIV 4] uint32
+    INTEN        : [[regrw]]  uint32  
+    INTMASK      : [[regrw]]  uint32  
+    INTTYPE_LEVEL : [[regrw]]  uint32  
+    INT_POLARITY : [[regrw]]  uint32  
+    INTSTATUS    : [[regrw]]  uint32  
+    RAW_INTSTATUS : [[regrw]]  uint32  
+    DEBOUNCE     : [[regrw]]  uint32  
+    PORTA_EOI    : [[regrw]]  uint32  
+    EXT_PORTA    : [[regrw]]  uint32  
+    _pad_54      :            [(0x60-0x54) IDIV 4] uint32
+    LS_SYNC      : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    GPIO0_BASE_ADDR      = 0x03020000
+    GPIO1_BASE_ADDR      = 0x03021000
+    GPIO2_BASE_ADDR      = 0x03022000
+    GPIO3_BASE_ADDR      = 0x03023000
+    GPIOPWR_BASE_ADDR    = 0x05021000
+    RTCSYS_GPIO_BASE_ADDR = 0x05021000
+endconst
+
+const GPIO0        :? = ^gpio_regs(GPIO0_BASE_ADDR)
+const GPIO1        :? = ^gpio_regs(GPIO1_BASE_ADDR)
+const GPIO2        :? = ^gpio_regs(GPIO2_BASE_ADDR)
+const GPIO3        :? = ^gpio_regs(GPIO3_BASE_ADDR)
+const GPIO4        :? = ^gpio_regs(GPIOPWR_BASE_ADDR)
+const GPIOPWR      :? = ^gpio_regs(GPIOPWR_BASE_ADDR)
+const GPIORTCSYS   :? = ^gpio_regs(GPIOPWR_BASE_ADDR)
+struct uart_regs:
+    RBR_THR_DLL  : [[regrw]]  uint32  
+    IER_DLH      : [[regrw]]  uint32  
+    FCR_IIR      : [[regrw]]  uint32  
+    LCR          : [[regrw]]  uint32  
+    MCR          : [[regrw]]  uint32  
+    LSR          : [[regrw]]  uint32  
+    MSR          : [[regrw]]  uint32  
+    _pad_1C      : [[regrw]]  uint32  
+    LPDLL        : [[regrw]]  uint32  
+    LPDLH        : [[regrw]]  uint32  
+    _pad_28      : [[regrw]]  uint32  
+    _pad_2C      : [[regrw]]  uint32  
+    SRBR_STHR    : [[regrw]]  uint32  
+    _pad_34      :            [(0x70-0x34) IDIV 4] uint32
+    FAR          : [[regrw]]  uint32  
+    TFR          : [[regrw]]  uint32  
+    RFW          : [[regrw]]  uint32  
+    USR          : [[regrw]]  uint32  
+    TFL          : [[regrw]]  uint32  
+    RFL          : [[regrw]]  uint32  
+    SRR          : [[regrw]]  uint32  
+    SRTS         : [[regrw]]  uint32  
+    SBCR         : [[regrw]]  uint32  
+    SDMAM        : [[regrw]]  uint32  
+    SFE          : [[regrw]]  uint32  
+    SRT          : [[regrw]]  uint32  
+    STET         : [[regrw]]  uint32  
+    HTX          : [[regrw]]  uint32  
+    DMASA        : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    UART0_BASE_ADDR      = 0x04140000
+    UART1_BASE_ADDR      = 0x04150000
+    UART2_BASE_ADDR      = 0x04160000
+    UART3_BASE_ADDR      = 0x04170000
+    UART4_BASE_ADDR      = 0x041C0000
+    RTCSYS_UART_BASE_ADDR = 0x05022000
+endconst
+
+const UART0        :? = ^uart_regs(UART0_BASE_ADDR)
+const UART1        :? = ^uart_regs(UART1_BASE_ADDR)
+const UART2        :? = ^uart_regs(UART2_BASE_ADDR)
+const UART3        :? = ^uart_regs(UART3_BASE_ADDR)
+const UART4        :? = ^uart_regs(UART4_BASE_ADDR)
+const UART5        :? = ^uart_regs(RTCSYS_UART_BASE_ADDR)
+const RTCSYS_UART  :? = ^uart_regs(RTCSYS_UART_BASE_ADDR)
+struct spi_regs:
+    CTRLR0       : [[regrw]]  uint32  
+    CTRLR1       : [[regrw]]  uint32  
+    SPIENR       : [[regrw]]  uint32  
+    MWCR         : [[regrw]]  uint32  
+    SER          : [[regrw]]  uint32  
+    BAUDR        : [[regrw]]  uint32  
+    TXFTLR       : [[regrw]]  uint32  
+    RXFTLR       : [[regrw]]  uint32  
+    TXFLR        : [[regrw]]  uint32  
+    RXFLR        : [[regrw]]  uint32  
+    SR           : [[regrw]]  uint32  
+    IMR          : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32  
+    RISR         : [[regrw]]  uint32  
+    TXOICR       : [[regrw]]  uint32  
+    RXOICR       : [[regrw]]  uint32  
+    RXUICR       : [[regrw]]  uint32  
+    MSTICR       : [[regrw]]  uint32  
+    ICR          : [[regrw]]  uint32  
+    DMACR        : [[regrw]]  uint32  
+    DMATDLR      : [[regrw]]  uint32  
+    DMARDLR      : [[regrw]]  uint32  
+    IDR          : [[regrw]]  uint32  
+    SSI_COMP_VERSION : [[regrw]]  uint32  
+    DR           : [[regrw]]  uint32  
+    _pad_64      :            [(0xF0-0x64) IDIV 4] uint32
+    RX_SAMPLE_DLY : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    SPI0_BASE_ADDR       = 0x04180000
+    SPI1_BASE_ADDR       = 0x04190000
+    SPI2_BASE_ADDR       = 0x041A0000
+    SPI3_BASE_ADDR       = 0x041B0000
+endconst
+
+const SPI0         :? = ^spi_regs(SPI0_BASE_ADDR)
+const SPI1         :? = ^spi_regs(SPI1_BASE_ADDR)
+const SPI2         :? = ^spi_regs(SPI2_BASE_ADDR)
+const SPI3         :? = ^spi_regs(SPI3_BASE_ADDR)
+struct spinor_regs:
+    SPI_CTRL     : [[regrw]]  uint32  
+    CE_CTRL      : [[regrw]]  uint32  
+    DLY_CTRL     : [[regrw]]  uint32  
+    DMMR_CTRL    : [[regrw]]  uint32  
+    TRAN_CSR     : [[regrw]]  uint32  
+    TRAN_NUM     : [[regrw]]  uint32  
+    FF_PORT      : [[regrw]]  uint32  
+    _pad_1C      :            uint32  
+    FF_PT        : [[regrw]]  uint32  
+    _pad_24      :            uint32  
+    INT_STS      : [[regrw]]  uint32  
+    INT_EN       : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    SPINOR_BASE_ADDR     = 0x10000000
+endconst
+
+const SPINOR       :? = ^spinor_regs(SPINOR_BASE_ADDR)
+struct pwm_regs:
+    HLPERIOD0    : [[regrw]]  uint32  
+    PERIOD0      : [[regrw]]  uint32  
+    HLPERIOD1    : [[regrw]]  uint32  
+    PERIOD1      : [[regrw]]  uint32  
+    HLPERIOD2    : [[regrw]]  uint32  
+    PERIOD2      : [[regrw]]  uint32  
+    HLPERIOD3    : [[regrw]]  uint32  
+    PERIOD3      : [[regrw]]  uint32  
+    CAP_FREQNUM  : [[regrw]]  uint32  
+    CAP_FREQDATA : [[regrw]]  uint32  
+    _pad_28      :            [(0x40-0x28) IDIV 4] uint32
+    POLARITY     : [[regrw]]  uint32  
+    PWMSTART     : [[regrw]]  uint32  
+    PWMDONE      : [[regrw]]  uint32  
+    PWMUPDATE    : [[regrw]]  uint32  
+    PCOUNT0      : [[regrw]]  uint32  
+    PCOUNT1      : [[regrw]]  uint32  
+    PCOUNT2      : [[regrw]]  uint32  
+    PCOUNT3      : [[regrw]]  uint32  
+    PULSECOUNT0  : [[regrw]]  uint32  
+    PULSECOUNT1  : [[regrw]]  uint32  
+    PULSECOUNT2  : [[regrw]]  uint32  
+    PULSECOUNT3  : [[regrw]]  uint32  
+    _pad_70      :            [(0x80-0x70) IDIV 4] uint32
+    SHIFTCOUNT0  : [[regrw]]  uint32  
+    SHIFTCOUNT1  : [[regrw]]  uint32  
+    SHIFTCOUNT2  : [[regrw]]  uint32  
+    SHIFTCOUNT3  : [[regrw]]  uint32  
+    SHIFTSTART   : [[regrw]]  uint32  
+    _pad_94      :            [(0x9C-0x94) IDIV 4] uint32
+    CAP_FREQEN   : [[regrw]]  uint32  
+    _pad_A0      :            [(0xC0-0xA0) IDIV 4] uint32
+    CAP_FREQDONE_NUM : [[regrw]]  uint32  
+    _pad_C4      :            [(0xD0-0xC4) IDIV 4] uint32
+    PWM_OE       : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    PWM0_BASE_ADDR       = 0x03060000
+    PWM1_BASE_ADDR       = 0x03061000
+    PWM2_BASE_ADDR       = 0x03062000
+    PWM3_BASE_ADDR       = 0x03063000
+endconst
+
+const PWM0         :? = ^pwm_regs(PWM0_BASE_ADDR)
+const PWM1         :? = ^pwm_regs(PWM1_BASE_ADDR)
+const PWM2         :? = ^pwm_regs(PWM2_BASE_ADDR)
+const PWM3         :? = ^pwm_regs(PWM3_BASE_ADDR)
+struct saradc_regs:
+    _pad_00      :            uint32  
+    CTRL         : [[regrw]]  uint32  
+    STATUS       : [[regrw]]  uint32  
+    CYC_SET      : [[regrw]]  uint32  
+    _pad_10      :            uint32  
+    RESULT       : [[regrw]]  [3] uint32
+    INTR_EN      : [[regrw]]  uint32  
+    INTR_CLR     : [[regrw]]  uint32  
+    INTR_STA     : [[regrw]]  uint32  
+    INTR_RAW     : [[regrw]]  uint32  
+    TEST         : [[regrw]]  uint32  
+    TRIM         : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    SARADC_BASE_ADDR     = 0x030F0000
+    RTCSYS_SARADC_BASE_ADDR = 0x0502C000
+    IRQNUM_SDMA          = 25
+    IRQNUM_I2S0          = 26
+    IRQNUM_I2S1          = 27
+    IRQNUM_I2S2          = 28
+    IRQNUM_I2S3          = 29
+    IRQNUM_UART0         = 30
+    IRQNUM_UART1         = 31
+    IRQNUM_I2C0          = 32
+    IRQNUM_I2C1          = 33
+    IRQNUM_I2C2          = 34
+    IRQNUM_I2C3          = 35
+    IRQNUM_I2C4          = 36
+    IRQNUM_SPI1          = 37
+    IRQNUM_SPI2          = 38
+    IRQNUM_WDG2          = 39
+    IRQNUM_KEYSCAN       = 40
+    IRQNUM_GPIO0         = 41
+    IRQNUM_GPIO1         = 42
+    IRQNUM_GPIO2         = 43
+    IRQNUM_GPIO3         = 44
+    IRQNUM_WIEGAND0      = 45
+    IRQNUM_PWR_MBOX      = 46
+    IRQNUM_PWR_IRRX      = 47
+    IRQNUM_PWR_GPIO      = 48
+    IRQNUM_PWR_UART      = 49
+    IRQNUM_PWR_I2C       = 50
+    IRQNUM_PWR_WDG       = 51
+    IRQNUM_TDMA          = 52
+    IRQNUM_TIMER4        = 55
+    IRQNUM_TIMER5        = 56
+endconst
+
+const(uint32):
+    IRQNUM_TIMER6        = 57
+    IRQNUM_TIMER7        = 58
+    IRQNUM_MBOX          = 61
+    DMARQ_I2S0_RX        = 0
+    DMARQ_I2S0_TX        = 1
+    DMARQ_I2S1_RX        = 2
+    DMARQ_I2S1_TX        = 3
+    DMARQ_I2S2_RX        = 4
+    DMARQ_I2S2_TX        = 5
+    DMARQ_I2S3_RX        = 6
+    DMARQ_I2S3_TX        = 7
+    DMARQ_UART0_TX       = 8
+    DMARQ_UART0_RX       = 9
+    DMARQ_UART1_TX       = 10
+    DMARQ_UART1_RX       = 11
+    DMARQ_UART2_TX       = 12
+    DMARQ_UART2_RX       = 13
+    DMARQ_UART3_TX       = 14
+    DMARQ_UART3_RX       = 15
+    DMARQ_SPI0_RX        = 16
+    DMARQ_SPI0_TX        = 17
+    DMARQ_SPI1_RX        = 18
+    DMARQ_SPI1_TX        = 19
+    DMARQ_SPI2_RX        = 20
+    DMARQ_SPI2_TX        = 21
+    DMARQ_SPI3_RX        = 22
+    DMARQ_SPI3_TX        = 23
+    DMARQ_I2C0_RX        = 24
+    DMARQ_I2C0_TX        = 25
+    DMARQ_I2C1_RX        = 26
+    DMARQ_I2C1_TX        = 27
+    DMARQ_I2C2_RX        = 28
+endconst
+
+const(uint32):
+    DMARQ_I2C2_TX        = 29
+    DMARQ_I2C3_RX        = 30
+    DMARQ_I2C3_TX        = 31
+    DMARQ_I2C4_RX        = 32
+    DMARQ_I2C4_TX        = 33
+    DMARQ_TDM0_RX        = 34
+    DMARQ_TDM0_TX        = 35
+    DMARQ_TDM1_RX        = 36
+    DMARQ_AUDSRC         = 37
+    DMARQ_SPI_NAND       = 38
+    DMARQ_SPI_NOR        = 39
+    DMARQ_UART4_TX       = 40
+    DMARQ_UART4_RX       = 41
+    DMARQ_SPI_NOR1       = 42
+    FMUX_SD0_CLK__SDIO0_CLK = 0
+    FMUX_SD0_CLK__IIC1_SDA = 1
+    FMUX_SD0_CLK__SPI0_SCK = 2
+    FMUX_SD0_CLK__XGPIOA_7 = 3
+    FMUX_SD0_CLK__PWM_15 = 5
+    FMUX_SD0_CLK__EPHY_LNK_LED = 6
+    FMUX_SD0_CLK__DBG_0  = 7
+    FMUX_SD0_CMD__SDIO0_CMD = 0
+    FMUX_SD0_CMD__IIC1_SCL = 1
+    FMUX_SD0_CMD__SPI0_SDO = 2
+    FMUX_SD0_CMD__XGPIOA_8 = 3
+    FMUX_SD0_CMD__PWM_14 = 5
+    FMUX_SD0_CMD__EPHY_SPD_LED = 6
+    FMUX_SD0_CMD__DBG_1  = 7
+    FMUX_SD0_D0__SDIO0_D_0 = 0
+    FMUX_SD0_D0__CAM_MCLK1 = 1
+    FMUX_SD0_D0__SPI0_SDI = 2
+    FMUX_SD0_D0__XGPIOA_9 = 3
+endconst
+
+const(uint32):
+    FMUX_SD0_D0__UART3_TX = 4
+    FMUX_SD0_D0__PWM_13  = 5
+    FMUX_SD0_D0__WG0_D0  = 6
+    FMUX_SD0_D0__DBG_2   = 7
+    FMUX_SD0_D1__SDIO0_D_1 = 0
+    FMUX_SD0_D1__IIC1_SDA = 1
+    FMUX_SD0_D1__AUX0    = 2
+    FMUX_SD0_D1__XGPIOA_10 = 3
+    FMUX_SD0_D1__UART1_TX = 4
+    FMUX_SD0_D1__PWM_12  = 5
+    FMUX_SD0_D1__WG0_D1  = 6
+    FMUX_SD0_D1__DBG_3   = 7
+    FMUX_SD0_D2__SDIO0_D_2 = 0
+    FMUX_SD0_D2__IIC1_SCL = 1
+    FMUX_SD0_D2__AUX1    = 2
+    FMUX_SD0_D2__XGPIOA_11 = 3
+    FMUX_SD0_D2__UART1_RX = 4
+    FMUX_SD0_D2__PWM_11  = 5
+    FMUX_SD0_D2__WG1_D0  = 6
+    FMUX_SD0_D2__DBG_4   = 7
+    FMUX_SD0_D3__SDIO0_D_3 = 0
+    FMUX_SD0_D3__CAM_MCLK0 = 1
+    FMUX_SD0_D3__SPI0_CS_X = 2
+    FMUX_SD0_D3__XGPIOA_12 = 3
+    FMUX_SD0_D3__UART3_RX = 4
+    FMUX_SD0_D3__PWM_10  = 5
+    FMUX_SD0_D3__WG1_D1  = 6
+    FMUX_SD0_D3__DBG_5   = 7
+    FMUX_SD0_CD__SDIO0_CD = 0
+    FMUX_SD0_CD__XGPIOA_13 = 3
+    FMUX_SD0_PWR_EN__SDIO0_PWR_EN = 0
+    FMUX_SD0_PWR_EN__XGPIOA_14 = 3
+endconst
+
+const(uint32):
+    FMUX_SPK_EN__XGPIOA_15 = 3
+    FMUX_UART0_TX__UART0_TX = 0
+    FMUX_UART0_TX__CAM_MCLK1 = 1
+    FMUX_UART0_TX__PWM_4 = 2
+    FMUX_UART0_TX__XGPIOA_16 = 3
+    FMUX_UART0_TX__UART1_TX = 4
+    FMUX_UART0_TX__DBG_6 = 7
+    FMUX_UART0_RX__UART0_RX = 0
+    FMUX_UART0_RX__CAM_MCLK0 = 1
+    FMUX_UART0_RX__PWM_5 = 2
+    FMUX_UART0_RX__XGPIOA_17 = 3
+    FMUX_UART0_RX__UART1_RX = 4
+    FMUX_UART0_RX__AUX0  = 5
+    FMUX_UART0_RX__DBG_7 = 7
+    FMUX_EMMC_DAT2__EMMC_DAT_2 = 0
+    FMUX_EMMC_DAT2__SPINOR_HOLD_X = 1
+    FMUX_EMMC_DAT2__SPINAND_HOLD = 2
+    FMUX_EMMC_DAT2__XGPIOA_26 = 3
+    FMUX_EMMC_CLK__EMMC_CLK = 0
+    FMUX_EMMC_CLK__SPINOR_SCK = 1
+    FMUX_EMMC_CLK__SPINAND_CLK = 2
+    FMUX_EMMC_CLK__XGPIOA_22 = 3
+    FMUX_EMMC_DAT0__EMMC_DAT_0 = 0
+    FMUX_EMMC_DAT0__SPINOR_MOSI = 1
+    FMUX_EMMC_DAT0__SPINAND_MOSI = 2
+    FMUX_EMMC_DAT0__XGPIOA_25 = 3
+    FMUX_EMMC_DAT3__EMMC_DAT_3 = 0
+    FMUX_EMMC_DAT3__SPINOR_WP_X = 1
+    FMUX_EMMC_DAT3__SPINAND_WP = 2
+    FMUX_EMMC_DAT3__XGPIOA_27 = 3
+    FMUX_EMMC_CMD__EMMC_CMD = 0
+    FMUX_EMMC_CMD__SPINOR_MISO = 1
+endconst
+
+const(uint32):
+    FMUX_EMMC_CMD__SPINAND_MISO = 2
+    FMUX_EMMC_CMD__XGPIOA_23 = 3
+    FMUX_EMMC_DAT1__EMMC_DAT_1 = 0
+    FMUX_EMMC_DAT1__SPINOR_CS_X = 1
+    FMUX_EMMC_DAT1__SPINAND_CS = 2
+    FMUX_EMMC_DAT1__XGPIOA_24 = 3
+    FMUX_JTAG_CPU_TMS__JTAG_TMS = 0
+    FMUX_JTAG_CPU_TMS__CAM_MCLK0 = 1
+    FMUX_JTAG_CPU_TMS__PWM_7 = 2
+    FMUX_JTAG_CPU_TMS__XGPIOA_19 = 3
+    FMUX_JTAG_CPU_TMS__UART1_RTS = 4
+    FMUX_JTAG_CPU_TMS__AUX0 = 5
+    FMUX_JTAG_CPU_TMS__UART1_TX = 6
+    FMUX_JTAG_CPU_TMS__VO_D_28 = 7
+    FMUX_JTAG_CPU_TCK__JTAG_TCK = 0
+    FMUX_JTAG_CPU_TCK__CAM_MCLK1 = 1
+    FMUX_JTAG_CPU_TCK__PWM_6 = 2
+    FMUX_JTAG_CPU_TCK__XGPIOA_18 = 3
+    FMUX_JTAG_CPU_TCK__UART1_CTS = 4
+    FMUX_JTAG_CPU_TCK__AUX1 = 5
+    FMUX_JTAG_CPU_TCK__UART1_RX = 6
+    FMUX_JTAG_CPU_TCK__VO_D_29 = 7
+    FMUX_IIC0_SCL__JTAG_TDI = 0
+    FMUX_IIC0_SCL__UART1_TX = 1
+    FMUX_IIC0_SCL__UART2_TX = 2
+    FMUX_IIC0_SCL__XGPIOA_28 = 3
+    FMUX_IIC0_SCL__IIC0_SCL = 4
+    FMUX_IIC0_SCL__WG0_D0 = 5
+    FMUX_IIC0_SCL__DBG_10 = 7
+    FMUX_IIC0_SDA__JTAG_TDO = 0
+    FMUX_IIC0_SDA__UART1_RX = 1
+    FMUX_IIC0_SDA__UART2_RX = 2
+endconst
+
+const(uint32):
+    FMUX_IIC0_SDA__XGPIOA_29 = 3
+    FMUX_IIC0_SDA__IIC0_SDA = 4
+    FMUX_IIC0_SDA__WG0_D1 = 5
+    FMUX_IIC0_SDA__WG1_D0 = 6
+    FMUX_IIC0_SDA__DBG_11 = 7
+    FMUX_AUX0__AUX0      = 0
+    FMUX_AUX0__XGPIOA_30 = 3
+    FMUX_AUX0__IIS1_MCLK = 4
+    FMUX_AUX0__WG1_D1    = 6
+    FMUX_AUX0__DBG_12    = 7
+    FMUX_GPIO_ZQ__PWR_GPIO_24 = 3
+    FMUX_GPIO_ZQ__PWM_2  = 4
+    FMUX_PWR_VBAT_DET__PWR_VBAT_DET = 0
+    FMUX_PWR_RSTN__PWR_RSTN = 0
+    FMUX_PWR_SEQ1__PWR_SEQ1 = 0
+    FMUX_PWR_SEQ1__PWR_GPIO_3 = 3
+    FMUX_PWR_SEQ2__PWR_SEQ2 = 0
+    FMUX_PWR_SEQ2__PWR_GPIO_4 = 3
+    FMUX_PWR_WAKEUP0__PWR_WAKEUP0 = 0
+    FMUX_PWR_WAKEUP0__PWR_IR0 = 1
+    FMUX_PWR_WAKEUP0__PWR_UART0_TX = 2
+    FMUX_PWR_WAKEUP0__PWR_GPIO_6 = 3
+    FMUX_PWR_WAKEUP0__UART1_TX = 4
+    FMUX_PWR_WAKEUP0__IIC4_SCL = 5
+    FMUX_PWR_WAKEUP0__EPHY_LNK_LED = 6
+    FMUX_PWR_WAKEUP0__WG2_D0 = 7
+    FMUX_PWR_BUTTON1__PWR_BUTTON1 = 0
+    FMUX_PWR_BUTTON1__PWR_GPIO_8 = 3
+    FMUX_PWR_BUTTON1__UART1_RX = 4
+    FMUX_PWR_BUTTON1__IIC4_SDA = 5
+    FMUX_PWR_BUTTON1__EPHY_SPD_LED = 6
+    FMUX_PWR_BUTTON1__WG2_D1 = 7
+endconst
+
+const(uint32):
+    FMUX_XTAL_XIN__PWR_XTAL_CLKIN = 0
+    FMUX_PWR_GPIO0__PWR_GPIO_0 = 0
+    FMUX_PWR_GPIO0__UART2_TX = 1
+    FMUX_PWR_GPIO0__PWR_UART0_RX = 2
+    FMUX_PWR_GPIO0__PWM_8 = 4
+    FMUX_PWR_GPIO1__PWR_GPIO_1 = 0
+    FMUX_PWR_GPIO1__UART2_RX = 1
+    FMUX_PWR_GPIO1__EPHY_LNK_LED = 3
+    FMUX_PWR_GPIO1__PWM_9 = 4
+    FMUX_PWR_GPIO1__PWR_IIC_SCL = 5
+    FMUX_PWR_GPIO1__IIC2_SCL = 6
+    FMUX_PWR_GPIO1__IIC0_SDA = 7
+    FMUX_PWR_GPIO2__PWR_GPIO_2 = 0
+    FMUX_PWR_GPIO2__PWR_SECTICK = 2
+    FMUX_PWR_GPIO2__EPHY_SPD_LED = 3
+    FMUX_PWR_GPIO2__PWM_10 = 4
+    FMUX_PWR_GPIO2__PWR_IIC_SDA = 5
+    FMUX_PWR_GPIO2__IIC2_SDA = 6
+    FMUX_PWR_GPIO2__IIC0_SCL = 7
+    FMUX_SD1_GPIO1__UART4_TX = 1
+    FMUX_SD1_GPIO1__PWR_GPIO_26 = 3
+    FMUX_SD1_GPIO1__PWM_10 = 7
+    FMUX_SD1_GPIO0__UART4_RX = 1
+    FMUX_SD1_GPIO0__PWR_GPIO_25 = 3
+    FMUX_SD1_GPIO0__PWM_11 = 7
+    FMUX_SD1_D3__PWR_SD1_D3 = 0
+    FMUX_SD1_D3__SPI2_CS_X = 1
+    FMUX_SD1_D3__IIC1_SCL = 2
+    FMUX_SD1_D3__PWR_GPIO_18 = 3
+    FMUX_SD1_D3__CAM_MCLK0 = 4
+    FMUX_SD1_D3__UART3_CTS = 5
+    FMUX_SD1_D3__PWR_SPINOR1_CS_X = 6
+endconst
+
+const(uint32):
+    FMUX_SD1_D3__PWM_4   = 7
+    FMUX_SD1_D2__PWR_SD1_D2 = 0
+    FMUX_SD1_D2__IIC1_SCL = 1
+    FMUX_SD1_D2__UART2_TX = 2
+    FMUX_SD1_D2__PWR_GPIO_19 = 3
+    FMUX_SD1_D2__CAM_MCLK0 = 4
+    FMUX_SD1_D2__UART3_TX = 5
+    FMUX_SD1_D2__PWR_SPINOR1_HOLD_X = 6
+    FMUX_SD1_D2__PWM_5   = 7
+    FMUX_SD1_D1__PWR_SD1_D1 = 0
+    FMUX_SD1_D1__IIC1_SDA = 1
+    FMUX_SD1_D1__UART2_RX = 2
+    FMUX_SD1_D1__PWR_GPIO_20 = 3
+    FMUX_SD1_D1__CAM_MCLK1 = 4
+    FMUX_SD1_D1__UART3_RX = 5
+    FMUX_SD1_D1__PWR_SPINOR1_WP_X = 6
+    FMUX_SD1_D1__PWM_6   = 7
+    FMUX_SD1_D0__PWR_SD1_D0 = 0
+    FMUX_SD1_D0__SPI2_SDI = 1
+    FMUX_SD1_D0__IIC1_SDA = 2
+    FMUX_SD1_D0__PWR_GPIO_21 = 3
+    FMUX_SD1_D0__CAM_MCLK1 = 4
+    FMUX_SD1_D0__UART3_RTS = 5
+    FMUX_SD1_D0__PWR_SPINOR1_MISO = 6
+    FMUX_SD1_D0__PWM_7   = 7
+    FMUX_SD1_CMD__PWR_SD1_CMD = 0
+    FMUX_SD1_CMD__SPI2_SDO = 1
+    FMUX_SD1_CMD__IIC3_SCL = 2
+    FMUX_SD1_CMD__PWR_GPIO_22 = 3
+    FMUX_SD1_CMD__CAM_VS0 = 4
+    FMUX_SD1_CMD__EPHY_LNK_LED = 5
+    FMUX_SD1_CMD__PWR_SPINOR1_MOSI = 6
+endconst
+
+const(uint32):
+    FMUX_SD1_CMD__PWM_8  = 7
+    FMUX_SD1_CLK__PWR_SD1_CLK = 0
+    FMUX_SD1_CLK__SPI2_SCK = 1
+    FMUX_SD1_CLK__IIC3_SDA = 2
+    FMUX_SD1_CLK__PWR_GPIO_23 = 3
+    FMUX_SD1_CLK__CAM_HS0 = 4
+    FMUX_SD1_CLK__EPHY_SPD_LED = 5
+    FMUX_SD1_CLK__PWR_SPINOR1_SCK = 6
+    FMUX_SD1_CLK__PWM_9  = 7
+    FMUX_PWM0_BUCK__PWM_0 = 0
+    FMUX_PWM0_BUCK__XGPIOB_0 = 3
+    FMUX_ADC1__XGPIOB_3  = 3
+    FMUX_ADC1__KEY_COL2  = 4
+    FMUX_ADC1__PWM_3     = 6
+    FMUX_USB_VBUS_DET__USB_VBUS_DET = 0
+    FMUX_USB_VBUS_DET__XGPIOB_6 = 3
+    FMUX_USB_VBUS_DET__CAM_MCLK0 = 4
+    FMUX_USB_VBUS_DET__CAM_MCLK1 = 5
+    FMUX_USB_VBUS_DET__PWM_4 = 6
+    MUX_SPI1_MISO__UART3_RTS = 1
+    MUX_SPI1_MISO__IIC1_SDA = 2
+    MUX_SPI1_MISO__XGPIOB_8 = 3
+    MUX_SPI1_MISO__PWM_9 = 4
+    MUX_SPI1_MISO__KEY_COL1 = 5
+    MUX_SPI1_MISO__SPI1_SDI = 6
+    MUX_SPI1_MISO__DBG_14 = 7
+    MUX_SPI1_MOSI__UART3_RX = 1
+    MUX_SPI1_MOSI__IIC1_SCL = 2
+    MUX_SPI1_MOSI__XGPIOB_7 = 3
+    MUX_SPI1_MOSI__PWM_8 = 4
+    MUX_SPI1_MOSI__KEY_COL0 = 5
+    MUX_SPI1_MOSI__SPI1_SDO = 6
+endconst
+
+const(uint32):
+    MUX_SPI1_MOSI__DBG_13 = 7
+    MUX_SPI1_CS__UART3_CTS = 1
+    MUX_SPI1_CS__CAM_MCLK0 = 2
+    MUX_SPI1_CS__XGPIOB_10 = 3
+    MUX_SPI1_CS__PWM_11  = 4
+    MUX_SPI1_CS__KEY_ROW3 = 5
+    MUX_SPI1_CS__SPI1_CS_X = 6
+    MUX_SPI1_CS__DBG_16  = 7
+    MUX_SPI1_SCK__UART3_TX = 1
+    MUX_SPI1_SCK__CAM_MCLK1 = 2
+    MUX_SPI1_SCK__XGPIOB_9 = 3
+    MUX_SPI1_SCK__PWM_10 = 4
+    MUX_SPI1_SCK__KEY_ROW2 = 5
+    MUX_SPI1_SCK__SPI1_SCK = 6
+    MUX_SPI1_SCK__DBG_15 = 7
+    FMUX_ETH_TXP__UART3_RX = 1
+    FMUX_ETH_TXP__IIC1_SCL = 2
+    FMUX_ETH_TXP__XGPIOB_25 = 3
+    FMUX_ETH_TXP__PWM_13 = 4
+    FMUX_ETH_TXP__CAM_MCLK0 = 5
+    FMUX_ETH_TXP__SPI1_SDO = 6
+    FMUX_ETH_TXP__IIS2_LRCK = 7
+    FMUX_ETH_TXM__UART3_RTS = 1
+    FMUX_ETH_TXM__IIC1_SDA = 2
+    FMUX_ETH_TXM__XGPIOB_24 = 3
+    FMUX_ETH_TXM__PWM_12 = 4
+    FMUX_ETH_TXM__CAM_MCLK1 = 5
+    FMUX_ETH_TXM__SPI1_SDI = 6
+    FMUX_ETH_TXM__IIS2_BCLK = 7
+    FMUX_ETH_RXP__UART3_TX = 1
+    FMUX_ETH_RXP__CAM_MCLK1 = 2
+    FMUX_ETH_RXP__XGPIOB_27 = 3
+endconst
+
+const(uint32):
+    FMUX_ETH_RXP__PWM_15 = 4
+    FMUX_ETH_RXP__CAM_HS0 = 5
+    FMUX_ETH_RXP__SPI1_SCK = 6
+    FMUX_ETH_RXP__IIS2_DO = 7
+    FMUX_ETH_RXM__UART3_CTS = 1
+    FMUX_ETH_RXM__CAM_MCLK0 = 2
+    FMUX_ETH_RXM__XGPIOB_26 = 3
+    FMUX_ETH_RXM__PWM_14 = 4
+    FMUX_ETH_RXM__CAM_VS0 = 5
+    FMUX_ETH_RXM__SPI1_CS_X = 6
+    FMUX_ETH_RXM__IIS2_DI = 7
+    FMUX_GPIO_RTX__VI0_D_15 = 1
+    FMUX_GPIO_RTX__XGPIOB_23 = 3
+    FMUX_GPIO_RTX__PWM_1 = 4
+    FMUX_GPIO_RTX__CAM_MCLK0 = 5
+    FMUX_GPIO_RTX__IIS2_MCLK = 7
+    FMUX_MIPIRX4N__VI0_CLK = 1
+    FMUX_MIPIRX4N__IIC0_SCL = 2
+    FMUX_MIPIRX4N__XGPIOC_2 = 3
+    FMUX_MIPIRX4N__IIC1_SDA = 4
+    FMUX_MIPIRX4N__CAM_MCLK0 = 5
+    FMUX_MIPIRX4N__KEY_ROW0 = 6
+    FMUX_MIPIRX4N__MUX_SPI1_SCK = 7
+    FMUX_MIPIRX4P__VI0_D_0 = 1
+    FMUX_MIPIRX4P__IIC0_SDA = 2
+    FMUX_MIPIRX4P__XGPIOC_3 = 3
+    FMUX_MIPIRX4P__IIC1_SCL = 4
+    FMUX_MIPIRX4P__CAM_MCLK1 = 5
+    FMUX_MIPIRX4P__KEY_ROW1 = 6
+    FMUX_MIPIRX4P__MUX_SPI1_CS = 7
+    FMUX_MIPIRX3N__VI0_D_1 = 1
+    FMUX_MIPIRX3N__XGPIOC_4 = 3
+endconst
+
+const(uint32):
+    FMUX_MIPIRX3N__CAM_MCLK0 = 4
+    FMUX_MIPIRX3N__MUX_SPI1_MISO = 7
+    FMUX_MIPIRX3P__VI0_D_2 = 1
+    FMUX_MIPIRX3P__XGPIOC_5 = 3
+    FMUX_MIPIRX3P__MUX_SPI1_MOSI = 7
+    FMUX_MIPIRX2N__VI0_D_3 = 1
+    FMUX_MIPIRX2N__XGPIOC_6 = 3
+    FMUX_MIPIRX2N__IIC4_SCL = 5
+    FMUX_MIPIRX2N__DBG_6 = 7
+    FMUX_MIPIRX2P__VI0_D_4 = 1
+    FMUX_MIPIRX2P__XGPIOC_7 = 3
+    FMUX_MIPIRX2P__IIC4_SDA = 5
+    FMUX_MIPIRX2P__DBG_7 = 7
+    FMUX_MIPIRX1N__VI0_D_5 = 1
+    FMUX_MIPIRX1N__XGPIOC_8 = 3
+    FMUX_MIPIRX1N__KEY_ROW3 = 6
+    FMUX_MIPIRX1N__DBG_8 = 7
+    FMUX_MIPIRX1P__VI0_D_6 = 1
+    FMUX_MIPIRX1P__XGPIOC_9 = 3
+    FMUX_MIPIRX1P__IIC1_SDA = 4
+    FMUX_MIPIRX1P__KEY_ROW2 = 6
+    FMUX_MIPIRX1P__DBG_9 = 7
+    FMUX_MIPIRX0N__VI0_D_7 = 1
+    FMUX_MIPIRX0N__XGPIOC_10 = 3
+    FMUX_MIPIRX0N__IIC1_SCL = 4
+    FMUX_MIPIRX0N__CAM_MCLK1 = 5
+    FMUX_MIPIRX0N__DBG_10 = 7
+    FMUX_MIPIRX0P__VI0_D_8 = 1
+    FMUX_MIPIRX0P__XGPIOC_11 = 3
+    FMUX_MIPIRX0P__CAM_MCLK0 = 4
+    FMUX_MIPIRX0P__DBG_11 = 7
+    FMUX_AUD_AINL_MIC__XGPIOC_23 = 3
+endconst
+
+const(uint32):
+    FMUX_AUD_AINL_MIC__IIS1_BCLK = 4
+    FMUX_AUD_AINL_MIC__IIS2_BCLK = 5
+    FMUX_AUD_AOUTR__XGPIOC_24 = 3
+    FMUX_AUD_AOUTR__IIS1_DI = 4
+    FMUX_AUD_AOUTR__IIS2_DO = 5
+    FMUX_AUD_AOUTR__IIS1_DO = 6
+    FMUX_GPIO            = 3
+    FMUX_INVALID         = 0xFF
+endconst
+

@@ -1,0 +1,2354 @@
+const(int):
+    NonMaskableInt_IRQn  = -14
+    MemoryManagement_IRQn = -12
+    BusFault_IRQn        = -11
+    UsageFault_IRQn      = -10
+    SVCall_IRQn          = -5
+    DebugMonitor_IRQn    = -4
+    PendSV_IRQn          = -2
+    SysTick_IRQn         = -1
+    WDT_IRQn             = 0
+    TIMER0_IRQn          = 1
+    TIMER1_IRQn          = 2
+    TIMER2_IRQn          = 3
+    TIMER3_IRQn          = 4
+    UART0_IRQn           = 5
+    UART1_IRQn           = 6
+    UART2_IRQn           = 7
+    UART3_IRQn           = 8
+    PWM1_IRQn            = 9
+    I2C0_IRQn            = 10
+    I2C1_IRQn            = 11
+    I2C2_IRQn            = 12
+    SPI_IRQn             = 13
+    SSP0_IRQn            = 14
+    SSP1_IRQn            = 15
+    PLL0_IRQn            = 16
+    RTC_IRQn             = 17
+    EINT0_IRQn           = 18
+    EINT1_IRQn           = 19
+    EINT2_IRQn           = 20
+    EINT3_IRQn           = 21
+    ADC_IRQn             = 22
+    BOD_IRQn             = 23
+endconst
+
+const(int):
+    USB_IRQn             = 24
+    CAN_IRQn             = 25
+    DMA_IRQn             = 26
+    I2S_IRQn             = 27
+    ENET_IRQn            = 28
+    RIT_IRQn             = 29
+    MCPWM_IRQn           = 30
+    QEI_IRQn             = 31
+    PLL1_IRQn            = 32
+    USBActivity_IRQn     = 33
+    CANActivity_IRQn     = 34
+    RESERVE35_IRQn       = 35
+endconst
+
+const(uint32):
+    __MPU_PRESENT        = 1
+    __NVIC_PRIO_BITS     = 5
+    __Vendor_SysTickConfig = 0
+endconst
+
+struct LPC_SC_TypeDef:
+    FLASHCFG     : [[regrw]]  uint32  
+    RESERVED0    :            [31] uint32
+    PLL0CON      : [[regrw]]  uint32  
+    PLL0CFG      : [[regrw]]  uint32  
+    PLL0STAT     : [[regro]]  uint32  
+    PLL0FEED     : [[regwo]]  uint32  
+    RESERVED1    :            [4] uint32
+    PLL1CON      : [[regrw]]  uint32  
+    PLL1CFG      : [[regrw]]  uint32  
+    PLL1STAT     : [[regro]]  uint32  
+    PLL1FEED     : [[regwo]]  uint32  
+    RESERVED2    :            [4] uint32
+    PCON         : [[regrw]]  uint32  
+    PCONP        : [[regrw]]  uint32  
+    RESERVED3    :            [15] uint32
+    CCLKCFG      : [[regrw]]  uint32  
+    USBCLKCFG    : [[regrw]]  uint32  
+    CLKSRCSEL    : [[regrw]]  uint32  
+    CANSLEEPCLR  : [[regrw]]  uint32  
+    CANWAKEFLAGS : [[regrw]]  uint32  
+    RESERVED4    :            [10] uint32
+    EXTINT       : [[regrw]]  uint32  
+    RESERVED5    :            uint32  
+    EXTMODE      : [[regrw]]  uint32  
+    EXTPOLAR     : [[regrw]]  uint32  
+    RESERVED6    :            [12] uint32
+    RSID         : [[regrw]]  uint32  
+    RESERVED7    :            [7] uint32
+    SCS          : [[regrw]]  uint32  
+    IRCTRIM      : [[regrw]]  uint32  
+    PCLKSEL0     : [[regrw]]  uint32  
+    PCLKSEL1     : [[regrw]]  uint32  
+    RESERVED8    :            [4] uint32
+    USBIntSt     : [[regrw]]  uint32  
+    DMAREQSEL    : [[regrw]]  uint32  
+    CLKOUTCFG    : [[regrw]]  uint32  
+endstruct
+
+struct LPC_PINCON_TypeDef:
+    PINSEL0      : [[regrw]]  uint32  
+    PINSEL1      : [[regrw]]  uint32  
+    PINSEL2      : [[regrw]]  uint32  
+    PINSEL3      : [[regrw]]  uint32  
+    PINSEL4      : [[regrw]]  uint32  
+    PINSEL5      : [[regrw]]  uint32  
+    PINSEL6      : [[regrw]]  uint32  
+    PINSEL7      : [[regrw]]  uint32  
+    PINSEL8      : [[regrw]]  uint32  
+    PINSEL9      : [[regrw]]  uint32  
+    PINSEL10     : [[regrw]]  uint32  
+    RESERVED0    :            [5] uint32
+    PINMODE0     : [[regrw]]  uint32  
+    PINMODE1     : [[regrw]]  uint32  
+    PINMODE2     : [[regrw]]  uint32  
+    PINMODE3     : [[regrw]]  uint32  
+    PINMODE4     : [[regrw]]  uint32  
+    PINMODE5     : [[regrw]]  uint32  
+    PINMODE6     : [[regrw]]  uint32  
+    PINMODE7     : [[regrw]]  uint32  
+    PINMODE8     : [[regrw]]  uint32  
+    PINMODE9     : [[regrw]]  uint32  
+    PINMODE_OD0  : [[regrw]]  uint32  
+    PINMODE_OD1  : [[regrw]]  uint32  
+    PINMODE_OD2  : [[regrw]]  uint32  
+    PINMODE_OD3  : [[regrw]]  uint32  
+    PINMODE_OD4  : [[regrw]]  uint32  
+    I2CPADCFG    : [[regrw]]  uint32  
+endstruct
+
+struct NestedStruct_1:
+        FIODIRL      : [[regrw]]  uint16  
+        FIODIRH      : [[regrw]]  uint16  
+endstruct
+
+struct NestedStruct_3:
+        FIODIR0      : [[regrw]]  uint8   
+        FIODIR1      : [[regrw]]  uint8   
+        FIODIR2      : [[regrw]]  uint8   
+        FIODIR3      : [[regrw]]  uint8   
+endstruct
+
+struct NestedStruct_6:
+        FIOMASKL     : [[regrw]]  uint16  
+        FIOMASKH     : [[regrw]]  uint16  
+endstruct
+
+struct NestedStruct_8:
+        FIOMASK0     : [[regrw]]  uint8   
+        FIOMASK1     : [[regrw]]  uint8   
+        FIOMASK2     : [[regrw]]  uint8   
+        FIOMASK3     : [[regrw]]  uint8   
+endstruct
+
+struct NestedStruct_11:
+        FIOPINL      : [[regrw]]  uint16  
+        FIOPINH      : [[regrw]]  uint16  
+endstruct
+
+struct NestedStruct_13:
+        FIOPIN0      : [[regrw]]  uint8   
+        FIOPIN1      : [[regrw]]  uint8   
+        FIOPIN2      : [[regrw]]  uint8   
+        FIOPIN3      : [[regrw]]  uint8   
+endstruct
+
+struct NestedStruct_16:
+        FIOSETL      : [[regrw]]  uint16  
+        FIOSETH      : [[regrw]]  uint16  
+endstruct
+
+struct NestedStruct_18:
+        FIOSET0      : [[regrw]]  uint8   
+        FIOSET1      : [[regrw]]  uint8   
+        FIOSET2      : [[regrw]]  uint8   
+        FIOSET3      : [[regrw]]  uint8   
+endstruct
+
+struct NestedStruct_21:
+        FIOCLRL      : [[regwo]]  uint16  
+        FIOCLRH      : [[regwo]]  uint16  
+endstruct
+
+struct NestedStruct_23:
+        FIOCLR0      : [[regwo]]  uint8   
+        FIOCLR1      : [[regwo]]  uint8   
+        FIOCLR2      : [[regwo]]  uint8   
+        FIOCLR3      : [[regwo]]  uint8   
+endstruct
+
+struct LPC_GPIO_TypeDef:
+    union u_FIODIR:
+        FIODIR       : [[regrw]]  uint32  
+        s_anon_2     :            NestedStruct_1
+        s_anon_4     :            NestedStruct_3
+    endunion
+    RESERVED0    :            [3] uint32
+    union u_FIOMASK:
+        FIOMASK      : [[regrw]]  uint32  
+        s_anon_7     :            NestedStruct_6
+        s_anon_9     :            NestedStruct_8
+    endunion
+    union u_FIOPIN:
+        FIOPIN       : [[regrw]]  uint32  
+        s_anon_12    :            NestedStruct_11
+        s_anon_14    :            NestedStruct_13
+    endunion
+    union u_FIOSET:
+        FIOSET       : [[regrw]]  uint32  
+        s_anon_17    :            NestedStruct_16
+        s_anon_19    :            NestedStruct_18
+    endunion
+    union u_FIOCLR:
+        FIOCLR       : [[regwo]]  uint32  
+        s_anon_22    :            NestedStruct_21
+        s_anon_24    :            NestedStruct_23
+    endunion
+endstruct
+
+struct LPC_GPIOINT_TypeDef:
+    IntStatus    : [[regro]]  uint32  
+    IO0IntStatR  : [[regro]]  uint32  
+    IO0IntStatF  : [[regro]]  uint32  
+    IO0IntClr    : [[regwo]]  uint32  
+    IO0IntEnR    : [[regrw]]  uint32  
+    IO0IntEnF    : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    IO2IntStatR  : [[regro]]  uint32  
+    IO2IntStatF  : [[regro]]  uint32  
+    IO2IntClr    : [[regwo]]  uint32  
+    IO2IntEnR    : [[regrw]]  uint32  
+    IO2IntEnF    : [[regrw]]  uint32  
+endstruct
+
+struct LPC_TIM_TypeDef:
+    IR           : [[regrw]]  uint32  
+    TCR          : [[regrw]]  uint32  
+    TC           : [[regrw]]  uint32  
+    PR           : [[regrw]]  uint32  
+    PC           : [[regrw]]  uint32  
+    MCR          : [[regrw]]  uint32  
+    MR0          : [[regrw]]  uint32  
+    MR1          : [[regrw]]  uint32  
+    MR2          : [[regrw]]  uint32  
+    MR3          : [[regrw]]  uint32  
+    CCR          : [[regrw]]  uint32  
+    CR0          : [[regro]]  uint32  
+    CR1          : [[regro]]  uint32  
+    RESERVED0    :            [2] uint32
+    EMR          : [[regrw]]  uint32  
+    RESERVED1    :            [12] uint32
+    CTCR         : [[regrw]]  uint32  
+endstruct
+
+struct LPC_PWM_TypeDef:
+    IR           : [[regrw]]  uint32  
+    TCR          : [[regrw]]  uint32  
+    TC           : [[regrw]]  uint32  
+    PR           : [[regrw]]  uint32  
+    PC           : [[regrw]]  uint32  
+    MCR          : [[regrw]]  uint32  
+    MR0          : [[regrw]]  uint32  
+    MR1          : [[regrw]]  uint32  
+    MR2          : [[regrw]]  uint32  
+    MR3          : [[regrw]]  uint32  
+    CCR          : [[regrw]]  uint32  
+    CR0          : [[regro]]  uint32  
+    CR1          : [[regro]]  uint32  
+    CR2          : [[regro]]  uint32  
+    CR3          : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    MR4          : [[regrw]]  uint32  
+    MR5          : [[regrw]]  uint32  
+    MR6          : [[regrw]]  uint32  
+    PCR          : [[regrw]]  uint32  
+    LER          : [[regrw]]  uint32  
+    RESERVED1    :            [7] uint32
+    CTCR         : [[regrw]]  uint32  
+endstruct
+
+struct LPC_UART_TypeDef:
+    union u_RBR:
+        RBR          : [[regro]]  uint8   
+        THR          : [[regwo]]  uint8   
+        DLL          : [[regrw]]  uint8   
+        RESERVED0    :            uint32  
+    endunion
+    union u_DLM:
+        DLM          : [[regrw]]  uint8   
+        IER          : [[regrw]]  uint32  
+    endunion
+    union u_IIR:
+        IIR          : [[regro]]  uint32  
+        FCR          : [[regwo]]  uint8   
+    endunion
+    LCR          : [[regrw]]  uint8   
+    RESERVED1    :            [7] uint8
+    LSR          : [[regro]]  uint8   
+    RESERVED2    :            [7] uint8
+    SCR          : [[regrw]]  uint8   
+    RESERVED3    :            [3] uint8
+    ACR          : [[regrw]]  uint32  
+    ICR          : [[regrw]]  uint8   
+    RESERVED4    :            [3] uint8
+    FDR          : [[regrw]]  uint8   
+    RESERVED5    :            [7] uint8
+    TER          : [[regrw]]  uint8   
+    RESERVED6    :            [39] uint8
+    FIFOLVL      : [[regrw]]  uint32  
+endstruct
+
+struct LPC_UART0_TypeDef:
+    union u_RBR:
+        RBR          : [[regro]]  uint8   
+        THR          : [[regwo]]  uint8   
+        DLL          : [[regrw]]  uint8   
+        RESERVED0    :            uint32  
+    endunion
+    union u_DLM:
+        DLM          : [[regrw]]  uint8   
+        IER          : [[regrw]]  uint32  
+    endunion
+    union u_IIR:
+        IIR          : [[regro]]  uint32  
+        FCR          : [[regwo]]  uint8   
+    endunion
+    LCR          : [[regrw]]  uint8   
+    RESERVED1    :            [7] uint8
+    LSR          : [[regro]]  uint8   
+    RESERVED2    :            [7] uint8
+    SCR          : [[regrw]]  uint8   
+    RESERVED3    :            [3] uint8
+    ACR          : [[regrw]]  uint32  
+    ICR          : [[regrw]]  uint8   
+    RESERVED4    :            [3] uint8
+    FDR          : [[regrw]]  uint8   
+    RESERVED5    :            [7] uint8
+    TER          : [[regrw]]  uint8   
+    RESERVED6    :            [39] uint8
+    FIFOLVL      : [[regrw]]  uint32  
+endstruct
+
+struct LPC_UART1_TypeDef:
+    union u_RBR:
+        RBR          : [[regro]]  uint8   
+        THR          : [[regwo]]  uint8   
+        DLL          : [[regrw]]  uint8   
+        RESERVED0    :            uint32  
+    endunion
+    union u_DLM:
+        DLM          : [[regrw]]  uint8   
+        IER          : [[regrw]]  uint32  
+    endunion
+    union u_IIR:
+        IIR          : [[regro]]  uint32  
+        FCR          : [[regwo]]  uint8   
+    endunion
+    LCR          : [[regrw]]  uint8   
+    RESERVED1    :            [3] uint8
+    MCR          : [[regrw]]  uint8   
+    RESERVED2    :            [3] uint8
+    LSR          : [[regro]]  uint8   
+    RESERVED3    :            [3] uint8
+    MSR          : [[regro]]  uint8   
+    RESERVED4    :            [3] uint8
+    SCR          : [[regrw]]  uint8   
+    RESERVED5    :            [3] uint8
+    ACR          : [[regrw]]  uint32  
+    RESERVED6    :            uint32  
+    FDR          : [[regrw]]  uint32  
+    RESERVED7    :            uint32  
+    TER          : [[regrw]]  uint8   
+    RESERVED8    :            [27] uint8
+    RS485CTRL    : [[regrw]]  uint8   
+    RESERVED9    :            [3] uint8
+    ADRMATCH     : [[regrw]]  uint8   
+    RESERVED10   :            [3] uint8
+    RS485DLY     : [[regrw]]  uint8   
+    RESERVED11   :            [3] uint8
+    FIFOLVL      : [[regrw]]  uint32  
+endstruct
+
+struct LPC_SPI_TypeDef:
+    SPCR         : [[regrw]]  uint32  
+    SPSR         : [[regro]]  uint32  
+    SPDR         : [[regrw]]  uint32  
+    SPCCR        : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    SPINT        : [[regrw]]  uint32  
+endstruct
+
+struct LPC_SSP_TypeDef:
+    CR0          : [[regrw]]  uint32  
+    CR1          : [[regrw]]  uint32  
+    DR           : [[regrw]]  uint32  
+    SR           : [[regro]]  uint32  
+    CPSR         : [[regrw]]  uint32  
+    IMSC         : [[regrw]]  uint32  
+    RIS          : [[regrw]]  uint32  
+    MIS          : [[regrw]]  uint32  
+    ICR          : [[regrw]]  uint32  
+    DMACR        : [[regrw]]  uint32  
+endstruct
+
+struct LPC_I2C_TypeDef:
+    I2CONSET     : [[regrw]]  uint32  
+    I2STAT       : [[regro]]  uint32  
+    I2DAT        : [[regrw]]  uint32  
+    I2ADR0       : [[regrw]]  uint32  
+    I2SCLH       : [[regrw]]  uint32  
+    I2SCLL       : [[regrw]]  uint32  
+    I2CONCLR     : [[regwo]]  uint32  
+    MMCTRL       : [[regrw]]  uint32  
+    I2ADR1       : [[regrw]]  uint32  
+    I2ADR2       : [[regrw]]  uint32  
+    I2ADR3       : [[regrw]]  uint32  
+    I2DATA_BUFFER : [[regro]]  uint32  
+    I2MASK0      : [[regrw]]  uint32  
+    I2MASK1      : [[regrw]]  uint32  
+    I2MASK2      : [[regrw]]  uint32  
+    I2MASK3      : [[regrw]]  uint32  
+endstruct
+
+struct LPC_I2S_TypeDef:
+    I2SDAO       : [[regrw]]  uint32  
+    I2SDAI       : [[regrw]]  uint32  
+    I2STXFIFO    : [[regwo]]  uint32  
+    I2SRXFIFO    : [[regro]]  uint32  
+    I2SSTATE     : [[regro]]  uint32  
+    I2SDMA1      : [[regrw]]  uint32  
+    I2SDMA2      : [[regrw]]  uint32  
+    I2SIRQ       : [[regrw]]  uint32  
+    I2STXRATE    : [[regrw]]  uint32  
+    I2SRXRATE    : [[regrw]]  uint32  
+    I2STXBITRATE : [[regrw]]  uint32  
+    I2SRXBITRATE : [[regrw]]  uint32  
+    I2STXMODE    : [[regrw]]  uint32  
+    I2SRXMODE    : [[regrw]]  uint32  
+endstruct
+
+struct LPC_RIT_TypeDef:
+    RICOMPVAL    : [[regrw]]  uint32  
+    RIMASK       : [[regrw]]  uint32  
+    RICTRL       : [[regrw]]  uint8   
+    RESERVED0    :            [3] uint8
+    RICOUNTER    : [[regrw]]  uint32  
+endstruct
+
+struct LPC_RTC_TypeDef:
+    ILR          : [[regrw]]  uint8   
+    RESERVED0    :            [7] uint8
+    CCR          : [[regrw]]  uint8   
+    RESERVED1    :            [3] uint8
+    CIIR         : [[regrw]]  uint8   
+    RESERVED2    :            [3] uint8
+    AMR          : [[regrw]]  uint8   
+    RESERVED3    :            [3] uint8
+    CTIME0       : [[regro]]  uint32  
+    CTIME1       : [[regro]]  uint32  
+    CTIME2       : [[regro]]  uint32  
+    SEC          : [[regrw]]  uint8   
+    RESERVED4    :            [3] uint8
+    MIN          : [[regrw]]  uint8   
+    RESERVED5    :            [3] uint8
+    HOUR         : [[regrw]]  uint8   
+    RESERVED6    :            [3] uint8
+    DOM          : [[regrw]]  uint8   
+    RESERVED7    :            [3] uint8
+    DOW          : [[regrw]]  uint8   
+    RESERVED8    :            [3] uint8
+    DOY          : [[regrw]]  uint16  
+    RESERVED9    :            uint16  
+    MONTH        : [[regrw]]  uint8   
+    RESERVED10   :            [3] uint8
+    YEAR         : [[regrw]]  uint16  
+    RESERVED11   :            uint16  
+    CALIBRATION  : [[regrw]]  uint32  
+    GPREG0       : [[regrw]]  uint32  
+    GPREG1       : [[regrw]]  uint32  
+    GPREG2       : [[regrw]]  uint32  
+    GPREG3       : [[regrw]]  uint32  
+    GPREG4       : [[regrw]]  uint32  
+    RTC_AUXEN    : [[regrw]]  uint8   
+    RESERVED12   :            [3] uint8
+    RTC_AUX      : [[regrw]]  uint8   
+    RESERVED13   :            [3] uint8
+    ALSEC        : [[regrw]]  uint8   
+    RESERVED14   :            [3] uint8
+    ALMIN        : [[regrw]]  uint8   
+    RESERVED15   :            [3] uint8
+    ALHOUR       : [[regrw]]  uint8   
+    RESERVED16   :            [3] uint8
+    ALDOM        : [[regrw]]  uint8   
+    RESERVED17   :            [3] uint8
+    ALDOW        : [[regrw]]  uint8   
+    RESERVED18   :            [3] uint8
+    ALDOY        : [[regrw]]  uint16  
+    RESERVED19   :            uint16  
+    ALMON        : [[regrw]]  uint8   
+    RESERVED20   :            [3] uint8
+    ALYEAR       : [[regrw]]  uint16  
+    RESERVED21   :            uint16  
+endstruct
+
+struct LPC_WDT_TypeDef:
+    WDMOD        : [[regrw]]  uint8   
+    RESERVED0    :            [3] uint8
+    WDTC         : [[regrw]]  uint32  
+    WDFEED       : [[regwo]]  uint8   
+    RESERVED1    :            [3] uint8
+    WDTV         : [[regro]]  uint32  
+    WDCLKSEL     : [[regrw]]  uint32  
+endstruct
+
+struct LPC_ADC_TypeDef:
+    ADCR         : [[regrw]]  uint32  
+    ADGDR        : [[regrw]]  uint32  
+    RESERVED0    :            uint32  
+    ADINTEN      : [[regrw]]  uint32  
+    ADDR0        : [[regro]]  uint32  
+    ADDR1        : [[regro]]  uint32  
+    ADDR2        : [[regro]]  uint32  
+    ADDR3        : [[regro]]  uint32  
+    ADDR4        : [[regro]]  uint32  
+    ADDR5        : [[regro]]  uint32  
+    ADDR6        : [[regro]]  uint32  
+    ADDR7        : [[regro]]  uint32  
+    ADSTAT       : [[regro]]  uint32  
+    ADTRM        : [[regrw]]  uint32  
+endstruct
+
+struct LPC_DAC_TypeDef:
+    DACR         : [[regrw]]  uint32  
+    DACCTRL      : [[regrw]]  uint32  
+    DACCNTVAL    : [[regrw]]  uint16  
+endstruct
+
+struct LPC_MCPWM_TypeDef:
+    MCCON        : [[regro]]  uint32  
+    MCCON_SET    : [[regwo]]  uint32  
+    MCCON_CLR    : [[regwo]]  uint32  
+    MCCAPCON     : [[regro]]  uint32  
+    MCCAPCON_SET : [[regwo]]  uint32  
+    MCCAPCON_CLR : [[regwo]]  uint32  
+    MCTIM0       : [[regrw]]  uint32  
+    MCTIM1       : [[regrw]]  uint32  
+    MCTIM2       : [[regrw]]  uint32  
+    MCPER0       : [[regrw]]  uint32  
+    MCPER1       : [[regrw]]  uint32  
+    MCPER2       : [[regrw]]  uint32  
+    MCPW0        : [[regrw]]  uint32  
+    MCPW1        : [[regrw]]  uint32  
+    MCPW2        : [[regrw]]  uint32  
+    MCDEADTIME   : [[regrw]]  uint32  
+    MCCCP        : [[regrw]]  uint32  
+    MCCR0        : [[regrw]]  uint32  
+    MCCR1        : [[regrw]]  uint32  
+    MCCR2        : [[regrw]]  uint32  
+    MCINTEN      : [[regro]]  uint32  
+    MCINTEN_SET  : [[regwo]]  uint32  
+    MCINTEN_CLR  : [[regwo]]  uint32  
+    MCCNTCON     : [[regro]]  uint32  
+    MCCNTCON_SET : [[regwo]]  uint32  
+    MCCNTCON_CLR : [[regwo]]  uint32  
+    MCINTFLAG    : [[regro]]  uint32  
+    MCINTFLAG_SET : [[regwo]]  uint32  
+    MCINTFLAG_CLR : [[regwo]]  uint32  
+    MCCAP_CLR    : [[regwo]]  uint32  
+endstruct
+
+struct LPC_QEI_TypeDef:
+    QEICON       : [[regwo]]  uint32  
+    QEISTAT      : [[regro]]  uint32  
+    QEICONF      : [[regrw]]  uint32  
+    QEIPOS       : [[regro]]  uint32  
+    QEIMAXPOS    : [[regrw]]  uint32  
+    CMPOS0       : [[regrw]]  uint32  
+    CMPOS1       : [[regrw]]  uint32  
+    CMPOS2       : [[regrw]]  uint32  
+    INXCNT       : [[regro]]  uint32  
+    INXCMP       : [[regrw]]  uint32  
+    QEILOAD      : [[regrw]]  uint32  
+    QEITIME      : [[regro]]  uint32  
+    QEIVEL       : [[regro]]  uint32  
+    QEICAP       : [[regro]]  uint32  
+    VELCOMP      : [[regrw]]  uint32  
+    FILTER       : [[regrw]]  uint32  
+    RESERVED0    :            [998] uint32
+    QEIIEC       : [[regwo]]  uint32  
+    QEIIES       : [[regwo]]  uint32  
+    QEIINTSTAT   : [[regro]]  uint32  
+    QEIIE        : [[regro]]  uint32  
+    QEICLR       : [[regwo]]  uint32  
+    QEISET       : [[regwo]]  uint32  
+endstruct
+
+struct LPC_CANAF_RAM_TypeDef:
+    mask         : [[regrw]]  [512] uint32
+endstruct
+
+struct LPC_CANAF_TypeDef:
+    AFMR         : [[regrw]]  uint32  
+    SFF_sa       : [[regrw]]  uint32  
+    SFF_GRP_sa   : [[regrw]]  uint32  
+    EFF_sa       : [[regrw]]  uint32  
+    EFF_GRP_sa   : [[regrw]]  uint32  
+    ENDofTable   : [[regrw]]  uint32  
+    LUTerrAd     : [[regro]]  uint32  
+    LUTerr       : [[regro]]  uint32  
+    FCANIE       : [[regrw]]  uint32  
+    FCANIC0      : [[regrw]]  uint32  
+    FCANIC1      : [[regrw]]  uint32  
+endstruct
+
+struct LPC_CANCR_TypeDef:
+    CANTxSR      : [[regro]]  uint32  
+    CANRxSR      : [[regro]]  uint32  
+    CANMSR       : [[regro]]  uint32  
+endstruct
+
+struct LPC_CAN_TypeDef:
+    MOD          : [[regrw]]  uint32  
+    CMR          : [[regwo]]  uint32  
+    GSR          : [[regrw]]  uint32  
+    ICR          : [[regro]]  uint32  
+    IER          : [[regrw]]  uint32  
+    BTR          : [[regrw]]  uint32  
+    EWL          : [[regrw]]  uint32  
+    SR           : [[regro]]  uint32  
+    RFS          : [[regrw]]  uint32  
+    RID          : [[regrw]]  uint32  
+    RDA          : [[regrw]]  uint32  
+    RDB          : [[regrw]]  uint32  
+    TFI1         : [[regrw]]  uint32  
+    TID1         : [[regrw]]  uint32  
+    TDA1         : [[regrw]]  uint32  
+    TDB1         : [[regrw]]  uint32  
+    TFI2         : [[regrw]]  uint32  
+    TID2         : [[regrw]]  uint32  
+    TDA2         : [[regrw]]  uint32  
+    TDB2         : [[regrw]]  uint32  
+    TFI3         : [[regrw]]  uint32  
+    TID3         : [[regrw]]  uint32  
+    TDA3         : [[regrw]]  uint32  
+    TDB3         : [[regrw]]  uint32  
+endstruct
+
+struct LPC_GPDMA_TypeDef:
+    DMACIntStat  : [[regro]]  uint32  
+    DMACIntTCStat : [[regro]]  uint32  
+    DMACIntTCClear : [[regwo]]  uint32  
+    DMACIntErrStat : [[regro]]  uint32  
+    DMACIntErrClr : [[regwo]]  uint32  
+    DMACRawIntTCStat : [[regro]]  uint32  
+    DMACRawIntErrStat : [[regro]]  uint32  
+    DMACEnbldChns : [[regro]]  uint32  
+    DMACSoftBReq : [[regrw]]  uint32  
+    DMACSoftSReq : [[regrw]]  uint32  
+    DMACSoftLBReq : [[regrw]]  uint32  
+    DMACSoftLSReq : [[regrw]]  uint32  
+    DMACConfig   : [[regrw]]  uint32  
+    DMACSync     : [[regrw]]  uint32  
+endstruct
+
+struct LPC_GPDMACH_TypeDef:
+    DMACCSrcAddr : [[regrw]]  uint32  
+    DMACCDestAddr : [[regrw]]  uint32  
+    DMACCLLI     : [[regrw]]  uint32  
+    DMACCControl : [[regrw]]  uint32  
+    DMACCConfig  : [[regrw]]  uint32  
+endstruct
+
+struct LPC_USB_TypeDef:
+    HcRevision   : [[regro]]  uint32  
+    HcControl    : [[regrw]]  uint32  
+    HcCommandStatus : [[regrw]]  uint32  
+    HcInterruptStatus : [[regrw]]  uint32  
+    HcInterruptEnable : [[regrw]]  uint32  
+    HcInterruptDisable : [[regrw]]  uint32  
+    HcHCCA       : [[regrw]]  uint32  
+    HcPeriodCurrentED : [[regro]]  uint32  
+    HcControlHeadED : [[regrw]]  uint32  
+    HcControlCurrentED : [[regrw]]  uint32  
+    HcBulkHeadED : [[regrw]]  uint32  
+    HcBulkCurrentED : [[regrw]]  uint32  
+    HcDoneHead   : [[regro]]  uint32  
+    HcFmInterval : [[regrw]]  uint32  
+    HcFmRemaining : [[regro]]  uint32  
+    HcFmNumber   : [[regro]]  uint32  
+    HcPeriodicStart : [[regrw]]  uint32  
+    HcLSTreshold : [[regrw]]  uint32  
+    HcRhDescriptorA : [[regrw]]  uint32  
+    HcRhDescriptorB : [[regrw]]  uint32  
+    HcRhStatus   : [[regrw]]  uint32  
+    HcRhPortStatus1 : [[regrw]]  uint32  
+    HcRhPortStatus2 : [[regrw]]  uint32  
+    RESERVED0    :            [40] uint32
+    Module_ID    : [[regro]]  uint32  
+    OTGIntSt     : [[regro]]  uint32  
+    OTGIntEn     : [[regrw]]  uint32  
+    OTGIntSet    : [[regwo]]  uint32  
+    OTGIntClr    : [[regwo]]  uint32  
+    OTGStCtrl    : [[regrw]]  uint32  
+    OTGTmr       : [[regrw]]  uint32  
+    RESERVED1    :            [58] uint32
+    USBDevIntSt  : [[regro]]  uint32  
+    USBDevIntEn  : [[regrw]]  uint32  
+    USBDevIntClr : [[regwo]]  uint32  
+    USBDevIntSet : [[regwo]]  uint32  
+    USBCmdCode   : [[regwo]]  uint32  
+    USBCmdData   : [[regro]]  uint32  
+    USBRxData    : [[regro]]  uint32  
+    USBTxData    : [[regwo]]  uint32  
+    USBRxPLen    : [[regro]]  uint32  
+    USBTxPLen    : [[regwo]]  uint32  
+    USBCtrl      : [[regrw]]  uint32  
+    USBDevIntPri : [[regwo]]  uint32  
+    USBEpIntSt   : [[regro]]  uint32  
+    USBEpIntEn   : [[regrw]]  uint32  
+    USBEpIntClr  : [[regwo]]  uint32  
+    USBEpIntSet  : [[regwo]]  uint32  
+    USBEpIntPri  : [[regwo]]  uint32  
+    USBReEp      : [[regrw]]  uint32  
+    USBEpInd     : [[regwo]]  uint32  
+    USBMaxPSize  : [[regrw]]  uint32  
+    USBDMARSt    : [[regro]]  uint32  
+    USBDMARClr   : [[regwo]]  uint32  
+    USBDMARSet   : [[regwo]]  uint32  
+    RESERVED2    :            [9] uint32
+    USBUDCAH     : [[regrw]]  uint32  
+    USBEpDMASt   : [[regro]]  uint32  
+    USBEpDMAEn   : [[regwo]]  uint32  
+    USBEpDMADis  : [[regwo]]  uint32  
+    USBDMAIntSt  : [[regro]]  uint32  
+    USBDMAIntEn  : [[regrw]]  uint32  
+    RESERVED3    :            [2] uint32
+    USBEoTIntSt  : [[regro]]  uint32  
+    USBEoTIntClr : [[regwo]]  uint32  
+    USBEoTIntSet : [[regwo]]  uint32  
+    USBNDDRIntSt : [[regro]]  uint32  
+    USBNDDRIntClr : [[regwo]]  uint32  
+    USBNDDRIntSet : [[regwo]]  uint32  
+    USBSysErrIntSt : [[regro]]  uint32  
+    USBSysErrIntClr : [[regwo]]  uint32  
+    USBSysErrIntSet : [[regwo]]  uint32  
+    RESERVED4    :            [15] uint32
+    union u_I2C_RX:
+        I2C_RX       : [[regro]]  uint32  
+        I2C_TX       : [[regwo]]  uint32  
+    endunion
+    I2C_STS      : [[regro]]  uint32  
+    I2C_CTL      : [[regrw]]  uint32  
+    I2C_CLKHI    : [[regrw]]  uint32  
+    I2C_CLKLO    : [[regwo]]  uint32  
+    RESERVED5    :            [824] uint32
+    union u_USBClkCtrl:
+        USBClkCtrl   : [[regrw]]  uint32  
+        OTGClkCtrl   : [[regrw]]  uint32  
+    endunion
+    union u_USBClkSt:
+        USBClkSt     : [[regro]]  uint32  
+        OTGClkSt     : [[regro]]  uint32  
+    endunion
+endstruct
+
+struct LPC_EMAC_TypeDef:
+    MAC1         : [[regrw]]  uint32  
+    MAC2         : [[regrw]]  uint32  
+    IPGT         : [[regrw]]  uint32  
+    IPGR         : [[regrw]]  uint32  
+    CLRT         : [[regrw]]  uint32  
+    MAXF         : [[regrw]]  uint32  
+    SUPP         : [[regrw]]  uint32  
+    TEST         : [[regrw]]  uint32  
+    MCFG         : [[regrw]]  uint32  
+    MCMD         : [[regrw]]  uint32  
+    MADR         : [[regrw]]  uint32  
+    MWTD         : [[regwo]]  uint32  
+    MRDD         : [[regro]]  uint32  
+    MIND         : [[regro]]  uint32  
+    RESERVED0    :            [2] uint32
+    SA0          : [[regrw]]  uint32  
+    SA1          : [[regrw]]  uint32  
+    SA2          : [[regrw]]  uint32  
+    RESERVED1    :            [45] uint32
+    Command      : [[regrw]]  uint32  
+    Status       : [[regro]]  uint32  
+    RxDescriptor : [[regrw]]  uint32  
+    RxStatus     : [[regrw]]  uint32  
+    RxDescriptorNumber : [[regrw]]  uint32  
+    RxProduceIndex : [[regro]]  uint32  
+    RxConsumeIndex : [[regrw]]  uint32  
+    TxDescriptor : [[regrw]]  uint32  
+    TxStatus     : [[regrw]]  uint32  
+    TxDescriptorNumber : [[regrw]]  uint32  
+    TxProduceIndex : [[regrw]]  uint32  
+    TxConsumeIndex : [[regro]]  uint32  
+    RESERVED2    :            [10] uint32
+    TSV0         : [[regro]]  uint32  
+    TSV1         : [[regro]]  uint32  
+    RSV          : [[regro]]  uint32  
+    RESERVED3    :            [3] uint32
+    FlowControlCounter : [[regrw]]  uint32  
+    FlowControlStatus : [[regro]]  uint32  
+    RESERVED4    :            [34] uint32
+    RxFilterCtrl : [[regrw]]  uint32  
+    RxFilterWoLStatus : [[regrw]]  uint32  
+    RxFilterWoLClear : [[regrw]]  uint32  
+    RESERVED5    :            uint32  
+    HashFilterL  : [[regrw]]  uint32  
+    HashFilterH  : [[regrw]]  uint32  
+    RESERVED6    :            [882] uint32
+    IntStatus    : [[regro]]  uint32  
+    IntEnable    : [[regrw]]  uint32  
+    IntClear     : [[regwo]]  uint32  
+    IntSet       : [[regwo]]  uint32  
+    RESERVED7    :            uint32  
+    PowerDown    : [[regrw]]  uint32  
+    RESERVED8    :            uint32  
+    Module_ID    : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    LPC_FLASH_BASE       = 0x00000000
+    LPC_RAM_BASE         = 0x10000000
+    LPC_GPIO_BASE        = 0x2009C000
+    LPC_APB0_BASE        = 0x40000000
+    LPC_APB1_BASE        = 0x40080000
+    LPC_AHB_BASE         = 0x50000000
+    LPC_CM3_BASE         = 0xE0000000
+    LPC_WDT_BASE         = (LPC_APB0_BASE + 0x00000)
+    LPC_TIM0_BASE        = (LPC_APB0_BASE + 0x04000)
+    LPC_TIM1_BASE        = (LPC_APB0_BASE + 0x08000)
+    LPC_UART0_BASE       = (LPC_APB0_BASE + 0x0C000)
+    LPC_UART1_BASE       = (LPC_APB0_BASE + 0x10000)
+    LPC_PWM1_BASE        = (LPC_APB0_BASE + 0x18000)
+    LPC_I2C0_BASE        = (LPC_APB0_BASE + 0x1C000)
+    LPC_SPI_BASE         = (LPC_APB0_BASE + 0x20000)
+    LPC_RTC_BASE         = (LPC_APB0_BASE + 0x24000)
+    LPC_GPIOINT_BASE     = (LPC_APB0_BASE + 0x28080)
+    LPC_PINCON_BASE      = (LPC_APB0_BASE + 0x2C000)
+    LPC_SSP1_BASE        = (LPC_APB0_BASE + 0x30000)
+    LPC_ADC_BASE         = (LPC_APB0_BASE + 0x34000)
+    LPC_CANAF_RAM_BASE   = (LPC_APB0_BASE + 0x38000)
+    LPC_CANAF_BASE       = (LPC_APB0_BASE + 0x3C000)
+    LPC_CANCR_BASE       = (LPC_APB0_BASE + 0x40000)
+    LPC_CAN1_BASE        = (LPC_APB0_BASE + 0x44000)
+    LPC_CAN2_BASE        = (LPC_APB0_BASE + 0x48000)
+    LPC_I2C1_BASE        = (LPC_APB0_BASE + 0x5C000)
+    LPC_SSP0_BASE        = (LPC_APB1_BASE + 0x08000)
+    LPC_DAC_BASE         = (LPC_APB1_BASE + 0x0C000)
+    LPC_TIM2_BASE        = (LPC_APB1_BASE + 0x10000)
+    LPC_TIM3_BASE        = (LPC_APB1_BASE + 0x14000)
+    LPC_UART2_BASE       = (LPC_APB1_BASE + 0x18000)
+    LPC_UART3_BASE       = (LPC_APB1_BASE + 0x1C000)
+endconst
+
+const(uint32):
+    LPC_I2C2_BASE        = (LPC_APB1_BASE + 0x20000)
+    LPC_I2S_BASE         = (LPC_APB1_BASE + 0x28000)
+    LPC_RIT_BASE         = (LPC_APB1_BASE + 0x30000)
+    LPC_MCPWM_BASE       = (LPC_APB1_BASE + 0x38000)
+    LPC_QEI_BASE         = (LPC_APB1_BASE + 0x3C000)
+    LPC_SC_BASE          = (LPC_APB1_BASE + 0x7C000)
+    LPC_EMAC_BASE        = (LPC_AHB_BASE  + 0x00000)
+    LPC_GPDMA_BASE       = (LPC_AHB_BASE  + 0x04000)
+    LPC_GPDMACH0_BASE    = (LPC_AHB_BASE  + 0x04100)
+    LPC_GPDMACH1_BASE    = (LPC_AHB_BASE  + 0x04120)
+    LPC_GPDMACH2_BASE    = (LPC_AHB_BASE  + 0x04140)
+    LPC_GPDMACH3_BASE    = (LPC_AHB_BASE  + 0x04160)
+    LPC_GPDMACH4_BASE    = (LPC_AHB_BASE  + 0x04180)
+    LPC_GPDMACH5_BASE    = (LPC_AHB_BASE  + 0x041A0)
+    LPC_GPDMACH6_BASE    = (LPC_AHB_BASE  + 0x041C0)
+    LPC_GPDMACH7_BASE    = (LPC_AHB_BASE  + 0x041E0)
+    LPC_USB_BASE         = (LPC_AHB_BASE  + 0x0C000)
+    LPC_GPIO0_BASE       = (LPC_GPIO_BASE + 0x00000)
+    LPC_GPIO1_BASE       = (LPC_GPIO_BASE + 0x00020)
+    LPC_GPIO2_BASE       = (LPC_GPIO_BASE + 0x00040)
+    LPC_GPIO3_BASE       = (LPC_GPIO_BASE + 0x00060)
+    LPC_GPIO4_BASE       = (LPC_GPIO_BASE + 0x00080)
+endconst
+
+const LPC_SC       :? = ^LPC_SC_TypeDef(LPC_SC_BASE       )
+const LPC_GPIO0    :? = ^LPC_GPIO_TypeDef(LPC_GPIO0_BASE    )
+const LPC_GPIO1    :? = ^LPC_GPIO_TypeDef(LPC_GPIO1_BASE    )
+const LPC_GPIO2    :? = ^LPC_GPIO_TypeDef(LPC_GPIO2_BASE    )
+const LPC_GPIO3    :? = ^LPC_GPIO_TypeDef(LPC_GPIO3_BASE    )
+const LPC_GPIO4    :? = ^LPC_GPIO_TypeDef(LPC_GPIO4_BASE    )
+const LPC_WDT      :? = ^LPC_WDT_TypeDef(LPC_WDT_BASE      )
+const LPC_TIM0     :? = ^LPC_TIM_TypeDef(LPC_TIM0_BASE     )
+const LPC_TIM1     :? = ^LPC_TIM_TypeDef(LPC_TIM1_BASE     )
+const LPC_TIM2     :? = ^LPC_TIM_TypeDef(LPC_TIM2_BASE     )
+const LPC_TIM3     :? = ^LPC_TIM_TypeDef(LPC_TIM3_BASE     )
+const LPC_RIT      :? = ^LPC_RIT_TypeDef(LPC_RIT_BASE      )
+const LPC_UART0    :? = ^LPC_UART0_TypeDef(LPC_UART0_BASE    )
+const LPC_UART1    :? = ^LPC_UART1_TypeDef(LPC_UART1_BASE    )
+const LPC_UART2    :? = ^LPC_UART_TypeDef(LPC_UART2_BASE    )
+const LPC_UART3    :? = ^LPC_UART_TypeDef(LPC_UART3_BASE    )
+const LPC_PWM1     :? = ^LPC_PWM_TypeDef(LPC_PWM1_BASE     )
+const LPC_I2C0     :? = ^LPC_I2C_TypeDef(LPC_I2C0_BASE     )
+const LPC_I2C1     :? = ^LPC_I2C_TypeDef(LPC_I2C1_BASE     )
+const LPC_I2C2     :? = ^LPC_I2C_TypeDef(LPC_I2C2_BASE     )
+const LPC_I2S      :? = ^LPC_I2S_TypeDef(LPC_I2S_BASE      )
+const LPC_SPI      :? = ^LPC_SPI_TypeDef(LPC_SPI_BASE      )
+const LPC_RTC      :? = ^LPC_RTC_TypeDef(LPC_RTC_BASE      )
+const LPC_GPIOINT  :? = ^LPC_GPIOINT_TypeDef(LPC_GPIOINT_BASE  )
+const LPC_PINCON   :? = ^LPC_PINCON_TypeDef(LPC_PINCON_BASE   )
+const LPC_SSP0     :? = ^LPC_SSP_TypeDef(LPC_SSP0_BASE     )
+const LPC_SSP1     :? = ^LPC_SSP_TypeDef(LPC_SSP1_BASE     )
+const LPC_ADC      :? = ^LPC_ADC_TypeDef(LPC_ADC_BASE      )
+const LPC_DAC      :? = ^LPC_DAC_TypeDef(LPC_DAC_BASE      )
+const LPC_CANAF_RAM :? = ^LPC_CANAF_RAM_TypeDef(LPC_CANAF_RAM_BASE)
+const LPC_CANAF    :? = ^LPC_CANAF_TypeDef(LPC_CANAF_BASE    )
+const LPC_CANCR    :? = ^LPC_CANCR_TypeDef(LPC_CANCR_BASE    )
+const LPC_CAN1     :? = ^LPC_CAN_TypeDef(LPC_CAN1_BASE     )
+const LPC_CAN2     :? = ^LPC_CAN_TypeDef(LPC_CAN2_BASE     )
+const LPC_MCPWM    :? = ^LPC_MCPWM_TypeDef(LPC_MCPWM_BASE    )
+const LPC_QEI      :? = ^LPC_QEI_TypeDef(LPC_QEI_BASE      )
+const LPC_EMAC     :? = ^LPC_EMAC_TypeDef(LPC_EMAC_BASE     )
+const LPC_GPDMA    :? = ^LPC_GPDMA_TypeDef(LPC_GPDMA_BASE    )
+const LPC_GPDMACH0 :? = ^LPC_GPDMACH_TypeDef(LPC_GPDMACH0_BASE )
+const LPC_GPDMACH1 :? = ^LPC_GPDMACH_TypeDef(LPC_GPDMACH1_BASE )
+const LPC_GPDMACH2 :? = ^LPC_GPDMACH_TypeDef(LPC_GPDMACH2_BASE )
+const LPC_GPDMACH3 :? = ^LPC_GPDMACH_TypeDef(LPC_GPDMACH3_BASE )
+const LPC_GPDMACH4 :? = ^LPC_GPDMACH_TypeDef(LPC_GPDMACH4_BASE )
+const LPC_GPDMACH5 :? = ^LPC_GPDMACH_TypeDef(LPC_GPDMACH5_BASE )
+const LPC_GPDMACH6 :? = ^LPC_GPDMACH_TypeDef(LPC_GPDMACH6_BASE )
+const LPC_GPDMACH7 :? = ^LPC_GPDMACH_TypeDef(LPC_GPDMACH7_BASE )
+const LPC_USB      :? = ^LPC_USB_TypeDef(LPC_USB_BASE      )
+const(uint32):
+    UART_IER_RBR         = 0x01
+    UART_IER_THRE        = 0x02
+    UART_IER_RLS         = 0x04
+    UART_IIR_PEND        = 0x01
+    UART_IIR_RLS         = 0x03
+    UART_IIR_RDA         = 0x02
+    UART_IIR_CTI         = 0x06
+    UART_IIR_THRE        = 0x01
+    UART_LSR_RDR         = 0x01
+    UART_LSR_OE          = 0x02
+    UART_LSR_PE          = 0x04
+    UART_LSR_FE          = 0x08
+    UART_LSR_BI          = 0x10
+    UART_LSR_THRE        = 0x20
+    UART_LSR_TEMT        = 0x40
+    UART_LSR_RXFE        = 0x80
+    SC_PCONP_PCUART0     = 0x00000008
+    SC_PCONP_PCUART1     = 0x00000010
+    PINCON_PINSEL0_P0_0  = 0x00000000
+    PINCON_PINSEL0_RD1   = 0x00000001
+    PINCON_PINSEL0_TXD3  = 0x00000002
+    PINCON_PINSEL0_SDA1  = 0x00000003
+    PINCON_PINMODE0_P0_0_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_0_REPEATER = 0x00000001
+    PINCON_PINMODE0_P0_0_FLOAT = 0x00000002
+    PINCON_PINMODE0_P0_0_PULLDOWN = 0x00000003
+    PINCON_PINMODE_OD0_P0_0_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_0_OPEN_DRAIN = 0x00000001
+    PINCON_PINSEL0_P0_1  = 0x00000000
+    PINCON_PINSEL0_TD1   = 0x00000004
+    PINCON_PINSEL0_RXD3  = 0x00000008
+    PINCON_PINSEL0_SCL1  = 0x0000000C
+endconst
+
+const(uint32):
+    PINCON_PINMODE0_P0_1_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_1_REPEATER = 0x00000004
+    PINCON_PINMODE0_P0_1_FLOAT = 0x00000008
+    PINCON_PINMODE0_P0_1_PULLDOWN = 0x0000000C
+    PINCON_PINMODE_OD0_P0_1_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_1_OPEN_DRAIN = 0x00000002
+    PINCON_PINSEL0_P0_2  = 0x00000000
+    PINCON_PINSEL0_TXD0  = 0x00000010
+    PINCON_PINSEL0_AD0_7 = 0x00000020
+    PINCON_PINMODE0_P0_2_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_2_REPEATER = 0x00000010
+    PINCON_PINMODE0_P0_2_FLOAT = 0x00000020
+    PINCON_PINMODE0_P0_2_PULLDOWN = 0x00000030
+    PINCON_PINMODE_OD0_P0_2_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_2_OPEN_DRAIN = 0x00000004
+    PINCON_PINSEL0_P0_3  = 0x00000000
+    PINCON_PINSEL0_RXD0  = 0x00000040
+    PINCON_PINSEL0_AD0_6 = 0x00000080
+    PINCON_PINMODE0_P0_3_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_3_REPEATER = 0x00000040
+    PINCON_PINMODE0_P0_3_FLOAT = 0x00000080
+    PINCON_PINMODE0_P0_3_PULLDOWN = 0x000000C0
+    PINCON_PINMODE_OD0_P0_3_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_3_OPEN_DRAIN = 0x00000008
+    PINCON_PINSEL0_P0_4  = 0x00000000
+    PINCON_PINSEL0_I2SRX_CLK = 0x00000100
+    PINCON_PINSEL0_RD2   = 0x00000200
+    PINCON_PINSEL0_CAP2_0 = 0x00000300
+    PINCON_PINMODE0_P0_4_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_4_REPEATER = 0x00000100
+    PINCON_PINMODE0_P0_4_FLOAT = 0x00000200
+    PINCON_PINMODE0_P0_4_PULLDOWN = 0x00000300
+endconst
+
+const(uint32):
+    PINCON_PINMODE_OD0_P0_4_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_4_OPEN_DRAIN = 0x00000010
+    PINCON_PINSEL0_P0_5  = 0x00000000
+    PINCON_PINSEL0_I2SRX_WS = 0x00000400
+    PINCON_PINSEL0_TD2   = 0x00000800
+    PINCON_PINSEL0_CAP2_1 = 0x00000C00
+    PINCON_PINMODE0_P0_5_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_5_REPEATER = 0x00000400
+    PINCON_PINMODE0_P0_5_FLOAT = 0x00000800
+    PINCON_PINMODE0_P0_5_PULLDOWN = 0x00000C00
+    PINCON_PINMODE_OD0_P0_5_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_5_OPEN_DRAIN = 0x00000020
+    PINCON_PINSEL0_P0_6  = 0x00000000
+    PINCON_PINSEL0_I2SRX_SDA = 0x00001000
+    PINCON_PINSEL0_SSEL1 = 0x00002000
+    PINCON_PINSEL0_MAT2_0 = 0x00003000
+    PINCON_PINMODE0_P0_6_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_6_REPEATER = 0x00001000
+    PINCON_PINMODE0_P0_6_FLOAT = 0x00002000
+    PINCON_PINMODE0_P0_6_PULLDOWN = 0x00003000
+    PINCON_PINMODE_OD0_P0_6_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_6_OPEN_DRAIN = 0x00000040
+    PINCON_PINSEL0_P0_7  = 0x00000000
+    PINCON_PINSEL0_I2STX_CLK = 0x00004000
+    PINCON_PINSEL0_SCK1  = 0x00008000
+    PINCON_PINSEL0_MAT2_1 = 0x0000C000
+    PINCON_PINMODE0_P0_7_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_7_REPEATER = 0x00004000
+    PINCON_PINMODE0_P0_7_FLOAT = 0x00008000
+    PINCON_PINMODE0_P0_7_PULLDOWN = 0x0000C000
+    PINCON_PINMODE_OD0_P0_7_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_7_OPEN_DRAIN = 0x00000080
+endconst
+
+const(uint32):
+    PINCON_PINSEL0_P0_8  = 0x00000000
+    PINCON_PINSEL0_I2STX_WS = 0x00010000
+    PINCON_PINSEL0_MISO1 = 0x00020000
+    PINCON_PINSEL0_MAT2_2 = 0x00030000
+    PINCON_PINMODE0_P0_8_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_8_REPEATER = 0x00010000
+    PINCON_PINMODE0_P0_8_FLOAT = 0x00020000
+    PINCON_PINMODE0_P0_8_PULLDOWN = 0x00030000
+    PINCON_PINMODE_OD0_P0_8_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_8_OPEN_DRAIN = 0x00000100
+    PINCON_PINSEL0_P0_9  = 0x00000000
+    PINCON_PINSEL0_I2STX_SDA = 0x00040000
+    PINCON_PINSEL0_MOSI1 = 0x00080000
+    PINCON_PINSEL0_MAT2_3 = 0x000C0000
+    PINCON_PINMODE0_P0_9_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_9_REPEATER = 0x00040000
+    PINCON_PINMODE0_P0_9_FLOAT = 0x00080000
+    PINCON_PINMODE0_P0_9_PULLDOWN = 0x000C0000
+    PINCON_PINMODE_OD0_P0_9_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_9_OPEN_DRAIN = 0x00000200
+    PINCON_PINSEL0_P0_10 = 0x00000000
+    PINCON_PINSEL0_TXD2  = 0x00100000
+    PINCON_PINSEL0_SDA2  = 0x00200000
+    PINCON_PINSEL0_MAT3_0 = 0x00300000
+    PINCON_PINMODE0_P0_10_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_10_REPEATER = 0x00100000
+    PINCON_PINMODE0_P0_10_FLOAT = 0x00200000
+    PINCON_PINMODE0_P0_10_PULLDOWN = 0x00300000
+    PINCON_PINMODE_OD0_P0_10_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_10_OPEN_DRAIN = 0x00000400
+    PINCON_PINSEL0_P0_11 = 0x00000000
+    PINCON_PINSEL0_RXD2  = 0x00400000
+endconst
+
+const(uint32):
+    PINCON_PINSEL0_SCL2  = 0x00800000
+    PINCON_PINSEL0_MAT3_1 = 0x00C00000
+    PINCON_PINMODE0_P0_11_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_11_REPEATER = 0x00400000
+    PINCON_PINMODE0_P0_11_FLOAT = 0x00800000
+    PINCON_PINMODE0_P0_11_PULLDOWN = 0x00C00000
+    PINCON_PINMODE_OD0_P0_11_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_11_OPEN_DRAIN = 0x00000800
+    PINCON_PINSEL0_P0_15_MASK = 0xC0000000
+    PINCON_PINSEL0_P0_15 = 0x00000000
+    PINCON_PINSEL0_TXD1  = 0x40000000
+    PINCON_PINSEL0_SCK0  = 0x80000000
+    PINCON_PINSEL0_SCK   = 0xC0000000
+    PINCON_PINMODE0_P0_15_MASK = 0xC0000000
+    PINCON_PINMODE0_P0_15_PULLUP = 0x00000000
+    PINCON_PINMODE0_P0_15_REPEATER = 0x40000000
+    PINCON_PINMODE0_P0_15_FLOAT = 0x80000000
+    PINCON_PINMODE0_P0_15_PULLDOWN = 0xC0000000
+    PINCON_PINMODE_OD0_P0_15_MASK = 0x00008000
+    PINCON_PINMODE_OD0_P0_15_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_15_OPEN_DRAIN = 0x00008000
+    PINCON_PINSEL1_P0_16_MASK = 0x00000003
+    PINCON_PINSEL1_P0_16 = 0x00000000
+    PINCON_PINSEL1_RXD1  = 0x00000001
+    PINCON_PINSEL1_SSEL0 = 0x00000002
+    PINCON_PINSEL1_SSEL  = 0x00000003
+    PINCON_PINMODE1_P0_16_MASK = 0x00000003
+    PINCON_PINMODE1_P0_16_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_16_REPEATER = 0x00000001
+    PINCON_PINMODE1_P0_16_FLOAT = 0x00000002
+    PINCON_PINMODE1_P0_16_PULLDOWN = 0x00000003
+    PINCON_PINMODE_OD0_P0_16_MASK = 0x00010000
+endconst
+
+const(uint32):
+    PINCON_PINMODE_OD0_P0_16_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_16_OPEN_DRAIN = 0x00010000
+    PINCON_PINSEL1_P0_17_MASK = 0x0000000C
+    PINCON_PINSEL1_P0_17 = 0x00000000
+    PINCON_PINSEL1_CTS1  = 0x00000004
+    PINCON_PINSEL1_MISO0 = 0x00000008
+    PINCON_PINSEL1_MISO  = 0x0000000C
+    PINCON_PINMODE1_P0_17_MASK = 0x0000000C
+    PINCON_PINMODE1_P0_17_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_17_REPEATER = 0x00000004
+    PINCON_PINMODE1_P0_17_FLOAT = 0x00000008
+    PINCON_PINMODE1_P0_17_PULLDOWN = 0x0000000C
+    PINCON_PINMODE_OD0_P0_17_MASK = 0x00020000
+    PINCON_PINMODE_OD0_P0_17_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_17_OPEN_DRAIN = 0x00020000
+    PINCON_PINSEL1_P0_18_MASK = 0x00000030
+    PINCON_PINSEL1_P0_18 = 0x00000000
+    PINCON_PINSEL1_DCD1  = 0x00000010
+    PINCON_PINSEL1_MOSI0 = 0x00000020
+    PINCON_PINSEL1_MOSI  = 0x00000030
+    PINCON_PINMODE1_P0_18_MASK = 0x00000030
+    PINCON_PINMODE1_P0_18_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_18_REPEATER = 0x00000010
+    PINCON_PINMODE1_P0_18_FLOAT = 0x00000020
+    PINCON_PINMODE1_P0_18_PULLDOWN = 0x00000030
+    PINCON_PINMODE_OD0_P0_18_MASK = 0x00040000
+    PINCON_PINMODE_OD0_P0_18_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_18_OPEN_DRAIN = 0x00040000
+    PINCON_PINSEL1_P0_19 = 0x00000000
+    PINCON_PINSEL1_DSR1  = 0x00000040
+    PINCON_PINSEL1_SDA1  = 0x000000C0
+    PINCON_PINMODE1_P0_19_PULLUP = 0x00000000
+endconst
+
+const(uint32):
+    PINCON_PINMODE1_P0_19_REPEATER = 0x00000040
+    PINCON_PINMODE1_P0_19_FLOAT = 0x00000080
+    PINCON_PINMODE1_P0_19_PULLDOWN = 0x000000C0
+    PINCON_PINMODE_OD0_P0_19_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_19_OPEN_DRAIN = 0x00080000
+    PINCON_PINSEL1_P0_20 = 0x00000000
+    PINCON_PINSEL1_DTR1  = 0x00000100
+    PINCON_PINSEL1_SCL1  = 0x00000300
+    PINCON_PINMODE1_P0_20_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_20_REPEATER = 0x00000100
+    PINCON_PINMODE1_P0_20_FLOAT = 0x00000200
+    PINCON_PINMODE1_P0_20_PULLDOWN = 0x00000300
+    PINCON_PINMODE_OD0_P0_20_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_20_OPEN_DRAIN = 0x00100000
+    PINCON_PINSEL1_P0_21 = 0x00000000
+    PINCON_PINSEL1_RI1   = 0x00000400
+    PINCON_PINSEL1_RD1   = 0x00000C00
+    PINCON_PINMODE1_P0_21_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_21_REPEATER = 0x00000400
+    PINCON_PINMODE1_P0_21_FLOAT = 0x00000800
+    PINCON_PINMODE1_P0_21_PULLDOWN = 0x00000C00
+    PINCON_PINMODE_OD0_P0_21_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_21_OPEN_DRAIN = 0x00200000
+    PINCON_PINSEL1_P0_22 = 0x00000000
+    PINCON_PINSEL1_RTS1  = 0x00001000
+    PINCON_PINSEL1_TD1   = 0x00003000
+    PINCON_PINMODE1_P0_22_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_22_REPEATER = 0x00001000
+    PINCON_PINMODE1_P0_22_FLOAT = 0x00002000
+    PINCON_PINMODE1_P0_22_PULLDOWN = 0x00003000
+    PINCON_PINMODE_OD0_P0_22_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_22_OPEN_DRAIN = 0x00400000
+endconst
+
+const(uint32):
+    PINCON_PINSEL1_P0_23 = 0x00000000
+    PINCON_PINSEL1_AD0_0 = 0x00004000
+    PINCON_PINSEL1_I2SRX_CLK = 0x00008000
+    PINCON_PINSEL1_CAP3_0 = 0x0000C000
+    PINCON_PINMODE1_P0_23_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_23_REPEATER = 0x00004000
+    PINCON_PINMODE1_P0_23_FLOAT = 0x00008000
+    PINCON_PINMODE1_P0_23_PULLDOWN = 0x0000C000
+    PINCON_PINMODE_OD0_P0_23_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_23_OPEN_DRAIN = 0x00800000
+    PINCON_PINSEL1_P0_24 = 0x00000000
+    PINCON_PINSEL1_AD0_1 = 0x00010000
+    PINCON_PINSEL1_I2SRX_WS = 0x00020000
+    PINCON_PINSEL1_CAP3_1 = 0x00030000
+    PINCON_PINMODE1_P0_24_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_24_REPEATER = 0x00010000
+    PINCON_PINMODE1_P0_24_FLOAT = 0x00020000
+    PINCON_PINMODE1_P0_24_PULLDOWN = 0x00030000
+    PINCON_PINMODE_OD0_P0_24_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_24_OPEN_DRAIN = 0x01000000
+    PINCON_PINSEL1_P0_25 = 0x00000000
+    PINCON_PINSEL1_AD0_2 = 0x00040000
+    PINCON_PINSEL1_I2SRX_SDA = 0x00080000
+    PINCON_PINSEL1_TXD3  = 0x000C0000
+    PINCON_PINMODE1_P0_25_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_25_REPEATER = 0x00040000
+    PINCON_PINMODE1_P0_25_FLOAT = 0x00080000
+    PINCON_PINMODE1_P0_25_PULLDOWN = 0x000C0000
+    PINCON_PINMODE_OD0_P0_25_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_25_OPEN_DRAIN = 0x02000000
+    PINCON_PINSEL1_P0_26 = 0x00000000
+    PINCON_PINSEL1_AD0_3 = 0x00100000
+endconst
+
+const(uint32):
+    PINCON_PINSEL1_AOUT  = 0x00200000
+    PINCON_PINSEL1_RXD3  = 0x00300000
+    PINCON_PINMODE1_P0_26_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_26_REPEATER = 0x00100000
+    PINCON_PINMODE1_P0_26_FLOAT = 0x00200000
+    PINCON_PINMODE1_P0_26_PULLDOWN = 0x00300000
+    PINCON_PINMODE_OD0_P0_26_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_26_OPEN_DRAIN = 0x04000000
+    PINCON_PINSEL1_P0_27 = 0x00000000
+    PINCON_PINSEL1_SDA0  = 0x00400000
+    PINCON_PINSEL1_USB_SDA = 0x00800000
+    PINCON_PINMODE1_P0_27_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_27_REPEATER = 0x00400000
+    PINCON_PINMODE1_P0_27_FLOAT = 0x00800000
+    PINCON_PINMODE1_P0_27_PULLDOWN = 0x00C00000
+    PINCON_PINMODE_OD0_P0_27_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_27_OPEN_DRAIN = 0x08000000
+    PINCON_PINSEL1_P0_28 = 0x00000000
+    PINCON_PINSEL1_SCL0  = 0x01000000
+    PINCON_PINSEL1_USB_SCL = 0x02000000
+    PINCON_PINMODE1_P0_28_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_28_REPEATER = 0x01000000
+    PINCON_PINMODE1_P0_28_FLOAT = 0x02000000
+    PINCON_PINMODE1_P0_28_PULLDOWN = 0x03000000
+    PINCON_PINMODE_OD0_P0_28_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_28_OPEN_DRAIN = 0x10000000
+    PINCON_PINSEL1_P0_29 = 0x00000000
+    PINCON_PINSEL1_USB_D_PLUS = 0x04000000
+    PINCON_PINMODE1_P0_29_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_29_REPEATER = 0x04000000
+    PINCON_PINMODE1_P0_29_FLOAT = 0x08000000
+    PINCON_PINMODE1_P0_29_PULLDOWN = 0x0C000000
+endconst
+
+const(uint32):
+    PINCON_PINMODE_OD0_P0_29_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_29_OPEN_DRAIN = 0x20000000
+    PINCON_PINSEL1_P0_30 = 0x00000000
+    PINCON_PINSEL1_USB_D_MINUS = 0x10000000
+    PINCON_PINMODE1_P0_30_PULLUP = 0x00000000
+    PINCON_PINMODE1_P0_30_REPEATER = 0x10000000
+    PINCON_PINMODE1_P0_30_FLOAT = 0x20000000
+    PINCON_PINMODE1_P0_30_PULLDOWN = 0x30000000
+    PINCON_PINMODE_OD0_P0_30_NORMAL = 0x00000000
+    PINCON_PINMODE_OD0_P0_30_OPEN_DRAIN = 0x40000000
+    PINCON_PINSEL2_P1_0  = 0x00000000
+    PINCON_PINSEL2_ENET_TXD0 = 0x00000001
+    PINCON_PINMODE2_P1_0_PULLUP = 0x00000000
+    PINCON_PINMODE2_P1_0_REPEATER = 0x00000001
+    PINCON_PINMODE2_P1_0_FLOAT = 0x00000002
+    PINCON_PINMODE2_P1_0_PULLDOWN = 0x00000003
+    PINCON_PINMODE_OD1_P1_0_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_0_OPEN_DRAIN = 0x00000001
+    PINCON_PINSEL2_P1_1  = 0x00000000
+    PINCON_PINSEL2_ENET_TXD1 = 0x00000004
+    PINCON_PINMODE2_P1_1_PULLUP = 0x00000000
+    PINCON_PINMODE2_P1_1_REPEATER = 0x00000004
+    PINCON_PINMODE2_P1_1_FLOAT = 0x00000008
+    PINCON_PINMODE2_P1_1_PULLDOWN = 0x0000000C
+    PINCON_PINMODE_OD1_P1_1_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_1_OPEN_DRAIN = 0x00000002
+    PINCON_PINSEL2_P1_4  = 0x00000000
+    PINCON_PINSEL2_ENET_TX_EN = 0x00000100
+    PINCON_PINMODE2_P1_4_PULLUP = 0x00000000
+    PINCON_PINMODE2_P1_4_REPEATER = 0x00000100
+    PINCON_PINMODE2_P1_4_FLOAT = 0x00000200
+    PINCON_PINMODE2_P1_4_PULLDOWN = 0x00000300
+endconst
+
+const(uint32):
+    PINCON_PINMODE_OD1_P1_4_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_4_OPEN_DRAIN = 0x00000010
+    PINCON_PINSEL2_P1_8  = 0x00000000
+    PINCON_PINSEL2_ENET_CRS = 0x00010000
+    PINCON_PINMODE2_P1_8_PULLUP = 0x00000000
+    PINCON_PINMODE2_P1_8_REPEATER = 0x00010000
+    PINCON_PINMODE2_P1_8_FLOAT = 0x00020000
+    PINCON_PINMODE2_P1_8_PULLDOWN = 0x00030000
+    PINCON_PINMODE_OD1_P1_8_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_8_OPEN_DRAIN = 0x00000100
+    PINCON_PINSEL2_P1_9  = 0x00000000
+    PINCON_PINSEL2_ENET_RXD0 = 0x00040000
+    PINCON_PINMODE2_P1_9_PULLUP = 0x00000000
+    PINCON_PINMODE2_P1_9_REPEATER = 0x00040000
+    PINCON_PINMODE2_P1_9_FLOAT = 0x00080000
+    PINCON_PINMODE2_P1_9_PULLDOWN = 0x000C0000
+    PINCON_PINMODE_OD1_P1_9_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_9_OPEN_DRAIN = 0x00000200
+    PINCON_PINSEL2_P1_10 = 0x00000000
+    PINCON_PINSEL2_ENET_RXD1 = 0x00100000
+    PINCON_PINMODE2_P1_10_PULLUP = 0x00000000
+    PINCON_PINMODE2_P1_10_REPEATER = 0x00100000
+    PINCON_PINMODE2_P1_10_FLOAT = 0x00200000
+    PINCON_PINMODE2_P1_10_PULLDOWN = 0x00300000
+    PINCON_PINMODE_OD1_P1_10_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_10_OPEN_DRAIN = 0x00000400
+    PINCON_PINSEL2_P1_14 = 0x00000000
+    PINCON_PINSEL2_ENET_RX_ER = 0x10000000
+    PINCON_PINMODE2_P1_14_PULLUP = 0x00000000
+    PINCON_PINMODE2_P1_14_REPEATER = 0x10000000
+    PINCON_PINMODE2_P1_14_FLOAT = 0x20000000
+    PINCON_PINMODE2_P1_14_PULLDOWN = 0x30000000
+endconst
+
+const(uint32):
+    PINCON_PINMODE_OD1_P1_14_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_14_OPEN_DRAIN = 0x00004000
+    PINCON_PINSEL2_P1_15 = 0x00000000
+    PINCON_PINSEL2_ENET_REF_CLK = 0x40000000
+    PINCON_PINMODE2_P1_15_PULLUP = 0x00000000
+    PINCON_PINMODE2_P1_15_REPEATER = 0x40000000
+    PINCON_PINMODE2_P1_15_FLOAT = 0x80000000
+    PINCON_PINMODE2_P1_15_PULLDOWN = 0xC0000000
+    PINCON_PINMODE_OD1_P1_15_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_15_OPEN_DRAIN = 0x00008000
+    PINCON_PINSEL3_P1_16 = 0x00000000
+    PINCON_PINSEL3_ENET_MDC = 0x00000001
+    PINCON_PINMODE3_P1_16_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_16_REPEATER = 0x00000001
+    PINCON_PINMODE3_P1_16_FLOAT = 0x00000002
+    PINCON_PINMODE3_P1_16_PULLDOWN = 0x00000003
+    PINCON_PINMODE_OD1_P1_16_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_16_OPEN_DRAIN = 0x00010000
+    PINCON_PINSEL3_P1_17 = 0x00000000
+    PINCON_PINSEL3_ENET_MDIO = 0x00000040
+    PINCON_PINMODE3_P1_17_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_17_REPEATER = 0x00000004
+    PINCON_PINMODE3_P1_17_FLOAT = 0x00000008
+    PINCON_PINMODE3_P1_17_PULLDOWN = 0x0000000C
+    PINCON_PINMODE_OD1_P1_17_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_17_OPEN_DRAIN = 0x00020000
+    PINCON_PINSEL3_P1_18_MASK = 0x00000030
+    PINCON_PINSEL3_P1_18 = 0x00000000
+    PINCON_PINSEL3_USB_UP = 0x00000010
+    PINCON_PINSEL3_PWM1_1 = 0x00000020
+    PINCON_PINSEL3_CAP1_0 = 0x00000030
+    PINCON_PINMODE3_P1_18_PULLUP = 0x00000000
+endconst
+
+const(uint32):
+    PINCON_PINMODE3_P1_18_REPEATER = 0x00000010
+    PINCON_PINMODE3_P1_18_FLOAT = 0x00000020
+    PINCON_PINMODE3_P1_18_PULLDOWN = 0x00000030
+    PINCON_PINMODE_OD1_P1_18_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_18_OPEN_DRAIN = 0x00040000
+    PINCON_PINSEL3_P1_19 = 0x00000000
+    PINCON_PINSEL3_MC0A  = 0x00000040
+    PINCON_PINSEL3_USB_PPW = 0x00000080
+    PINCON_PINSEL3_CAP1_1 = 0x000000C0
+    PINCON_PINMODE3_P1_19_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_19_REPEATER = 0x00000040
+    PINCON_PINMODE3_P1_19_FLOAT = 0x00000080
+    PINCON_PINMODE3_P1_19_PULLDOWN = 0x000000C0
+    PINCON_PINMODE_OD1_P1_19_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_19_OPEN_DRAIN = 0x00080000
+    PINCON_PINSEL3_P1_20 = 0x00000000
+    PINCON_PINSEL3_MCFB0 = 0x00000100
+    PINCON_PINSEL3_PWM1_2 = 0x00000200
+    PINCON_PINSEL3_SCK0  = 0x00000300
+    PINCON_PINMODE3_P1_20_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_20_REPEATER = 0x00000100
+    PINCON_PINMODE3_P1_20_FLOAT = 0x00000200
+    PINCON_PINMODE3_P1_20_PULLDOWN = 0x00000300
+    PINCON_PINMODE_OD1_P1_20_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_20_OPEN_DRAIN = 0x00100000
+    PINCON_PINSEL3_P1_21 = 0x00000000
+    PINCON_PINSEL3_MCABORT = 0x00000400
+    PINCON_PINSEL3_PWM1_3 = 0x00000800
+    PINCON_PINSEL3_SSEL0 = 0x00000C00
+    PINCON_PINMODE3_P1_21_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_21_REPEATER = 0x00000400
+    PINCON_PINMODE3_P1_21_FLOAT = 0x00000800
+endconst
+
+const(uint32):
+    PINCON_PINMODE3_P1_21_PULLDOWN = 0x00000C00
+    PINCON_PINMODE_OD1_P1_21_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_21_OPEN_DRAIN = 0x00200000
+    PINCON_PINSEL3_P1_22 = 0x00000000
+    PINCON_PINSEL3_MC0B  = 0x00001000
+    PINCON_PINSEL3_USB_PWRD = 0x00002000
+    PINCON_PINSEL3_MAT1_0 = 0x00003000
+    PINCON_PINMODE3_P1_22_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_22_REPEATER = 0x00001000
+    PINCON_PINMODE3_P1_22_FLOAT = 0x00002000
+    PINCON_PINMODE3_P1_22_PULLDOWN = 0x00003000
+    PINCON_PINMODE_OD1_P1_22_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_22_OPEN_DRAIN = 0x00400000
+    PINCON_PINSEL3_P1_23 = 0x00000000
+    PINCON_PINSEL3_MCFB1 = 0x00004000
+    PINCON_PINSEL3_PWM1_4 = 0x00008000
+    PINCON_PINSEL3_MISO0 = 0x0000C000
+    PINCON_PINMODE3_P1_23_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_23_REPEATER = 0x00004000
+    PINCON_PINMODE3_P1_23_FLOAT = 0x00008000
+    PINCON_PINMODE3_P1_23_PULLDOWN = 0x0000C000
+    PINCON_PINMODE_OD1_P1_23_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_23_OPEN_DRAIN = 0x00800000
+    PINCON_PINSEL3_P1_24 = 0x00000000
+    PINCON_PINSEL3_MCFB2 = 0x00010000
+    PINCON_PINSEL3_PWM1_5 = 0x00020000
+    PINCON_PINSEL3_MOSI0 = 0x00030000
+    PINCON_PINMODE3_P1_24_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_24_REPEATER = 0x00010000
+    PINCON_PINMODE3_P1_24_FLOAT = 0x00020000
+    PINCON_PINMODE3_P1_24_PULLDOWN = 0x00030000
+    PINCON_PINMODE_OD1_P1_24_NORMAL = 0x00000000
+endconst
+
+const(uint32):
+    PINCON_PINMODE_OD1_P1_24_OPEN_DRAIN = 0x01000000
+    PINCON_PINSEL3_P1_25 = 0x00000000
+    PINCON_PINSEL3_MC1A  = 0x00040000
+    PINCON_PINSEL3_MAT1_1 = 0x000C0000
+    PINCON_PINMODE3_P1_25_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_25_REPEATER = 0x00040000
+    PINCON_PINMODE3_P1_25_FLOAT = 0x00080000
+    PINCON_PINMODE3_P1_25_PULLDOWN = 0x000C0000
+    PINCON_PINMODE_OD1_P1_25_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_25_OPEN_DRAIN = 0x02000000
+    PINCON_PINSEL3_P1_26 = 0x00000000
+    PINCON_PINSEL3_MC1B  = 0x00100000
+    PINCON_PINSEL3_PWM1_6 = 0x00200000
+    PINCON_PINSEL3_CAP0_0 = 0x00300000
+    PINCON_PINMODE3_P1_26_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_26_REPEATER = 0x00100000
+    PINCON_PINMODE3_P1_26_FLOAT = 0x00200000
+    PINCON_PINMODE3_P1_26_PULLDOWN = 0x00300000
+    PINCON_PINMODE_OD1_P1_26_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_26_OPEN_DRAIN = 0x04000000
+    PINCON_PINSEL3_P1_27 = 0x00000000
+    PINCON_PINSEL3_CLKOUT = 0x00400000
+    PINCON_PINSEL3_USB_OVRCR = 0x00800000
+    PINCON_PINSEL3_CAP0_1 = 0x00C00000
+    PINCON_PINMODE3_P1_27_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_27_REPEATER = 0x00400000
+    PINCON_PINMODE3_P1_27_FLOAT = 0x00800000
+    PINCON_PINMODE3_P1_27_PULLDOWN = 0x00C00000
+    PINCON_PINMODE_OD1_P1_27_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_27_OPEN_DRAIN = 0x08000000
+    PINCON_PINSEL3_P1_28 = 0x00000000
+    PINCON_PINSEL3_MC2A  = 0x01000000
+endconst
+
+const(uint32):
+    PINCON_PINSEL3_PCAP1_0 = 0x02000000
+    PINCON_PINSEL3_MAT0_0 = 0x03000000
+    PINCON_PINMODE3_P1_28_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_28_REPEATER = 0x01000000
+    PINCON_PINMODE3_P1_28_FLOAT = 0x02000000
+    PINCON_PINMODE3_P1_28_PULLDOWN = 0x03000000
+    PINCON_PINMODE_OD1_P1_28_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_28_OPEN_DRAIN = 0x10000000
+    PINCON_PINSEL3_P1_29 = 0x00000000
+    PINCON_PINSEL3_MC2B  = 0x04000000
+    PINCON_PINSEL3_PCAP_1_1 = 0x08000000
+    PINCON_PINSEL3_MAT0_1 = 0x0C000000
+    PINCON_PINMODE3_P1_29_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_29_REPEATER = 0x04000000
+    PINCON_PINMODE3_P1_29_FLOAT = 0x08000000
+    PINCON_PINMODE3_P1_29_PULLDOWN = 0x0C000000
+    PINCON_PINMODE_OD1_P1_29_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_29_OPEN_DRAIN = 0x20000000
+    PINCON_PINSEL3_P1_30 = 0x00000000
+    PINCON_PINSEL3_VBUS  = 0x20000000
+    PINCON_PINSEL3_AD0_4 = 0x30000000
+    PINCON_PINMODE3_P1_30_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_30_REPEATER = 0x10000000
+    PINCON_PINMODE3_P1_30_FLOAT = 0x20000000
+    PINCON_PINMODE3_P1_30_PULLDOWN = 0x30000000
+    PINCON_PINMODE_OD1_P1_30_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_30_OPEN_DRAIN = 0x40000000
+    PINCON_PINSEL3_P1_31 = 0x00000000
+    PINCON_PINSEL3_SCK1  = 0x08000000
+    PINCON_PINSEL3_AD0_5 = 0xC0000000
+    PINCON_PINMODE3_P1_31_PULLUP = 0x00000000
+    PINCON_PINMODE3_P1_31_REPEATER = 0x40000000
+endconst
+
+const(uint32):
+    PINCON_PINMODE3_P1_31_FLOAT = 0x80000000
+    PINCON_PINMODE3_P1_31_PULLDOWN = 0xC0000000
+    PINCON_PINMODE_OD1_P1_31_NORMAL = 0x00000000
+    PINCON_PINMODE_OD1_P1_31_OPEN_DRAIN = 0x80000000
+    PINCON_PINSEL4_P2_0  = 0x00000000
+    PINCON_PINSEL4_PWM1_1 = 0x00000001
+    PINCON_PINSEL4_TXD1  = 0x00000002
+    PINCON_PINMODE4_P2_0_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_0_REPEATER = 0x00000001
+    PINCON_PINMODE4_P2_0_FLOAT = 0x00000002
+    PINCON_PINMODE4_P2_0_PULLDOWN = 0x00000003
+    PINCON_PINMODE_OD2_P2_0_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_0_OPEN_DRAIN = 0x00000001
+    PINCON_PINSEL4_P2_1  = 0x00000000
+    PINCON_PINSEL4_PWM1_2 = 0x00000004
+    PINCON_PINSEL4_RXD1  = 0x00000008
+    PINCON_PINMODE4_P2_1_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_1_REPEATER = 0x00000004
+    PINCON_PINMODE4_P2_1_FLOAT = 0x00000008
+    PINCON_PINMODE4_P2_1_PULLDOWN = 0x0000000C
+    PINCON_PINMODE_OD2_P2_1_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_1_OPEN_DRAIN = 0x00000002
+    PINCON_PINSEL4_P2_2  = 0x00000000
+    PINCON_PINSEL4_PWM1_3 = 0x00000010
+    PINCON_PINSEL4_CTS1  = 0x00000020
+    PINCON_PINMODE4_P2_2_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_2_REPEATER = 0x00000010
+    PINCON_PINMODE4_P2_2_FLOAT = 0x00000020
+    PINCON_PINMODE4_P2_2_PULLDOWN = 0x00000030
+    PINCON_PINMODE_OD2_P2_2_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_2_OPEN_DRAIN = 0x00000004
+    PINCON_PINSEL4_P2_3  = 0x00000000
+endconst
+
+const(uint32):
+    PINCON_PINSEL4_PWM1_4 = 0x00000040
+    PINCON_PINSEL4_DCD1  = 0x00000080
+    PINCON_PINMODE4_P2_3_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_3_REPEATER = 0x00000040
+    PINCON_PINMODE4_P2_3_FLOAT = 0x00000080
+    PINCON_PINMODE4_P2_3_PULLDOWN = 0x000000C0
+    PINCON_PINMODE_OD2_P2_3_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_3_OPEN_DRAIN = 0x00000008
+    PINCON_PINSEL4_P2_4  = 0x00000000
+    PINCON_PINSEL4_PWM1_5 = 0x00000100
+    PINCON_PINSEL4_DSR1  = 0x00000200
+    PINCON_PINMODE4_P2_4_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_4_REPEATER = 0x00000100
+    PINCON_PINMODE4_P2_4_FLOAT = 0x00000200
+    PINCON_PINMODE4_P2_4_PULLDOWN = 0x00000300
+    PINCON_PINMODE_OD2_P2_4_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_4_OPEN_DRAIN = 0x00000010
+    PINCON_PINSEL4_P2_5  = 0x00000000
+    PINCON_PINSEL4_PWM1_6 = 0x00000400
+    PINCON_PINSEL4_DTR1  = 0x00000800
+    PINCON_PINMODE4_P2_5_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_5_REPEATER = 0x00000400
+    PINCON_PINMODE4_P2_5_FLOAT = 0x00000800
+    PINCON_PINMODE4_P2_5_PULLDOWN = 0x00000C00
+    PINCON_PINMODE_OD2_P2_5_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_5_OPEN_DRAIN = 0x00000020
+    PINCON_PINSEL4_P2_6  = 0x00000000
+    PINCON_PINSEL4_PCAP1_0 = 0x00001000
+    PINCON_PINSEL4_RI1   = 0x00002000
+    PINCON_PINMODE4_P2_6_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_6_REPEATER = 0x00001000
+    PINCON_PINMODE4_P2_6_FLOAT = 0x00002000
+endconst
+
+const(uint32):
+    PINCON_PINMODE4_P2_6_PULLDOWN = 0x00003000
+    PINCON_PINMODE_OD2_P2_6_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_6_OPEN_DRAIN = 0x00000040
+    PINCON_PINSEL4_P2_7_MASK = 0x0000C000
+    PINCON_PINSEL4_P2_7  = 0x00000000
+    PINCON_PINSEL4_RD2   = 0x00004000
+    PINCON_PINSEL4_RTS1  = 0x00008000
+    PINCON_PINMODE4_P2_7_MASK = 0x0000C000
+    PINCON_PINMODE4_P2_7_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_7_REPEATER = 0x00004000
+    PINCON_PINMODE4_P2_7_FLOAT = 0x00008000
+    PINCON_PINMODE4_P2_7_PULLDOWN = 0x0000C000
+    PINCON_PINMODE_OD2_P2_7_MASK = 0x00000080
+    PINCON_PINMODE_OD2_P2_7_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_7_OPEN_DRAIN = 0x00000080
+    PINCON_PINSEL4_P2_8_MASK = 0x00030000
+    PINCON_PINSEL4_P2_8  = 0x00000000
+    PINCON_PINSEL4_TD2   = 0x00010000
+    PINCON_PINSEL4_TXD2  = 0x00020000
+    PINCON_PINSEL4_ENET_MDC = 0x00030000
+    PINCON_PINMODE4_P2_8_MASK = 0x0003C000
+    PINCON_PINMODE4_P2_8_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_8_REPEATER = 0x00010000
+    PINCON_PINMODE4_P2_8_FLOAT = 0x00020000
+    PINCON_PINMODE4_P2_8_PULLDOWN = 0x00030000
+    PINCON_PINMODE_OD2_P2_8_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_8_OPEN_DRAIN = 0x00000100
+    PINCON_PINSEL4_P2_9_MASK = 0x000C0000
+    PINCON_PINSEL4_P2_9  = 0x00000000
+    PINCON_PINSEL4_USB_CONNECT = 0x00040000
+    PINCON_PINSEL4_RXD2  = 0x00080000
+    PINCON_PINSEL4_ENET_MDIO = 0x000C0000
+endconst
+
+const(uint32):
+    PINCON_PINMODE4_P2_9_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_9_REPEATER = 0x00040000
+    PINCON_PINMODE4_P2_9_FLOAT = 0x00080000
+    PINCON_PINMODE4_P2_9_PULLDOWN = 0x000C0000
+    PINCON_PINMODE_OD2_P2_9_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_9_OPEN_DRAIN = 0x00000200
+    PINCON_PINSEL4_P2_10 = 0x00000000
+    PINCON_PINSEL4_EINT0 = 0x00100000
+    PINCON_PINSEL4_NMI   = 0x00200000
+    PINCON_PINMODE4_P2_10_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_10_REPEATER = 0x00100000
+    PINCON_PINMODE4_P2_10_FLOAT = 0x00200000
+    PINCON_PINMODE4_P2_10_PULLDOWN = 0x00300000
+    PINCON_PINMODE_OD2_P2_10_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_10_OPEN_DRAIN = 0x00000400
+    PINCON_PINSEL4_P2_11 = 0x00000000
+    PINCON_PINSEL4_EINT1 = 0x00400000
+    PINCON_PINSEL4_I2STX_CLK = 0x00C00000
+    PINCON_PINMODE4_P2_11_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_11_REPEATER = 0x00400000
+    PINCON_PINMODE4_P2_11_FLOAT = 0x00800000
+    PINCON_PINMODE4_P2_11_PULLDOWN = 0x00C00000
+    PINCON_PINMODE_OD2_P2_11_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_11_OPEN_DRAIN = 0x00000800
+    PINCON_PINSEL4_P2_12 = 0x00000000
+    PINCON_PINSEL4_EINT2 = 0x01000000
+    PINCON_PINSEL4_I2STX_WS = 0x03000000
+    PINCON_PINMODE4_P2_12_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_12_REPEATER = 0x01000000
+    PINCON_PINMODE4_P2_12_FLOAT = 0x02000000
+    PINCON_PINMODE4_P2_12_PULLDOWN = 0x03000000
+    PINCON_PINMODE_OD2_P2_12_NORMAL = 0x00000000
+endconst
+
+const(uint32):
+    PINCON_PINMODE_OD2_P2_12_OPEN_DRAIN = 0x00001000
+    PINCON_PINSEL4_P2_13_MASK = 0x0C000000
+    PINCON_PINSEL4_P2_13 = 0x00000000
+    PINCON_PINSEL4_EINT3 = 0x04000000
+    PINCON_PINSEL4_I2STX_SDA = 0x0C000000
+    PINCON_PINMODE4_P2_13_PULLUP = 0x00000000
+    PINCON_PINMODE4_P2_13_REPEATER = 0x04000000
+    PINCON_PINMODE4_P2_13_FLOAT = 0x08000000
+    PINCON_PINMODE4_P2_13_PULLDOWN = 0x0C000000
+    PINCON_PINMODE_OD2_P2_13_NORMAL = 0x00000000
+    PINCON_PINMODE_OD2_P2_13_OPEN_DRAIN = 0x00000800
+    PINCON_PINSEL7_P3_25 = 0x00000000
+    PINCON_PINSEL7_MAT0_0 = 0x00080000
+    PINCON_PINSEL7_PWM1_2 = 0x000C0000
+    PINCON_PINMODE7_P3_25_PULLUP = 0x00000000
+    PINCON_PINMODE7_P3_25_REPEATER = 0x00040000
+    PINCON_PINMODE7_P3_25_FLOAT = 0x00080000
+    PINCON_PINMODE7_P3_25_PULLDOWN = 0x000C0000
+    PINCON_PINMODE_OD3_P3_25_NORMAL = 0x00000000
+    PINCON_PINMODE_OD3_P3_25_OPEN_DRAIN = 0x02000000
+    PINCON_PINSEL7_P3_26 = 0x00000000
+    PINCON_PINSEL7_STCLK = 0x00100000
+    PINCON_PINSEL7_MAT0_1 = 0x00200000
+    PINCON_PINSEL7_PWM1_3 = 0x00300000
+    PINCON_PINMODE7_P3_26_PULLUP = 0x00000000
+    PINCON_PINMODE7_P3_26_REPEATER = 0x00100000
+    PINCON_PINMODE7_P3_26_FLOAT = 0x00200000
+    PINCON_PINMODE7_P3_26_PULLDOWN = 0x00300000
+    PINCON_PINMODE_OD3_P3_26_NORMAL = 0x00000000
+    PINCON_PINMODE_OD3_P3_26_OPEN_DRAIN = 0x04000000
+    PINCON_PINSEL9_P4_28 = 0x00000000
+    PINCON_PINSEL9_RX_MCLK = 0x01000000
+endconst
+
+const(uint32):
+    PINCON_PINSEL9_MAT2_0 = 0x02000000
+    PINCON_PINSEL9_TXD3  = 0x03000000
+    PINCON_PINMODE9_P4_28_PULLUP = 0x00000000
+    PINCON_PINMODE9_P4_28_REPEATER = 0x01000000
+    PINCON_PINMODE9_P4_28_FLOAT = 0x02000000
+    PINCON_PINMODE9_P4_28_PULLDOWN = 0x03000000
+    PINCON_PINMODE_OD4_P4_28_NORMAL = 0x00000000
+    PINCON_PINMODE_OD4_P4_28_OPEN_DRAIN = 0x10000000
+    PINCON_PINSEL9_P4_29 = 0x00000000
+    PINCON_PINSEL9_TX_MCLK = 0x04000000
+    PINCON_PINSEL9_MAT2_1 = 0x08000000
+    PINCON_PINSEL9_RXD3  = 0x0C000000
+    PINCON_PINMODE9_P4_29_PULLUP = 0x00000000
+    PINCON_PINMODE9_P4_29_REPEATER = 0x04000000
+    PINCON_PINMODE9_P4_29_FLOAT = 0x08000000
+    PINCON_PINMODE9_P4_29_PULLDOWN = 0x0C000000
+    PINCON_PINMODE_OD4_P4_29_NORMAL = 0x00000000
+    PINCON_PINMODE_OD4_P4_29_OPEN_DRAIN = 0x20000000
+    PINCON_PINSEL10_TPIU_DISABLED = 0x00000000
+    PINCON_PINSEL10_TPIU_ENABLED = 0x00000008
+    GPIO0_FIODIR_P0_0_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_0_OUTPUT = 0x00000001
+    GPIO_P0_0            = 0x00000001
+    GPIO0_FIODIR_P0_1_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_1_OUTPUT = 0x00000002
+    GPIO_P0_1            = 0x00000002
+    GPIO0_FIODIR_P0_2_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_2_OUTPUT = 0x00000004
+    GPIO_P0_2            = 0x00000004
+    GPIO0_FIODIR_P0_3_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_3_OUTPUT = 0x00000008
+    GPIO_P0_3            = 0x00000008
+endconst
+
+const(uint32):
+    GPIO0_FIODIR_P0_4_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_4_OUTPUT = 0x00000010
+    GPIO_P0_4            = 0x00000010
+    GPIO0_FIODIR_P0_5_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_5_OUTPUT = 0x00000020
+    GPIO_P0_5            = 0x00000020
+    GPIO0_FIODIR_P0_6_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_6_OUTPUT = 0x00000040
+    GPIO_P0_6            = 0x00000040
+    GPIO0_FIODIR_P0_7_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_7_OUTPUT = 0x00000080
+    GPIO_P0_7            = 0x00000080
+    GPIO0_FIODIR_P0_8_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_8_OUTPUT = 0x00000100
+    GPIO_P0_8            = 0x00000100
+    GPIO0_FIODIR_P0_9_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_9_OUTPUT = 0x00000200
+    GPIO_P0_9            = 0x00000200
+    GPIO0_FIODIR_P0_10_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_10_OUTPUT = 0x00000400
+    GPIO_P0_10           = 0x00000400
+    GPIO0_FIODIR_P0_11_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_11_OUTPUT = 0x00000800
+    GPIO_P0_11           = 0x00000800
+    GPIO0_FIODIR_P0_12_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_12_OUTPUT = 0x00001000
+    GPIO_P0_12           = 0x00001000
+    GPIO0_FIODIR_P0_13_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_13_OUTPUT = 0x00002000
+    GPIO_P0_13           = 0x00002000
+    GPIO0_FIODIR_P0_14_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_14_OUTPUT = 0x00004000
+endconst
+
+const(uint32):
+    GPIO_P0_14           = 0x00004000
+    GPIO0_FIODIR_P0_15_MASK = 0x00008000
+    GPIO0_FIODIR_P0_15_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_15_OUTPUT = 0x00008000
+    GPIO_P0_15           = 0x00008000
+    GPIO0_FIODIR_P0_16_MASK = 0x00010000
+    GPIO0_FIODIR_P0_16_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_16_OUTPUT = 0x00010000
+    GPIO_P0_16           = 0x00010000
+    GPIO0_FIODIR_P0_17_MASK = 0x00020000
+    GPIO0_FIODIR_P0_17_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_17_OUTPUT = 0x00020000
+    GPIO_P0_17           = 0x00020000
+    GPIO0_FIODIR_P0_18_MASK = 0x00040000
+    GPIO0_FIODIR_P0_18_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_18_OUTPUT = 0x00040000
+    GPIO_P0_18           = 0x00040000
+    GPIO0_FIODIR_P0_19_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_19_OUTPUT = 0x00080000
+    GPIO_P0_19           = 0x00080000
+    GPIO0_FIODIR_P0_20_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_20_OUTPUT = 0x00100000
+    GPIO_P0_20           = 0x00100000
+    GPIO0_FIODIR_P0_21_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_21_OUTPUT = 0x00200000
+    GPIO_P0_21           = 0x00200000
+    GPIO0_FIODIR_P0_22_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_22_OUTPUT = 0x00400000
+    GPIO_P0_22           = 0x00400000
+    GPIO0_FIODIR_P0_23_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_23_OUTPUT = 0x00800000
+    GPIO_P0_23           = 0x00800000
+endconst
+
+const(uint32):
+    GPIO0_FIODIR_P0_24_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_24_OUTPUT = 0x01000000
+    GPIO_P0_24           = 0x01000000
+    GPIO0_FIODIR_P0_25_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_25_OUTPUT = 0x02000000
+    GPIO_P0_25           = 0x02000000
+    GPIO0_FIODIR_P0_26_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_26_OUTPUT = 0x04000000
+    GPIO_P0_26           = 0x04000000
+    GPIO0_FIODIR_P0_27_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_27_OUTPUT = 0x08000000
+    GPIO_P0_27           = 0x08000000
+    GPIO0_FIODIR_P0_28_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_28_OUTPUT = 0x10000000
+    GPIO_P0_28           = 0x10000000
+    GPIO0_FIODIR_P0_29_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_29_OUTPUT = 0x20000000
+    GPIO_P0_29           = 0x20000000
+    GPIO0_FIODIR_P0_30_INPUT = 0x00000000
+    GPIO0_FIODIR_P0_30_OUTPUT = 0x40000000
+    GPIO_P0_30           = 0x40000000
+    GPIO1_FIODIR_P1_0_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_0_OUTPUT = 0x00000001
+    GPIO_P1_0            = 0x00000001
+    GPIO_MASK_P1_0       = 0xFFFFFFFE
+    GPIO1_FIODIR_P1_1_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_1_OUTPUT = 0x00000002
+    GPIO_P1_1            = 0x00000002
+    GPIO_MASK_P1_1       = 0xFFFFFFFC
+    GPIO1_FIODIR_P1_4_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_4_OUTPUT = 0x00000010
+    GPIO_P1_4            = 0x00000010
+endconst
+
+const(uint32):
+    GPIO_MASK_P1_4       = 0xFFFFFFEF
+    GPIO1_FIODIR_P1_8_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_8_OUTPUT = 0x00000100
+    GPIO_P1_8            = 0x00000100
+    GPIO_MASK_P1_8       = 0xFFFFFEFF
+    GPIO1_FIODIR_P1_9_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_9_OUTPUT = 0x00000200
+    GPIO_P1_9            = 0x00000200
+    GPIO_MASK_P1_9       = 0xFFFFFCFF
+    GPIO1_FIODIR_P1_10_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_10_OUTPUT = 0x00000400
+    GPIO_P1_10           = 0x00000400
+    GPIO_MASK_P1_10      = 0xFFFFFBFF
+    GPIO1_FIODIR_P1_14_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_14_OUTPUT = 0x00004000
+    GPIO_P1_14           = 0x00004000
+    GPIO_MASK_P1_14      = 0xFFFFBFFF
+    GPIO1_FIODIR_P1_15_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_15_OUTPUT = 0x00008000
+    GPIO_P1_15           = 0x00008000
+    GPIO_MASK_P1_15      = 0xFFFF7FFF
+    GPIO1_FIODIR_P1_16_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_16_OUTPUT = 0x00010000
+    GPIO_P1_16           = 0x00010000
+    GPIO_MASK_P1_16      = 0xFFFEFFFF
+    GPIO1_FIODIR_P1_17_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_17_OUTPUT = 0x00020000
+    GPIO_P1_17           = 0x00020000
+    GPIO_MASK_P1_17      = 0xFFFCFFFF
+    GPIO1_FIODIR_P1_18_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_18_OUTPUT = 0x00040000
+    GPIO_P1_18           = 0x00040000
+endconst
+
+const(uint32):
+    GPIO_MASK_P1_18      = 0xFFFBFFFF
+    GPIO1_FIODIR_P1_19_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_19_OUTPUT = 0x00080000
+    GPIO_P1_19           = 0x00080000
+    GPIO_MASK_P1_19      = 0xFFF7FFFF
+    GPIO1_FIODIR_P1_20_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_20_OUTPUT = 0x00100000
+    GPIO_P1_20           = 0x00100000
+    GPIO_MASK_P1_20      = 0xFFEFFFFF
+    GPIO1_FIODIR_P1_21_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_21_OUTPUT = 0x00200000
+    GPIO_P1_21           = 0x00200000
+    GPIO_MASK_P1_21      = 0xFFCFFFFF
+    GPIO1_FIODIR_P1_22_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_22_OUTPUT = 0x00400000
+    GPIO_P1_22           = 0x00400000
+    GPIO_MASK_P1_22      = 0xFFBFFFFF
+    GPIO1_FIODIR_P1_23_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_23_OUTPUT = 0x00800000
+    GPIO_P1_23           = 0x00800000
+    GPIO_MASK_P1_23      = 0xFF7FFFFF
+    GPIO1_FIODIR_P1_24_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_24_OUTPUT = 0x01000000
+    GPIO_P1_24           = 0x01000000
+    GPIO_MASK_P1_24      = 0xFEFFFFFF
+    GPIO1_FIODIR_P1_25_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_25_OUTPUT = 0x02000000
+    GPIO_P1_25           = 0x02000000
+    GPIO_MASK_P1_25      = 0xFCFFFFFF
+    GPIO1_FIODIR_P1_26_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_26_OUTPUT = 0x04000000
+    GPIO_P1_26           = 0x04000000
+endconst
+
+const(uint32):
+    GPIO_MASK_P1_26      = 0xFBFFFFFF
+    GPIO1_FIODIR_P1_27_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_27_OUTPUT = 0x08000000
+    GPIO_P1_27           = 0x08000000
+    GPIO_MASK_P1_27      = 0xF7FFFFFF
+    GPIO1_FIODIR_P1_28_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_28_OUTPUT = 0x10000000
+    GPIO_P1_28           = 0x10000000
+    GPIO_MASK_P1_28      = 0xEFFFFFFF
+    GPIO1_FIODIR_P1_29_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_29_OUTPUT = 0x20000000
+    GPIO_P1_29           = 0x20000000
+    GPIO_MASK_P1_29      = 0xCFFFFFFF
+    GPIO1_FIODIR_P1_30_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_30_OUTPUT = 0x40000000
+    GPIO_P1_30           = 0x40000000
+    GPIO_MASK_P1_30      = 0xBFFFFFFF
+    GPIO1_FIODIR_P1_31_INPUT = 0x00000000
+    GPIO1_FIODIR_P1_31_OUTPUT = 0x80000000
+    GPIO_P1_31           = 0x80000000
+    GPIO_MASK_P1_31      = 0x7FFFFFFF
+    GPIO2_FIODIR_P2_0_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_0_OUTPUT = 0x00000001
+    GPIO_P2_0            = 0x00000001
+    GPIO2_FIODIR_P2_1_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_1_OUTPUT = 0x00000002
+    GPIO_P2_1            = 0x00000002
+    GPIO2_FIODIR_P2_2_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_2_OUTPUT = 0x00000004
+    GPIO_P2_2            = 0x00000004
+    GPIO2_FIODIR_P2_3_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_3_OUTPUT = 0x00000008
+endconst
+
+const(uint32):
+    GPIO_P2_3            = 0x00000008
+    GPIO2_FIODIR_P2_4_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_4_OUTPUT = 0x00000010
+    GPIO_P2_4            = 0x00000010
+    GPIO2_FIODIR_P2_5_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_5_OUTPUT = 0x00000020
+    GPIO_P2_5            = 0x00000020
+    GPIO2_FIODIR_P2_6_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_6_OUTPUT = 0x00000040
+    GPIO_P2_6            = 0x00000040
+    GPIO2_FIODIR_P2_7_MASK = 0x00000080
+    GPIO2_FIODIR_P2_7_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_7_OUTPUT = 0x00000080
+    GPIO_P2_7            = 0x00000080
+    GPIO2_FIODIR_P2_8_MASK = 0x00000100
+    GPIO2_FIODIR_P2_8_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_8_OUTPUT = 0x00000100
+    GPIO_P2_8            = 0x00000100
+    GPIO2_FIODIR_P2_9_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_9_OUTPUT = 0x00000200
+    GPIO_P2_9            = 0x00000200
+    GPIO2_FIODIR_P2_10_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_10_OUTPUT = 0x00000400
+    GPIO_P2_10           = 0x00000400
+    GPIO2_FIODIR_P2_11_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_11_OUTPUT = 0x00000800
+    GPIO_P2_11           = 0x00000800
+    GPIO2_FIODIR_P2_12_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_12_OUTPUT = 0x00001000
+    GPIO_P2_12           = 0x00001000
+    GPIO2_FIODIR_P2_13_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_13_OUTPUT = 0x00002000
+endconst
+
+const(uint32):
+    GPIO_P2_13           = 0x00002000
+    GPIO2_FIODIR_P2_25_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_25_OUTPUT = 0x02000000
+    GPIO_P2_25           = 0x02000000
+    GPIO2_FIODIR_P2_26_INPUT = 0x00000000
+    GPIO2_FIODIR_P2_26_OUTPUT = 0x04000000
+    GPIO_P2_26           = 0x04000000
+    GPIO3_FIODIR_P3_25_INPUT = 0x00000000
+    GPIO3_FIODIR_P3_25_OUTPUT = 0x02000000
+    GPIO_P3_25           = 0x02000000
+    GPIO3_FIODIR_P3_26_INPUT = 0x00000000
+    GPIO3_FIODIR_P3_26_OUTPUT = 0x04000000
+    GPIO_P3_26           = 0x04000000
+    GPIO4_FIODIR_P4_28_INPUT = 0x00000000
+    GPIO4_FIODIR_P4_28_OUTPUT = 0x10000000
+    GPIO_P4_28           = 0x10000000
+    GPIO4_FIODIR_P4_29_INPUT = 0x00000000
+    GPIO4_FIODIR_P4_29_OUTPUT = 0x20000000
+    GPIO_P4_29           = 0x20000000
+    PCON_PM00            = 0x00000000
+    PCON_PM01            = 0x00000001
+    PCON_PM11            = 0x00000003
+    PCON_BODRPM          = 0x00000004
+    PCON_BODRPM_ENABLED  = 0x00000000
+    PCON_BODRPM_DISABLED = 0x00000004
+    PCON_BOGD            = 0x00000008
+    PCON_BOGD_ENABLED    = 0x00000000
+    PCON_BOGD_DISABLED   = 0x00000008
+    PCON_BORD            = 0x00000010
+    PCON_BORD_ENABLED    = 0x00000000
+    PCON_BORD_DISABLED   = 0x00000010
+    PCON_SMFLAG          = 0x00000100
+endconst
+
+const(uint32):
+    PCON_DSFLAG          = 0x00000200
+    PCON_PDFLAG          = 0x00000400
+    PCON_DPDFLAG         = 0x00000800
+    PCONP_PCTIM0_ENABLED = 0x00000002
+    PCONP_PCTIM0_DISABLED = 0x00000000
+    PCONP_PCTIM1_ENABLED = 0x00000004
+    PCONP_PCTIM1_DISABLED = 0x00000000
+    PCONP_PCUART0_ENABLED = 0x00000008
+    PCONP_PCUART0_DISABLED = 0x00000000
+    PCONP_PCUART1_ENABLED = 0x00000010
+    PCONP_PCUART1_DISABLED = 0x00000000
+    PCONP_PCPWM1_ENABLED = 0x00000040
+    PCONP_PCPWM1_DISABLED = 0x00000000
+    PCONP_PCI2C0_ENABLED = 0x00000080
+    PCONP_PCI2C0_DISABLED = 0x00000000
+    PCONP_PCSPI_ENABLED  = 0x00000100
+    PCONP_PCSPI_DISABLED = 0x00000000
+    PCONP_PCRTC_ENABLED  = 0x00000200
+    PCONP_PCRTC_DISABLED = 0x00000000
+    PCONP_PCSSP1_ENABLED = 0x00000400
+    PCONP_PCSSP1_DISABLED = 0x00000000
+    PCONP_PCADC_ENABLED  = 0x00001000
+    PCONP_PCADC_DISABLED = 0x00000000
+    PCONP_PCCAN1_ENABLED = 0x00002000
+    PCONP_PCCAN1_DISABLED = 0x00000000
+    PCONP_PCCAN2_ENABLED = 0x00004000
+    PCONP_PCCAN2_DISABLED = 0x00000000
+    PCONP_PCGPIO_ENABLED = 0x00008000
+    PCONP_PCGPIO_DISABLED = 0x00000000
+    PCONP_PCRIT_ENABLED  = 0x00010000
+    PCONP_PCRIT_DISABLED = 0x00000000
+    PCONP_PCMCPWM_ENABLED = 0x00020000
+endconst
+
+const(uint32):
+    PCONP_PCMCPWM_DISABLED = 0x00000000
+    PCONP_PCQEI_ENABLED  = 0x00040000
+    PCONP_PCQEI_DISABLED = 0x00000000
+    PCONP_PCI2C1_ENABLED = 0x00080000
+    PCONP_PCI2C1_DISABLED = 0x00000000
+    PCONP_PCSSP0_ENABLED = 0x00200000
+    PCONP_PCSSP0_DISABLED = 0x00000000
+    PCONP_PCTIM2_ENABLED = 0x00400000
+    PCONP_PCTIM2_DISABLED = 0x00000000
+    PCONP_PCTIM3_ENABLED = 0x00800000
+    PCONP_PCTIM3_DISABLED = 0x00000000
+    PCONP_PCUART2_ENABLED = 0x01000000
+    PCONP_PCUART2_DISABLED = 0x00000000
+    PCONP_PCUART3_ENABLED = 0x02000000
+    PCONP_PCUART3_DISABLED = 0x00000000
+    PCONP_PCI2C2_ENABLED = 0x04000000
+    PCONP_PCI2C2_DISABLED = 0x00000000
+    PCONP_PCI2S_ENABLED  = 0x08000000
+    PCONP_PCI2S_DISABLED = 0x00000000
+    PCONP_PCGPDMA_ENABLED = 0x20000000
+    PCONP_PCGPDMA_DISABLED = 0x00000000
+    PCONP_PCENET_ENABLED = 0x40000000
+    PCONP_PCENET_DISABLED = 0x00000000
+    PCONP_PCUSB_ENABLED  = 0x80000000
+    PCONP_PCUSB_DISABLED = 0x00000000
+    CLKOUTCFG_CLKOUTSEL_CPU_CLOCK = 0x00000000
+    CLKOUTCFG_CLKOUTSEL_MAIN_CLOCK = 0x00000001
+    CLKOUTCFG_CLKOUTSEL_RC_CLOCK = 0x00000002
+    CLKOUTCFG_CLKOUTSEL_USB_CLOCK = 0x00000003
+    CLKOUTCFG_CLKOUTSEL_RTC_CLOCK = 0x00000004
+    CLKOUTCFG_CLKOUTDIV_1 = 0x00000000
+    CLKOUTCFG_CLKOUTDIV_2 = 0x00000010
+endconst
+
+const(uint32):
+    CLKOUTCFG_CLKOUTDIV_3 = 0x00000020
+    CLKOUTCFG_CLKOUTDIV_4 = 0x00000030
+    CLKOUTCFG_CLKOUTDIV_5 = 0x00000040
+    CLKOUTCFG_CLKOUTDIV_6 = 0x00000050
+    CLKOUTCFG_CLKOUTDIV_7 = 0x00000060
+    CLKOUTCFG_CLKOUTDIV_8 = 0x00000070
+    CLKOUTCFG_CLKOUTDIV_9 = 0x00000080
+    CLKOUTCFG_CLKOUTDIV_10 = 0x00000090
+    CLKOUTCFG_CLKOUTDIV_11 = 0x000000A0
+    CLKOUTCFG_CLKOUTDIV_12 = 0x000000B0
+    CLKOUTCFG_CLKOUTDIV_13 = 0x000000C0
+    CLKOUTCFG_CLKOUTDIV_14 = 0x000000D0
+    CLKOUTCFG_CLKOUTDIV_15 = 0x000000E0
+    CLKOUTCFG_CLKOUTDIV_16 = 0x000000F0
+    CLKOUTCFG_CLKOUT_EN  = 0x00000100
+    CLKOUTCFG_CLKOUT_EN_ENABLE = 0x00000100
+    CLKOUTCFG_CLKOUT_EN_DISABLE = 0x00000000
+    CLKOUTCFG_CLKOUT_ACT = 0x00000200
+    SCS_OSCRANGE_MASK    = 0x00000010
+    SCS_OSCRANGE         = 0x00000010
+    SCS_OSCRANGE_1MHZ_15MHZ = 0x00000000
+    SCS_OSCRANGE_15MHZ_25MHZ = 0x00000010
+    SCS_OSCEN_MASK       = 0x00000020
+    SCS_OSCEN            = 0x00000020
+    SCS_OSCEN_ENABLE     = 0x00000020
+    SCS_OSCEN_DISABLE    = 0x00000000
+    SCS_OSCSTAT          = 0x00000040
+    SCS_OSCSTAT_READY    = 0x00000040
+    SCS_OSCSTAT_NOT_READY = 0x00000000
+    CLKSRCSEL_CLKSRC_RC_OSC = 0x00000000
+    CLKSRCSEL_CLKSRC_MAIN_OSC = 0x00000001
+    CLKSRCSEL_CLKSRC_RTC_OSC = 0x00000002
+endconst
+
+const(uint32):
+    PLL0CON_PLLE0_MASK   = 0x00000001
+    PLL0CON_PLLE0_ENABLE = 0x00000001
+    PLL0CON_PLLE0_DISABLE = 0x00000000
+    PLL0CON_PLLC0_MASK   = 0x00000002
+    PLL0CON_PLLC0_CONNECT = 0x00000002
+    PLL0CON_PLLC0_DISCONNECT = 0x00000000
+    PLL0STAT_PLLE0_STAT  = 0x01000000
+    PLL0STAT_PLLE0_STAT_ENABLED = 0x01000000
+    PLL0STAT_PLLE0_STAT_DISABLED = 0x00000000
+    PLL0STAT_PLLC0_STAT  = 0x02000000
+    PLL0STAT_PLLC0_STAT_CONNECTED = 0x02000000
+    PLL0STAT_PLLC0_STAT_DISCONNECTED = 0x00000000
+    PLL0STAT_PLOCK0      = 0x04000000
+    PLL0STAT_PLOCK0_LOCKED = 0x04000000
+    PLL0STAT_PLOCK0_NOT_LOCKED = 0x00000000
+    PCLKSEL0_PCLK_WDT_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_WDT_CCLK = 0x00000001
+    PCLKSEL0_PCLK_WDT_CCLK_2 = 0x00000002
+    PCLKSEL0_PCLK_WDT_CCLK_8 = 0x00000003
+    PCLKSEL0_PCLK_TIMER0_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_TIMER0_CCLK = 0x00000004
+    PCLKSEL0_PCLK_TIMER0_CCLK_2 = 0x00000008
+    PCLKSEL0_PCLK_TIMER0_CCLK_8 = 0x0000000C
+    PCLKSEL0_PCLK_TIMER1_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_TIMER1_CCLK = 0x00000010
+    PCLKSEL0_PCLK_TIMER1_CCLK_2 = 0x00000020
+    PCLKSEL0_PCLK_TIMER1_CCLK_8 = 0x00000030
+    PCLKSEL0_PCLK_UART0_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_UART0_CCLK = 0x00000040
+    PCLKSEL0_PCLK_UART0_CCLK_2 = 0x00000080
+    PCLKSEL0_PCLK_UART0_CCLK_8 = 0x000000C0
+    PCLKSEL0_PCLK_UART1_CCLK_4 = 0x00000000
+endconst
+
+const(uint32):
+    PCLKSEL0_PCLK_UART1_CCLK = 0x00000100
+    PCLKSEL0_PCLK_UART1_CCLK_2 = 0x00000200
+    PCLKSEL0_PCLK_UART1_CCLK_8 = 0x00000300
+    PCLKSEL0_PCLK_PWM1_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_PWM1_CCLK = 0x00001000
+    PCLKSEL0_PCLK_PWM1_CCLK_2 = 0x00002000
+    PCLKSEL0_PCLK_PWM1_CCLK_8 = 0x00003000
+    PCLKSEL0_PCLK_I2C0_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_I2C0_CCLK = 0x00004000
+    PCLKSEL0_PCLK_I2C0_CCLK_2 = 0x00008000
+    PCLKSEL0_PCLK_I2C0_CCLK_8 = 0x0000C000
+    PCLKSEL0_PCLK_SPI_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_SPI_CCLK = 0x00010000
+    PCLKSEL0_PCLK_SPI_CCLK_2 = 0x00020000
+    PCLKSEL0_PCLK_SPI_CCLK_8 = 0x00030000
+    PCLKSEL0_PCLK_SSP1_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_SSP1_CCLK = 0x00100000
+    PCLKSEL0_PCLK_SSP1_CCLK_2 = 0x00200000
+    PCLKSEL0_PCLK_SSP1_CCLK_8 = 0x00300000
+    PCLKSEL0_PCLK_DAC_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_DAC_CCLK = 0x00400000
+    PCLKSEL0_PCLK_DAC_CCLK_2 = 0x00800000
+    PCLKSEL0_PCLK_DAC_CCLK_8 = 0x00C00000
+    PCLKSEL0_PCLK_ADC_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_ADC_CCLK = 0x01000000
+    PCLKSEL0_PCLK_ADC_CCLK_2 = 0x02000000
+    PCLKSEL0_PCLK_ADC_CCLK_8 = 0x03000000
+    PCLKSEL0_PCLK_CAN1_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_CAN1_CCLK = 0x04000000
+    PCLKSEL0_PCLK_CAN1_CCLK_2 = 0x08000000
+    PCLKSEL0_PCLK_CAN1_CCLK_6 = 0x0C000000
+    PCLKSEL0_PCLK_CAN2_CCLK_4 = 0x00000000
+endconst
+
+const(uint32):
+    PCLKSEL0_PCLK_CAN2_CCLK = 0x10000000
+    PCLKSEL0_PCLK_CAN2_CCLK_2 = 0x20000000
+    PCLKSEL0_PCLK_CAN2_CCLK_6 = 0x30000000
+    PCLKSEL0_PCLK_ACF_CCLK_4 = 0x00000000
+    PCLKSEL0_PCLK_ACF_CCLK = 0x40000000
+    PCLKSEL0_PCLK_ACF_CCLK_2 = 0x80000000
+    PCLKSEL0_PCLK_ACF_CCLK_6 = 0xC0000000
+    PCLKSEL1_PCLK_QEI_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_QEI_CCLK = 0x00000001
+    PCLKSEL1_PCLK_QEI_CCLK_2 = 0x00000002
+    PCLKSEL1_PCLK_QEI_CCLK_8 = 0x00000003
+    PCLKSEL1_PCLK_GPIOINT_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_GPIOINT_CCLK = 0x00000004
+    PCLKSEL1_PCLK_GPIOINT_CCLK_2 = 0x00000008
+    PCLKSEL1_PCLK_GPIOINT_CCLK_8 = 0x0000000C
+    PCLKSEL1_PCLK_PCB_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_PCB_CCLK = 0x00000010
+    PCLKSEL1_PCLK_PCB_CCLK_2 = 0x00000020
+    PCLKSEL1_PCLK_PCB_CCLK_8 = 0x00000030
+    PCLKSEL1_PCLK_I2C1_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_I2C1_CCLK = 0x00000040
+    PCLKSEL1_PCLK_I2C1_CCLK_2 = 0x00000080
+    PCLKSEL1_PCLK_I2C1_CCLK_8 = 0x000000C0
+    PCLKSEL1_PCLK_SSP0_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_SSP0_CCLK = 0x00000400
+    PCLKSEL1_PCLK_SSP0_CCLK_2 = 0x00000800
+    PCLKSEL1_PCLK_SSP0_CCLK_8 = 0x00000C00
+    PCLKSEL1_PCLK_TIMER2_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_TIMER2_CCLK = 0x00001000
+    PCLKSEL1_PCLK_TIMER2_CCLK_2 = 0x00002000
+    PCLKSEL1_PCLK_TIMER2_CCLK_8 = 0x00003000
+    PCLKSEL1_PCLK_TIMER3_CCLK_4 = 0x00000000
+endconst
+
+const(uint32):
+    PCLKSEL1_PCLK_TIMER3_CCLK = 0x00004000
+    PCLKSEL1_PCLK_TIMER3_CCLK_2 = 0x00008000
+    PCLKSEL1_PCLK_TIMER3_CCLK_8 = 0x0000C000
+    PCLKSEL1_PCLK_UART2_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_UART2_CCLK = 0x00010000
+    PCLKSEL1_PCLK_UART2_CCLK_2 = 0x00020000
+    PCLKSEL1_PCLK_UART2_CCLK_8 = 0x00030000
+    PCLKSEL1_PCLK_UART3_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_UART3_CCLK = 0x00040000
+    PCLKSEL1_PCLK_UART3_CCLK_2 = 0x00080000
+    PCLKSEL1_PCLK_UART3_CCLK_8 = 0x000C0000
+    PCLKSEL1_PCLK_I2C2_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_I2C2_CCLK = 0x00100000
+    PCLKSEL1_PCLK_I2C2_CCLK_2 = 0x00200000
+    PCLKSEL1_PCLK_I2C2_CCLK_8 = 0x00300000
+    PCLKSEL1_PCLK_I2S_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_I2S_CCLK = 0x00400000
+    PCLKSEL1_PCLK_I2S_CCLK_2 = 0x00800000
+    PCLKSEL1_PCLK_I2S_CCLK_8 = 0x00C00000
+    PCLKSEL1_PCLK_RIT_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_RIT_CCLK = 0x04000000
+    PCLKSEL1_PCLK_RIT_CCLK_2 = 0x08000000
+    PCLKSEL1_PCLK_RIT_CCLK_8 = 0x0C000000
+    PCLKSEL1_PCLK_SYSCON_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_SYSCON_CCLK = 0x10000000
+    PCLKSEL1_PCLK_SYSCON_CCLK_2 = 0x20000000
+    PCLKSEL1_PCLK_SYSCON_CCLK_8 = 0x30000000
+    PCLKSEL1_PCLK_MC_CCLK_4 = 0x00000000
+    PCLKSEL1_PCLK_MC_CCLK = 0x40000000
+    PCLKSEL1_PCLK_MC_CCLK_2 = 0x80000000
+    PCLKSEL1_PCLK_MC_CCLK_8 = 0xC0000000
+    UART_LCR_WORD_LENGTH_5_BIT = 0x00000000
+endconst
+
+const(uint32):
+    UART_LCR_WORD_LENGTH_6_BIT = 0x00000001
+    UART_LCR_WORD_LENGTH_7_BIT = 0x00000002
+    UART_LCR_WORD_LENGTH_8_BIT = 0x00000003
+    UART_LCR_1_STOP_BIT  = 0x00000000
+    UART_LCR_2_STOP_BIT  = 0x00000004
+    UART_LCR_PARITY_CHECK_DISABLE = 0x00000000
+    UART_LCR_PARITY_CHECK_ENABLE = 0x00000008
+    UART_LCR_NO_PARITY   = 0x00000000
+    UART_LCR_ODD_PARITY  = 0x00000000
+    UART_LCR_EVEN_PARITY = 0x00000010
+    UART_LCR_FORCED_1_PARITY = 0x00000020
+    UART_LCR_FORCED_0_PARITY = 0x00000030
+    UART_LCR_BREAK_DISABLE = 0x00000000
+    UART_LCR_BREAK_ENABLE = 0x00000040
+    UART_LCR_DIVISOR_ACCESS_DISABLE = 0x00000000
+    UART_LCR_DIVISOR_ACCESS_ENABLE = 0x00000080
+    UART_IER_RBR_INTERRUPT = 0x00000001
+    UART_IER_RBR_INTERRUPT_ENABLE = 0x00000001
+    UART_IER_RBR_INTERRUPT_DISABLE = 0x00000000
+    UART_IER_THRE_INTERRUPT = 0x00000002
+    UART_IER_THRE_INTERRUPT_ENABLE = 0x00000002
+    UART_IER_THRE_INTERRUPT_DISABLE = 0x00000000
+    UART_IER_RX_LINE_STATUS_INTERRUPT = 0x00000004
+    UART_IER_RX_LINE_STATUS_INTERRUPT_ENABLE = 0x00000004
+    UART_IER_RX_LINE_STATUS_INTERRUPT_DISABLE = 0x00000000
+    UART_IER_ABEO_INTERRUPT = 0x00000010
+    UART_IER_ABEO_INTERRUPT_ENABLE = 0x00000010
+    UART_IER_ABEO_INTERRUPT_DISABLE = 0x00000000
+    UART_IER_ABTO_INTERRUPT = 0x00000020
+    UART_IER_ABTO_INTERRUPT_ENABLE = 0x00000020
+    UART_IER_ABTO_INTERRUPT_DISABLE = 0x00000000
+    UART_FCR_FIFO        = 0x00000001
+endconst
+
+const(uint32):
+    UART_FCR_FIFO_ENABLE = 0x00000001
+    UART_FCR_FIFO_DISABLE = 0x00000000
+    UART_FCR_RX_FIFO_RESET = 0x00000002
+    UART_FCR_TX_FIFO_RESET = 0x00000004
+    UART_FCR_DMA_MODE    = 0x00000008
+    UART_FCR_DMA_MODE_ENABLE = 0x00000008
+    UART_FCR_DMA_MODE_DISABLE = 0x00000000
+    UART_FCR_RX_TRIGGER_LEVEL_0 = 0x00000000
+    UART_FCR_RX_TRIGGER_LEVEL_1 = 0x00000040
+    UART_FCR_RX_TRIGGER_LEVEL_2 = 0x00000080
+    UART_FCR_RX_TRIGGER_LEVEL_3 = 0x000000C0
+    UART_TER_TXEN        = 0x00000080
+    UART_TER_TXEN_ENABLE = 0x00000080
+    UART_TER_TXEN_DISABLE = 0x00000000
+    I2C_I2CONSET_AA      = 0x00000004
+    I2C_I2CONSET_SI      = 0x00000008
+    I2C_I2CONSET_STO     = 0x00000010
+    I2C_I2CONSET_STA     = 0x00000020
+    I2C_I2CONSET_I2EN    = 0x00000040
+    I2C_I2CONCLR_AAC     = 0x00000004
+    I2C_I2CONCLR_SIC     = 0x00000008
+    I2C_I2CONCLR_STOC    = 0x00000010
+    I2C_I2CONCLR_STAC    = 0x00000020
+    I2C_I2CONCLR_I2ENC   = 0x00000040
+    I2C_MMCTRL_MM_ENA    = 0x00000001
+    I2C_MMCTRL_MM_ENA_ENABLE = 0x00000001
+    I2C_MMCTRL_MM_ENA_DISABLE = 0x00000000
+    I2C_MMCTRL_ENA_SCL   = 0x00000002
+    I2C_MMCTRL_ENA_SCL_ENABLE = 0x00000002
+    I2C_MMCTRL_ENA_SCL_DISABLE = 0x00000000
+    I2C_MMCTRL_MATCH_ALL = 0x00000004
+    I2C_MMCTRL_MATCH_ALL_ENABLE = 0x00000004
+endconst
+
+const(uint32):
+    I2C_MMCTRL_MATCH_ALL_DISABLE = 0x00000000
+    SSP_CR0_DSS_4_BIT    = 0x00000003
+    SSP_CR0_DSS_5_BIT    = 0x00000004
+    SSP_CR0_DSS_6_BIT    = 0x00000005
+    SSP_CR0_DSS_7_BIT    = 0x00000006
+    SSP_CR0_DSS_8_BIT    = 0x00000007
+    SSP_CR0_DSS_9_BIT    = 0x00000008
+    SSP_CR0_DSS_10_BIT   = 0x00000009
+    SSP_CR0_DSS_11_BIT   = 0x0000000A
+    SSP_CR0_DSS_12_BIT   = 0x0000000B
+    SSP_CR0_DSS_13_BIT   = 0x0000000C
+    SSP_CR0_DSS_14_BIT   = 0x0000000D
+    SSP_CR0_DSS_15_BIT   = 0x0000000E
+    SSP_CR0_DSS_16_BIT   = 0x0000000F
+    SSP_CR0_FRF_SPI      = 0x00000000
+    SSP_CR0_FRF_TI       = 0x00000010
+    SSP_CR0_FRF_MICROWIRE = 0x00000030
+    SSP_CR0_CPOL_LOW     = 0x00000000
+    SSP_CR0_CPOL_HIGH    = 0x00000040
+    SSP_CR0_CPHA_FIRST_CLOCK = 0x00000000
+    SSP_CR0_CPHA_SECOND_CLOCK = 0x00000080
+    SSP_CR0_SCR_MASK     = 0x0000FF00
+    SSP_CR1_LBM_NORMAL   = 0x00000000
+    SSP_CR1_LBM_LOOPBACK = 0x00000001
+    SSP_CR1_SSE_MASK     = 0x00000002
+    SSP_CR1_SSE_DISABLE  = 0x00000000
+    SSP_CR1_SSE_ENABLE   = 0x00000002
+    SSP_CR1_MS_MASTER    = 0x00000000
+    SSP_CR1_MS_SLAVE     = 0x00000004
+    SSP_CR1_MS_SOD_DISABLE = 0x00000000
+    SSP_CR1_MS_SOD_ENABLE = 0x00000008
+    SSP_SR_TFE_MASK      = 0x00000001
+endconst
+
+const(uint32):
+    SSP_SR_TFE_EMPTY     = 0x00000001
+    SSP_SR_TFE_NOT_EMPTY = 0x00000000
+    SSP_SR_TNF_MASK      = 0x00000002
+    SSP_SR_TNF_FULL      = 0x00000000
+    SSP_SR_TNF_NOT_FULL  = 0x00000002
+    SSP_SR_RNE_MASK      = 0x00000004
+    SSP_SR_RNE_EMPTY     = 0x00000000
+    SSP_SR_RNE_NOT_EMPTY = 0x00000004
+    SSP_SR_RFF_MASK      = 0x00000008
+    SSP_SR_RFF_EMPTY     = 0x00000000
+    SSP_SR_RFF_NOT_EMPTY = 0x00000008
+    SSP_SR_BSY_MASK      = 0x00000010
+    SSP_SR_BSY_IDLE      = 0x00000000
+    SSP_SR_BSY_BUSY      = 0x00000010
+    SSP_IMSC_RORIM_DISABLE = 0x00000000
+    SSP_IMSC_RORIM_ENABLE = 0x00000001
+    SSP_IMSC_RTIM_DISABLE = 0x00000000
+    SSP_IMSC_RTIM_ENABLE = 0x00000002
+    SSP_IMSC_RXIM_DISABLE = 0x00000000
+    SSP_IMSC_RXIM_ENABLE = 0x00000004
+    SSP_IMSC_TXIM_DISABLE = 0x00000000
+    SSP_IMSC_TXIM_ENABLE = 0x00000008
+    SSP_DMACR_RXDMAE_DISABLE = 0x00000000
+    SSP_DMACR_RXDMAE_ENABLE = 0x00000001
+    SSP_DMACR_TXDMAE_DISABLE = 0x00000000
+    SSP_DMACR_TXDMAE_ENABLE = 0x00000002
+endconst
+

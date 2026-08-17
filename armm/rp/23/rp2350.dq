@@ -1,0 +1,2749 @@
+const(int):
+    Reset_IRQn           = -15
+    NonMaskableInt_IRQn  = -14
+    HardFault_IRQn       = -13
+    MemoryManagement_IRQn = -12
+    BusFault_IRQn        = -11
+    UsageFault_IRQn      = -10
+    SecureFault_IRQn     = -9
+    SVCall_IRQn          = -5
+    DebugMonitor_IRQn    = -4
+    PendSV_IRQn          = -2
+    SysTick_IRQn         = -1
+    TIMER0_IRQ_0_IRQn    = 0
+    TIMER0_IRQ_1_IRQn    = 1
+    TIMER0_IRQ_2_IRQn    = 2
+    TIMER0_IRQ_3_IRQn    = 3
+    TIMER1_IRQ_0_IRQn    = 4
+    TIMER1_IRQ_1_IRQn    = 5
+    TIMER1_IRQ_2_IRQn    = 6
+    TIMER1_IRQ_3_IRQn    = 7
+    PWM_IRQ_WRAP_0_IRQn  = 8
+    PWM_IRQ_WRAP_1_IRQn  = 9
+    DMA_IRQ_0_IRQn       = 10
+    DMA_IRQ_1_IRQn       = 11
+    DMA_IRQ_2_IRQn       = 12
+    DMA_IRQ_3_IRQn       = 13
+    USBCTRL_IRQ_IRQn     = 14
+    PIO0_IRQ_0_IRQn      = 15
+    PIO0_IRQ_1_IRQn      = 16
+    PIO1_IRQ_0_IRQn      = 17
+    PIO1_IRQ_1_IRQn      = 18
+    PIO2_IRQ_0_IRQn      = 19
+    PIO2_IRQ_1_IRQn      = 20
+endconst
+
+const(int):
+    IO_IRQ_BANK0_IRQn    = 21
+    IO_IRQ_BANK0_NS_IRQn = 22
+    IO_IRQ_QSPI_IRQn     = 23
+    IO_IRQ_QSPI_NS_IRQn  = 24
+    SIO_IRQ_FIFO_IRQn    = 25
+    SIO_IRQ_BELL_IRQn    = 26
+    SIO_IRQ_FIFO_NS_IRQn = 27
+    SIO_IRQ_BELL_NS_IRQn = 28
+    SIO_IRQ_MTIMECMP_IRQn = 29
+    CLOCKS_IRQ_IRQn      = 30
+    SPI0_IRQ_IRQn        = 31
+    SPI1_IRQ_IRQn        = 32
+    UART0_IRQ_IRQn       = 33
+    UART1_IRQ_IRQn       = 34
+    ADC_IRQ_FIFO_IRQn    = 35
+    I2C0_IRQ_IRQn        = 36
+    I2C1_IRQ_IRQn        = 37
+    OTP_IRQ_IRQn         = 38
+    TRNG_IRQ_IRQn        = 39
+    PLL_SYS_IRQ_IRQn     = 42
+    PLL_USB_IRQ_IRQn     = 43
+    POWMAN_IRQ_POW_IRQn  = 44
+    POWMAN_IRQ_TIMER_IRQn = 45
+endconst
+
+const(uint32):
+    __CM33_REV           = 0x0100
+    __NVIC_PRIO_BITS     = 4
+    __Vendor_SysTickConfig = 0
+    __VTOR_PRESENT       = 1
+    __MPU_PRESENT        = 1
+    __FPU_PRESENT        = 1
+    __FPU_DP             = 0
+    __DSP_PRESENT        = 1
+    __SAUREGION_PRESENT  = 1
+endconst
+
+struct RESETS_Type:
+    RESET        : [[regrw]]  uint32  
+    WDSEL        : [[regrw]]  uint32  
+    RESET_DONE   : [[regrw]]  uint32  
+endstruct
+
+struct PSM_Type:
+    FRCE_ON      : [[regrw]]  uint32  
+    FRCE_OFF     : [[regrw]]  uint32  
+    WDSEL        : [[regrw]]  uint32  
+    DONE         : [[regrw]]  uint32  
+endstruct
+
+struct CLOCKS_Type:
+    CLK_GPOUT0_CTRL : [[regrw]]  uint32  
+    CLK_GPOUT0_DIV : [[regrw]]  uint32  
+    CLK_GPOUT0_SELECTED : [[regrw]]  uint32  
+    CLK_GPOUT1_CTRL : [[regrw]]  uint32  
+    CLK_GPOUT1_DIV : [[regrw]]  uint32  
+    CLK_GPOUT1_SELECTED : [[regrw]]  uint32  
+    CLK_GPOUT2_CTRL : [[regrw]]  uint32  
+    CLK_GPOUT2_DIV : [[regrw]]  uint32  
+    CLK_GPOUT2_SELECTED : [[regrw]]  uint32  
+    CLK_GPOUT3_CTRL : [[regrw]]  uint32  
+    CLK_GPOUT3_DIV : [[regrw]]  uint32  
+    CLK_GPOUT3_SELECTED : [[regrw]]  uint32  
+    CLK_REF_CTRL : [[regrw]]  uint32  
+    CLK_REF_DIV  : [[regrw]]  uint32  
+    CLK_REF_SELECTED : [[regrw]]  uint32  
+    CLK_SYS_CTRL : [[regrw]]  uint32  
+    CLK_SYS_DIV  : [[regrw]]  uint32  
+    CLK_SYS_SELECTED : [[regrw]]  uint32  
+    CLK_PERI_CTRL : [[regrw]]  uint32  
+    CLK_PERI_DIV : [[regrw]]  uint32  
+    CLK_PERI_SELECTED : [[regrw]]  uint32  
+    CLK_HSTX_CTRL : [[regrw]]  uint32  
+    CLK_HSTX_DIV : [[regrw]]  uint32  
+    CLK_HSTX_SELECTED : [[regrw]]  uint32  
+    CLK_USB_CTRL : [[regrw]]  uint32  
+    CLK_USB_DIV  : [[regrw]]  uint32  
+    CLK_USB_SELECTED : [[regrw]]  uint32  
+    CLK_ADC_CTRL : [[regrw]]  uint32  
+    CLK_ADC_DIV  : [[regrw]]  uint32  
+    CLK_ADC_SELECTED : [[regrw]]  uint32  
+    DFTCLK_XOSC_CTRL : [[regrw]]  uint32  
+    DFTCLK_ROSC_CTRL : [[regrw]]  uint32  
+    DFTCLK_LPOSC_CTRL : [[regrw]]  uint32  
+    CLK_SYS_RESUS_CTRL : [[regrw]]  uint32  
+    CLK_SYS_RESUS_STATUS : [[regrw]]  uint32  
+    FC0_REF_KHZ  : [[regrw]]  uint32  
+    FC0_MIN_KHZ  : [[regrw]]  uint32  
+    FC0_MAX_KHZ  : [[regrw]]  uint32  
+    FC0_DELAY    : [[regrw]]  uint32  
+    FC0_INTERVAL : [[regrw]]  uint32  
+    FC0_SRC      : [[regrw]]  uint32  
+    FC0_STATUS   : [[regrw]]  uint32  
+    FC0_RESULT   : [[regrw]]  uint32  
+    WAKE_EN0     : [[regrw]]  uint32  
+    WAKE_EN1     : [[regrw]]  uint32  
+    SLEEP_EN0    : [[regrw]]  uint32  
+    SLEEP_EN1    : [[regrw]]  uint32  
+    ENABLED0     : [[regrw]]  uint32  
+    ENABLED1     : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    INTE         : [[regrw]]  uint32  
+    INTF         : [[regrw]]  uint32  
+    INTS         : [[regrw]]  uint32  
+endstruct
+
+struct TICKS_Type:
+    PROC0_CTRL   : [[regrw]]  uint32  
+    PROC0_CYCLES : [[regrw]]  uint32  
+    PROC0_COUNT  : [[regrw]]  uint32  
+    PROC1_CTRL   : [[regrw]]  uint32  
+    PROC1_CYCLES : [[regrw]]  uint32  
+    PROC1_COUNT  : [[regrw]]  uint32  
+    TIMER0_CTRL  : [[regrw]]  uint32  
+    TIMER0_CYCLES : [[regrw]]  uint32  
+    TIMER0_COUNT : [[regrw]]  uint32  
+    TIMER1_CTRL  : [[regrw]]  uint32  
+    TIMER1_CYCLES : [[regrw]]  uint32  
+    TIMER1_COUNT : [[regrw]]  uint32  
+    WATCHDOG_CTRL : [[regrw]]  uint32  
+    WATCHDOG_CYCLES : [[regrw]]  uint32  
+    WATCHDOG_COUNT : [[regrw]]  uint32  
+    RISCV_CTRL   : [[regrw]]  uint32  
+    RISCV_CYCLES : [[regrw]]  uint32  
+    RISCV_COUNT  : [[regrw]]  uint32  
+endstruct
+
+struct PADS_BANK0_Type:
+    VOLTAGE_SELECT : [[regrw]]  uint32  
+    GPIO0        : [[regrw]]  uint32  
+    GPIO1        : [[regrw]]  uint32  
+    GPIO2        : [[regrw]]  uint32  
+    GPIO3        : [[regrw]]  uint32  
+    GPIO4        : [[regrw]]  uint32  
+    GPIO5        : [[regrw]]  uint32  
+    GPIO6        : [[regrw]]  uint32  
+    GPIO7        : [[regrw]]  uint32  
+    GPIO8        : [[regrw]]  uint32  
+    GPIO9        : [[regrw]]  uint32  
+    GPIO10       : [[regrw]]  uint32  
+    GPIO11       : [[regrw]]  uint32  
+    GPIO12       : [[regrw]]  uint32  
+    GPIO13       : [[regrw]]  uint32  
+    GPIO14       : [[regrw]]  uint32  
+    GPIO15       : [[regrw]]  uint32  
+    GPIO16       : [[regrw]]  uint32  
+    GPIO17       : [[regrw]]  uint32  
+    GPIO18       : [[regrw]]  uint32  
+    GPIO19       : [[regrw]]  uint32  
+    GPIO20       : [[regrw]]  uint32  
+    GPIO21       : [[regrw]]  uint32  
+    GPIO22       : [[regrw]]  uint32  
+    GPIO23       : [[regrw]]  uint32  
+    GPIO24       : [[regrw]]  uint32  
+    GPIO25       : [[regrw]]  uint32  
+    GPIO26       : [[regrw]]  uint32  
+    GPIO27       : [[regrw]]  uint32  
+    GPIO28       : [[regrw]]  uint32  
+    GPIO29       : [[regrw]]  uint32  
+    GPIO30       : [[regrw]]  uint32  
+    GPIO31       : [[regrw]]  uint32  
+    GPIO32       : [[regrw]]  uint32  
+    GPIO33       : [[regrw]]  uint32  
+    GPIO34       : [[regrw]]  uint32  
+    GPIO35       : [[regrw]]  uint32  
+    GPIO36       : [[regrw]]  uint32  
+    GPIO37       : [[regrw]]  uint32  
+    GPIO38       : [[regrw]]  uint32  
+    GPIO39       : [[regrw]]  uint32  
+    GPIO40       : [[regrw]]  uint32  
+    GPIO41       : [[regrw]]  uint32  
+    GPIO42       : [[regrw]]  uint32  
+    GPIO43       : [[regrw]]  uint32  
+    GPIO44       : [[regrw]]  uint32  
+    GPIO45       : [[regrw]]  uint32  
+    GPIO46       : [[regrw]]  uint32  
+    GPIO47       : [[regrw]]  uint32  
+    SWCLK        : [[regrw]]  uint32  
+    SWD          : [[regrw]]  uint32  
+endstruct
+
+struct PADS_QSPI_Type:
+    VOLTAGE_SELECT : [[regrw]]  uint32  
+    GPIO_QSPI_SCLK : [[regrw]]  uint32  
+    GPIO_QSPI_SD0 : [[regrw]]  uint32  
+    GPIO_QSPI_SD1 : [[regrw]]  uint32  
+    GPIO_QSPI_SD2 : [[regrw]]  uint32  
+    GPIO_QSPI_SD3 : [[regrw]]  uint32  
+    GPIO_QSPI_SS : [[regrw]]  uint32  
+endstruct
+
+struct IO_QSPI_Type:
+    USBPHY_DP_STATUS : [[regrw]]  uint32  
+    USBPHY_DP_CTRL : [[regrw]]  uint32  
+    USBPHY_DM_STATUS : [[regrw]]  uint32  
+    USBPHY_DM_CTRL : [[regrw]]  uint32  
+    GPIO_QSPI_SCLK_STATUS : [[regrw]]  uint32  
+    GPIO_QSPI_SCLK_CTRL : [[regrw]]  uint32  
+    GPIO_QSPI_SS_STATUS : [[regrw]]  uint32  
+    GPIO_QSPI_SS_CTRL : [[regrw]]  uint32  
+    GPIO_QSPI_SD0_STATUS : [[regrw]]  uint32  
+    GPIO_QSPI_SD0_CTRL : [[regrw]]  uint32  
+    GPIO_QSPI_SD1_STATUS : [[regrw]]  uint32  
+    GPIO_QSPI_SD1_CTRL : [[regrw]]  uint32  
+    GPIO_QSPI_SD2_STATUS : [[regrw]]  uint32  
+    GPIO_QSPI_SD2_CTRL : [[regrw]]  uint32  
+    GPIO_QSPI_SD3_STATUS : [[regrw]]  uint32  
+    GPIO_QSPI_SD3_CTRL : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  [112] uint32
+    IRQSUMMARY_PROC0_SECURE : [[regrw]]  uint32  
+    IRQSUMMARY_PROC0_NONSECURE : [[regrw]]  uint32  
+    IRQSUMMARY_PROC1_SECURE : [[regrw]]  uint32  
+    IRQSUMMARY_PROC1_NONSECURE : [[regrw]]  uint32  
+    IRQSUMMARY_DORMANT_WAKE_SECURE : [[regrw]]  uint32  
+    IRQSUMMARY_DORMANT_WAKE_NONSECURE : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    PROC0_INTE   : [[regrw]]  uint32  
+    PROC0_INTF   : [[regrw]]  uint32  
+    PROC0_INTS   : [[regrw]]  uint32  
+    PROC1_INTE   : [[regrw]]  uint32  
+    PROC1_INTF   : [[regrw]]  uint32  
+    PROC1_INTS   : [[regrw]]  uint32  
+    DORMANT_WAKE_INTE : [[regrw]]  uint32  
+    DORMANT_WAKE_INTF : [[regrw]]  uint32  
+    DORMANT_WAKE_INTS : [[regrw]]  uint32  
+endstruct
+
+struct IO_BANK0_Type:
+    GPIO0_STATUS : [[regrw]]  uint32  
+    GPIO0_CTRL   : [[regrw]]  uint32  
+    GPIO1_STATUS : [[regrw]]  uint32  
+    GPIO1_CTRL   : [[regrw]]  uint32  
+    GPIO2_STATUS : [[regrw]]  uint32  
+    GPIO2_CTRL   : [[regrw]]  uint32  
+    GPIO3_STATUS : [[regrw]]  uint32  
+    GPIO3_CTRL   : [[regrw]]  uint32  
+    GPIO4_STATUS : [[regrw]]  uint32  
+    GPIO4_CTRL   : [[regrw]]  uint32  
+    GPIO5_STATUS : [[regrw]]  uint32  
+    GPIO5_CTRL   : [[regrw]]  uint32  
+    GPIO6_STATUS : [[regrw]]  uint32  
+    GPIO6_CTRL   : [[regrw]]  uint32  
+    GPIO7_STATUS : [[regrw]]  uint32  
+    GPIO7_CTRL   : [[regrw]]  uint32  
+    GPIO8_STATUS : [[regrw]]  uint32  
+    GPIO8_CTRL   : [[regrw]]  uint32  
+    GPIO9_STATUS : [[regrw]]  uint32  
+    GPIO9_CTRL   : [[regrw]]  uint32  
+    GPIO10_STATUS : [[regrw]]  uint32  
+    GPIO10_CTRL  : [[regrw]]  uint32  
+    GPIO11_STATUS : [[regrw]]  uint32  
+    GPIO11_CTRL  : [[regrw]]  uint32  
+    GPIO12_STATUS : [[regrw]]  uint32  
+    GPIO12_CTRL  : [[regrw]]  uint32  
+    GPIO13_STATUS : [[regrw]]  uint32  
+    GPIO13_CTRL  : [[regrw]]  uint32  
+    GPIO14_STATUS : [[regrw]]  uint32  
+    GPIO14_CTRL  : [[regrw]]  uint32  
+    GPIO15_STATUS : [[regrw]]  uint32  
+    GPIO15_CTRL  : [[regrw]]  uint32  
+    GPIO16_STATUS : [[regrw]]  uint32  
+    GPIO16_CTRL  : [[regrw]]  uint32  
+    GPIO17_STATUS : [[regrw]]  uint32  
+    GPIO17_CTRL  : [[regrw]]  uint32  
+    GPIO18_STATUS : [[regrw]]  uint32  
+    GPIO18_CTRL  : [[regrw]]  uint32  
+    GPIO19_STATUS : [[regrw]]  uint32  
+    GPIO19_CTRL  : [[regrw]]  uint32  
+    GPIO20_STATUS : [[regrw]]  uint32  
+    GPIO20_CTRL  : [[regrw]]  uint32  
+    GPIO21_STATUS : [[regrw]]  uint32  
+    GPIO21_CTRL  : [[regrw]]  uint32  
+    GPIO22_STATUS : [[regrw]]  uint32  
+    GPIO22_CTRL  : [[regrw]]  uint32  
+    GPIO23_STATUS : [[regrw]]  uint32  
+    GPIO23_CTRL  : [[regrw]]  uint32  
+    GPIO24_STATUS : [[regrw]]  uint32  
+    GPIO24_CTRL  : [[regrw]]  uint32  
+    GPIO25_STATUS : [[regrw]]  uint32  
+    GPIO25_CTRL  : [[regrw]]  uint32  
+    GPIO26_STATUS : [[regrw]]  uint32  
+    GPIO26_CTRL  : [[regrw]]  uint32  
+    GPIO27_STATUS : [[regrw]]  uint32  
+    GPIO27_CTRL  : [[regrw]]  uint32  
+    GPIO28_STATUS : [[regrw]]  uint32  
+    GPIO28_CTRL  : [[regrw]]  uint32  
+    GPIO29_STATUS : [[regrw]]  uint32  
+    GPIO29_CTRL  : [[regrw]]  uint32  
+    GPIO30_STATUS : [[regrw]]  uint32  
+    GPIO30_CTRL  : [[regrw]]  uint32  
+    GPIO31_STATUS : [[regrw]]  uint32  
+    GPIO31_CTRL  : [[regrw]]  uint32  
+    GPIO32_STATUS : [[regrw]]  uint32  
+    GPIO32_CTRL  : [[regrw]]  uint32  
+    GPIO33_STATUS : [[regrw]]  uint32  
+    GPIO33_CTRL  : [[regrw]]  uint32  
+    GPIO34_STATUS : [[regrw]]  uint32  
+    GPIO34_CTRL  : [[regrw]]  uint32  
+    GPIO35_STATUS : [[regrw]]  uint32  
+    GPIO35_CTRL  : [[regrw]]  uint32  
+    GPIO36_STATUS : [[regrw]]  uint32  
+    GPIO36_CTRL  : [[regrw]]  uint32  
+    GPIO37_STATUS : [[regrw]]  uint32  
+    GPIO37_CTRL  : [[regrw]]  uint32  
+    GPIO38_STATUS : [[regrw]]  uint32  
+    GPIO38_CTRL  : [[regrw]]  uint32  
+    GPIO39_STATUS : [[regrw]]  uint32  
+    GPIO39_CTRL  : [[regrw]]  uint32  
+    GPIO40_STATUS : [[regrw]]  uint32  
+    GPIO40_CTRL  : [[regrw]]  uint32  
+    GPIO41_STATUS : [[regrw]]  uint32  
+    GPIO41_CTRL  : [[regrw]]  uint32  
+    GPIO42_STATUS : [[regrw]]  uint32  
+    GPIO42_CTRL  : [[regrw]]  uint32  
+    GPIO43_STATUS : [[regrw]]  uint32  
+    GPIO43_CTRL  : [[regrw]]  uint32  
+    GPIO44_STATUS : [[regrw]]  uint32  
+    GPIO44_CTRL  : [[regrw]]  uint32  
+    GPIO45_STATUS : [[regrw]]  uint32  
+    GPIO45_CTRL  : [[regrw]]  uint32  
+    GPIO46_STATUS : [[regrw]]  uint32  
+    GPIO46_CTRL  : [[regrw]]  uint32  
+    GPIO47_STATUS : [[regrw]]  uint32  
+    GPIO47_CTRL  : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  [32] uint32
+    IRQSUMMARY_PROC0_SECURE0 : [[regrw]]  uint32  
+    IRQSUMMARY_PROC0_SECURE1 : [[regrw]]  uint32  
+    IRQSUMMARY_PROC0_NONSECURE0 : [[regrw]]  uint32  
+    IRQSUMMARY_PROC0_NONSECURE1 : [[regrw]]  uint32  
+    IRQSUMMARY_PROC1_SECURE0 : [[regrw]]  uint32  
+    IRQSUMMARY_PROC1_SECURE1 : [[regrw]]  uint32  
+    IRQSUMMARY_PROC1_NONSECURE0 : [[regrw]]  uint32  
+    IRQSUMMARY_PROC1_NONSECURE1 : [[regrw]]  uint32  
+    IRQSUMMARY_DORMANT_WAKE_SECURE0 : [[regrw]]  uint32  
+    IRQSUMMARY_DORMANT_WAKE_SECURE1 : [[regrw]]  uint32  
+    IRQSUMMARY_DORMANT_WAKE_NONSECURE0 : [[regrw]]  uint32  
+    IRQSUMMARY_DORMANT_WAKE_NONSECURE1 : [[regrw]]  uint32  
+    INTR0        : [[regrw]]  uint32  
+    INTR1        : [[regrw]]  uint32  
+    INTR2        : [[regrw]]  uint32  
+    INTR3        : [[regrw]]  uint32  
+    INTR4        : [[regrw]]  uint32  
+    INTR5        : [[regrw]]  uint32  
+    PROC0_INTE0  : [[regrw]]  uint32  
+    PROC0_INTE1  : [[regrw]]  uint32  
+    PROC0_INTE2  : [[regrw]]  uint32  
+    PROC0_INTE3  : [[regrw]]  uint32  
+    PROC0_INTE4  : [[regrw]]  uint32  
+    PROC0_INTE5  : [[regrw]]  uint32  
+    PROC0_INTF0  : [[regrw]]  uint32  
+    PROC0_INTF1  : [[regrw]]  uint32  
+    PROC0_INTF2  : [[regrw]]  uint32  
+    PROC0_INTF3  : [[regrw]]  uint32  
+    PROC0_INTF4  : [[regrw]]  uint32  
+    PROC0_INTF5  : [[regrw]]  uint32  
+    PROC0_INTS0  : [[regrw]]  uint32  
+    PROC0_INTS1  : [[regrw]]  uint32  
+    PROC0_INTS2  : [[regrw]]  uint32  
+    PROC0_INTS3  : [[regrw]]  uint32  
+    PROC0_INTS4  : [[regrw]]  uint32  
+    PROC0_INTS5  : [[regrw]]  uint32  
+    PROC1_INTE0  : [[regrw]]  uint32  
+    PROC1_INTE1  : [[regrw]]  uint32  
+    PROC1_INTE2  : [[regrw]]  uint32  
+    PROC1_INTE3  : [[regrw]]  uint32  
+    PROC1_INTE4  : [[regrw]]  uint32  
+    PROC1_INTE5  : [[regrw]]  uint32  
+    PROC1_INTF0  : [[regrw]]  uint32  
+    PROC1_INTF1  : [[regrw]]  uint32  
+    PROC1_INTF2  : [[regrw]]  uint32  
+    PROC1_INTF3  : [[regrw]]  uint32  
+    PROC1_INTF4  : [[regrw]]  uint32  
+    PROC1_INTF5  : [[regrw]]  uint32  
+    PROC1_INTS0  : [[regrw]]  uint32  
+    PROC1_INTS1  : [[regrw]]  uint32  
+    PROC1_INTS2  : [[regrw]]  uint32  
+    PROC1_INTS3  : [[regrw]]  uint32  
+    PROC1_INTS4  : [[regrw]]  uint32  
+    PROC1_INTS5  : [[regrw]]  uint32  
+    DORMANT_WAKE_INTE0 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTE1 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTE2 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTE3 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTE4 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTE5 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTF0 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTF1 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTF2 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTF3 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTF4 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTF5 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTS0 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTS1 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTS2 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTS3 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTS4 : [[regrw]]  uint32  
+    DORMANT_WAKE_INTS5 : [[regrw]]  uint32  
+endstruct
+
+struct SYSINFO_Type:
+    CHIP_ID      : [[regrw]]  uint32  
+    PACKAGE_SEL  : [[regrw]]  uint32  
+    PLATFORM     : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  [2] uint32
+    GITREF_RP2350 : [[regrw]]  uint32  
+endstruct
+
+struct SHA256_Type:
+    CSR          : [[regrw]]  uint32  
+    WDATA        : [[regrw]]  uint32  
+    SUM0         : [[regrw]]  uint32  
+    SUM1         : [[regrw]]  uint32  
+    SUM2         : [[regrw]]  uint32  
+    SUM3         : [[regrw]]  uint32  
+    SUM4         : [[regrw]]  uint32  
+    SUM5         : [[regrw]]  uint32  
+    SUM6         : [[regrw]]  uint32  
+    SUM7         : [[regrw]]  uint32  
+endstruct
+
+struct HSTX_FIFO_Type:
+    STAT         : [[regrw]]  uint32  
+    FIFO         : [[regrw]]  uint32  
+endstruct
+
+struct HSTX_CTRL_Type:
+    CSR          : [[regrw]]  uint32  
+    BIT0         : [[regrw]]  uint32  
+    BIT1         : [[regrw]]  uint32  
+    BIT2         : [[regrw]]  uint32  
+    BIT3         : [[regrw]]  uint32  
+    BIT4         : [[regrw]]  uint32  
+    BIT5         : [[regrw]]  uint32  
+    BIT6         : [[regrw]]  uint32  
+    BIT7         : [[regrw]]  uint32  
+    EXPAND_SHIFT : [[regrw]]  uint32  
+    EXPAND_TMDS  : [[regrw]]  uint32  
+endstruct
+
+struct EPPB_Type:
+    NMI_MASK0    : [[regrw]]  uint32  
+    NMI_MASK1    : [[regrw]]  uint32  
+    SLEEPCTRL    : [[regrw]]  uint32  
+endstruct
+
+struct PPB_Type:
+    ITM_STIM0    : [[regrw]]  uint32  
+    ITM_STIM1    : [[regrw]]  uint32  
+    ITM_STIM2    : [[regrw]]  uint32  
+    ITM_STIM3    : [[regrw]]  uint32  
+    ITM_STIM4    : [[regrw]]  uint32  
+    ITM_STIM5    : [[regrw]]  uint32  
+    ITM_STIM6    : [[regrw]]  uint32  
+    ITM_STIM7    : [[regrw]]  uint32  
+    ITM_STIM8    : [[regrw]]  uint32  
+    ITM_STIM9    : [[regrw]]  uint32  
+    ITM_STIM10   : [[regrw]]  uint32  
+    ITM_STIM11   : [[regrw]]  uint32  
+    ITM_STIM12   : [[regrw]]  uint32  
+    ITM_STIM13   : [[regrw]]  uint32  
+    ITM_STIM14   : [[regrw]]  uint32  
+    ITM_STIM15   : [[regrw]]  uint32  
+    ITM_STIM16   : [[regrw]]  uint32  
+    ITM_STIM17   : [[regrw]]  uint32  
+    ITM_STIM18   : [[regrw]]  uint32  
+    ITM_STIM19   : [[regrw]]  uint32  
+    ITM_STIM20   : [[regrw]]  uint32  
+    ITM_STIM21   : [[regrw]]  uint32  
+    ITM_STIM22   : [[regrw]]  uint32  
+    ITM_STIM23   : [[regrw]]  uint32  
+    ITM_STIM24   : [[regrw]]  uint32  
+    ITM_STIM25   : [[regrw]]  uint32  
+    ITM_STIM26   : [[regrw]]  uint32  
+    ITM_STIM27   : [[regrw]]  uint32  
+    ITM_STIM28   : [[regrw]]  uint32  
+    ITM_STIM29   : [[regrw]]  uint32  
+    ITM_STIM30   : [[regrw]]  uint32  
+    ITM_STIM31   : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  [864] uint32
+    ITM_TER0     : [[regrw]]  uint32  
+    RESERVED1    : [[regro]]  [15] uint32
+    ITM_TPR      : [[regrw]]  uint32  
+    RESERVED2    : [[regro]]  [15] uint32
+    ITM_TCR      : [[regrw]]  uint32  
+    RESERVED3    : [[regro]]  [27] uint32
+    INT_ATREADY  : [[regrw]]  uint32  
+    RESERVED4    : [[regro]]  uint32  
+    INT_ATVALID  : [[regrw]]  uint32  
+    RESERVED5    : [[regro]]  uint32  
+    ITM_ITCTRL   : [[regrw]]  uint32  
+    RESERVED6    : [[regro]]  [46] uint32
+    ITM_DEVARCH  : [[regrw]]  uint32  
+    RESERVED7    : [[regro]]  [3] uint32
+    ITM_DEVTYPE  : [[regrw]]  uint32  
+    ITM_PIDR4    : [[regrw]]  uint32  
+    ITM_PIDR5    : [[regrw]]  uint32  
+    ITM_PIDR6    : [[regrw]]  uint32  
+    ITM_PIDR7    : [[regrw]]  uint32  
+    ITM_PIDR0    : [[regrw]]  uint32  
+    ITM_PIDR1    : [[regrw]]  uint32  
+    ITM_PIDR2    : [[regrw]]  uint32  
+    ITM_PIDR3    : [[regrw]]  uint32  
+    ITM_CIDR0    : [[regrw]]  uint32  
+    ITM_CIDR1    : [[regrw]]  uint32  
+    ITM_CIDR2    : [[regrw]]  uint32  
+    ITM_CIDR3    : [[regrw]]  uint32  
+    DWT_CTRL     : [[regrw]]  uint32  
+    DWT_CYCCNT   : [[regrw]]  uint32  
+    RESERVED8    : [[regro]]  uint32  
+    DWT_EXCCNT   : [[regrw]]  uint32  
+    RESERVED9    : [[regro]]  uint32  
+    DWT_LSUCNT   : [[regrw]]  uint32  
+    DWT_FOLDCNT  : [[regrw]]  uint32  
+    RESERVED10   : [[regro]]  uint32  
+    DWT_COMP0    : [[regrw]]  uint32  
+    RESERVED11   : [[regro]]  uint32  
+    DWT_FUNCTION0 : [[regrw]]  uint32  
+    RESERVED12   : [[regro]]  uint32  
+    DWT_COMP1    : [[regrw]]  uint32  
+    RESERVED13   : [[regro]]  uint32  
+    DWT_FUNCTION1 : [[regrw]]  uint32  
+    RESERVED14   : [[regro]]  uint32  
+    DWT_COMP2    : [[regrw]]  uint32  
+    RESERVED15   : [[regro]]  uint32  
+    DWT_FUNCTION2 : [[regrw]]  uint32  
+    RESERVED16   : [[regro]]  uint32  
+    DWT_COMP3    : [[regrw]]  uint32  
+    RESERVED17   : [[regro]]  uint32  
+    DWT_FUNCTION3 : [[regrw]]  uint32  
+    RESERVED18   : [[regro]]  [984] uint32
+    DWT_DEVARCH  : [[regrw]]  uint32  
+    RESERVED19   : [[regro]]  [3] uint32
+    DWT_DEVTYPE  : [[regrw]]  uint32  
+    DWT_PIDR4    : [[regrw]]  uint32  
+    DWT_PIDR5    : [[regrw]]  uint32  
+    DWT_PIDR6    : [[regrw]]  uint32  
+    DWT_PIDR7    : [[regrw]]  uint32  
+    DWT_PIDR0    : [[regrw]]  uint32  
+    DWT_PIDR1    : [[regrw]]  uint32  
+    DWT_PIDR2    : [[regrw]]  uint32  
+    DWT_PIDR3    : [[regrw]]  uint32  
+    DWT_CIDR0    : [[regrw]]  uint32  
+    DWT_CIDR1    : [[regrw]]  uint32  
+    DWT_CIDR2    : [[regrw]]  uint32  
+    DWT_CIDR3    : [[regrw]]  uint32  
+    FP_CTRL      : [[regrw]]  uint32  
+    FP_REMAP     : [[regrw]]  uint32  
+    FP_COMP0     : [[regrw]]  uint32  
+    FP_COMP1     : [[regrw]]  uint32  
+    FP_COMP2     : [[regrw]]  uint32  
+    FP_COMP3     : [[regrw]]  uint32  
+    FP_COMP4     : [[regrw]]  uint32  
+    FP_COMP5     : [[regrw]]  uint32  
+    FP_COMP6     : [[regrw]]  uint32  
+    FP_COMP7     : [[regrw]]  uint32  
+    RESERVED20   : [[regro]]  [997] uint32
+    FP_DEVARCH   : [[regrw]]  uint32  
+    RESERVED21   : [[regro]]  [3] uint32
+    FP_DEVTYPE   : [[regrw]]  uint32  
+    FP_PIDR4     : [[regrw]]  uint32  
+    FP_PIDR5     : [[regrw]]  uint32  
+    FP_PIDR6     : [[regrw]]  uint32  
+    FP_PIDR7     : [[regrw]]  uint32  
+    FP_PIDR0     : [[regrw]]  uint32  
+    FP_PIDR1     : [[regrw]]  uint32  
+    FP_PIDR2     : [[regrw]]  uint32  
+    FP_PIDR3     : [[regrw]]  uint32  
+    FP_CIDR0     : [[regrw]]  uint32  
+    FP_CIDR1     : [[regrw]]  uint32  
+    FP_CIDR2     : [[regrw]]  uint32  
+    FP_CIDR3     : [[regrw]]  uint32  
+    RESERVED22   : [[regro]]  [11265] uint32
+    ICTR         : [[regrw]]  uint32  
+    ACTLR        : [[regrw]]  uint32  
+    RESERVED23   : [[regro]]  uint32  
+    SYST_CSR     : [[regrw]]  uint32  
+    SYST_RVR     : [[regrw]]  uint32  
+    SYST_CVR     : [[regrw]]  uint32  
+    SYST_CALIB   : [[regrw]]  uint32  
+    RESERVED24   : [[regro]]  [56] uint32
+    NVIC_ISER0   : [[regrw]]  uint32  
+    NVIC_ISER1   : [[regrw]]  uint32  
+    RESERVED25   : [[regro]]  [30] uint32
+    NVIC_ICER0   : [[regrw]]  uint32  
+    NVIC_ICER1   : [[regrw]]  uint32  
+    RESERVED26   : [[regro]]  [30] uint32
+    NVIC_ISPR0   : [[regrw]]  uint32  
+    NVIC_ISPR1   : [[regrw]]  uint32  
+    RESERVED27   : [[regro]]  [30] uint32
+    NVIC_ICPR0   : [[regrw]]  uint32  
+    NVIC_ICPR1   : [[regrw]]  uint32  
+    RESERVED28   : [[regro]]  [30] uint32
+    NVIC_IABR0   : [[regrw]]  uint32  
+    NVIC_IABR1   : [[regrw]]  uint32  
+    RESERVED29   : [[regro]]  [30] uint32
+    NVIC_ITNS0   : [[regrw]]  uint32  
+    NVIC_ITNS1   : [[regrw]]  uint32  
+    RESERVED30   : [[regro]]  [30] uint32
+    NVIC_IPR0    : [[regrw]]  uint32  
+    NVIC_IPR1    : [[regrw]]  uint32  
+    NVIC_IPR2    : [[regrw]]  uint32  
+    NVIC_IPR3    : [[regrw]]  uint32  
+    NVIC_IPR4    : [[regrw]]  uint32  
+    NVIC_IPR5    : [[regrw]]  uint32  
+    NVIC_IPR6    : [[regrw]]  uint32  
+    NVIC_IPR7    : [[regrw]]  uint32  
+    NVIC_IPR8    : [[regrw]]  uint32  
+    NVIC_IPR9    : [[regrw]]  uint32  
+    NVIC_IPR10   : [[regrw]]  uint32  
+    NVIC_IPR11   : [[regrw]]  uint32  
+    NVIC_IPR12   : [[regrw]]  uint32  
+    NVIC_IPR13   : [[regrw]]  uint32  
+    NVIC_IPR14   : [[regrw]]  uint32  
+    NVIC_IPR15   : [[regrw]]  uint32  
+    RESERVED31   : [[regro]]  [560] uint32
+    CPUID        : [[regrw]]  uint32  
+    ICSR         : [[regrw]]  uint32  
+    VTOR         : [[regrw]]  uint32  
+    AIRCR        : [[regrw]]  uint32  
+    SCR          : [[regrw]]  uint32  
+    CCR          : [[regrw]]  uint32  
+    SHPR1        : [[regrw]]  uint32  
+    SHPR2        : [[regrw]]  uint32  
+    SHPR3        : [[regrw]]  uint32  
+    SHCSR        : [[regrw]]  uint32  
+    CFSR         : [[regrw]]  uint32  
+    HFSR         : [[regrw]]  uint32  
+    DFSR         : [[regrw]]  uint32  
+    MMFAR        : [[regrw]]  uint32  
+    BFAR         : [[regrw]]  uint32  
+    RESERVED32   : [[regro]]  uint32  
+    ID_PFR0      : [[regrw]]  uint32  
+    ID_PFR1      : [[regrw]]  uint32  
+    ID_DFR0      : [[regrw]]  uint32  
+    ID_AFR0      : [[regrw]]  uint32  
+    ID_MMFR0     : [[regrw]]  uint32  
+    ID_MMFR1     : [[regrw]]  uint32  
+    ID_MMFR2     : [[regrw]]  uint32  
+    ID_MMFR3     : [[regrw]]  uint32  
+    ID_ISAR0     : [[regrw]]  uint32  
+    ID_ISAR1     : [[regrw]]  uint32  
+    ID_ISAR2     : [[regrw]]  uint32  
+    ID_ISAR3     : [[regrw]]  uint32  
+    ID_ISAR4     : [[regrw]]  uint32  
+    ID_ISAR5     : [[regrw]]  uint32  
+    RESERVED33   : [[regro]]  uint32  
+    CTR          : [[regrw]]  uint32  
+    RESERVED34   : [[regro]]  [2] uint32
+    CPACR        : [[regrw]]  uint32  
+    NSACR        : [[regrw]]  uint32  
+    MPU_TYPE     : [[regrw]]  uint32  
+    MPU_CTRL     : [[regrw]]  uint32  
+    MPU_RNR      : [[regrw]]  uint32  
+    MPU_RBAR     : [[regrw]]  uint32  
+    MPU_RLAR     : [[regrw]]  uint32  
+    MPU_RBAR_A1  : [[regrw]]  uint32  
+    MPU_RLAR_A1  : [[regrw]]  uint32  
+    MPU_RBAR_A2  : [[regrw]]  uint32  
+    MPU_RLAR_A2  : [[regrw]]  uint32  
+    MPU_RBAR_A3  : [[regrw]]  uint32  
+    MPU_RLAR_A3  : [[regrw]]  uint32  
+    RESERVED35   : [[regro]]  uint32  
+    MPU_MAIR0    : [[regrw]]  uint32  
+    MPU_MAIR1    : [[regrw]]  uint32  
+    RESERVED36   : [[regro]]  [2] uint32
+    SAU_CTRL     : [[regrw]]  uint32  
+    SAU_TYPE     : [[regrw]]  uint32  
+    SAU_RNR      : [[regrw]]  uint32  
+    SAU_RBAR     : [[regrw]]  uint32  
+    SAU_RLAR     : [[regrw]]  uint32  
+    SFSR         : [[regrw]]  uint32  
+    SFAR         : [[regrw]]  uint32  
+    RESERVED37   : [[regro]]  uint32  
+    DHCSR        : [[regrw]]  uint32  
+    DCRSR        : [[regrw]]  uint32  
+    DCRDR        : [[regrw]]  uint32  
+    DEMCR        : [[regrw]]  uint32  
+    RESERVED38   : [[regro]]  [2] uint32
+    DSCSR        : [[regrw]]  uint32  
+    RESERVED39   : [[regro]]  [61] uint32
+    STIR         : [[regrw]]  uint32  
+    RESERVED40   : [[regro]]  [12] uint32
+    FPCCR        : [[regrw]]  uint32  
+    FPCAR        : [[regrw]]  uint32  
+    FPDSCR       : [[regrw]]  uint32  
+    MVFR0        : [[regrw]]  uint32  
+    MVFR1        : [[regrw]]  uint32  
+    MVFR2        : [[regrw]]  uint32  
+    RESERVED41   : [[regro]]  [28] uint32
+    DDEVARCH     : [[regrw]]  uint32  
+    RESERVED42   : [[regro]]  [3] uint32
+    DDEVTYPE     : [[regrw]]  uint32  
+    DPIDR4       : [[regrw]]  uint32  
+    DPIDR5       : [[regrw]]  uint32  
+    DPIDR6       : [[regrw]]  uint32  
+    DPIDR7       : [[regrw]]  uint32  
+    DPIDR0       : [[regrw]]  uint32  
+    DPIDR1       : [[regrw]]  uint32  
+    DPIDR2       : [[regrw]]  uint32  
+    DPIDR3       : [[regrw]]  uint32  
+    DCIDR0       : [[regrw]]  uint32  
+    DCIDR1       : [[regrw]]  uint32  
+    DCIDR2       : [[regrw]]  uint32  
+    DCIDR3       : [[regrw]]  uint32  
+    RESERVED43   : [[regro]]  [51201] uint32
+    TRCPRGCTLR   : [[regrw]]  uint32  
+    RESERVED44   : [[regro]]  uint32  
+    TRCSTATR     : [[regrw]]  uint32  
+    TRCCONFIGR   : [[regrw]]  uint32  
+    RESERVED45   : [[regro]]  [3] uint32
+    TRCEVENTCTL0R : [[regrw]]  uint32  
+    TRCEVENTCTL1R : [[regrw]]  uint32  
+    RESERVED46   : [[regro]]  uint32  
+    TRCSTALLCTLR : [[regrw]]  uint32  
+    TRCTSCTLR    : [[regrw]]  uint32  
+    TRCSYNCPR    : [[regrw]]  uint32  
+    TRCCCCTLR    : [[regrw]]  uint32  
+    RESERVED47   : [[regro]]  [17] uint32
+    TRCVICTLR    : [[regrw]]  uint32  
+    RESERVED48   : [[regro]]  [47] uint32
+    TRCCNTRLDVR0 : [[regrw]]  uint32  
+    RESERVED49   : [[regro]]  [15] uint32
+    TRCIDR8      : [[regrw]]  uint32  
+    TRCIDR9      : [[regrw]]  uint32  
+    TRCIDR10     : [[regrw]]  uint32  
+    TRCIDR11     : [[regrw]]  uint32  
+    TRCIDR12     : [[regrw]]  uint32  
+    TRCIDR13     : [[regrw]]  uint32  
+    RESERVED50   : [[regro]]  [10] uint32
+    TRCIMSPEC    : [[regrw]]  uint32  
+    RESERVED51   : [[regro]]  [7] uint32
+    TRCIDR0      : [[regrw]]  uint32  
+    TRCIDR1      : [[regrw]]  uint32  
+    TRCIDR2      : [[regrw]]  uint32  
+    TRCIDR3      : [[regrw]]  uint32  
+    TRCIDR4      : [[regrw]]  uint32  
+    TRCIDR5      : [[regrw]]  uint32  
+    TRCIDR6      : [[regrw]]  uint32  
+    TRCIDR7      : [[regrw]]  uint32  
+    RESERVED52   : [[regro]]  [2] uint32
+    TRCRSCTLR2   : [[regrw]]  uint32  
+    TRCRSCTLR3   : [[regrw]]  uint32  
+    RESERVED53   : [[regro]]  [36] uint32
+    TRCSSCSR     : [[regrw]]  uint32  
+    RESERVED54   : [[regro]]  [7] uint32
+    TRCSSPCICR   : [[regrw]]  uint32  
+    RESERVED55   : [[regro]]  [19] uint32
+    TRCPDCR      : [[regrw]]  uint32  
+    TRCPDSR      : [[regrw]]  uint32  
+    RESERVED56   : [[regro]]  [755] uint32
+    TRCITATBIDR  : [[regrw]]  uint32  
+    RESERVED57   : [[regro]]  [3] uint32
+    TRCITIATBINR : [[regrw]]  uint32  
+    RESERVED58   : [[regro]]  uint32  
+    TRCITIATBOUTR : [[regrw]]  uint32  
+    RESERVED59   : [[regro]]  [40] uint32
+    TRCCLAIMSET  : [[regrw]]  uint32  
+    TRCCLAIMCLR  : [[regrw]]  uint32  
+    RESERVED60   : [[regro]]  [4] uint32
+    TRCAUTHSTATUS : [[regrw]]  uint32  
+    TRCDEVARCH   : [[regrw]]  uint32  
+    RESERVED61   : [[regro]]  [2] uint32
+    TRCDEVID     : [[regrw]]  uint32  
+    TRCDEVTYPE   : [[regrw]]  uint32  
+    TRCPIDR4     : [[regrw]]  uint32  
+    TRCPIDR5     : [[regrw]]  uint32  
+    TRCPIDR6     : [[regrw]]  uint32  
+    TRCPIDR7     : [[regrw]]  uint32  
+    TRCPIDR0     : [[regrw]]  uint32  
+    TRCPIDR1     : [[regrw]]  uint32  
+    TRCPIDR2     : [[regrw]]  uint32  
+    TRCPIDR3     : [[regrw]]  uint32  
+    TRCCIDR0     : [[regrw]]  uint32  
+    TRCCIDR1     : [[regrw]]  uint32  
+    TRCCIDR2     : [[regrw]]  uint32  
+    TRCCIDR3     : [[regrw]]  uint32  
+    CTICONTROL   : [[regrw]]  uint32  
+    RESERVED62   : [[regro]]  [3] uint32
+    CTIINTACK    : [[regrw]]  uint32  
+    CTIAPPSET    : [[regrw]]  uint32  
+    CTIAPPCLEAR  : [[regrw]]  uint32  
+    CTIAPPPULSE  : [[regrw]]  uint32  
+    CTIINEN0     : [[regrw]]  uint32  
+    CTIINEN1     : [[regrw]]  uint32  
+    CTIINEN2     : [[regrw]]  uint32  
+    CTIINEN3     : [[regrw]]  uint32  
+    CTIINEN4     : [[regrw]]  uint32  
+    CTIINEN5     : [[regrw]]  uint32  
+    CTIINEN6     : [[regrw]]  uint32  
+    CTIINEN7     : [[regrw]]  uint32  
+    RESERVED63   : [[regro]]  [24] uint32
+    CTIOUTEN0    : [[regrw]]  uint32  
+    CTIOUTEN1    : [[regrw]]  uint32  
+    CTIOUTEN2    : [[regrw]]  uint32  
+    CTIOUTEN3    : [[regrw]]  uint32  
+    CTIOUTEN4    : [[regrw]]  uint32  
+    CTIOUTEN5    : [[regrw]]  uint32  
+    CTIOUTEN6    : [[regrw]]  uint32  
+    CTIOUTEN7    : [[regrw]]  uint32  
+    RESERVED64   : [[regro]]  [28] uint32
+    CTITRIGINSTATUS : [[regrw]]  uint32  
+    CTITRIGOUTSTATUS : [[regrw]]  uint32  
+    CTICHINSTATUS : [[regrw]]  uint32  
+    RESERVED65   : [[regro]]  uint32  
+    CTIGATE      : [[regrw]]  uint32  
+    ASICCTL      : [[regrw]]  uint32  
+    RESERVED66   : [[regro]]  [871] uint32
+    ITCHOUT      : [[regrw]]  uint32  
+    ITTRIGOUT    : [[regrw]]  uint32  
+    RESERVED67   : [[regro]]  [2] uint32
+    ITCHIN       : [[regrw]]  uint32  
+    RESERVED68   : [[regro]]  [2] uint32
+    ITCTRL       : [[regrw]]  uint32  
+    RESERVED69   : [[regro]]  [46] uint32
+    DEVARCH      : [[regrw]]  uint32  
+    RESERVED70   : [[regro]]  [2] uint32
+    DEVID        : [[regrw]]  uint32  
+    DEVTYPE      : [[regrw]]  uint32  
+    PIDR4        : [[regrw]]  uint32  
+    PIDR5        : [[regrw]]  uint32  
+    PIDR6        : [[regrw]]  uint32  
+    PIDR7        : [[regrw]]  uint32  
+    PIDR0        : [[regrw]]  uint32  
+    PIDR1        : [[regrw]]  uint32  
+    PIDR2        : [[regrw]]  uint32  
+    PIDR3        : [[regrw]]  uint32  
+    CIDR0        : [[regrw]]  uint32  
+    CIDR1        : [[regrw]]  uint32  
+    CIDR2        : [[regrw]]  uint32  
+    CIDR3        : [[regrw]]  uint32  
+endstruct
+
+struct QMI_Type:
+    DIRECT_CSR   : [[regrw]]  uint32  
+    DIRECT_TX    : [[regrw]]  uint32  
+    DIRECT_RX    : [[regrw]]  uint32  
+    M0_TIMING    : [[regrw]]  uint32  
+    M0_RFMT      : [[regrw]]  uint32  
+    M0_RCMD      : [[regrw]]  uint32  
+    M0_WFMT      : [[regrw]]  uint32  
+    M0_WCMD      : [[regrw]]  uint32  
+    M1_TIMING    : [[regrw]]  uint32  
+    M1_RFMT      : [[regrw]]  uint32  
+    M1_RCMD      : [[regrw]]  uint32  
+    M1_WFMT      : [[regrw]]  uint32  
+    M1_WCMD      : [[regrw]]  uint32  
+    ATRANS0      : [[regrw]]  uint32  
+    ATRANS1      : [[regrw]]  uint32  
+    ATRANS2      : [[regrw]]  uint32  
+    ATRANS3      : [[regrw]]  uint32  
+    ATRANS4      : [[regrw]]  uint32  
+    ATRANS5      : [[regrw]]  uint32  
+    ATRANS6      : [[regrw]]  uint32  
+    ATRANS7      : [[regrw]]  uint32  
+endstruct
+
+struct XIP_CTRL_Type:
+    CTRL         : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  uint32  
+    STAT         : [[regrw]]  uint32  
+    CTR_HIT      : [[regrw]]  uint32  
+    CTR_ACC      : [[regrw]]  uint32  
+    STREAM_ADDR  : [[regrw]]  uint32  
+    STREAM_CTR   : [[regrw]]  uint32  
+    STREAM_FIFO  : [[regrw]]  uint32  
+endstruct
+
+struct XIP_AUX_Type:
+    STREAM       : [[regrw]]  uint32  
+    QMI_DIRECT_TX : [[regrw]]  uint32  
+    QMI_DIRECT_RX : [[regrw]]  uint32  
+endstruct
+
+struct SYSCFG_Type:
+    PROC_CONFIG  : [[regrw]]  uint32  
+    PROC_IN_SYNC_BYPASS : [[regrw]]  uint32  
+    PROC_IN_SYNC_BYPASS_HI : [[regrw]]  uint32  
+    DBGFORCE     : [[regrw]]  uint32  
+    MEMPOWERDOWN : [[regrw]]  uint32  
+    AUXCTRL      : [[regrw]]  uint32  
+endstruct
+
+struct XOSC_Type:
+    CTRL         : [[regrw]]  uint32  
+    STATUS       : [[regrw]]  uint32  
+    DORMANT      : [[regrw]]  uint32  
+    STARTUP      : [[regrw]]  uint32  
+    COUNT        : [[regrw]]  uint32  
+endstruct
+
+struct PLL_SYS_Type:
+    CS           : [[regrw]]  uint32  
+    PWR          : [[regrw]]  uint32  
+    FBDIV_INT    : [[regrw]]  uint32  
+    PRIM         : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    INTE         : [[regrw]]  uint32  
+    INTF         : [[regrw]]  uint32  
+    INTS         : [[regrw]]  uint32  
+endstruct
+
+struct ACCESSCTRL_Type:
+    LOCK         : [[regrw]]  uint32  
+    FORCE_CORE_NS : [[regrw]]  uint32  
+    CFGRESET     : [[regrw]]  uint32  
+    GPIO_NSMASK0 : [[regrw]]  uint32  
+    GPIO_NSMASK1 : [[regrw]]  uint32  
+    ROM          : [[regrw]]  uint32  
+    XIP_MAIN     : [[regrw]]  uint32  
+    SRAM0        : [[regrw]]  uint32  
+    SRAM1        : [[regrw]]  uint32  
+    SRAM2        : [[regrw]]  uint32  
+    SRAM3        : [[regrw]]  uint32  
+    SRAM4        : [[regrw]]  uint32  
+    SRAM5        : [[regrw]]  uint32  
+    SRAM6        : [[regrw]]  uint32  
+    SRAM7        : [[regrw]]  uint32  
+    SRAM8        : [[regrw]]  uint32  
+    SRAM9        : [[regrw]]  uint32  
+    DMA          : [[regrw]]  uint32  
+    USBCTRL      : [[regrw]]  uint32  
+    PIO0         : [[regrw]]  uint32  
+    PIO1         : [[regrw]]  uint32  
+    PIO2         : [[regrw]]  uint32  
+    CORESIGHT_TRACE : [[regrw]]  uint32  
+    CORESIGHT_PERIPH : [[regrw]]  uint32  
+    SYSINFO      : [[regrw]]  uint32  
+    RESETS       : [[regrw]]  uint32  
+    IO_BANK0     : [[regrw]]  uint32  
+    IO_BANK1     : [[regrw]]  uint32  
+    PADS_BANK0   : [[regrw]]  uint32  
+    PADS_QSPI    : [[regrw]]  uint32  
+    BUSCTRL      : [[regrw]]  uint32  
+    ADC0         : [[regrw]]  uint32  
+    HSTX         : [[regrw]]  uint32  
+    I2C0         : [[regrw]]  uint32  
+    I2C1         : [[regrw]]  uint32  
+    PWM          : [[regrw]]  uint32  
+    SPI0         : [[regrw]]  uint32  
+    SPI1         : [[regrw]]  uint32  
+    TIMER0       : [[regrw]]  uint32  
+    TIMER1       : [[regrw]]  uint32  
+    UART0        : [[regrw]]  uint32  
+    UART1        : [[regrw]]  uint32  
+    OTP          : [[regrw]]  uint32  
+    TBMAN        : [[regrw]]  uint32  
+    POWMAN       : [[regrw]]  uint32  
+    TRNG         : [[regrw]]  uint32  
+    SHA256       : [[regrw]]  uint32  
+    SYSCFG       : [[regrw]]  uint32  
+    CLOCKS       : [[regrw]]  uint32  
+    XOSC         : [[regrw]]  uint32  
+    ROSC         : [[regrw]]  uint32  
+    PLL_SYS      : [[regrw]]  uint32  
+    PLL_USB      : [[regrw]]  uint32  
+    TICKS        : [[regrw]]  uint32  
+    WATCHDOG     : [[regrw]]  uint32  
+    RSM          : [[regrw]]  uint32  
+    XIP_CTRL     : [[regrw]]  uint32  
+    XIP_QMI      : [[regrw]]  uint32  
+    XIP_AUX      : [[regrw]]  uint32  
+endstruct
+
+struct UART0_Type:
+    UARTDR       : [[regrw]]  uint32  
+    UARTRSR      : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  [4] uint32
+    UARTFR       : [[regrw]]  uint32  
+    RESERVED1    : [[regro]]  uint32  
+    UARTILPR     : [[regrw]]  uint32  
+    UARTIBRD     : [[regrw]]  uint32  
+    UARTFBRD     : [[regrw]]  uint32  
+    UARTLCR_H    : [[regrw]]  uint32  
+    UARTCR       : [[regrw]]  uint32  
+    UARTIFLS     : [[regrw]]  uint32  
+    UARTIMSC     : [[regrw]]  uint32  
+    UARTRIS      : [[regrw]]  uint32  
+    UARTMIS      : [[regrw]]  uint32  
+    UARTICR      : [[regrw]]  uint32  
+    UARTDMACR    : [[regrw]]  uint32  
+    RESERVED2    : [[regro]]  [997] uint32
+    UARTPERIPHID0 : [[regrw]]  uint32  
+    UARTPERIPHID1 : [[regrw]]  uint32  
+    UARTPERIPHID2 : [[regrw]]  uint32  
+    UARTPERIPHID3 : [[regrw]]  uint32  
+    UARTPCELLID0 : [[regrw]]  uint32  
+    UARTPCELLID1 : [[regrw]]  uint32  
+    UARTPCELLID2 : [[regrw]]  uint32  
+    UARTPCELLID3 : [[regrw]]  uint32  
+endstruct
+
+struct ROSC_Type:
+    CTRL         : [[regrw]]  uint32  
+    FREQA        : [[regrw]]  uint32  
+    FREQB        : [[regrw]]  uint32  
+    RANDOM       : [[regrw]]  uint32  
+    DORMANT      : [[regrw]]  uint32  
+    DIV          : [[regrw]]  uint32  
+    PHASE        : [[regrw]]  uint32  
+    STATUS       : [[regrw]]  uint32  
+    RANDOMBIT    : [[regrw]]  uint32  
+    COUNT        : [[regrw]]  uint32  
+endstruct
+
+struct POWMAN_Type:
+    BADPASSWD    : [[regrw]]  uint32  
+    VREG_CTRL    : [[regrw]]  uint32  
+    VREG_STS     : [[regrw]]  uint32  
+    VREG         : [[regrw]]  uint32  
+    VREG_LP_ENTRY : [[regrw]]  uint32  
+    VREG_LP_EXIT : [[regrw]]  uint32  
+    BOD_CTRL     : [[regrw]]  uint32  
+    BOD          : [[regrw]]  uint32  
+    BOD_LP_ENTRY : [[regrw]]  uint32  
+    BOD_LP_EXIT  : [[regrw]]  uint32  
+    LPOSC        : [[regrw]]  uint32  
+    CHIP_RESET   : [[regrw]]  uint32  
+    WDSEL        : [[regrw]]  uint32  
+    SEQ_CFG      : [[regrw]]  uint32  
+    STATE        : [[regrw]]  uint32  
+    POW_FASTDIV  : [[regrw]]  uint32  
+    POW_DELAY    : [[regrw]]  uint32  
+    EXT_CTRL0    : [[regrw]]  uint32  
+    EXT_CTRL1    : [[regrw]]  uint32  
+    EXT_TIME_REF : [[regrw]]  uint32  
+    LPOSC_FREQ_KHZ_INT : [[regrw]]  uint32  
+    LPOSC_FREQ_KHZ_FRAC : [[regrw]]  uint32  
+    XOSC_FREQ_KHZ_INT : [[regrw]]  uint32  
+    XOSC_FREQ_KHZ_FRAC : [[regrw]]  uint32  
+    SET_TIME_63TO48 : [[regrw]]  uint32  
+    SET_TIME_47TO32 : [[regrw]]  uint32  
+    SET_TIME_31TO16 : [[regrw]]  uint32  
+    SET_TIME_15TO0 : [[regrw]]  uint32  
+    READ_TIME_UPPER : [[regrw]]  uint32  
+    READ_TIME_LOWER : [[regrw]]  uint32  
+    ALARM_TIME_63TO48 : [[regrw]]  uint32  
+    ALARM_TIME_47TO32 : [[regrw]]  uint32  
+    ALARM_TIME_31TO16 : [[regrw]]  uint32  
+    ALARM_TIME_15TO0 : [[regrw]]  uint32  
+    TIMER        : [[regrw]]  uint32  
+    PWRUP0       : [[regrw]]  uint32  
+    PWRUP1       : [[regrw]]  uint32  
+    PWRUP2       : [[regrw]]  uint32  
+    PWRUP3       : [[regrw]]  uint32  
+    CURRENT_PWRUP_REQ : [[regrw]]  uint32  
+    LAST_SWCORE_PWRUP : [[regrw]]  uint32  
+    DBG_PWRCFG   : [[regrw]]  uint32  
+    BOOTDIS      : [[regrw]]  uint32  
+    DBGCONFIG    : [[regrw]]  uint32  
+    SCRATCH0     : [[regrw]]  uint32  
+    SCRATCH1     : [[regrw]]  uint32  
+    SCRATCH2     : [[regrw]]  uint32  
+    SCRATCH3     : [[regrw]]  uint32  
+    SCRATCH4     : [[regrw]]  uint32  
+    SCRATCH5     : [[regrw]]  uint32  
+    SCRATCH6     : [[regrw]]  uint32  
+    SCRATCH7     : [[regrw]]  uint32  
+    BOOT0        : [[regrw]]  uint32  
+    BOOT1        : [[regrw]]  uint32  
+    BOOT2        : [[regrw]]  uint32  
+    BOOT3        : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    INTE         : [[regrw]]  uint32  
+    INTF         : [[regrw]]  uint32  
+    INTS         : [[regrw]]  uint32  
+endstruct
+
+struct WATCHDOG_Type:
+    CTRL         : [[regrw]]  uint32  
+    LOAD         : [[regrw]]  uint32  
+    REASON       : [[regrw]]  uint32  
+    SCRATCH0     : [[regrw]]  uint32  
+    SCRATCH1     : [[regrw]]  uint32  
+    SCRATCH2     : [[regrw]]  uint32  
+    SCRATCH3     : [[regrw]]  uint32  
+    SCRATCH4     : [[regrw]]  uint32  
+    SCRATCH5     : [[regrw]]  uint32  
+    SCRATCH6     : [[regrw]]  uint32  
+    SCRATCH7     : [[regrw]]  uint32  
+endstruct
+
+struct DMA_Type:
+    CH0_READ_ADDR : [[regrw]]  uint32  
+    CH0_WRITE_ADDR : [[regrw]]  uint32  
+    CH0_TRANS_COUNT : [[regrw]]  uint32  
+    CH0_CTRL_TRIG : [[regrw]]  uint32  
+    CH0_AL1_CTRL : [[regrw]]  uint32  
+    CH0_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH0_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH0_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH0_AL2_CTRL : [[regrw]]  uint32  
+    CH0_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH0_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH0_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH0_AL3_CTRL : [[regrw]]  uint32  
+    CH0_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH0_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH0_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH1_READ_ADDR : [[regrw]]  uint32  
+    CH1_WRITE_ADDR : [[regrw]]  uint32  
+    CH1_TRANS_COUNT : [[regrw]]  uint32  
+    CH1_CTRL_TRIG : [[regrw]]  uint32  
+    CH1_AL1_CTRL : [[regrw]]  uint32  
+    CH1_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH1_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH1_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH1_AL2_CTRL : [[regrw]]  uint32  
+    CH1_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH1_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH1_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH1_AL3_CTRL : [[regrw]]  uint32  
+    CH1_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH1_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH1_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH2_READ_ADDR : [[regrw]]  uint32  
+    CH2_WRITE_ADDR : [[regrw]]  uint32  
+    CH2_TRANS_COUNT : [[regrw]]  uint32  
+    CH2_CTRL_TRIG : [[regrw]]  uint32  
+    CH2_AL1_CTRL : [[regrw]]  uint32  
+    CH2_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH2_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH2_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH2_AL2_CTRL : [[regrw]]  uint32  
+    CH2_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH2_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH2_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH2_AL3_CTRL : [[regrw]]  uint32  
+    CH2_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH2_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH2_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH3_READ_ADDR : [[regrw]]  uint32  
+    CH3_WRITE_ADDR : [[regrw]]  uint32  
+    CH3_TRANS_COUNT : [[regrw]]  uint32  
+    CH3_CTRL_TRIG : [[regrw]]  uint32  
+    CH3_AL1_CTRL : [[regrw]]  uint32  
+    CH3_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH3_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH3_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH3_AL2_CTRL : [[regrw]]  uint32  
+    CH3_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH3_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH3_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH3_AL3_CTRL : [[regrw]]  uint32  
+    CH3_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH3_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH3_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH4_READ_ADDR : [[regrw]]  uint32  
+    CH4_WRITE_ADDR : [[regrw]]  uint32  
+    CH4_TRANS_COUNT : [[regrw]]  uint32  
+    CH4_CTRL_TRIG : [[regrw]]  uint32  
+    CH4_AL1_CTRL : [[regrw]]  uint32  
+    CH4_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH4_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH4_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH4_AL2_CTRL : [[regrw]]  uint32  
+    CH4_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH4_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH4_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH4_AL3_CTRL : [[regrw]]  uint32  
+    CH4_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH4_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH4_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH5_READ_ADDR : [[regrw]]  uint32  
+    CH5_WRITE_ADDR : [[regrw]]  uint32  
+    CH5_TRANS_COUNT : [[regrw]]  uint32  
+    CH5_CTRL_TRIG : [[regrw]]  uint32  
+    CH5_AL1_CTRL : [[regrw]]  uint32  
+    CH5_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH5_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH5_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH5_AL2_CTRL : [[regrw]]  uint32  
+    CH5_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH5_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH5_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH5_AL3_CTRL : [[regrw]]  uint32  
+    CH5_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH5_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH5_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH6_READ_ADDR : [[regrw]]  uint32  
+    CH6_WRITE_ADDR : [[regrw]]  uint32  
+    CH6_TRANS_COUNT : [[regrw]]  uint32  
+    CH6_CTRL_TRIG : [[regrw]]  uint32  
+    CH6_AL1_CTRL : [[regrw]]  uint32  
+    CH6_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH6_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH6_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH6_AL2_CTRL : [[regrw]]  uint32  
+    CH6_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH6_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH6_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH6_AL3_CTRL : [[regrw]]  uint32  
+    CH6_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH6_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH6_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH7_READ_ADDR : [[regrw]]  uint32  
+    CH7_WRITE_ADDR : [[regrw]]  uint32  
+    CH7_TRANS_COUNT : [[regrw]]  uint32  
+    CH7_CTRL_TRIG : [[regrw]]  uint32  
+    CH7_AL1_CTRL : [[regrw]]  uint32  
+    CH7_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH7_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH7_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH7_AL2_CTRL : [[regrw]]  uint32  
+    CH7_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH7_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH7_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH7_AL3_CTRL : [[regrw]]  uint32  
+    CH7_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH7_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH7_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH8_READ_ADDR : [[regrw]]  uint32  
+    CH8_WRITE_ADDR : [[regrw]]  uint32  
+    CH8_TRANS_COUNT : [[regrw]]  uint32  
+    CH8_CTRL_TRIG : [[regrw]]  uint32  
+    CH8_AL1_CTRL : [[regrw]]  uint32  
+    CH8_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH8_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH8_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH8_AL2_CTRL : [[regrw]]  uint32  
+    CH8_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH8_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH8_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH8_AL3_CTRL : [[regrw]]  uint32  
+    CH8_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH8_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH8_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH9_READ_ADDR : [[regrw]]  uint32  
+    CH9_WRITE_ADDR : [[regrw]]  uint32  
+    CH9_TRANS_COUNT : [[regrw]]  uint32  
+    CH9_CTRL_TRIG : [[regrw]]  uint32  
+    CH9_AL1_CTRL : [[regrw]]  uint32  
+    CH9_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH9_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH9_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH9_AL2_CTRL : [[regrw]]  uint32  
+    CH9_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH9_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH9_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH9_AL3_CTRL : [[regrw]]  uint32  
+    CH9_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH9_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH9_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH10_READ_ADDR : [[regrw]]  uint32  
+    CH10_WRITE_ADDR : [[regrw]]  uint32  
+    CH10_TRANS_COUNT : [[regrw]]  uint32  
+    CH10_CTRL_TRIG : [[regrw]]  uint32  
+    CH10_AL1_CTRL : [[regrw]]  uint32  
+    CH10_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH10_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH10_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH10_AL2_CTRL : [[regrw]]  uint32  
+    CH10_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH10_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH10_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH10_AL3_CTRL : [[regrw]]  uint32  
+    CH10_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH10_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH10_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH11_READ_ADDR : [[regrw]]  uint32  
+    CH11_WRITE_ADDR : [[regrw]]  uint32  
+    CH11_TRANS_COUNT : [[regrw]]  uint32  
+    CH11_CTRL_TRIG : [[regrw]]  uint32  
+    CH11_AL1_CTRL : [[regrw]]  uint32  
+    CH11_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH11_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH11_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH11_AL2_CTRL : [[regrw]]  uint32  
+    CH11_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH11_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH11_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH11_AL3_CTRL : [[regrw]]  uint32  
+    CH11_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH11_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH11_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH12_READ_ADDR : [[regrw]]  uint32  
+    CH12_WRITE_ADDR : [[regrw]]  uint32  
+    CH12_TRANS_COUNT : [[regrw]]  uint32  
+    CH12_CTRL_TRIG : [[regrw]]  uint32  
+    CH12_AL1_CTRL : [[regrw]]  uint32  
+    CH12_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH12_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH12_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH12_AL2_CTRL : [[regrw]]  uint32  
+    CH12_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH12_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH12_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH12_AL3_CTRL : [[regrw]]  uint32  
+    CH12_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH12_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH12_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH13_READ_ADDR : [[regrw]]  uint32  
+    CH13_WRITE_ADDR : [[regrw]]  uint32  
+    CH13_TRANS_COUNT : [[regrw]]  uint32  
+    CH13_CTRL_TRIG : [[regrw]]  uint32  
+    CH13_AL1_CTRL : [[regrw]]  uint32  
+    CH13_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH13_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH13_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH13_AL2_CTRL : [[regrw]]  uint32  
+    CH13_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH13_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH13_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH13_AL3_CTRL : [[regrw]]  uint32  
+    CH13_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH13_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH13_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH14_READ_ADDR : [[regrw]]  uint32  
+    CH14_WRITE_ADDR : [[regrw]]  uint32  
+    CH14_TRANS_COUNT : [[regrw]]  uint32  
+    CH14_CTRL_TRIG : [[regrw]]  uint32  
+    CH14_AL1_CTRL : [[regrw]]  uint32  
+    CH14_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH14_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH14_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH14_AL2_CTRL : [[regrw]]  uint32  
+    CH14_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH14_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH14_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH14_AL3_CTRL : [[regrw]]  uint32  
+    CH14_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH14_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH14_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    CH15_READ_ADDR : [[regrw]]  uint32  
+    CH15_WRITE_ADDR : [[regrw]]  uint32  
+    CH15_TRANS_COUNT : [[regrw]]  uint32  
+    CH15_CTRL_TRIG : [[regrw]]  uint32  
+    CH15_AL1_CTRL : [[regrw]]  uint32  
+    CH15_AL1_READ_ADDR : [[regrw]]  uint32  
+    CH15_AL1_WRITE_ADDR : [[regrw]]  uint32  
+    CH15_AL1_TRANS_COUNT_TRIG : [[regrw]]  uint32  
+    CH15_AL2_CTRL : [[regrw]]  uint32  
+    CH15_AL2_TRANS_COUNT : [[regrw]]  uint32  
+    CH15_AL2_READ_ADDR : [[regrw]]  uint32  
+    CH15_AL2_WRITE_ADDR_TRIG : [[regrw]]  uint32  
+    CH15_AL3_CTRL : [[regrw]]  uint32  
+    CH15_AL3_WRITE_ADDR : [[regrw]]  uint32  
+    CH15_AL3_TRANS_COUNT : [[regrw]]  uint32  
+    CH15_AL3_READ_ADDR_TRIG : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    INTE0        : [[regrw]]  uint32  
+    INTF0        : [[regrw]]  uint32  
+    INTS0        : [[regrw]]  uint32  
+    INTR1        : [[regrw]]  uint32  
+    INTE1        : [[regrw]]  uint32  
+    INTF1        : [[regrw]]  uint32  
+    INTS1        : [[regrw]]  uint32  
+    INTR2        : [[regrw]]  uint32  
+    INTE2        : [[regrw]]  uint32  
+    INTF2        : [[regrw]]  uint32  
+    INTS2        : [[regrw]]  uint32  
+    INTR3        : [[regrw]]  uint32  
+    INTE3        : [[regrw]]  uint32  
+    INTF3        : [[regrw]]  uint32  
+    INTS3        : [[regrw]]  uint32  
+    TIMER0       : [[regrw]]  uint32  
+    TIMER1       : [[regrw]]  uint32  
+    TIMER2       : [[regrw]]  uint32  
+    TIMER3       : [[regrw]]  uint32  
+    MULTI_CHAN_TRIGGER : [[regrw]]  uint32  
+    SNIFF_CTRL   : [[regrw]]  uint32  
+    SNIFF_DATA   : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  uint32  
+    FIFO_LEVELS  : [[regrw]]  uint32  
+    CHAN_ABORT   : [[regrw]]  uint32  
+    N_CHANNELS   : [[regrw]]  uint32  
+    RESERVED1    : [[regro]]  [5] uint32
+    SECCFG_CH0   : [[regrw]]  uint32  
+    SECCFG_CH1   : [[regrw]]  uint32  
+    SECCFG_CH2   : [[regrw]]  uint32  
+    SECCFG_CH3   : [[regrw]]  uint32  
+    SECCFG_CH4   : [[regrw]]  uint32  
+    SECCFG_CH5   : [[regrw]]  uint32  
+    SECCFG_CH6   : [[regrw]]  uint32  
+    SECCFG_CH7   : [[regrw]]  uint32  
+    SECCFG_CH8   : [[regrw]]  uint32  
+    SECCFG_CH9   : [[regrw]]  uint32  
+    SECCFG_CH10  : [[regrw]]  uint32  
+    SECCFG_CH11  : [[regrw]]  uint32  
+    SECCFG_CH12  : [[regrw]]  uint32  
+    SECCFG_CH13  : [[regrw]]  uint32  
+    SECCFG_CH14  : [[regrw]]  uint32  
+    SECCFG_CH15  : [[regrw]]  uint32  
+    SECCFG_IRQ0  : [[regrw]]  uint32  
+    SECCFG_IRQ1  : [[regrw]]  uint32  
+    SECCFG_IRQ2  : [[regrw]]  uint32  
+    SECCFG_IRQ3  : [[regrw]]  uint32  
+    SECCFG_MISC  : [[regrw]]  uint32  
+    RESERVED2    : [[regro]]  [11] uint32
+    MPU_CTRL     : [[regrw]]  uint32  
+    MPU_BAR0     : [[regrw]]  uint32  
+    MPU_LAR0     : [[regrw]]  uint32  
+    MPU_BAR1     : [[regrw]]  uint32  
+    MPU_LAR1     : [[regrw]]  uint32  
+    MPU_BAR2     : [[regrw]]  uint32  
+    MPU_LAR2     : [[regrw]]  uint32  
+    MPU_BAR3     : [[regrw]]  uint32  
+    MPU_LAR3     : [[regrw]]  uint32  
+    MPU_BAR4     : [[regrw]]  uint32  
+    MPU_LAR4     : [[regrw]]  uint32  
+    MPU_BAR5     : [[regrw]]  uint32  
+    MPU_LAR5     : [[regrw]]  uint32  
+    MPU_BAR6     : [[regrw]]  uint32  
+    MPU_LAR6     : [[regrw]]  uint32  
+    MPU_BAR7     : [[regrw]]  uint32  
+    MPU_LAR7     : [[regrw]]  uint32  
+    RESERVED3    : [[regro]]  [175] uint32
+    CH0_DBG_CTDREQ : [[regrw]]  uint32  
+    CH0_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED4    : [[regro]]  [14] uint32
+    CH1_DBG_CTDREQ : [[regrw]]  uint32  
+    CH1_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED5    : [[regro]]  [14] uint32
+    CH2_DBG_CTDREQ : [[regrw]]  uint32  
+    CH2_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED6    : [[regro]]  [14] uint32
+    CH3_DBG_CTDREQ : [[regrw]]  uint32  
+    CH3_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED7    : [[regro]]  [14] uint32
+    CH4_DBG_CTDREQ : [[regrw]]  uint32  
+    CH4_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED8    : [[regro]]  [14] uint32
+    CH5_DBG_CTDREQ : [[regrw]]  uint32  
+    CH5_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED9    : [[regro]]  [14] uint32
+    CH6_DBG_CTDREQ : [[regrw]]  uint32  
+    CH6_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED10   : [[regro]]  [14] uint32
+    CH7_DBG_CTDREQ : [[regrw]]  uint32  
+    CH7_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED11   : [[regro]]  [14] uint32
+    CH8_DBG_CTDREQ : [[regrw]]  uint32  
+    CH8_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED12   : [[regro]]  [14] uint32
+    CH9_DBG_CTDREQ : [[regrw]]  uint32  
+    CH9_DBG_TCR  : [[regrw]]  uint32  
+    RESERVED13   : [[regro]]  [14] uint32
+    CH10_DBG_CTDREQ : [[regrw]]  uint32  
+    CH10_DBG_TCR : [[regrw]]  uint32  
+    RESERVED14   : [[regro]]  [14] uint32
+    CH11_DBG_CTDREQ : [[regrw]]  uint32  
+    CH11_DBG_TCR : [[regrw]]  uint32  
+    RESERVED15   : [[regro]]  [14] uint32
+    CH12_DBG_CTDREQ : [[regrw]]  uint32  
+    CH12_DBG_TCR : [[regrw]]  uint32  
+    RESERVED16   : [[regro]]  [14] uint32
+    CH13_DBG_CTDREQ : [[regrw]]  uint32  
+    CH13_DBG_TCR : [[regrw]]  uint32  
+    RESERVED17   : [[regro]]  [14] uint32
+    CH14_DBG_CTDREQ : [[regrw]]  uint32  
+    CH14_DBG_TCR : [[regrw]]  uint32  
+    RESERVED18   : [[regro]]  [14] uint32
+    CH15_DBG_CTDREQ : [[regrw]]  uint32  
+    CH15_DBG_TCR : [[regrw]]  uint32  
+endstruct
+
+struct TIMER0_Type:
+    TIMEHW       : [[regrw]]  uint32  
+    TIMELW       : [[regrw]]  uint32  
+    TIMEHR       : [[regrw]]  uint32  
+    TIMELR       : [[regrw]]  uint32  
+    ALARM0       : [[regrw]]  uint32  
+    ALARM1       : [[regrw]]  uint32  
+    ALARM2       : [[regrw]]  uint32  
+    ALARM3       : [[regrw]]  uint32  
+    ARMED        : [[regrw]]  uint32  
+    TIMERAWH     : [[regrw]]  uint32  
+    TIMERAWL     : [[regrw]]  uint32  
+    DBGPAUSE     : [[regrw]]  uint32  
+    PAUSE        : [[regrw]]  uint32  
+    LOCKED       : [[regrw]]  uint32  
+    SOURCE       : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    INTE         : [[regrw]]  uint32  
+    INTF         : [[regrw]]  uint32  
+    INTS         : [[regrw]]  uint32  
+endstruct
+
+struct PWM_Type:
+    CH0_CSR      : [[regrw]]  uint32  
+    CH0_DIV      : [[regrw]]  uint32  
+    CH0_CTR      : [[regrw]]  uint32  
+    CH0_CC       : [[regrw]]  uint32  
+    CH0_TOP      : [[regrw]]  uint32  
+    CH1_CSR      : [[regrw]]  uint32  
+    CH1_DIV      : [[regrw]]  uint32  
+    CH1_CTR      : [[regrw]]  uint32  
+    CH1_CC       : [[regrw]]  uint32  
+    CH1_TOP      : [[regrw]]  uint32  
+    CH2_CSR      : [[regrw]]  uint32  
+    CH2_DIV      : [[regrw]]  uint32  
+    CH2_CTR      : [[regrw]]  uint32  
+    CH2_CC       : [[regrw]]  uint32  
+    CH2_TOP      : [[regrw]]  uint32  
+    CH3_CSR      : [[regrw]]  uint32  
+    CH3_DIV      : [[regrw]]  uint32  
+    CH3_CTR      : [[regrw]]  uint32  
+    CH3_CC       : [[regrw]]  uint32  
+    CH3_TOP      : [[regrw]]  uint32  
+    CH4_CSR      : [[regrw]]  uint32  
+    CH4_DIV      : [[regrw]]  uint32  
+    CH4_CTR      : [[regrw]]  uint32  
+    CH4_CC       : [[regrw]]  uint32  
+    CH4_TOP      : [[regrw]]  uint32  
+    CH5_CSR      : [[regrw]]  uint32  
+    CH5_DIV      : [[regrw]]  uint32  
+    CH5_CTR      : [[regrw]]  uint32  
+    CH5_CC       : [[regrw]]  uint32  
+    CH5_TOP      : [[regrw]]  uint32  
+    CH6_CSR      : [[regrw]]  uint32  
+    CH6_DIV      : [[regrw]]  uint32  
+    CH6_CTR      : [[regrw]]  uint32  
+    CH6_CC       : [[regrw]]  uint32  
+    CH6_TOP      : [[regrw]]  uint32  
+    CH7_CSR      : [[regrw]]  uint32  
+    CH7_DIV      : [[regrw]]  uint32  
+    CH7_CTR      : [[regrw]]  uint32  
+    CH7_CC       : [[regrw]]  uint32  
+    CH7_TOP      : [[regrw]]  uint32  
+    CH8_CSR      : [[regrw]]  uint32  
+    CH8_DIV      : [[regrw]]  uint32  
+    CH8_CTR      : [[regrw]]  uint32  
+    CH8_CC       : [[regrw]]  uint32  
+    CH8_TOP      : [[regrw]]  uint32  
+    CH9_CSR      : [[regrw]]  uint32  
+    CH9_DIV      : [[regrw]]  uint32  
+    CH9_CTR      : [[regrw]]  uint32  
+    CH9_CC       : [[regrw]]  uint32  
+    CH9_TOP      : [[regrw]]  uint32  
+    CH10_CSR     : [[regrw]]  uint32  
+    CH10_DIV     : [[regrw]]  uint32  
+    CH10_CTR     : [[regrw]]  uint32  
+    CH10_CC      : [[regrw]]  uint32  
+    CH10_TOP     : [[regrw]]  uint32  
+    CH11_CSR     : [[regrw]]  uint32  
+    CH11_DIV     : [[regrw]]  uint32  
+    CH11_CTR     : [[regrw]]  uint32  
+    CH11_CC      : [[regrw]]  uint32  
+    CH11_TOP     : [[regrw]]  uint32  
+    EN           : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    IRQ0_INTE    : [[regrw]]  uint32  
+    IRQ0_INTF    : [[regrw]]  uint32  
+    IRQ0_INTS    : [[regrw]]  uint32  
+    IRQ1_INTE    : [[regrw]]  uint32  
+    IRQ1_INTF    : [[regrw]]  uint32  
+    IRQ1_INTS    : [[regrw]]  uint32  
+endstruct
+
+struct ADC_Type:
+    CS           : [[regrw]]  uint32  
+    RESULT       : [[regrw]]  uint32  
+    FCS          : [[regrw]]  uint32  
+    FIFO         : [[regrw]]  uint32  
+    DIV          : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    INTE         : [[regrw]]  uint32  
+    INTF         : [[regrw]]  uint32  
+    INTS         : [[regrw]]  uint32  
+endstruct
+
+struct I2C0_Type:
+    IC_CON       : [[regrw]]  uint32  
+    IC_TAR       : [[regrw]]  uint32  
+    IC_SAR       : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  uint32  
+    IC_DATA_CMD  : [[regrw]]  uint32  
+    IC_SS_SCL_HCNT : [[regrw]]  uint32  
+    IC_SS_SCL_LCNT : [[regrw]]  uint32  
+    IC_FS_SCL_HCNT : [[regrw]]  uint32  
+    IC_FS_SCL_LCNT : [[regrw]]  uint32  
+    RESERVED1    : [[regro]]  [2] uint32
+    IC_INTR_STAT : [[regrw]]  uint32  
+    IC_INTR_MASK : [[regrw]]  uint32  
+    IC_RAW_INTR_STAT : [[regrw]]  uint32  
+    IC_RX_TL     : [[regrw]]  uint32  
+    IC_TX_TL     : [[regrw]]  uint32  
+    IC_CLR_INTR  : [[regrw]]  uint32  
+    IC_CLR_RX_UNDER : [[regrw]]  uint32  
+    IC_CLR_RX_OVER : [[regrw]]  uint32  
+    IC_CLR_TX_OVER : [[regrw]]  uint32  
+    IC_CLR_RD_REQ : [[regrw]]  uint32  
+    IC_CLR_TX_ABRT : [[regrw]]  uint32  
+    IC_CLR_RX_DONE : [[regrw]]  uint32  
+    IC_CLR_ACTIVITY : [[regrw]]  uint32  
+    IC_CLR_STOP_DET : [[regrw]]  uint32  
+    IC_CLR_START_DET : [[regrw]]  uint32  
+    IC_CLR_GEN_CALL : [[regrw]]  uint32  
+    IC_ENABLE    : [[regrw]]  uint32  
+    IC_STATUS    : [[regrw]]  uint32  
+    IC_TXFLR     : [[regrw]]  uint32  
+    IC_RXFLR     : [[regrw]]  uint32  
+    IC_SDA_HOLD  : [[regrw]]  uint32  
+    IC_TX_ABRT_SOURCE : [[regrw]]  uint32  
+    IC_SLV_DATA_NACK_ONLY : [[regrw]]  uint32  
+    IC_DMA_CR    : [[regrw]]  uint32  
+    IC_DMA_TDLR  : [[regrw]]  uint32  
+    IC_DMA_RDLR  : [[regrw]]  uint32  
+    IC_SDA_SETUP : [[regrw]]  uint32  
+    IC_ACK_GENERAL_CALL : [[regrw]]  uint32  
+    IC_ENABLE_STATUS : [[regrw]]  uint32  
+    IC_FS_SPKLEN : [[regrw]]  uint32  
+    RESERVED2    : [[regro]]  uint32  
+    IC_CLR_RESTART_DET : [[regrw]]  uint32  
+    RESERVED3    : [[regro]]  [18] uint32
+    IC_COMP_PARAM_1 : [[regrw]]  uint32  
+    IC_COMP_VERSION : [[regrw]]  uint32  
+    IC_COMP_TYPE : [[regrw]]  uint32  
+endstruct
+
+struct SPI0_Type:
+    SSPCR0       : [[regrw]]  uint32  
+    SSPCR1       : [[regrw]]  uint32  
+    SSPDR        : [[regrw]]  uint32  
+    SSPSR        : [[regrw]]  uint32  
+    SSPCPSR      : [[regrw]]  uint32  
+    SSPIMSC      : [[regrw]]  uint32  
+    SSPRIS       : [[regrw]]  uint32  
+    SSPMIS       : [[regrw]]  uint32  
+    SSPICR       : [[regrw]]  uint32  
+    SSPDMACR     : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  [1006] uint32
+    SSPPERIPHID0 : [[regrw]]  uint32  
+    SSPPERIPHID1 : [[regrw]]  uint32  
+    SSPPERIPHID2 : [[regrw]]  uint32  
+    SSPPERIPHID3 : [[regrw]]  uint32  
+    SSPPCELLID0  : [[regrw]]  uint32  
+    SSPPCELLID1  : [[regrw]]  uint32  
+    SSPPCELLID2  : [[regrw]]  uint32  
+    SSPPCELLID3  : [[regrw]]  uint32  
+endstruct
+
+struct PIO0_Type:
+    CTRL         : [[regrw]]  uint32  
+    FSTAT        : [[regrw]]  uint32  
+    FDEBUG       : [[regrw]]  uint32  
+    FLEVEL       : [[regrw]]  uint32  
+    TXF0         : [[regrw]]  uint32  
+    TXF1         : [[regrw]]  uint32  
+    TXF2         : [[regrw]]  uint32  
+    TXF3         : [[regrw]]  uint32  
+    RXF0         : [[regrw]]  uint32  
+    RXF1         : [[regrw]]  uint32  
+    RXF2         : [[regrw]]  uint32  
+    RXF3         : [[regrw]]  uint32  
+    IRQ          : [[regrw]]  uint32  
+    IRQ_FORCE    : [[regrw]]  uint32  
+    INPUT_SYNC_BYPASS : [[regrw]]  uint32  
+    DBG_PADOUT   : [[regrw]]  uint32  
+    DBG_PADOE    : [[regrw]]  uint32  
+    DBG_CFGINFO  : [[regrw]]  uint32  
+    INSTR_MEM0   : [[regrw]]  uint32  
+    INSTR_MEM1   : [[regrw]]  uint32  
+    INSTR_MEM2   : [[regrw]]  uint32  
+    INSTR_MEM3   : [[regrw]]  uint32  
+    INSTR_MEM4   : [[regrw]]  uint32  
+    INSTR_MEM5   : [[regrw]]  uint32  
+    INSTR_MEM6   : [[regrw]]  uint32  
+    INSTR_MEM7   : [[regrw]]  uint32  
+    INSTR_MEM8   : [[regrw]]  uint32  
+    INSTR_MEM9   : [[regrw]]  uint32  
+    INSTR_MEM10  : [[regrw]]  uint32  
+    INSTR_MEM11  : [[regrw]]  uint32  
+    INSTR_MEM12  : [[regrw]]  uint32  
+    INSTR_MEM13  : [[regrw]]  uint32  
+    INSTR_MEM14  : [[regrw]]  uint32  
+    INSTR_MEM15  : [[regrw]]  uint32  
+    INSTR_MEM16  : [[regrw]]  uint32  
+    INSTR_MEM17  : [[regrw]]  uint32  
+    INSTR_MEM18  : [[regrw]]  uint32  
+    INSTR_MEM19  : [[regrw]]  uint32  
+    INSTR_MEM20  : [[regrw]]  uint32  
+    INSTR_MEM21  : [[regrw]]  uint32  
+    INSTR_MEM22  : [[regrw]]  uint32  
+    INSTR_MEM23  : [[regrw]]  uint32  
+    INSTR_MEM24  : [[regrw]]  uint32  
+    INSTR_MEM25  : [[regrw]]  uint32  
+    INSTR_MEM26  : [[regrw]]  uint32  
+    INSTR_MEM27  : [[regrw]]  uint32  
+    INSTR_MEM28  : [[regrw]]  uint32  
+    INSTR_MEM29  : [[regrw]]  uint32  
+    INSTR_MEM30  : [[regrw]]  uint32  
+    INSTR_MEM31  : [[regrw]]  uint32  
+    SM0_CLKDIV   : [[regrw]]  uint32  
+    SM0_EXECCTRL : [[regrw]]  uint32  
+    SM0_SHIFTCTRL : [[regrw]]  uint32  
+    SM0_ADDR     : [[regrw]]  uint32  
+    SM0_INSTR    : [[regrw]]  uint32  
+    SM0_PINCTRL  : [[regrw]]  uint32  
+    SM1_CLKDIV   : [[regrw]]  uint32  
+    SM1_EXECCTRL : [[regrw]]  uint32  
+    SM1_SHIFTCTRL : [[regrw]]  uint32  
+    SM1_ADDR     : [[regrw]]  uint32  
+    SM1_INSTR    : [[regrw]]  uint32  
+    SM1_PINCTRL  : [[regrw]]  uint32  
+    SM2_CLKDIV   : [[regrw]]  uint32  
+    SM2_EXECCTRL : [[regrw]]  uint32  
+    SM2_SHIFTCTRL : [[regrw]]  uint32  
+    SM2_ADDR     : [[regrw]]  uint32  
+    SM2_INSTR    : [[regrw]]  uint32  
+    SM2_PINCTRL  : [[regrw]]  uint32  
+    SM3_CLKDIV   : [[regrw]]  uint32  
+    SM3_EXECCTRL : [[regrw]]  uint32  
+    SM3_SHIFTCTRL : [[regrw]]  uint32  
+    SM3_ADDR     : [[regrw]]  uint32  
+    SM3_INSTR    : [[regrw]]  uint32  
+    SM3_PINCTRL  : [[regrw]]  uint32  
+    RXF0_PUTGET0 : [[regrw]]  uint32  
+    RXF0_PUTGET1 : [[regrw]]  uint32  
+    RXF0_PUTGET2 : [[regrw]]  uint32  
+    RXF0_PUTGET3 : [[regrw]]  uint32  
+    RXF1_PUTGET0 : [[regrw]]  uint32  
+    RXF1_PUTGET1 : [[regrw]]  uint32  
+    RXF1_PUTGET2 : [[regrw]]  uint32  
+    RXF1_PUTGET3 : [[regrw]]  uint32  
+    RXF2_PUTGET0 : [[regrw]]  uint32  
+    RXF2_PUTGET1 : [[regrw]]  uint32  
+    RXF2_PUTGET2 : [[regrw]]  uint32  
+    RXF2_PUTGET3 : [[regrw]]  uint32  
+    RXF3_PUTGET0 : [[regrw]]  uint32  
+    RXF3_PUTGET1 : [[regrw]]  uint32  
+    RXF3_PUTGET2 : [[regrw]]  uint32  
+    RXF3_PUTGET3 : [[regrw]]  uint32  
+    GPIOBASE     : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    IRQ0_INTE    : [[regrw]]  uint32  
+    IRQ0_INTF    : [[regrw]]  uint32  
+    IRQ0_INTS    : [[regrw]]  uint32  
+    IRQ1_INTE    : [[regrw]]  uint32  
+    IRQ1_INTF    : [[regrw]]  uint32  
+    IRQ1_INTS    : [[regrw]]  uint32  
+endstruct
+
+struct BUSCTRL_Type:
+    BUS_PRIORITY : [[regrw]]  uint32  
+    BUS_PRIORITY_ACK : [[regrw]]  uint32  
+    PERFCTR_EN   : [[regrw]]  uint32  
+    PERFCTR0     : [[regrw]]  uint32  
+    PERFSEL0     : [[regrw]]  uint32  
+    PERFCTR1     : [[regrw]]  uint32  
+    PERFSEL1     : [[regrw]]  uint32  
+    PERFCTR2     : [[regrw]]  uint32  
+    PERFSEL2     : [[regrw]]  uint32  
+    PERFCTR3     : [[regrw]]  uint32  
+    PERFSEL3     : [[regrw]]  uint32  
+endstruct
+
+struct SIO_Type:
+    CPUID        : [[regrw]]  uint32  
+    GPIO_IN      : [[regrw]]  uint32  
+    GPIO_HI_IN   : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  uint32  
+    GPIO_OUT     : [[regrw]]  uint32  
+    GPIO_HI_OUT  : [[regrw]]  uint32  
+    GPIO_OUT_SET : [[regrw]]  uint32  
+    GPIO_HI_OUT_SET : [[regrw]]  uint32  
+    GPIO_OUT_CLR : [[regrw]]  uint32  
+    GPIO_HI_OUT_CLR : [[regrw]]  uint32  
+    GPIO_OUT_XOR : [[regrw]]  uint32  
+    GPIO_HI_OUT_XOR : [[regrw]]  uint32  
+    GPIO_OE      : [[regrw]]  uint32  
+    GPIO_HI_OE   : [[regrw]]  uint32  
+    GPIO_OE_SET  : [[regrw]]  uint32  
+    GPIO_HI_OE_SET : [[regrw]]  uint32  
+    GPIO_OE_CLR  : [[regrw]]  uint32  
+    GPIO_HI_OE_CLR : [[regrw]]  uint32  
+    GPIO_OE_XOR  : [[regrw]]  uint32  
+    GPIO_HI_OE_XOR : [[regrw]]  uint32  
+    FIFO_ST      : [[regrw]]  uint32  
+    FIFO_WR      : [[regrw]]  uint32  
+    FIFO_RD      : [[regrw]]  uint32  
+    SPINLOCK_ST  : [[regrw]]  uint32  
+    RESERVED1    : [[regro]]  [8] uint32
+    INTERP0_ACCUM0 : [[regrw]]  uint32  
+    INTERP0_ACCUM1 : [[regrw]]  uint32  
+    INTERP0_BASE0 : [[regrw]]  uint32  
+    INTERP0_BASE1 : [[regrw]]  uint32  
+    INTERP0_BASE2 : [[regrw]]  uint32  
+    INTERP0_POP_LANE0 : [[regrw]]  uint32  
+    INTERP0_POP_LANE1 : [[regrw]]  uint32  
+    INTERP0_POP_FULL : [[regrw]]  uint32  
+    INTERP0_PEEK_LANE0 : [[regrw]]  uint32  
+    INTERP0_PEEK_LANE1 : [[regrw]]  uint32  
+    INTERP0_PEEK_FULL : [[regrw]]  uint32  
+    INTERP0_CTRL_LANE0 : [[regrw]]  uint32  
+    INTERP0_CTRL_LANE1 : [[regrw]]  uint32  
+    INTERP0_ACCUM0_ADD : [[regrw]]  uint32  
+    INTERP0_ACCUM1_ADD : [[regrw]]  uint32  
+    INTERP0_BASE_1AND0 : [[regrw]]  uint32  
+    INTERP1_ACCUM0 : [[regrw]]  uint32  
+    INTERP1_ACCUM1 : [[regrw]]  uint32  
+    INTERP1_BASE0 : [[regrw]]  uint32  
+    INTERP1_BASE1 : [[regrw]]  uint32  
+    INTERP1_BASE2 : [[regrw]]  uint32  
+    INTERP1_POP_LANE0 : [[regrw]]  uint32  
+    INTERP1_POP_LANE1 : [[regrw]]  uint32  
+    INTERP1_POP_FULL : [[regrw]]  uint32  
+    INTERP1_PEEK_LANE0 : [[regrw]]  uint32  
+    INTERP1_PEEK_LANE1 : [[regrw]]  uint32  
+    INTERP1_PEEK_FULL : [[regrw]]  uint32  
+    INTERP1_CTRL_LANE0 : [[regrw]]  uint32  
+    INTERP1_CTRL_LANE1 : [[regrw]]  uint32  
+    INTERP1_ACCUM0_ADD : [[regrw]]  uint32  
+    INTERP1_ACCUM1_ADD : [[regrw]]  uint32  
+    INTERP1_BASE_1AND0 : [[regrw]]  uint32  
+    SPINLOCK0    : [[regrw]]  uint32  
+    SPINLOCK1    : [[regrw]]  uint32  
+    SPINLOCK2    : [[regrw]]  uint32  
+    SPINLOCK3    : [[regrw]]  uint32  
+    SPINLOCK4    : [[regrw]]  uint32  
+    SPINLOCK5    : [[regrw]]  uint32  
+    SPINLOCK6    : [[regrw]]  uint32  
+    SPINLOCK7    : [[regrw]]  uint32  
+    SPINLOCK8    : [[regrw]]  uint32  
+    SPINLOCK9    : [[regrw]]  uint32  
+    SPINLOCK10   : [[regrw]]  uint32  
+    SPINLOCK11   : [[regrw]]  uint32  
+    SPINLOCK12   : [[regrw]]  uint32  
+    SPINLOCK13   : [[regrw]]  uint32  
+    SPINLOCK14   : [[regrw]]  uint32  
+    SPINLOCK15   : [[regrw]]  uint32  
+    SPINLOCK16   : [[regrw]]  uint32  
+    SPINLOCK17   : [[regrw]]  uint32  
+    SPINLOCK18   : [[regrw]]  uint32  
+    SPINLOCK19   : [[regrw]]  uint32  
+    SPINLOCK20   : [[regrw]]  uint32  
+    SPINLOCK21   : [[regrw]]  uint32  
+    SPINLOCK22   : [[regrw]]  uint32  
+    SPINLOCK23   : [[regrw]]  uint32  
+    SPINLOCK24   : [[regrw]]  uint32  
+    SPINLOCK25   : [[regrw]]  uint32  
+    SPINLOCK26   : [[regrw]]  uint32  
+    SPINLOCK27   : [[regrw]]  uint32  
+    SPINLOCK28   : [[regrw]]  uint32  
+    SPINLOCK29   : [[regrw]]  uint32  
+    SPINLOCK30   : [[regrw]]  uint32  
+    SPINLOCK31   : [[regrw]]  uint32  
+    DOORBELL_OUT_SET : [[regrw]]  uint32  
+    DOORBELL_OUT_CLR : [[regrw]]  uint32  
+    DOORBELL_IN_SET : [[regrw]]  uint32  
+    DOORBELL_IN_CLR : [[regrw]]  uint32  
+    PERI_NONSEC  : [[regrw]]  uint32  
+    RESERVED2    : [[regro]]  [3] uint32
+    RISCV_SOFTIRQ : [[regrw]]  uint32  
+    MTIME_CTRL   : [[regrw]]  uint32  
+    RESERVED3    : [[regro]]  [2] uint32
+    MTIME        : [[regrw]]  uint32  
+    MTIMEH       : [[regrw]]  uint32  
+    MTIMECMP     : [[regrw]]  uint32  
+    MTIMECMPH    : [[regrw]]  uint32  
+    TMDS_CTRL    : [[regrw]]  uint32  
+    TMDS_WDATA   : [[regrw]]  uint32  
+    TMDS_PEEK_SINGLE : [[regrw]]  uint32  
+    TMDS_POP_SINGLE : [[regrw]]  uint32  
+    TMDS_PEEK_DOUBLE_L0 : [[regrw]]  uint32  
+    TMDS_POP_DOUBLE_L0 : [[regrw]]  uint32  
+    TMDS_PEEK_DOUBLE_L1 : [[regrw]]  uint32  
+    TMDS_POP_DOUBLE_L1 : [[regrw]]  uint32  
+    TMDS_PEEK_DOUBLE_L2 : [[regrw]]  uint32  
+    TMDS_POP_DOUBLE_L2 : [[regrw]]  uint32  
+endstruct
+
+struct BOOTRAM_Type:
+    RESERVED     : [[regro]]  [512] uint32
+    WRITE_ONCE0  : [[regrw]]  uint32  
+    WRITE_ONCE1  : [[regrw]]  uint32  
+    BOOTLOCK_STAT : [[regrw]]  uint32  
+    BOOTLOCK0    : [[regrw]]  uint32  
+    BOOTLOCK1    : [[regrw]]  uint32  
+    BOOTLOCK2    : [[regrw]]  uint32  
+    BOOTLOCK3    : [[regrw]]  uint32  
+    BOOTLOCK4    : [[regrw]]  uint32  
+    BOOTLOCK5    : [[regrw]]  uint32  
+    BOOTLOCK6    : [[regrw]]  uint32  
+    BOOTLOCK7    : [[regrw]]  uint32  
+endstruct
+
+struct CORESIGHT_TRACE_Type:
+    CTRL_STATUS  : [[regrw]]  uint32  
+    TRACE_CAPTURE_FIFO : [[regrw]]  uint32  
+endstruct
+
+struct USB_Type:
+    ADDR_ENDP    : [[regrw]]  uint32  
+    ADDR_ENDP1   : [[regrw]]  uint32  
+    ADDR_ENDP2   : [[regrw]]  uint32  
+    ADDR_ENDP3   : [[regrw]]  uint32  
+    ADDR_ENDP4   : [[regrw]]  uint32  
+    ADDR_ENDP5   : [[regrw]]  uint32  
+    ADDR_ENDP6   : [[regrw]]  uint32  
+    ADDR_ENDP7   : [[regrw]]  uint32  
+    ADDR_ENDP8   : [[regrw]]  uint32  
+    ADDR_ENDP9   : [[regrw]]  uint32  
+    ADDR_ENDP10  : [[regrw]]  uint32  
+    ADDR_ENDP11  : [[regrw]]  uint32  
+    ADDR_ENDP12  : [[regrw]]  uint32  
+    ADDR_ENDP13  : [[regrw]]  uint32  
+    ADDR_ENDP14  : [[regrw]]  uint32  
+    ADDR_ENDP15  : [[regrw]]  uint32  
+    MAIN_CTRL    : [[regrw]]  uint32  
+    SOF_WR       : [[regrw]]  uint32  
+    SOF_RD       : [[regrw]]  uint32  
+    SIE_CTRL     : [[regrw]]  uint32  
+    SIE_STATUS   : [[regrw]]  uint32  
+    INT_EP_CTRL  : [[regrw]]  uint32  
+    BUFF_STATUS  : [[regrw]]  uint32  
+    BUFF_CPU_SHOULD_HANDLE : [[regrw]]  uint32  
+    EP_ABORT     : [[regrw]]  uint32  
+    EP_ABORT_DONE : [[regrw]]  uint32  
+    EP_STALL_ARM : [[regrw]]  uint32  
+    NAK_POLL     : [[regrw]]  uint32  
+    EP_STATUS_STALL_NAK : [[regrw]]  uint32  
+    USB_MUXING   : [[regrw]]  uint32  
+    USB_PWR      : [[regrw]]  uint32  
+    USBPHY_DIRECT : [[regrw]]  uint32  
+    USBPHY_DIRECT_OVERRIDE : [[regrw]]  uint32  
+    USBPHY_TRIM  : [[regrw]]  uint32  
+    LINESTATE_TUNING : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    INTE         : [[regrw]]  uint32  
+    INTF         : [[regrw]]  uint32  
+    INTS         : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  [25] uint32
+    SOF_TIMESTAMP_RAW : [[regrw]]  uint32  
+    SOF_TIMESTAMP_LAST : [[regrw]]  uint32  
+    SM_STATE     : [[regrw]]  uint32  
+    EP_TX_ERROR  : [[regrw]]  uint32  
+    EP_RX_ERROR  : [[regrw]]  uint32  
+    DEV_SM_WATCHDOG : [[regrw]]  uint32  
+endstruct
+
+struct TRNG_Type:
+    RESERVED     : [[regro]]  [64] uint32
+    RNG_IMR      : [[regrw]]  uint32  
+    RNG_ISR      : [[regrw]]  uint32  
+    RNG_ICR      : [[regrw]]  uint32  
+    TRNG_CONFIG  : [[regrw]]  uint32  
+    TRNG_VALID   : [[regrw]]  uint32  
+    EHR_DATA0    : [[regrw]]  uint32  
+    EHR_DATA1    : [[regrw]]  uint32  
+    EHR_DATA2    : [[regrw]]  uint32  
+    EHR_DATA3    : [[regrw]]  uint32  
+    EHR_DATA4    : [[regrw]]  uint32  
+    EHR_DATA5    : [[regrw]]  uint32  
+    RND_SOURCE_ENABLE : [[regrw]]  uint32  
+    SAMPLE_CNT1  : [[regrw]]  uint32  
+    AUTOCORR_STATISTIC : [[regrw]]  uint32  
+    TRNG_DEBUG_CONTROL : [[regrw]]  uint32  
+    RESERVED1    : [[regro]]  uint32  
+    TRNG_SW_RESET : [[regrw]]  uint32  
+    RESERVED2    : [[regro]]  [28] uint32
+    RNG_DEBUG_EN_INPUT : [[regrw]]  uint32  
+    TRNG_BUSY    : [[regrw]]  uint32  
+    RST_BITS_COUNTER : [[regrw]]  uint32  
+    RNG_VERSION  : [[regrw]]  uint32  
+    RESERVED3    : [[regro]]  [7] uint32
+    RNG_BIST_CNTR_0 : [[regrw]]  uint32  
+    RNG_BIST_CNTR_1 : [[regrw]]  uint32  
+    RNG_BIST_CNTR_2 : [[regrw]]  uint32  
+endstruct
+
+struct GLITCH_DETECTOR_Type:
+    ARM          : [[regrw]]  uint32  
+    DISARM       : [[regrw]]  uint32  
+    SENSITIVITY  : [[regrw]]  uint32  
+    LOCK         : [[regrw]]  uint32  
+    TRIG_STATUS  : [[regrw]]  uint32  
+    TRIG_FORCE   : [[regrw]]  uint32  
+endstruct
+
+struct OTP_Type:
+    SW_LOCK0     : [[regrw]]  uint32  
+    SW_LOCK1     : [[regrw]]  uint32  
+    SW_LOCK2     : [[regrw]]  uint32  
+    SW_LOCK3     : [[regrw]]  uint32  
+    SW_LOCK4     : [[regrw]]  uint32  
+    SW_LOCK5     : [[regrw]]  uint32  
+    SW_LOCK6     : [[regrw]]  uint32  
+    SW_LOCK7     : [[regrw]]  uint32  
+    SW_LOCK8     : [[regrw]]  uint32  
+    SW_LOCK9     : [[regrw]]  uint32  
+    SW_LOCK10    : [[regrw]]  uint32  
+    SW_LOCK11    : [[regrw]]  uint32  
+    SW_LOCK12    : [[regrw]]  uint32  
+    SW_LOCK13    : [[regrw]]  uint32  
+    SW_LOCK14    : [[regrw]]  uint32  
+    SW_LOCK15    : [[regrw]]  uint32  
+    SW_LOCK16    : [[regrw]]  uint32  
+    SW_LOCK17    : [[regrw]]  uint32  
+    SW_LOCK18    : [[regrw]]  uint32  
+    SW_LOCK19    : [[regrw]]  uint32  
+    SW_LOCK20    : [[regrw]]  uint32  
+    SW_LOCK21    : [[regrw]]  uint32  
+    SW_LOCK22    : [[regrw]]  uint32  
+    SW_LOCK23    : [[regrw]]  uint32  
+    SW_LOCK24    : [[regrw]]  uint32  
+    SW_LOCK25    : [[regrw]]  uint32  
+    SW_LOCK26    : [[regrw]]  uint32  
+    SW_LOCK27    : [[regrw]]  uint32  
+    SW_LOCK28    : [[regrw]]  uint32  
+    SW_LOCK29    : [[regrw]]  uint32  
+    SW_LOCK30    : [[regrw]]  uint32  
+    SW_LOCK31    : [[regrw]]  uint32  
+    SW_LOCK32    : [[regrw]]  uint32  
+    SW_LOCK33    : [[regrw]]  uint32  
+    SW_LOCK34    : [[regrw]]  uint32  
+    SW_LOCK35    : [[regrw]]  uint32  
+    SW_LOCK36    : [[regrw]]  uint32  
+    SW_LOCK37    : [[regrw]]  uint32  
+    SW_LOCK38    : [[regrw]]  uint32  
+    SW_LOCK39    : [[regrw]]  uint32  
+    SW_LOCK40    : [[regrw]]  uint32  
+    SW_LOCK41    : [[regrw]]  uint32  
+    SW_LOCK42    : [[regrw]]  uint32  
+    SW_LOCK43    : [[regrw]]  uint32  
+    SW_LOCK44    : [[regrw]]  uint32  
+    SW_LOCK45    : [[regrw]]  uint32  
+    SW_LOCK46    : [[regrw]]  uint32  
+    SW_LOCK47    : [[regrw]]  uint32  
+    SW_LOCK48    : [[regrw]]  uint32  
+    SW_LOCK49    : [[regrw]]  uint32  
+    SW_LOCK50    : [[regrw]]  uint32  
+    SW_LOCK51    : [[regrw]]  uint32  
+    SW_LOCK52    : [[regrw]]  uint32  
+    SW_LOCK53    : [[regrw]]  uint32  
+    SW_LOCK54    : [[regrw]]  uint32  
+    SW_LOCK55    : [[regrw]]  uint32  
+    SW_LOCK56    : [[regrw]]  uint32  
+    SW_LOCK57    : [[regrw]]  uint32  
+    SW_LOCK58    : [[regrw]]  uint32  
+    SW_LOCK59    : [[regrw]]  uint32  
+    SW_LOCK60    : [[regrw]]  uint32  
+    SW_LOCK61    : [[regrw]]  uint32  
+    SW_LOCK62    : [[regrw]]  uint32  
+    SW_LOCK63    : [[regrw]]  uint32  
+    SBPI_INSTR   : [[regrw]]  uint32  
+    SBPI_WDATA_0 : [[regrw]]  uint32  
+    SBPI_WDATA_1 : [[regrw]]  uint32  
+    SBPI_WDATA_2 : [[regrw]]  uint32  
+    SBPI_WDATA_3 : [[regrw]]  uint32  
+    SBPI_RDATA_0 : [[regrw]]  uint32  
+    SBPI_RDATA_1 : [[regrw]]  uint32  
+    SBPI_RDATA_2 : [[regrw]]  uint32  
+    SBPI_RDATA_3 : [[regrw]]  uint32  
+    SBPI_STATUS  : [[regrw]]  uint32  
+    USR          : [[regrw]]  uint32  
+    DBG          : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  uint32  
+    BIST         : [[regrw]]  uint32  
+    CRT_KEY_W0   : [[regrw]]  uint32  
+    CRT_KEY_W1   : [[regrw]]  uint32  
+    CRT_KEY_W2   : [[regrw]]  uint32  
+    CRT_KEY_W3   : [[regrw]]  uint32  
+    CRITICAL     : [[regrw]]  uint32  
+    KEY_VALID    : [[regrw]]  uint32  
+    DEBUGEN      : [[regrw]]  uint32  
+    DEBUGEN_LOCK : [[regrw]]  uint32  
+    ARCHSEL      : [[regrw]]  uint32  
+    ARCHSEL_STATUS : [[regrw]]  uint32  
+    BOOTDIS      : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    INTE         : [[regrw]]  uint32  
+    INTF         : [[regrw]]  uint32  
+    INTS         : [[regrw]]  uint32  
+endstruct
+
+struct OTP_DATA_Type:
+    CHIPID0      : [[regrw]]  uint16  
+    CHIPID1      : [[regrw]]  uint16  
+    CHIPID2      : [[regrw]]  uint16  
+    CHIPID3      : [[regrw]]  uint16  
+    RANDID0      : [[regrw]]  uint16  
+    RANDID1      : [[regrw]]  uint16  
+    RANDID2      : [[regrw]]  uint16  
+    RANDID3      : [[regrw]]  uint16  
+    RANDID4      : [[regrw]]  uint16  
+    RANDID5      : [[regrw]]  uint16  
+    RANDID6      : [[regrw]]  uint16  
+    RANDID7      : [[regrw]]  uint16  
+    RESERVED     : [[regro]]  [4] uint16
+    ROSC_CALIB   : [[regrw]]  uint16  
+    LPOSC_CALIB  : [[regrw]]  uint16  
+    RESERVED1    : [[regro]]  [6] uint16
+    NUM_GPIOS    : [[regrw]]  uint16  
+    RESERVED2    : [[regro]]  [29] uint16
+    INFO_CRC0    : [[regrw]]  uint16  
+    INFO_CRC1    : [[regrw]]  uint16  
+    RESERVED3    : [[regro]]  [28] uint16
+    FLASH_DEVINFO : [[regrw]]  uint16  
+    FLASH_PARTITION_SLOT_SIZE : [[regrw]]  uint16  
+    BOOTSEL_LED_CFG : [[regrw]]  uint16  
+    BOOTSEL_PLL_CFG : [[regrw]]  uint16  
+    BOOTSEL_XOSC_CFG : [[regrw]]  uint16  
+    RESERVED4    : [[regro]]  [3] uint16
+    USB_WHITE_LABEL_ADDR : [[regrw]]  uint16  
+    RESERVED5    : [[regro]]  uint16  
+    OTPBOOT_SRC  : [[regrw]]  uint16  
+    OTPBOOT_LEN  : [[regrw]]  uint16  
+    OTPBOOT_DST0 : [[regrw]]  uint16  
+    OTPBOOT_DST1 : [[regrw]]  uint16  
+    RESERVED6    : [[regro]]  [30] uint16
+    BOOTKEY0_0   : [[regrw]]  uint16  
+    BOOTKEY0_1   : [[regrw]]  uint16  
+    BOOTKEY0_2   : [[regrw]]  uint16  
+    BOOTKEY0_3   : [[regrw]]  uint16  
+    BOOTKEY0_4   : [[regrw]]  uint16  
+    BOOTKEY0_5   : [[regrw]]  uint16  
+    BOOTKEY0_6   : [[regrw]]  uint16  
+    BOOTKEY0_7   : [[regrw]]  uint16  
+    BOOTKEY0_8   : [[regrw]]  uint16  
+    BOOTKEY0_9   : [[regrw]]  uint16  
+    BOOTKEY0_10  : [[regrw]]  uint16  
+    BOOTKEY0_11  : [[regrw]]  uint16  
+    BOOTKEY0_12  : [[regrw]]  uint16  
+    BOOTKEY0_13  : [[regrw]]  uint16  
+    BOOTKEY0_14  : [[regrw]]  uint16  
+    BOOTKEY0_15  : [[regrw]]  uint16  
+    BOOTKEY1_0   : [[regrw]]  uint16  
+    BOOTKEY1_1   : [[regrw]]  uint16  
+    BOOTKEY1_2   : [[regrw]]  uint16  
+    BOOTKEY1_3   : [[regrw]]  uint16  
+    BOOTKEY1_4   : [[regrw]]  uint16  
+    BOOTKEY1_5   : [[regrw]]  uint16  
+    BOOTKEY1_6   : [[regrw]]  uint16  
+    BOOTKEY1_7   : [[regrw]]  uint16  
+    BOOTKEY1_8   : [[regrw]]  uint16  
+    BOOTKEY1_9   : [[regrw]]  uint16  
+    BOOTKEY1_10  : [[regrw]]  uint16  
+    BOOTKEY1_11  : [[regrw]]  uint16  
+    BOOTKEY1_12  : [[regrw]]  uint16  
+    BOOTKEY1_13  : [[regrw]]  uint16  
+    BOOTKEY1_14  : [[regrw]]  uint16  
+    BOOTKEY1_15  : [[regrw]]  uint16  
+    BOOTKEY2_0   : [[regrw]]  uint16  
+    BOOTKEY2_1   : [[regrw]]  uint16  
+    BOOTKEY2_2   : [[regrw]]  uint16  
+    BOOTKEY2_3   : [[regrw]]  uint16  
+    BOOTKEY2_4   : [[regrw]]  uint16  
+    BOOTKEY2_5   : [[regrw]]  uint16  
+    BOOTKEY2_6   : [[regrw]]  uint16  
+    BOOTKEY2_7   : [[regrw]]  uint16  
+    BOOTKEY2_8   : [[regrw]]  uint16  
+    BOOTKEY2_9   : [[regrw]]  uint16  
+    BOOTKEY2_10  : [[regrw]]  uint16  
+    BOOTKEY2_11  : [[regrw]]  uint16  
+    BOOTKEY2_12  : [[regrw]]  uint16  
+    BOOTKEY2_13  : [[regrw]]  uint16  
+    BOOTKEY2_14  : [[regrw]]  uint16  
+    BOOTKEY2_15  : [[regrw]]  uint16  
+    BOOTKEY3_0   : [[regrw]]  uint16  
+    BOOTKEY3_1   : [[regrw]]  uint16  
+    BOOTKEY3_2   : [[regrw]]  uint16  
+    BOOTKEY3_3   : [[regrw]]  uint16  
+    BOOTKEY3_4   : [[regrw]]  uint16  
+    BOOTKEY3_5   : [[regrw]]  uint16  
+    BOOTKEY3_6   : [[regrw]]  uint16  
+    BOOTKEY3_7   : [[regrw]]  uint16  
+    BOOTKEY3_8   : [[regrw]]  uint16  
+    BOOTKEY3_9   : [[regrw]]  uint16  
+    BOOTKEY3_10  : [[regrw]]  uint16  
+    BOOTKEY3_11  : [[regrw]]  uint16  
+    BOOTKEY3_12  : [[regrw]]  uint16  
+    BOOTKEY3_13  : [[regrw]]  uint16  
+    BOOTKEY3_14  : [[regrw]]  uint16  
+    BOOTKEY3_15  : [[regrw]]  uint16  
+    RESERVED7    : [[regro]]  [3720] uint16
+    KEY1_0       : [[regrw]]  uint16  
+    KEY1_1       : [[regrw]]  uint16  
+    KEY1_2       : [[regrw]]  uint16  
+    KEY1_3       : [[regrw]]  uint16  
+    KEY1_4       : [[regrw]]  uint16  
+    KEY1_5       : [[regrw]]  uint16  
+    KEY1_6       : [[regrw]]  uint16  
+    KEY1_7       : [[regrw]]  uint16  
+    KEY2_0       : [[regrw]]  uint16  
+    KEY2_1       : [[regrw]]  uint16  
+    KEY2_2       : [[regrw]]  uint16  
+    KEY2_3       : [[regrw]]  uint16  
+    KEY2_4       : [[regrw]]  uint16  
+    KEY2_5       : [[regrw]]  uint16  
+    KEY2_6       : [[regrw]]  uint16  
+    KEY2_7       : [[regrw]]  uint16  
+    KEY3_0       : [[regrw]]  uint16  
+    KEY3_1       : [[regrw]]  uint16  
+    KEY3_2       : [[regrw]]  uint16  
+    KEY3_3       : [[regrw]]  uint16  
+    KEY3_4       : [[regrw]]  uint16  
+    KEY3_5       : [[regrw]]  uint16  
+    KEY3_6       : [[regrw]]  uint16  
+    KEY3_7       : [[regrw]]  uint16  
+    KEY4_0       : [[regrw]]  uint16  
+    KEY4_1       : [[regrw]]  uint16  
+    KEY4_2       : [[regrw]]  uint16  
+    KEY4_3       : [[regrw]]  uint16  
+    KEY4_4       : [[regrw]]  uint16  
+    KEY4_5       : [[regrw]]  uint16  
+    KEY4_6       : [[regrw]]  uint16  
+    KEY4_7       : [[regrw]]  uint16  
+    KEY5_0       : [[regrw]]  uint16  
+    KEY5_1       : [[regrw]]  uint16  
+    KEY5_2       : [[regrw]]  uint16  
+    KEY5_3       : [[regrw]]  uint16  
+    KEY5_4       : [[regrw]]  uint16  
+    KEY5_5       : [[regrw]]  uint16  
+    KEY5_6       : [[regrw]]  uint16  
+    KEY5_7       : [[regrw]]  uint16  
+    KEY6_0       : [[regrw]]  uint16  
+    KEY6_1       : [[regrw]]  uint16  
+    KEY6_2       : [[regrw]]  uint16  
+    KEY6_3       : [[regrw]]  uint16  
+    KEY6_4       : [[regrw]]  uint16  
+    KEY6_5       : [[regrw]]  uint16  
+    KEY6_6       : [[regrw]]  uint16  
+    KEY6_7       : [[regrw]]  uint16  
+endstruct
+
+struct OTP_DATA_RAW_Type:
+    CHIPID0      : [[regrw]]  uint32  
+    CHIPID1      : [[regrw]]  uint32  
+    CHIPID2      : [[regrw]]  uint32  
+    CHIPID3      : [[regrw]]  uint32  
+    RANDID0      : [[regrw]]  uint32  
+    RANDID1      : [[regrw]]  uint32  
+    RANDID2      : [[regrw]]  uint32  
+    RANDID3      : [[regrw]]  uint32  
+    RANDID4      : [[regrw]]  uint32  
+    RANDID5      : [[regrw]]  uint32  
+    RANDID6      : [[regrw]]  uint32  
+    RANDID7      : [[regrw]]  uint32  
+    RESERVED     : [[regro]]  [4] uint32
+    ROSC_CALIB   : [[regrw]]  uint32  
+    LPOSC_CALIB  : [[regrw]]  uint32  
+    RESERVED1    : [[regro]]  [6] uint32
+    NUM_GPIOS    : [[regrw]]  uint32  
+    RESERVED2    : [[regro]]  [29] uint32
+    INFO_CRC0    : [[regrw]]  uint32  
+    INFO_CRC1    : [[regrw]]  uint32  
+    CRIT0        : [[regrw]]  uint32  
+    CRIT0_R1     : [[regrw]]  uint32  
+    CRIT0_R2     : [[regrw]]  uint32  
+    CRIT0_R3     : [[regrw]]  uint32  
+    CRIT0_R4     : [[regrw]]  uint32  
+    CRIT0_R5     : [[regrw]]  uint32  
+    CRIT0_R6     : [[regrw]]  uint32  
+    CRIT0_R7     : [[regrw]]  uint32  
+    CRIT1        : [[regrw]]  uint32  
+    CRIT1_R1     : [[regrw]]  uint32  
+    CRIT1_R2     : [[regrw]]  uint32  
+    CRIT1_R3     : [[regrw]]  uint32  
+    CRIT1_R4     : [[regrw]]  uint32  
+    CRIT1_R5     : [[regrw]]  uint32  
+    CRIT1_R6     : [[regrw]]  uint32  
+    CRIT1_R7     : [[regrw]]  uint32  
+    BOOT_FLAGS0  : [[regrw]]  uint32  
+    BOOT_FLAGS0_R1 : [[regrw]]  uint32  
+    BOOT_FLAGS0_R2 : [[regrw]]  uint32  
+    BOOT_FLAGS1  : [[regrw]]  uint32  
+    BOOT_FLAGS1_R1 : [[regrw]]  uint32  
+    BOOT_FLAGS1_R2 : [[regrw]]  uint32  
+    DEFAULT_BOOT_VERSION0 : [[regrw]]  uint32  
+    DEFAULT_BOOT_VERSION0_R1 : [[regrw]]  uint32  
+    DEFAULT_BOOT_VERSION0_R2 : [[regrw]]  uint32  
+    DEFAULT_BOOT_VERSION1 : [[regrw]]  uint32  
+    DEFAULT_BOOT_VERSION1_R1 : [[regrw]]  uint32  
+    DEFAULT_BOOT_VERSION1_R2 : [[regrw]]  uint32  
+    FLASH_DEVINFO : [[regrw]]  uint32  
+    FLASH_PARTITION_SLOT_SIZE : [[regrw]]  uint32  
+    BOOTSEL_LED_CFG : [[regrw]]  uint32  
+    BOOTSEL_PLL_CFG : [[regrw]]  uint32  
+    BOOTSEL_XOSC_CFG : [[regrw]]  uint32  
+    USB_BOOT_FLAGS : [[regrw]]  uint32  
+    USB_BOOT_FLAGS_R1 : [[regrw]]  uint32  
+    USB_BOOT_FLAGS_R2 : [[regrw]]  uint32  
+    USB_WHITE_LABEL_ADDR : [[regrw]]  uint32  
+    RESERVED3    : [[regro]]  uint32  
+    OTPBOOT_SRC  : [[regrw]]  uint32  
+    OTPBOOT_LEN  : [[regrw]]  uint32  
+    OTPBOOT_DST0 : [[regrw]]  uint32  
+    OTPBOOT_DST1 : [[regrw]]  uint32  
+    RESERVED4    : [[regro]]  [30] uint32
+    BOOTKEY0_0   : [[regrw]]  uint32  
+    BOOTKEY0_1   : [[regrw]]  uint32  
+    BOOTKEY0_2   : [[regrw]]  uint32  
+    BOOTKEY0_3   : [[regrw]]  uint32  
+    BOOTKEY0_4   : [[regrw]]  uint32  
+    BOOTKEY0_5   : [[regrw]]  uint32  
+    BOOTKEY0_6   : [[regrw]]  uint32  
+    BOOTKEY0_7   : [[regrw]]  uint32  
+    BOOTKEY0_8   : [[regrw]]  uint32  
+    BOOTKEY0_9   : [[regrw]]  uint32  
+    BOOTKEY0_10  : [[regrw]]  uint32  
+    BOOTKEY0_11  : [[regrw]]  uint32  
+    BOOTKEY0_12  : [[regrw]]  uint32  
+    BOOTKEY0_13  : [[regrw]]  uint32  
+    BOOTKEY0_14  : [[regrw]]  uint32  
+    BOOTKEY0_15  : [[regrw]]  uint32  
+    BOOTKEY1_0   : [[regrw]]  uint32  
+    BOOTKEY1_1   : [[regrw]]  uint32  
+    BOOTKEY1_2   : [[regrw]]  uint32  
+    BOOTKEY1_3   : [[regrw]]  uint32  
+    BOOTKEY1_4   : [[regrw]]  uint32  
+    BOOTKEY1_5   : [[regrw]]  uint32  
+    BOOTKEY1_6   : [[regrw]]  uint32  
+    BOOTKEY1_7   : [[regrw]]  uint32  
+    BOOTKEY1_8   : [[regrw]]  uint32  
+    BOOTKEY1_9   : [[regrw]]  uint32  
+    BOOTKEY1_10  : [[regrw]]  uint32  
+    BOOTKEY1_11  : [[regrw]]  uint32  
+    BOOTKEY1_12  : [[regrw]]  uint32  
+    BOOTKEY1_13  : [[regrw]]  uint32  
+    BOOTKEY1_14  : [[regrw]]  uint32  
+    BOOTKEY1_15  : [[regrw]]  uint32  
+    BOOTKEY2_0   : [[regrw]]  uint32  
+    BOOTKEY2_1   : [[regrw]]  uint32  
+    BOOTKEY2_2   : [[regrw]]  uint32  
+    BOOTKEY2_3   : [[regrw]]  uint32  
+    BOOTKEY2_4   : [[regrw]]  uint32  
+    BOOTKEY2_5   : [[regrw]]  uint32  
+    BOOTKEY2_6   : [[regrw]]  uint32  
+    BOOTKEY2_7   : [[regrw]]  uint32  
+    BOOTKEY2_8   : [[regrw]]  uint32  
+    BOOTKEY2_9   : [[regrw]]  uint32  
+    BOOTKEY2_10  : [[regrw]]  uint32  
+    BOOTKEY2_11  : [[regrw]]  uint32  
+    BOOTKEY2_12  : [[regrw]]  uint32  
+    BOOTKEY2_13  : [[regrw]]  uint32  
+    BOOTKEY2_14  : [[regrw]]  uint32  
+    BOOTKEY2_15  : [[regrw]]  uint32  
+    BOOTKEY3_0   : [[regrw]]  uint32  
+    BOOTKEY3_1   : [[regrw]]  uint32  
+    BOOTKEY3_2   : [[regrw]]  uint32  
+    BOOTKEY3_3   : [[regrw]]  uint32  
+    BOOTKEY3_4   : [[regrw]]  uint32  
+    BOOTKEY3_5   : [[regrw]]  uint32  
+    BOOTKEY3_6   : [[regrw]]  uint32  
+    BOOTKEY3_7   : [[regrw]]  uint32  
+    BOOTKEY3_8   : [[regrw]]  uint32  
+    BOOTKEY3_9   : [[regrw]]  uint32  
+    BOOTKEY3_10  : [[regrw]]  uint32  
+    BOOTKEY3_11  : [[regrw]]  uint32  
+    BOOTKEY3_12  : [[regrw]]  uint32  
+    BOOTKEY3_13  : [[regrw]]  uint32  
+    BOOTKEY3_14  : [[regrw]]  uint32  
+    BOOTKEY3_15  : [[regrw]]  uint32  
+    RESERVED5    : [[regro]]  [3720] uint32
+    KEY1_0       : [[regrw]]  uint32  
+    KEY1_1       : [[regrw]]  uint32  
+    KEY1_2       : [[regrw]]  uint32  
+    KEY1_3       : [[regrw]]  uint32  
+    KEY1_4       : [[regrw]]  uint32  
+    KEY1_5       : [[regrw]]  uint32  
+    KEY1_6       : [[regrw]]  uint32  
+    KEY1_7       : [[regrw]]  uint32  
+    KEY2_0       : [[regrw]]  uint32  
+    KEY2_1       : [[regrw]]  uint32  
+    KEY2_2       : [[regrw]]  uint32  
+    KEY2_3       : [[regrw]]  uint32  
+    KEY2_4       : [[regrw]]  uint32  
+    KEY2_5       : [[regrw]]  uint32  
+    KEY2_6       : [[regrw]]  uint32  
+    KEY2_7       : [[regrw]]  uint32  
+    KEY3_0       : [[regrw]]  uint32  
+    KEY3_1       : [[regrw]]  uint32  
+    KEY3_2       : [[regrw]]  uint32  
+    KEY3_3       : [[regrw]]  uint32  
+    KEY3_4       : [[regrw]]  uint32  
+    KEY3_5       : [[regrw]]  uint32  
+    KEY3_6       : [[regrw]]  uint32  
+    KEY3_7       : [[regrw]]  uint32  
+    KEY4_0       : [[regrw]]  uint32  
+    KEY4_1       : [[regrw]]  uint32  
+    KEY4_2       : [[regrw]]  uint32  
+    KEY4_3       : [[regrw]]  uint32  
+    KEY4_4       : [[regrw]]  uint32  
+    KEY4_5       : [[regrw]]  uint32  
+    KEY4_6       : [[regrw]]  uint32  
+    KEY4_7       : [[regrw]]  uint32  
+    KEY5_0       : [[regrw]]  uint32  
+    KEY5_1       : [[regrw]]  uint32  
+    KEY5_2       : [[regrw]]  uint32  
+    KEY5_3       : [[regrw]]  uint32  
+    KEY5_4       : [[regrw]]  uint32  
+    KEY5_5       : [[regrw]]  uint32  
+    KEY5_6       : [[regrw]]  uint32  
+    KEY5_7       : [[regrw]]  uint32  
+    KEY6_0       : [[regrw]]  uint32  
+    KEY6_1       : [[regrw]]  uint32  
+    KEY6_2       : [[regrw]]  uint32  
+    KEY6_3       : [[regrw]]  uint32  
+    KEY6_4       : [[regrw]]  uint32  
+    KEY6_5       : [[regrw]]  uint32  
+    KEY6_6       : [[regrw]]  uint32  
+    KEY6_7       : [[regrw]]  uint32  
+    RESERVED6    : [[regro]]  uint32  
+    KEY1_VALID   : [[regrw]]  uint32  
+    KEY2_VALID   : [[regrw]]  uint32  
+    KEY3_VALID   : [[regrw]]  uint32  
+    KEY4_VALID   : [[regrw]]  uint32  
+    KEY5_VALID   : [[regrw]]  uint32  
+    KEY6_VALID   : [[regrw]]  uint32  
+    RESERVED7    : [[regro]]  uint32  
+    PAGE0_LOCK0  : [[regrw]]  uint32  
+    PAGE0_LOCK1  : [[regrw]]  uint32  
+    PAGE1_LOCK0  : [[regrw]]  uint32  
+    PAGE1_LOCK1  : [[regrw]]  uint32  
+    PAGE2_LOCK0  : [[regrw]]  uint32  
+    PAGE2_LOCK1  : [[regrw]]  uint32  
+    PAGE3_LOCK0  : [[regrw]]  uint32  
+    PAGE3_LOCK1  : [[regrw]]  uint32  
+    PAGE4_LOCK0  : [[regrw]]  uint32  
+    PAGE4_LOCK1  : [[regrw]]  uint32  
+    PAGE5_LOCK0  : [[regrw]]  uint32  
+    PAGE5_LOCK1  : [[regrw]]  uint32  
+    PAGE6_LOCK0  : [[regrw]]  uint32  
+    PAGE6_LOCK1  : [[regrw]]  uint32  
+    PAGE7_LOCK0  : [[regrw]]  uint32  
+    PAGE7_LOCK1  : [[regrw]]  uint32  
+    PAGE8_LOCK0  : [[regrw]]  uint32  
+    PAGE8_LOCK1  : [[regrw]]  uint32  
+    PAGE9_LOCK0  : [[regrw]]  uint32  
+    PAGE9_LOCK1  : [[regrw]]  uint32  
+    PAGE10_LOCK0 : [[regrw]]  uint32  
+    PAGE10_LOCK1 : [[regrw]]  uint32  
+    PAGE11_LOCK0 : [[regrw]]  uint32  
+    PAGE11_LOCK1 : [[regrw]]  uint32  
+    PAGE12_LOCK0 : [[regrw]]  uint32  
+    PAGE12_LOCK1 : [[regrw]]  uint32  
+    PAGE13_LOCK0 : [[regrw]]  uint32  
+    PAGE13_LOCK1 : [[regrw]]  uint32  
+    PAGE14_LOCK0 : [[regrw]]  uint32  
+    PAGE14_LOCK1 : [[regrw]]  uint32  
+    PAGE15_LOCK0 : [[regrw]]  uint32  
+    PAGE15_LOCK1 : [[regrw]]  uint32  
+    PAGE16_LOCK0 : [[regrw]]  uint32  
+    PAGE16_LOCK1 : [[regrw]]  uint32  
+    PAGE17_LOCK0 : [[regrw]]  uint32  
+    PAGE17_LOCK1 : [[regrw]]  uint32  
+    PAGE18_LOCK0 : [[regrw]]  uint32  
+    PAGE18_LOCK1 : [[regrw]]  uint32  
+    PAGE19_LOCK0 : [[regrw]]  uint32  
+    PAGE19_LOCK1 : [[regrw]]  uint32  
+    PAGE20_LOCK0 : [[regrw]]  uint32  
+    PAGE20_LOCK1 : [[regrw]]  uint32  
+    PAGE21_LOCK0 : [[regrw]]  uint32  
+    PAGE21_LOCK1 : [[regrw]]  uint32  
+    PAGE22_LOCK0 : [[regrw]]  uint32  
+    PAGE22_LOCK1 : [[regrw]]  uint32  
+    PAGE23_LOCK0 : [[regrw]]  uint32  
+    PAGE23_LOCK1 : [[regrw]]  uint32  
+    PAGE24_LOCK0 : [[regrw]]  uint32  
+    PAGE24_LOCK1 : [[regrw]]  uint32  
+    PAGE25_LOCK0 : [[regrw]]  uint32  
+    PAGE25_LOCK1 : [[regrw]]  uint32  
+    PAGE26_LOCK0 : [[regrw]]  uint32  
+    PAGE26_LOCK1 : [[regrw]]  uint32  
+    PAGE27_LOCK0 : [[regrw]]  uint32  
+    PAGE27_LOCK1 : [[regrw]]  uint32  
+    PAGE28_LOCK0 : [[regrw]]  uint32  
+    PAGE28_LOCK1 : [[regrw]]  uint32  
+    PAGE29_LOCK0 : [[regrw]]  uint32  
+    PAGE29_LOCK1 : [[regrw]]  uint32  
+    PAGE30_LOCK0 : [[regrw]]  uint32  
+    PAGE30_LOCK1 : [[regrw]]  uint32  
+    PAGE31_LOCK0 : [[regrw]]  uint32  
+    PAGE31_LOCK1 : [[regrw]]  uint32  
+    PAGE32_LOCK0 : [[regrw]]  uint32  
+    PAGE32_LOCK1 : [[regrw]]  uint32  
+    PAGE33_LOCK0 : [[regrw]]  uint32  
+    PAGE33_LOCK1 : [[regrw]]  uint32  
+    PAGE34_LOCK0 : [[regrw]]  uint32  
+    PAGE34_LOCK1 : [[regrw]]  uint32  
+    PAGE35_LOCK0 : [[regrw]]  uint32  
+    PAGE35_LOCK1 : [[regrw]]  uint32  
+    PAGE36_LOCK0 : [[regrw]]  uint32  
+    PAGE36_LOCK1 : [[regrw]]  uint32  
+    PAGE37_LOCK0 : [[regrw]]  uint32  
+    PAGE37_LOCK1 : [[regrw]]  uint32  
+    PAGE38_LOCK0 : [[regrw]]  uint32  
+    PAGE38_LOCK1 : [[regrw]]  uint32  
+    PAGE39_LOCK0 : [[regrw]]  uint32  
+    PAGE39_LOCK1 : [[regrw]]  uint32  
+    PAGE40_LOCK0 : [[regrw]]  uint32  
+    PAGE40_LOCK1 : [[regrw]]  uint32  
+    PAGE41_LOCK0 : [[regrw]]  uint32  
+    PAGE41_LOCK1 : [[regrw]]  uint32  
+    PAGE42_LOCK0 : [[regrw]]  uint32  
+    PAGE42_LOCK1 : [[regrw]]  uint32  
+    PAGE43_LOCK0 : [[regrw]]  uint32  
+    PAGE43_LOCK1 : [[regrw]]  uint32  
+    PAGE44_LOCK0 : [[regrw]]  uint32  
+    PAGE44_LOCK1 : [[regrw]]  uint32  
+    PAGE45_LOCK0 : [[regrw]]  uint32  
+    PAGE45_LOCK1 : [[regrw]]  uint32  
+    PAGE46_LOCK0 : [[regrw]]  uint32  
+    PAGE46_LOCK1 : [[regrw]]  uint32  
+    PAGE47_LOCK0 : [[regrw]]  uint32  
+    PAGE47_LOCK1 : [[regrw]]  uint32  
+    PAGE48_LOCK0 : [[regrw]]  uint32  
+    PAGE48_LOCK1 : [[regrw]]  uint32  
+    PAGE49_LOCK0 : [[regrw]]  uint32  
+    PAGE49_LOCK1 : [[regrw]]  uint32  
+    PAGE50_LOCK0 : [[regrw]]  uint32  
+    PAGE50_LOCK1 : [[regrw]]  uint32  
+    PAGE51_LOCK0 : [[regrw]]  uint32  
+    PAGE51_LOCK1 : [[regrw]]  uint32  
+    PAGE52_LOCK0 : [[regrw]]  uint32  
+    PAGE52_LOCK1 : [[regrw]]  uint32  
+    PAGE53_LOCK0 : [[regrw]]  uint32  
+    PAGE53_LOCK1 : [[regrw]]  uint32  
+    PAGE54_LOCK0 : [[regrw]]  uint32  
+    PAGE54_LOCK1 : [[regrw]]  uint32  
+    PAGE55_LOCK0 : [[regrw]]  uint32  
+    PAGE55_LOCK1 : [[regrw]]  uint32  
+    PAGE56_LOCK0 : [[regrw]]  uint32  
+    PAGE56_LOCK1 : [[regrw]]  uint32  
+    PAGE57_LOCK0 : [[regrw]]  uint32  
+    PAGE57_LOCK1 : [[regrw]]  uint32  
+    PAGE58_LOCK0 : [[regrw]]  uint32  
+    PAGE58_LOCK1 : [[regrw]]  uint32  
+    PAGE59_LOCK0 : [[regrw]]  uint32  
+    PAGE59_LOCK1 : [[regrw]]  uint32  
+    PAGE60_LOCK0 : [[regrw]]  uint32  
+    PAGE60_LOCK1 : [[regrw]]  uint32  
+    PAGE61_LOCK0 : [[regrw]]  uint32  
+    PAGE61_LOCK1 : [[regrw]]  uint32  
+    PAGE62_LOCK0 : [[regrw]]  uint32  
+    PAGE62_LOCK1 : [[regrw]]  uint32  
+    PAGE63_LOCK0 : [[regrw]]  uint32  
+    PAGE63_LOCK1 : [[regrw]]  uint32  
+endstruct
+
+struct TBMAN_Type:
+    PLATFORM     : [[regrw]]  uint32  
+endstruct
+
+struct USB_DPRAM_Type:
+    SETUP_PACKET_LOW : [[regrw]]  uint32  
+    SETUP_PACKET_HIGH : [[regrw]]  uint32  
+    EP1_IN_CONTROL : [[regrw]]  uint32  
+    EP1_OUT_CONTROL : [[regrw]]  uint32  
+    EP2_IN_CONTROL : [[regrw]]  uint32  
+    EP2_OUT_CONTROL : [[regrw]]  uint32  
+    EP3_IN_CONTROL : [[regrw]]  uint32  
+    EP3_OUT_CONTROL : [[regrw]]  uint32  
+    EP4_IN_CONTROL : [[regrw]]  uint32  
+    EP4_OUT_CONTROL : [[regrw]]  uint32  
+    EP5_IN_CONTROL : [[regrw]]  uint32  
+    EP5_OUT_CONTROL : [[regrw]]  uint32  
+    EP6_IN_CONTROL : [[regrw]]  uint32  
+    EP6_OUT_CONTROL : [[regrw]]  uint32  
+    EP7_IN_CONTROL : [[regrw]]  uint32  
+    EP7_OUT_CONTROL : [[regrw]]  uint32  
+    EP8_IN_CONTROL : [[regrw]]  uint32  
+    EP8_OUT_CONTROL : [[regrw]]  uint32  
+    EP9_IN_CONTROL : [[regrw]]  uint32  
+    EP9_OUT_CONTROL : [[regrw]]  uint32  
+    EP10_IN_CONTROL : [[regrw]]  uint32  
+    EP10_OUT_CONTROL : [[regrw]]  uint32  
+    EP11_IN_CONTROL : [[regrw]]  uint32  
+    EP11_OUT_CONTROL : [[regrw]]  uint32  
+    EP12_IN_CONTROL : [[regrw]]  uint32  
+    EP12_OUT_CONTROL : [[regrw]]  uint32  
+    EP13_IN_CONTROL : [[regrw]]  uint32  
+    EP13_OUT_CONTROL : [[regrw]]  uint32  
+    EP14_IN_CONTROL : [[regrw]]  uint32  
+    EP14_OUT_CONTROL : [[regrw]]  uint32  
+    EP15_IN_CONTROL : [[regrw]]  uint32  
+    EP15_OUT_CONTROL : [[regrw]]  uint32  
+    EP0_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP0_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP1_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP1_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP2_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP2_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP3_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP3_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP4_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP4_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP5_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP5_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP6_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP6_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP7_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP7_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP8_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP8_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP9_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP9_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP10_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP10_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP11_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP11_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP12_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP12_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP13_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP13_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP14_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP14_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP15_IN_BUFFER_CONTROL : [[regrw]]  uint32  
+    EP15_OUT_BUFFER_CONTROL : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    RESETS_BASE          = 0x40020000
+    PSM_BASE             = 0x40018000
+    CLOCKS_BASE          = 0x40010000
+    TICKS_BASE           = 0x40108000
+    PADS_BANK0_BASE      = 0x40038000
+    PADS_QSPI_BASE       = 0x40040000
+    IO_QSPI_BASE         = 0x40030000
+    IO_BANK0_BASE        = 0x40028000
+    SYSINFO_BASE         = 0x40000000
+    SHA256_BASE          = 0x400F8000
+    HSTX_FIFO_BASE       = 0x50600000
+    HSTX_CTRL_BASE       = 0x400C0000
+    EPPB_BASE            = 0xE0080000
+    PPB_BASE             = 0xE0000000
+    PPB_NS_BASE          = 0xE0020000
+    QMI_BASE             = 0x400D0000
+    XIP_CTRL_BASE        = 0x400C8000
+    XIP_AUX_BASE         = 0x50500000
+    SYSCFG_BASE          = 0x40008000
+    XOSC_BASE            = 0x40048000
+    PLL_SYS_BASE         = 0x40050000
+    PLL_USB_BASE         = 0x40058000
+    ACCESSCTRL_BASE      = 0x40060000
+    UART0_BASE           = 0x40070000
+    UART1_BASE           = 0x40078000
+    ROSC_BASE            = 0x400E8000
+    POWMAN_BASE          = 0x40100000
+    WATCHDOG_BASE        = 0x400D8000
+    DMA_BASE             = 0x50000000
+    TIMER0_BASE          = 0x400B0000
+    TIMER1_BASE          = 0x400B8000
+    PWM_BASE             = 0x400A8000
+endconst
+
+const(uint32):
+    ADC_BASE             = 0x400A0000
+    I2C0_BASE            = 0x40090000
+    I2C1_BASE            = 0x40098000
+    SPI0_BASE            = 0x40080000
+    SPI1_BASE            = 0x40088000
+    PIO0_BASE            = 0x50200000
+    PIO1_BASE            = 0x50300000
+    PIO2_BASE            = 0x50400000
+    BUSCTRL_BASE         = 0x40068000
+    SIO_BASE             = 0xD0000000
+    SIO_NS_BASE          = 0xD0020000
+    BOOTRAM_BASE         = 0x400E0000
+    CORESIGHT_TRACE_BASE = 0x50700000
+    USB_BASE             = 0x50110000
+    TRNG_BASE            = 0x400F0000
+    GLITCH_DETECTOR_BASE = 0x40158000
+    OTP_BASE             = 0x40120000
+    OTP_DATA_BASE        = 0x40130000
+    OTP_DATA_RAW_BASE    = 0x40134000
+    TBMAN_BASE           = 0x40160000
+    USB_DPRAM_BASE       = 0x50100000
+endconst
+
+const RESETS       :? = ^RESETS_Type(RESETS_BASE)
+const PSM          :? = ^PSM_Type(PSM_BASE)
+const CLOCKS       :? = ^CLOCKS_Type(CLOCKS_BASE)
+const TICKS        :? = ^TICKS_Type(TICKS_BASE)
+const PADS_BANK0   :? = ^PADS_BANK0_Type(PADS_BANK0_BASE)
+const PADS_QSPI    :? = ^PADS_QSPI_Type(PADS_QSPI_BASE)
+const IO_QSPI      :? = ^IO_QSPI_Type(IO_QSPI_BASE)
+const IO_BANK0     :? = ^IO_BANK0_Type(IO_BANK0_BASE)
+const SYSINFO      :? = ^SYSINFO_Type(SYSINFO_BASE)
+const SHA256       :? = ^SHA256_Type(SHA256_BASE)
+const HSTX_FIFO    :? = ^HSTX_FIFO_Type(HSTX_FIFO_BASE)
+const HSTX_CTRL    :? = ^HSTX_CTRL_Type(HSTX_CTRL_BASE)
+const EPPB         :? = ^EPPB_Type(EPPB_BASE)
+const PPB          :? = ^PPB_Type(PPB_BASE)
+const PPB_NS       :? = ^PPB_Type(PPB_NS_BASE)
+const QMI          :? = ^QMI_Type(QMI_BASE)
+const XIP_CTRL     :? = ^XIP_CTRL_Type(XIP_CTRL_BASE)
+const XIP_AUX      :? = ^XIP_AUX_Type(XIP_AUX_BASE)
+const SYSCFG       :? = ^SYSCFG_Type(SYSCFG_BASE)
+const XOSC         :? = ^XOSC_Type(XOSC_BASE)
+const PLL_SYS      :? = ^PLL_SYS_Type(PLL_SYS_BASE)
+const PLL_USB      :? = ^PLL_SYS_Type(PLL_USB_BASE)
+const ACCESSCTRL   :? = ^ACCESSCTRL_Type(ACCESSCTRL_BASE)
+const UART0        :? = ^UART0_Type(UART0_BASE)
+const UART1        :? = ^UART0_Type(UART1_BASE)
+const ROSC         :? = ^ROSC_Type(ROSC_BASE)
+const POWMAN       :? = ^POWMAN_Type(POWMAN_BASE)
+const WATCHDOG     :? = ^WATCHDOG_Type(WATCHDOG_BASE)
+const DMA          :? = ^DMA_Type(DMA_BASE)
+const TIMER0       :? = ^TIMER0_Type(TIMER0_BASE)
+const TIMER1       :? = ^TIMER0_Type(TIMER1_BASE)
+const PWM          :? = ^PWM_Type(PWM_BASE)
+const ADC          :? = ^ADC_Type(ADC_BASE)
+const I2C0         :? = ^I2C0_Type(I2C0_BASE)
+const I2C1         :? = ^I2C0_Type(I2C1_BASE)
+const SPI0         :? = ^SPI0_Type(SPI0_BASE)
+const SPI1         :? = ^SPI0_Type(SPI1_BASE)
+const PIO0         :? = ^PIO0_Type(PIO0_BASE)
+const PIO1         :? = ^PIO0_Type(PIO1_BASE)
+const PIO2         :? = ^PIO0_Type(PIO2_BASE)
+const BUSCTRL      :? = ^BUSCTRL_Type(BUSCTRL_BASE)
+const SIO          :? = ^SIO_Type(SIO_BASE)
+const SIO_NS       :? = ^SIO_Type(SIO_NS_BASE)
+const BOOTRAM      :? = ^BOOTRAM_Type(BOOTRAM_BASE)
+const CORESIGHT_TRACE :? = ^CORESIGHT_TRACE_Type(CORESIGHT_TRACE_BASE)
+const USB          :? = ^USB_Type(USB_BASE)
+const TRNG         :? = ^TRNG_Type(TRNG_BASE)
+const GLITCH_DETECTOR :? = ^GLITCH_DETECTOR_Type(GLITCH_DETECTOR_BASE)
+const OTP          :? = ^OTP_Type(OTP_BASE)
+const OTP_DATA     :? = ^OTP_DATA_Type(OTP_DATA_BASE)
+const OTP_DATA_RAW :? = ^OTP_DATA_RAW_Type(OTP_DATA_RAW_BASE)
+const TBMAN        :? = ^TBMAN_Type(TBMAN_BASE)
+const USB_DPRAM    :? = ^USB_DPRAM_Type(USB_DPRAM_BASE)

@@ -1,0 +1,2605 @@
+const(uint32):
+    __CM0PLUS_REV        = 0
+    __MPU_PRESENT        = 0
+    __VTOR_PRESENT       = 1
+    __NVIC_PRIO_BITS     = 2
+    __Vendor_SysTickConfig = 0
+endconst
+
+const(int):
+    NonMaskableInt_IRQn  = -14
+    HardFault_IRQn       = -13
+    SVC_IRQn             = -5
+    PendSV_IRQn          = -2
+    SysTick_IRQn         = -1
+    WWDG_IRQn            = 0
+    PVD_IRQn             = 1
+    RTC_IRQn             = 2
+    FLASH_IRQn           = 3
+    RCC_IRQn             = 4
+    EXTI0_1_IRQn         = 5
+    EXTI2_3_IRQn         = 6
+    EXTI4_15_IRQn        = 7
+    DMA1_Channel1_IRQn   = 9
+    DMA1_Channel2_3_IRQn = 10
+    DMA1_Channel4_5_6_7_IRQn = 11
+    ADC1_COMP_IRQn       = 12
+    LPTIM1_IRQn          = 13
+    TIM2_IRQn            = 15
+    TIM21_IRQn           = 20
+    I2C1_IRQn            = 23
+    SPI1_IRQn            = 25
+    USART2_IRQn          = 28
+    LPUART1_IRQn         = 29
+endconst
+
+struct ADC_TypeDef:
+    ISR          : [[regrw]]  uint32  
+    IER          : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32  
+    CFGR1        : [[regrw]]  uint32  
+    CFGR2        : [[regrw]]  uint32  
+    SMPR         : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RESERVED2    :            uint32  
+    TR           : [[regrw]]  uint32  
+    RESERVED3    :            uint32  
+    CHSELR       : [[regrw]]  uint32  
+    RESERVED4    :            [5] uint32
+    DR           : [[regrw]]  uint32  
+    RESERVED5    :            [28] uint32
+    CALFACT      : [[regrw]]  uint32  
+endstruct
+
+struct ADC_Common_TypeDef:
+    CCR          : [[regrw]]  uint32  
+endstruct
+
+struct COMP_TypeDef:
+    CSR          : [[regrw]]  uint32  
+endstruct
+
+struct COMP_Common_TypeDef:
+    CSR          : [[regrw]]  uint32  
+endstruct
+
+struct CRC_TypeDef:
+    DR           : [[regrw]]  uint32  
+    IDR          : [[regrw]]  uint8   
+    RESERVED0    :            uint8   
+    RESERVED1    :            uint16  
+    CR           : [[regrw]]  uint32  
+    RESERVED2    :            uint32  
+    INIT         : [[regrw]]  uint32  
+    POL          : [[regrw]]  uint32  
+endstruct
+
+struct DBGMCU_TypeDef:
+    IDCODE       : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32  
+    APB1FZ       : [[regrw]]  uint32  
+    APB2FZ       : [[regrw]]  uint32  
+endstruct
+
+struct DMA_Channel_TypeDef:
+    CCR          : [[regrw]]  uint32  
+    CNDTR        : [[regrw]]  uint32  
+    CPAR         : [[regrw]]  uint32  
+    CMAR         : [[regrw]]  uint32  
+endstruct
+
+struct DMA_TypeDef:
+    ISR          : [[regrw]]  uint32  
+    IFCR         : [[regrw]]  uint32  
+endstruct
+
+struct DMA_Request_TypeDef:
+    CSELR        : [[regrw]]  uint32  
+endstruct
+
+struct EXTI_TypeDef:
+    IMR          : [[regrw]]  uint32  
+    EMR          : [[regrw]]  uint32  
+    RTSR         : [[regrw]]  uint32  
+    FTSR         : [[regrw]]  uint32  
+    SWIER        : [[regrw]]  uint32  
+    PR           : [[regrw]]  uint32  
+endstruct
+
+struct FLASH_TypeDef:
+    ACR          : [[regrw]]  uint32  
+    PECR         : [[regrw]]  uint32  
+    PDKEYR       : [[regrw]]  uint32  
+    PEKEYR       : [[regrw]]  uint32  
+    PRGKEYR      : [[regrw]]  uint32  
+    OPTKEYR      : [[regrw]]  uint32  
+    SR           : [[regrw]]  uint32  
+    OPTR         : [[regrw]]  uint32  
+    WRPR         : [[regrw]]  uint32  
+endstruct
+
+struct OB_TypeDef:
+    RDP          : [[regrw]]  uint32  
+    USER         : [[regrw]]  uint32  
+    WRP01        : [[regrw]]  uint32  
+endstruct
+
+struct GPIO_TypeDef:
+    MODER        : [[regrw]]  uint32  
+    OTYPER       : [[regrw]]  uint32  
+    OSPEEDR      : [[regrw]]  uint32  
+    PUPDR        : [[regrw]]  uint32  
+    IDR          : [[regrw]]  uint32  
+    ODR          : [[regrw]]  uint32  
+    BSRR         : [[regrw]]  uint32  
+    LCKR         : [[regrw]]  uint32  
+    AFR          : [[regrw]]  [2] uint32
+    BRR          : [[regrw]]  uint32  
+endstruct
+
+struct LPTIM_TypeDef:
+    ISR          : [[regrw]]  uint32  
+    ICR          : [[regrw]]  uint32  
+    IER          : [[regrw]]  uint32  
+    CFGR         : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32  
+    CMP          : [[regrw]]  uint32  
+    ARR          : [[regrw]]  uint32  
+    CNT          : [[regrw]]  uint32  
+endstruct
+
+struct SYSCFG_TypeDef:
+    CFGR1        : [[regrw]]  uint32  
+    CFGR2        : [[regrw]]  uint32  
+    EXTICR       : [[regrw]]  [4] uint32
+    RESERVED     :            [2] uint32
+    CFGR3        : [[regrw]]  uint32  
+endstruct
+
+struct I2C_TypeDef:
+    CR1          : [[regrw]]  uint32  
+    CR2          : [[regrw]]  uint32  
+    OAR1         : [[regrw]]  uint32  
+    OAR2         : [[regrw]]  uint32  
+    TIMINGR      : [[regrw]]  uint32  
+    TIMEOUTR     : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32  
+    ICR          : [[regrw]]  uint32  
+    PECR         : [[regrw]]  uint32  
+    RXDR         : [[regrw]]  uint32  
+    TXDR         : [[regrw]]  uint32  
+endstruct
+
+struct IWDG_TypeDef:
+    KR           : [[regrw]]  uint32  
+    PR           : [[regrw]]  uint32  
+    RLR          : [[regrw]]  uint32  
+    SR           : [[regrw]]  uint32  
+    WINR         : [[regrw]]  uint32  
+endstruct
+
+struct PWR_TypeDef:
+    CR           : [[regrw]]  uint32  
+    CSR          : [[regrw]]  uint32  
+endstruct
+
+struct RCC_TypeDef:
+    CR           : [[regrw]]  uint32  
+    ICSCR        : [[regrw]]  uint32  
+    CRRCR        : [[regrw]]  uint32  
+    CFGR         : [[regrw]]  uint32  
+    CIER         : [[regrw]]  uint32  
+    CIFR         : [[regrw]]  uint32  
+    CICR         : [[regrw]]  uint32  
+    IOPRSTR      : [[regrw]]  uint32  
+    AHBRSTR      : [[regrw]]  uint32  
+    APB2RSTR     : [[regrw]]  uint32  
+    APB1RSTR     : [[regrw]]  uint32  
+    IOPENR       : [[regrw]]  uint32  
+    AHBENR       : [[regrw]]  uint32  
+    APB2ENR      : [[regrw]]  uint32  
+    APB1ENR      : [[regrw]]  uint32  
+    IOPSMENR     : [[regrw]]  uint32  
+    AHBSMENR     : [[regrw]]  uint32  
+    APB2SMENR    : [[regrw]]  uint32  
+    APB1SMENR    : [[regrw]]  uint32  
+    CCIPR        : [[regrw]]  uint32  
+    CSR          : [[regrw]]  uint32  
+endstruct
+
+struct RTC_TypeDef:
+    TR           : [[regrw]]  uint32  
+    DR           : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32  
+    PRER         : [[regrw]]  uint32  
+    WUTR         : [[regrw]]  uint32  
+    RESERVED     :            uint32  
+    ALRMAR       : [[regrw]]  uint32  
+    ALRMBR       : [[regrw]]  uint32  
+    WPR          : [[regrw]]  uint32  
+    SSR          : [[regrw]]  uint32  
+    SHIFTR       : [[regrw]]  uint32  
+    TSTR         : [[regrw]]  uint32  
+    TSDR         : [[regrw]]  uint32  
+    TSSSR        : [[regrw]]  uint32  
+    CALR         : [[regrw]]  uint32  
+    TAMPCR       : [[regrw]]  uint32  
+    ALRMASSR     : [[regrw]]  uint32  
+    ALRMBSSR     : [[regrw]]  uint32  
+    OR           : [[regrw]]  uint32  
+    BKP0R        : [[regrw]]  uint32  
+    BKP1R        : [[regrw]]  uint32  
+    BKP2R        : [[regrw]]  uint32  
+    BKP3R        : [[regrw]]  uint32  
+    BKP4R        : [[regrw]]  uint32  
+endstruct
+
+struct SPI_TypeDef:
+    CR1          : [[regrw]]  uint32  
+    CR2          : [[regrw]]  uint32  
+    SR           : [[regrw]]  uint32  
+    DR           : [[regrw]]  uint32  
+    CRCPR        : [[regrw]]  uint32  
+    RXCRCR       : [[regrw]]  uint32  
+    TXCRCR       : [[regrw]]  uint32  
+endstruct
+
+struct TIM_TypeDef:
+    CR1          : [[regrw]]  uint32  
+    CR2          : [[regrw]]  uint32  
+    SMCR         : [[regrw]]  uint32  
+    DIER         : [[regrw]]  uint32  
+    SR           : [[regrw]]  uint32  
+    EGR          : [[regrw]]  uint32  
+    CCMR1        : [[regrw]]  uint32  
+    CCMR2        : [[regrw]]  uint32  
+    CCER         : [[regrw]]  uint32  
+    CNT          : [[regrw]]  uint32  
+    PSC          : [[regrw]]  uint32  
+    ARR          : [[regrw]]  uint32  
+    RESERVED12   :            uint32  
+    CCR1         : [[regrw]]  uint32  
+    CCR2         : [[regrw]]  uint32  
+    CCR3         : [[regrw]]  uint32  
+    CCR4         : [[regrw]]  uint32  
+    RESERVED17   :            uint32  
+    DCR          : [[regrw]]  uint32  
+    DMAR         : [[regrw]]  uint32  
+    OR           : [[regrw]]  uint32  
+endstruct
+
+struct USART_TypeDef:
+    CR1          : [[regrw]]  uint32  
+    CR2          : [[regrw]]  uint32  
+    CR3          : [[regrw]]  uint32  
+    BRR          : [[regrw]]  uint32  
+    GTPR         : [[regrw]]  uint32  
+    RTOR         : [[regrw]]  uint32  
+    RQR          : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32  
+    ICR          : [[regrw]]  uint32  
+    RDR          : [[regrw]]  uint32  
+    TDR          : [[regrw]]  uint32  
+endstruct
+
+struct WWDG_TypeDef:
+    CR           : [[regrw]]  uint32  
+    CFR          : [[regrw]]  uint32  
+    SR           : [[regrw]]  uint32  
+endstruct
+
+const(uint32):
+    FLASH_BASE           = 0x08000000
+    FLASH_END            = 0x08003FFF
+    DATA_EEPROM_BASE     = 0x08080000
+    DATA_EEPROM_END      = 0x080801FF
+    SRAM_BASE            = 0x20000000
+    PERIPH_BASE          = 0x40000000
+    APBPERIPH_BASE       = PERIPH_BASE
+    AHBPERIPH_BASE       = (PERIPH_BASE + 0x00020000)
+    IOPPERIPH_BASE       = (PERIPH_BASE + 0x10000000)
+    TIM2_BASE            = (APBPERIPH_BASE + 0x00000000)
+    RTC_BASE             = (APBPERIPH_BASE + 0x00002800)
+    WWDG_BASE            = (APBPERIPH_BASE + 0x00002C00)
+    IWDG_BASE            = (APBPERIPH_BASE + 0x00003000)
+    USART2_BASE          = (APBPERIPH_BASE + 0x00004400)
+    LPUART1_BASE         = (APBPERIPH_BASE + 0x00004800)
+    I2C1_BASE            = (APBPERIPH_BASE + 0x00005400)
+    PWR_BASE             = (APBPERIPH_BASE + 0x00007000)
+    LPTIM1_BASE          = (APBPERIPH_BASE + 0x00007C00)
+    SYSCFG_BASE          = (APBPERIPH_BASE + 0x00010000)
+    COMP1_BASE           = (APBPERIPH_BASE + 0x00010018)
+    COMP2_BASE           = (APBPERIPH_BASE + 0x0001001C)
+endconst
+
+const COMP12_COMMON :? = ^COMP_Common_TypeDef(COMP1_BASE)
+const(uint32):
+    EXTI_BASE            = (APBPERIPH_BASE + 0x00010400)
+    TIM21_BASE           = (APBPERIPH_BASE + 0x00010800)
+    ADC1_BASE            = (APBPERIPH_BASE + 0x00012400)
+    ADC_BASE             = (APBPERIPH_BASE + 0x00012708)
+    SPI1_BASE            = (APBPERIPH_BASE + 0x00013000)
+    DBGMCU_BASE          = (APBPERIPH_BASE + 0x00015800)
+    DMA1_BASE            = (AHBPERIPH_BASE + 0x00000000)
+    DMA1_Channel1_BASE   = (DMA1_BASE + 0x00000008)
+    DMA1_Channel2_BASE   = (DMA1_BASE + 0x0000001C)
+    DMA1_Channel3_BASE   = (DMA1_BASE + 0x00000030)
+    DMA1_Channel4_BASE   = (DMA1_BASE + 0x00000044)
+    DMA1_Channel5_BASE   = (DMA1_BASE + 0x00000058)
+    DMA1_CSELR_BASE      = (DMA1_BASE + 0x000000A8)
+    RCC_BASE             = (AHBPERIPH_BASE + 0x00001000)
+    FLASH_R_BASE         = (AHBPERIPH_BASE + 0x00002000)
+    OB_BASE              = 0x1FF80000
+    CRC_BASE             = (AHBPERIPH_BASE + 0x00003000)
+    GPIOA_BASE           = (IOPPERIPH_BASE + 0x00000000)
+    GPIOB_BASE           = (IOPPERIPH_BASE + 0x00000400)
+    GPIOC_BASE           = (IOPPERIPH_BASE + 0x00000800)
+endconst
+
+const TIM2         :? = ^TIM_TypeDef(TIM2_BASE)
+const RTC          :? = ^RTC_TypeDef(RTC_BASE)
+const WWDG         :? = ^WWDG_TypeDef(WWDG_BASE)
+const IWDG         :? = ^IWDG_TypeDef(IWDG_BASE)
+const USART2       :? = ^USART_TypeDef(USART2_BASE)
+const LPUART1      :? = ^USART_TypeDef(LPUART1_BASE)
+const I2C1         :? = ^I2C_TypeDef(I2C1_BASE)
+const PWR          :? = ^PWR_TypeDef(PWR_BASE)
+const LPTIM1       :? = ^LPTIM_TypeDef(LPTIM1_BASE)
+const SYSCFG       :? = ^SYSCFG_TypeDef(SYSCFG_BASE)
+const COMP1        :? = ^COMP_TypeDef(COMP1_BASE)
+const COMP2        :? = ^COMP_TypeDef(COMP2_BASE)
+const EXTI         :? = ^EXTI_TypeDef(EXTI_BASE)
+const TIM21        :? = ^TIM_TypeDef(TIM21_BASE)
+const ADC1         :? = ^ADC_TypeDef(ADC1_BASE)
+const ADC1_COMMON  :? = ^ADC_Common_TypeDef(ADC_BASE)
+const SPI1         :? = ^SPI_TypeDef(SPI1_BASE)
+const DBGMCU       :? = ^DBGMCU_TypeDef(DBGMCU_BASE)
+const DMA1         :? = ^DMA_TypeDef(DMA1_BASE)
+const DMA1_Channel1 :? = ^DMA_Channel_TypeDef(DMA1_Channel1_BASE)
+const DMA1_Channel2 :? = ^DMA_Channel_TypeDef(DMA1_Channel2_BASE)
+const DMA1_Channel3 :? = ^DMA_Channel_TypeDef(DMA1_Channel3_BASE)
+const DMA1_Channel4 :? = ^DMA_Channel_TypeDef(DMA1_Channel4_BASE)
+const DMA1_Channel5 :? = ^DMA_Channel_TypeDef(DMA1_Channel5_BASE)
+const DMA1_CSELR   :? = ^DMA_Request_TypeDef(DMA1_CSELR_BASE)
+const FLASH        :? = ^FLASH_TypeDef(FLASH_R_BASE)
+const OB           :? = ^OB_TypeDef(OB_BASE)
+const RCC          :? = ^RCC_TypeDef(RCC_BASE)
+const CRC          :? = ^CRC_TypeDef(CRC_BASE)
+const GPIOA        :? = ^GPIO_TypeDef(GPIOA_BASE)
+const GPIOB        :? = ^GPIO_TypeDef(GPIOB_BASE)
+const GPIOC        :? = ^GPIO_TypeDef(GPIOC_BASE)
+const(uint32):
+    ADC_ISR_EOCAL        = 0x00000800
+    ADC_ISR_AWD          = 0x00000080
+    ADC_ISR_OVR          = 0x00000010
+    ADC_ISR_EOSEQ        = 0x00000008
+    ADC_ISR_EOC          = 0x00000004
+    ADC_ISR_EOSMP        = 0x00000002
+    ADC_ISR_ADRDY        = 0x00000001
+    ADC_ISR_EOS          = ADC_ISR_EOSEQ
+    ADC_IER_EOCALIE      = 0x00000800
+    ADC_IER_AWDIE        = 0x00000080
+    ADC_IER_OVRIE        = 0x00000010
+    ADC_IER_EOSEQIE      = 0x00000008
+    ADC_IER_EOCIE        = 0x00000004
+    ADC_IER_EOSMPIE      = 0x00000002
+    ADC_IER_ADRDYIE      = 0x00000001
+    ADC_IER_EOSIE        = ADC_IER_EOSEQIE
+    ADC_CR_ADCAL         = 0x80000000
+    ADC_CR_ADVREGEN      = 0x10000000
+    ADC_CR_ADSTP         = 0x00000010
+    ADC_CR_ADSTART       = 0x00000004
+    ADC_CR_ADDIS         = 0x00000002
+    ADC_CR_ADEN          = 0x00000001
+    ADC_CFGR1_AWDCH      = 0x7C000000
+    ADC_CFGR1_AWDCH_0    = 0x04000000
+    ADC_CFGR1_AWDCH_1    = 0x08000000
+    ADC_CFGR1_AWDCH_2    = 0x10000000
+    ADC_CFGR1_AWDCH_3    = 0x20000000
+    ADC_CFGR1_AWDCH_4    = 0x40000000
+    ADC_CFGR1_AWDEN      = 0x00800000
+    ADC_CFGR1_AWDSGL     = 0x00400000
+    ADC_CFGR1_DISCEN     = 0x00010000
+    ADC_CFGR1_AUTOFF     = 0x00008000
+endconst
+
+const(uint32):
+    ADC_CFGR1_WAIT       = 0x00004000
+    ADC_CFGR1_CONT       = 0x00002000
+    ADC_CFGR1_OVRMOD     = 0x00001000
+    ADC_CFGR1_EXTEN      = 0x00000C00
+    ADC_CFGR1_EXTEN_0    = 0x00000400
+    ADC_CFGR1_EXTEN_1    = 0x00000800
+    ADC_CFGR1_EXTSEL     = 0x000001C0
+    ADC_CFGR1_EXTSEL_0   = 0x00000040
+    ADC_CFGR1_EXTSEL_1   = 0x00000080
+    ADC_CFGR1_EXTSEL_2   = 0x00000100
+    ADC_CFGR1_ALIGN      = 0x00000020
+    ADC_CFGR1_RES        = 0x00000018
+    ADC_CFGR1_RES_0      = 0x00000008
+    ADC_CFGR1_RES_1      = 0x00000010
+    ADC_CFGR1_SCANDIR    = 0x00000004
+    ADC_CFGR1_DMACFG     = 0x00000002
+    ADC_CFGR1_DMAEN      = 0x00000001
+    ADC_CFGR1_AUTDLY     = ADC_CFGR1_WAIT
+    ADC_CFGR2_TOVS       = 0x80000200
+    ADC_CFGR2_OVSS       = 0x000001E0
+    ADC_CFGR2_OVSS_0     = 0x00000020
+    ADC_CFGR2_OVSS_1     = 0x00000040
+    ADC_CFGR2_OVSS_2     = 0x00000080
+    ADC_CFGR2_OVSS_3     = 0x00000100
+    ADC_CFGR2_OVSR       = 0x0000001C
+    ADC_CFGR2_OVSR_0     = 0x00000004
+    ADC_CFGR2_OVSR_1     = 0x00000008
+    ADC_CFGR2_OVSR_2     = 0x00000010
+    ADC_CFGR2_OVSE       = 0x00000001
+    ADC_CFGR2_CKMODE     = 0xC0000000
+    ADC_CFGR2_CKMODE_0   = 0x40000000
+    ADC_CFGR2_CKMODE_1   = 0x80000000
+endconst
+
+const(uint32):
+    ADC_SMPR_SMP         = 0x00000007
+    ADC_SMPR_SMP_0       = 0x00000001
+    ADC_SMPR_SMP_1       = 0x00000002
+    ADC_SMPR_SMP_2       = 0x00000004
+    ADC_SMPR_SMPR        = ADC_SMPR_SMP
+    ADC_SMPR_SMPR_0      = ADC_SMPR_SMP_0
+    ADC_SMPR_SMPR_1      = ADC_SMPR_SMP_1
+    ADC_SMPR_SMPR_2      = ADC_SMPR_SMP_2
+    ADC_TR_HT            = 0x0FFF0000
+    ADC_TR_LT            = 0x00000FFF
+    ADC_CHSELR_CHSEL     = 0x0007FFFF
+    ADC_CHSELR_CHSEL18   = 0x00040000
+    ADC_CHSELR_CHSEL17   = 0x00020000
+    ADC_CHSELR_CHSEL15   = 0x00008000
+    ADC_CHSELR_CHSEL14   = 0x00004000
+    ADC_CHSELR_CHSEL13   = 0x00002000
+    ADC_CHSELR_CHSEL12   = 0x00001000
+    ADC_CHSELR_CHSEL11   = 0x00000800
+    ADC_CHSELR_CHSEL10   = 0x00000400
+    ADC_CHSELR_CHSEL9    = 0x00000200
+    ADC_CHSELR_CHSEL8    = 0x00000100
+    ADC_CHSELR_CHSEL7    = 0x00000080
+    ADC_CHSELR_CHSEL6    = 0x00000040
+    ADC_CHSELR_CHSEL5    = 0x00000020
+    ADC_CHSELR_CHSEL4    = 0x00000010
+    ADC_CHSELR_CHSEL3    = 0x00000008
+    ADC_CHSELR_CHSEL2    = 0x00000004
+    ADC_CHSELR_CHSEL1    = 0x00000002
+    ADC_CHSELR_CHSEL0    = 0x00000001
+    ADC_DR_DATA          = 0x0000FFFF
+    ADC_CALFACT_CALFACT  = 0x0000007F
+    ADC_CCR_LFMEN        = 0x02000000
+endconst
+
+const(uint32):
+    ADC_CCR_TSEN         = 0x00800000
+    ADC_CCR_VREFEN       = 0x00400000
+    ADC_CCR_PRESC        = 0x003C0000
+    ADC_CCR_PRESC_0      = 0x00040000
+    ADC_CCR_PRESC_1      = 0x00080000
+    ADC_CCR_PRESC_2      = 0x00100000
+    ADC_CCR_PRESC_3      = 0x00200000
+    COMP_CSR_COMP1EN     = 0x00000001
+    COMP_CSR_COMP1INNSEL = 0x00000030
+    COMP_CSR_COMP1INNSEL_0 = 0x00000010
+    COMP_CSR_COMP1INNSEL_1 = 0x00000020
+    COMP_CSR_COMP1WM     = 0x00000100
+    COMP_CSR_COMP1LPTIM1IN1 = 0x00001000
+    COMP_CSR_COMP1POLARITY = 0x00008000
+    COMP_CSR_COMP1VALUE  = 0x40000000
+    COMP_CSR_COMP1LOCK   = 0x80000000
+    COMP_CSR_COMP2EN     = 0x00000001
+    COMP_CSR_COMP2SPEED  = 0x00000008
+    COMP_CSR_COMP2INNSEL = 0x00000070
+    COMP_CSR_COMP2INNSEL_0 = 0x00000010
+    COMP_CSR_COMP2INNSEL_1 = 0x00000020
+    COMP_CSR_COMP2INNSEL_2 = 0x00000040
+    COMP_CSR_COMP2INPSEL = 0x00000700
+    COMP_CSR_COMP2INPSEL_0 = 0x00000100
+    COMP_CSR_COMP2INPSEL_1 = 0x00000200
+    COMP_CSR_COMP2INPSEL_2 = 0x00000400
+    COMP_CSR_COMP2LPTIM1IN2 = 0x00001000
+    COMP_CSR_COMP2LPTIM1IN1 = 0x00002000
+    COMP_CSR_COMP2POLARITY = 0x00008000
+    COMP_CSR_COMP2VALUE  = 0x40000000
+    COMP_CSR_COMP2LOCK   = 0x80000000
+    COMP_CSR_COMPxEN     = 0x00000001
+endconst
+
+const(uint32):
+    COMP_CSR_COMPxPOLARITY = 0x00008000
+    COMP_CSR_COMPxOUTVALUE = 0x40000000
+    COMP_CSR_COMPxLOCK   = 0x80000000
+    COMP_CSR_WINMODE     = COMP_CSR_COMP1WM
+    CRC_DR_DR            = 0xFFFFFFFF
+    CRC_IDR_IDR          = 0xFF
+    CRC_CR_RESET         = 0x00000001
+    CRC_CR_POLYSIZE      = 0x00000018
+    CRC_CR_POLYSIZE_0    = 0x00000008
+    CRC_CR_POLYSIZE_1    = 0x00000010
+    CRC_CR_REV_IN        = 0x00000060
+    CRC_CR_REV_IN_0      = 0x00000020
+    CRC_CR_REV_IN_1      = 0x00000040
+    CRC_CR_REV_OUT       = 0x00000080
+    CRC_INIT_INIT        = 0xFFFFFFFF
+    CRC_POL_POL          = 0xFFFFFFFF
+    DBGMCU_IDCODE_DEV_ID = 0x00000FFF
+    DBGMCU_IDCODE_REV_ID = 0xFFFF0000
+    DBGMCU_IDCODE_REV_ID_0 = 0x00010000
+    DBGMCU_IDCODE_REV_ID_1 = 0x00020000
+    DBGMCU_IDCODE_REV_ID_2 = 0x00040000
+    DBGMCU_IDCODE_REV_ID_3 = 0x00080000
+    DBGMCU_IDCODE_REV_ID_4 = 0x00100000
+    DBGMCU_IDCODE_REV_ID_5 = 0x00200000
+    DBGMCU_IDCODE_REV_ID_6 = 0x00400000
+    DBGMCU_IDCODE_REV_ID_7 = 0x00800000
+    DBGMCU_IDCODE_REV_ID_8 = 0x01000000
+    DBGMCU_IDCODE_REV_ID_9 = 0x02000000
+    DBGMCU_IDCODE_REV_ID_10 = 0x04000000
+    DBGMCU_IDCODE_REV_ID_11 = 0x08000000
+    DBGMCU_IDCODE_REV_ID_12 = 0x10000000
+    DBGMCU_IDCODE_REV_ID_13 = 0x20000000
+endconst
+
+const(uint32):
+    DBGMCU_IDCODE_REV_ID_14 = 0x40000000
+    DBGMCU_IDCODE_REV_ID_15 = 0x80000000
+    DBGMCU_CR_DBG        = 0x00000007
+    DBGMCU_CR_DBG_SLEEP  = 0x00000001
+    DBGMCU_CR_DBG_STOP   = 0x00000002
+    DBGMCU_CR_DBG_STANDBY = 0x00000004
+    DBGMCU_APB1_FZ_DBG_TIM2_STOP = 0x00000001
+    DBGMCU_APB1_FZ_DBG_RTC_STOP = 0x00000400
+    DBGMCU_APB1_FZ_DBG_WWDG_STOP = 0x00000800
+    DBGMCU_APB1_FZ_DBG_IWDG_STOP = 0x00001000
+    DBGMCU_APB1_FZ_DBG_I2C1_STOP = 0x00200000
+    DBGMCU_APB1_FZ_DBG_LPTIMER_STOP = 0x80000000
+    DBGMCU_APB2_FZ_DBG_TIM21_STOP = 0x00000004
+    DMA_ISR_GIF1         = 0x00000001
+    DMA_ISR_TCIF1        = 0x00000002
+    DMA_ISR_HTIF1        = 0x00000004
+    DMA_ISR_TEIF1        = 0x00000008
+    DMA_ISR_GIF2         = 0x00000010
+    DMA_ISR_TCIF2        = 0x00000020
+    DMA_ISR_HTIF2        = 0x00000040
+    DMA_ISR_TEIF2        = 0x00000080
+    DMA_ISR_GIF3         = 0x00000100
+    DMA_ISR_TCIF3        = 0x00000200
+    DMA_ISR_HTIF3        = 0x00000400
+    DMA_ISR_TEIF3        = 0x00000800
+    DMA_ISR_GIF4         = 0x00001000
+    DMA_ISR_TCIF4        = 0x00002000
+    DMA_ISR_HTIF4        = 0x00004000
+    DMA_ISR_TEIF4        = 0x00008000
+    DMA_ISR_GIF5         = 0x00010000
+    DMA_ISR_TCIF5        = 0x00020000
+    DMA_ISR_HTIF5        = 0x00040000
+endconst
+
+const(uint32):
+    DMA_ISR_TEIF5        = 0x00080000
+    DMA_ISR_GIF6         = 0x00100000
+    DMA_ISR_TCIF6        = 0x00200000
+    DMA_ISR_HTIF6        = 0x00400000
+    DMA_ISR_TEIF6        = 0x00800000
+    DMA_ISR_GIF7         = 0x01000000
+    DMA_ISR_TCIF7        = 0x02000000
+    DMA_ISR_HTIF7        = 0x04000000
+    DMA_ISR_TEIF7        = 0x08000000
+    DMA_IFCR_CGIF1       = 0x00000001
+    DMA_IFCR_CTCIF1      = 0x00000002
+    DMA_IFCR_CHTIF1      = 0x00000004
+    DMA_IFCR_CTEIF1      = 0x00000008
+    DMA_IFCR_CGIF2       = 0x00000010
+    DMA_IFCR_CTCIF2      = 0x00000020
+    DMA_IFCR_CHTIF2      = 0x00000040
+    DMA_IFCR_CTEIF2      = 0x00000080
+    DMA_IFCR_CGIF3       = 0x00000100
+    DMA_IFCR_CTCIF3      = 0x00000200
+    DMA_IFCR_CHTIF3      = 0x00000400
+    DMA_IFCR_CTEIF3      = 0x00000800
+    DMA_IFCR_CGIF4       = 0x00001000
+    DMA_IFCR_CTCIF4      = 0x00002000
+    DMA_IFCR_CHTIF4      = 0x00004000
+    DMA_IFCR_CTEIF4      = 0x00008000
+    DMA_IFCR_CGIF5       = 0x00010000
+    DMA_IFCR_CTCIF5      = 0x00020000
+    DMA_IFCR_CHTIF5      = 0x00040000
+    DMA_IFCR_CTEIF5      = 0x00080000
+    DMA_IFCR_CGIF6       = 0x00100000
+    DMA_IFCR_CTCIF6      = 0x00200000
+    DMA_IFCR_CHTIF6      = 0x00400000
+endconst
+
+const(uint32):
+    DMA_IFCR_CTEIF6      = 0x00800000
+    DMA_IFCR_CGIF7       = 0x01000000
+    DMA_IFCR_CTCIF7      = 0x02000000
+    DMA_IFCR_CHTIF7      = 0x04000000
+    DMA_IFCR_CTEIF7      = 0x08000000
+    DMA_CCR_EN           = 0x00000001
+    DMA_CCR_TCIE         = 0x00000002
+    DMA_CCR_HTIE         = 0x00000004
+    DMA_CCR_TEIE         = 0x00000008
+    DMA_CCR_DIR          = 0x00000010
+    DMA_CCR_CIRC         = 0x00000020
+    DMA_CCR_PINC         = 0x00000040
+    DMA_CCR_MINC         = 0x00000080
+    DMA_CCR_PSIZE        = 0x00000300
+    DMA_CCR_PSIZE_0      = 0x00000100
+    DMA_CCR_PSIZE_1      = 0x00000200
+    DMA_CCR_MSIZE        = 0x00000C00
+    DMA_CCR_MSIZE_0      = 0x00000400
+    DMA_CCR_MSIZE_1      = 0x00000800
+    DMA_CCR_PL           = 0x00003000
+    DMA_CCR_PL_0         = 0x00001000
+    DMA_CCR_PL_1         = 0x00002000
+    DMA_CCR_MEM2MEM      = 0x00004000
+    DMA_CNDTR_NDT        = 0x0000FFFF
+    DMA_CPAR_PA          = 0xFFFFFFFF
+    DMA_CMAR_MA          = 0xFFFFFFFF
+    DMA_CSELR_C1S        = 0x0000000F
+    DMA_CSELR_C2S        = 0x000000F0
+    DMA_CSELR_C3S        = 0x00000F00
+    DMA_CSELR_C4S        = 0x0000F000
+    DMA_CSELR_C5S        = 0x000F0000
+    DMA_CSELR_C6S        = 0x00F00000
+endconst
+
+const(uint32):
+    DMA_CSELR_C7S        = 0x0F000000
+    EXTI_IMR_IM0         = 0x00000001
+    EXTI_IMR_IM1         = 0x00000002
+    EXTI_IMR_IM2         = 0x00000004
+    EXTI_IMR_IM3         = 0x00000008
+    EXTI_IMR_IM4         = 0x00000010
+    EXTI_IMR_IM5         = 0x00000020
+    EXTI_IMR_IM6         = 0x00000040
+    EXTI_IMR_IM7         = 0x00000080
+    EXTI_IMR_IM8         = 0x00000100
+    EXTI_IMR_IM9         = 0x00000200
+    EXTI_IMR_IM10        = 0x00000400
+    EXTI_IMR_IM11        = 0x00000800
+    EXTI_IMR_IM12        = 0x00001000
+    EXTI_IMR_IM13        = 0x00002000
+    EXTI_IMR_IM14        = 0x00004000
+    EXTI_IMR_IM15        = 0x00008000
+    EXTI_IMR_IM16        = 0x00010000
+    EXTI_IMR_IM17        = 0x00020000
+    EXTI_IMR_IM18        = 0x00040000
+    EXTI_IMR_IM19        = 0x00080000
+    EXTI_IMR_IM20        = 0x00100000
+    EXTI_IMR_IM21        = 0x00200000
+    EXTI_IMR_IM22        = 0x00400000
+    EXTI_IMR_IM23        = 0x00800000
+    EXTI_IMR_IM25        = 0x02000000
+    EXTI_IMR_IM26        = 0x04000000
+    EXTI_IMR_IM28        = 0x10000000
+    EXTI_IMR_IM29        = 0x20000000
+    EXTI_EMR_EM0         = 0x00000001
+    EXTI_EMR_EM1         = 0x00000002
+    EXTI_EMR_EM2         = 0x00000004
+endconst
+
+const(uint32):
+    EXTI_EMR_EM3         = 0x00000008
+    EXTI_EMR_EM4         = 0x00000010
+    EXTI_EMR_EM5         = 0x00000020
+    EXTI_EMR_EM6         = 0x00000040
+    EXTI_EMR_EM7         = 0x00000080
+    EXTI_EMR_EM8         = 0x00000100
+    EXTI_EMR_EM9         = 0x00000200
+    EXTI_EMR_EM10        = 0x00000400
+    EXTI_EMR_EM11        = 0x00000800
+    EXTI_EMR_EM12        = 0x00001000
+    EXTI_EMR_EM13        = 0x00002000
+    EXTI_EMR_EM14        = 0x00004000
+    EXTI_EMR_EM15        = 0x00008000
+    EXTI_EMR_EM16        = 0x00010000
+    EXTI_EMR_EM17        = 0x00020000
+    EXTI_EMR_EM18        = 0x00040000
+    EXTI_EMR_EM19        = 0x00080000
+    EXTI_EMR_EM20        = 0x00100000
+    EXTI_EMR_EM21        = 0x00200000
+    EXTI_EMR_EM22        = 0x00400000
+    EXTI_EMR_EM23        = 0x00800000
+    EXTI_EMR_EM25        = 0x02000000
+    EXTI_EMR_EM26        = 0x04000000
+    EXTI_EMR_EM28        = 0x10000000
+    EXTI_EMR_EM29        = 0x20000000
+    EXTI_RTSR_RT0        = 0x00000001
+    EXTI_RTSR_RT1        = 0x00000002
+    EXTI_RTSR_RT2        = 0x00000004
+    EXTI_RTSR_RT3        = 0x00000008
+    EXTI_RTSR_RT4        = 0x00000010
+    EXTI_RTSR_RT5        = 0x00000020
+    EXTI_RTSR_RT6        = 0x00000040
+endconst
+
+const(uint32):
+    EXTI_RTSR_RT7        = 0x00000080
+    EXTI_RTSR_RT8        = 0x00000100
+    EXTI_RTSR_RT9        = 0x00000200
+    EXTI_RTSR_RT10       = 0x00000400
+    EXTI_RTSR_RT11       = 0x00000800
+    EXTI_RTSR_RT12       = 0x00001000
+    EXTI_RTSR_RT13       = 0x00002000
+    EXTI_RTSR_RT14       = 0x00004000
+    EXTI_RTSR_RT15       = 0x00008000
+    EXTI_RTSR_RT16       = 0x00010000
+    EXTI_RTSR_RT17       = 0x00020000
+    EXTI_RTSR_RT19       = 0x00080000
+    EXTI_RTSR_RT20       = 0x00100000
+    EXTI_RTSR_RT21       = 0x00200000
+    EXTI_RTSR_RT22       = 0x00400000
+    EXTI_RTSR_TR0        = EXTI_RTSR_RT0
+    EXTI_RTSR_TR1        = EXTI_RTSR_RT1
+    EXTI_RTSR_TR2        = EXTI_RTSR_RT2
+    EXTI_RTSR_TR3        = EXTI_RTSR_RT3
+    EXTI_RTSR_TR4        = EXTI_RTSR_RT4
+    EXTI_RTSR_TR5        = EXTI_RTSR_RT5
+    EXTI_RTSR_TR6        = EXTI_RTSR_RT6
+    EXTI_RTSR_TR7        = EXTI_RTSR_RT7
+    EXTI_RTSR_TR8        = EXTI_RTSR_RT8
+    EXTI_RTSR_TR9        = EXTI_RTSR_RT9
+    EXTI_RTSR_TR10       = EXTI_RTSR_RT10
+    EXTI_RTSR_TR11       = EXTI_RTSR_RT11
+    EXTI_RTSR_TR12       = EXTI_RTSR_RT12
+    EXTI_RTSR_TR13       = EXTI_RTSR_RT13
+    EXTI_RTSR_TR14       = EXTI_RTSR_RT14
+    EXTI_RTSR_TR15       = EXTI_RTSR_RT15
+    EXTI_RTSR_TR16       = EXTI_RTSR_RT16
+endconst
+
+const(uint32):
+    EXTI_RTSR_TR17       = EXTI_RTSR_RT17
+    EXTI_RTSR_TR19       = EXTI_RTSR_RT19
+    EXTI_RTSR_TR20       = EXTI_RTSR_RT20
+    EXTI_RTSR_TR21       = EXTI_RTSR_RT21
+    EXTI_RTSR_TR22       = EXTI_RTSR_RT22
+    EXTI_FTSR_FT0        = 0x00000001
+    EXTI_FTSR_FT1        = 0x00000002
+    EXTI_FTSR_FT2        = 0x00000004
+    EXTI_FTSR_FT3        = 0x00000008
+    EXTI_FTSR_FT4        = 0x00000010
+    EXTI_FTSR_FT5        = 0x00000020
+    EXTI_FTSR_FT6        = 0x00000040
+    EXTI_FTSR_FT7        = 0x00000080
+    EXTI_FTSR_FT8        = 0x00000100
+    EXTI_FTSR_FT9        = 0x00000200
+    EXTI_FTSR_FT10       = 0x00000400
+    EXTI_FTSR_FT11       = 0x00000800
+    EXTI_FTSR_FT12       = 0x00001000
+    EXTI_FTSR_FT13       = 0x00002000
+    EXTI_FTSR_FT14       = 0x00004000
+    EXTI_FTSR_FT15       = 0x00008000
+    EXTI_FTSR_FT16       = 0x00010000
+    EXTI_FTSR_FT17       = 0x00020000
+    EXTI_FTSR_FT19       = 0x00080000
+    EXTI_FTSR_FT20       = 0x00100000
+    EXTI_FTSR_FT21       = 0x00200000
+    EXTI_FTSR_FT22       = 0x00400000
+    EXTI_FTSR_TR0        = EXTI_FTSR_FT0
+    EXTI_FTSR_TR1        = EXTI_FTSR_FT1
+    EXTI_FTSR_TR2        = EXTI_FTSR_FT2
+    EXTI_FTSR_TR3        = EXTI_FTSR_FT3
+    EXTI_FTSR_TR4        = EXTI_FTSR_FT4
+endconst
+
+const(uint32):
+    EXTI_FTSR_TR5        = EXTI_FTSR_FT5
+    EXTI_FTSR_TR6        = EXTI_FTSR_FT6
+    EXTI_FTSR_TR7        = EXTI_FTSR_FT7
+    EXTI_FTSR_TR8        = EXTI_FTSR_FT8
+    EXTI_FTSR_TR9        = EXTI_FTSR_FT9
+    EXTI_FTSR_TR10       = EXTI_FTSR_FT10
+    EXTI_FTSR_TR11       = EXTI_FTSR_FT11
+    EXTI_FTSR_TR12       = EXTI_FTSR_FT12
+    EXTI_FTSR_TR13       = EXTI_FTSR_FT13
+    EXTI_FTSR_TR14       = EXTI_FTSR_FT14
+    EXTI_FTSR_TR15       = EXTI_FTSR_FT15
+    EXTI_FTSR_TR16       = EXTI_FTSR_FT16
+    EXTI_FTSR_TR17       = EXTI_FTSR_FT17
+    EXTI_FTSR_TR19       = EXTI_FTSR_FT19
+    EXTI_FTSR_TR20       = EXTI_FTSR_FT20
+    EXTI_FTSR_TR21       = EXTI_FTSR_FT21
+    EXTI_FTSR_TR22       = EXTI_FTSR_FT22
+    EXTI_SWIER_SWI0      = 0x00000001
+    EXTI_SWIER_SWI1      = 0x00000002
+    EXTI_SWIER_SWI2      = 0x00000004
+    EXTI_SWIER_SWI3      = 0x00000008
+    EXTI_SWIER_SWI4      = 0x00000010
+    EXTI_SWIER_SWI5      = 0x00000020
+    EXTI_SWIER_SWI6      = 0x00000040
+    EXTI_SWIER_SWI7      = 0x00000080
+    EXTI_SWIER_SWI8      = 0x00000100
+    EXTI_SWIER_SWI9      = 0x00000200
+    EXTI_SWIER_SWI10     = 0x00000400
+    EXTI_SWIER_SWI11     = 0x00000800
+    EXTI_SWIER_SWI12     = 0x00001000
+    EXTI_SWIER_SWI13     = 0x00002000
+    EXTI_SWIER_SWI14     = 0x00004000
+endconst
+
+const(uint32):
+    EXTI_SWIER_SWI15     = 0x00008000
+    EXTI_SWIER_SWI16     = 0x00010000
+    EXTI_SWIER_SWI17     = 0x00020000
+    EXTI_SWIER_SWI19     = 0x00080000
+    EXTI_SWIER_SWI20     = 0x00100000
+    EXTI_SWIER_SWI21     = 0x00200000
+    EXTI_SWIER_SWI22     = 0x00400000
+    EXTI_SWIER_SWIER0    = EXTI_SWIER_SWI0
+    EXTI_SWIER_SWIER1    = EXTI_SWIER_SWI1
+    EXTI_SWIER_SWIER2    = EXTI_SWIER_SWI2
+    EXTI_SWIER_SWIER3    = EXTI_SWIER_SWI3
+    EXTI_SWIER_SWIER4    = EXTI_SWIER_SWI4
+    EXTI_SWIER_SWIER5    = EXTI_SWIER_SWI5
+    EXTI_SWIER_SWIER6    = EXTI_SWIER_SWI6
+    EXTI_SWIER_SWIER7    = EXTI_SWIER_SWI7
+    EXTI_SWIER_SWIER8    = EXTI_SWIER_SWI8
+    EXTI_SWIER_SWIER9    = EXTI_SWIER_SWI9
+    EXTI_SWIER_SWIER10   = EXTI_SWIER_SWI10
+    EXTI_SWIER_SWIER11   = EXTI_SWIER_SWI11
+    EXTI_SWIER_SWIER12   = EXTI_SWIER_SWI12
+    EXTI_SWIER_SWIER13   = EXTI_SWIER_SWI13
+    EXTI_SWIER_SWIER14   = EXTI_SWIER_SWI14
+    EXTI_SWIER_SWIER15   = EXTI_SWIER_SWI15
+    EXTI_SWIER_SWIER16   = EXTI_SWIER_SWI16
+    EXTI_SWIER_SWIER17   = EXTI_SWIER_SWI17
+    EXTI_SWIER_SWIER19   = EXTI_SWIER_SWI19
+    EXTI_SWIER_SWIER20   = EXTI_SWIER_SWI20
+    EXTI_SWIER_SWIER21   = EXTI_SWIER_SWI21
+    EXTI_SWIER_SWIER22   = EXTI_SWIER_SWI22
+    EXTI_PR_PIF0         = 0x00000001
+    EXTI_PR_PIF1         = 0x00000002
+    EXTI_PR_PIF2         = 0x00000004
+endconst
+
+const(uint32):
+    EXTI_PR_PIF3         = 0x00000008
+    EXTI_PR_PIF4         = 0x00000010
+    EXTI_PR_PIF5         = 0x00000020
+    EXTI_PR_PIF6         = 0x00000040
+    EXTI_PR_PIF7         = 0x00000080
+    EXTI_PR_PIF8         = 0x00000100
+    EXTI_PR_PIF9         = 0x00000200
+    EXTI_PR_PIF10        = 0x00000400
+    EXTI_PR_PIF11        = 0x00000800
+    EXTI_PR_PIF12        = 0x00001000
+    EXTI_PR_PIF13        = 0x00002000
+    EXTI_PR_PIF14        = 0x00004000
+    EXTI_PR_PIF15        = 0x00008000
+    EXTI_PR_PIF16        = 0x00010000
+    EXTI_PR_PIF17        = 0x00020000
+    EXTI_PR_PIF19        = 0x00080000
+    EXTI_PR_PIF20        = 0x00100000
+    EXTI_PR_PIF21        = 0x00200000
+    EXTI_PR_PIF22        = 0x00400000
+    EXTI_PR_PR0          = EXTI_PR_PIF0
+    EXTI_PR_PR1          = EXTI_PR_PIF1
+    EXTI_PR_PR2          = EXTI_PR_PIF2
+    EXTI_PR_PR3          = EXTI_PR_PIF3
+    EXTI_PR_PR4          = EXTI_PR_PIF4
+    EXTI_PR_PR5          = EXTI_PR_PIF5
+    EXTI_PR_PR6          = EXTI_PR_PIF6
+    EXTI_PR_PR7          = EXTI_PR_PIF7
+    EXTI_PR_PR8          = EXTI_PR_PIF8
+    EXTI_PR_PR9          = EXTI_PR_PIF9
+    EXTI_PR_PR10         = EXTI_PR_PIF10
+    EXTI_PR_PR11         = EXTI_PR_PIF11
+    EXTI_PR_PR12         = EXTI_PR_PIF12
+endconst
+
+const(uint32):
+    EXTI_PR_PR13         = EXTI_PR_PIF13
+    EXTI_PR_PR14         = EXTI_PR_PIF14
+    EXTI_PR_PR15         = EXTI_PR_PIF15
+    EXTI_PR_PR16         = EXTI_PR_PIF16
+    EXTI_PR_PR17         = EXTI_PR_PIF17
+    EXTI_PR_PR19         = EXTI_PR_PIF19
+    EXTI_PR_PR20         = EXTI_PR_PIF20
+    EXTI_PR_PR21         = EXTI_PR_PIF21
+    EXTI_PR_PR22         = EXTI_PR_PIF22
+    FLASH_ACR_LATENCY    = 0x00000001
+    FLASH_ACR_PRFTEN     = 0x00000002
+    FLASH_ACR_SLEEP_PD   = 0x00000008
+    FLASH_ACR_RUN_PD     = 0x00000010
+    FLASH_ACR_DISAB_BUF  = 0x00000020
+    FLASH_ACR_PRE_READ   = 0x00000040
+    FLASH_PECR_PELOCK    = 0x00000001
+    FLASH_PECR_PRGLOCK   = 0x00000002
+    FLASH_PECR_OPTLOCK   = 0x00000004
+    FLASH_PECR_PROG      = 0x00000008
+    FLASH_PECR_DATA      = 0x00000010
+    FLASH_PECR_FIX       = 0x00000100
+    FLASH_PECR_ERASE     = 0x00000200
+    FLASH_PECR_FPRG      = 0x00000400
+    FLASH_PECR_EOPIE     = 0x00010000
+    FLASH_PECR_ERRIE     = 0x00020000
+    FLASH_PECR_OBL_LAUNCH = 0x00040000
+    FLASH_PECR_HALF_ARRAY = 0x00080000
+    FLASH_PDKEYR_PDKEYR  = 0xFFFFFFFF
+    FLASH_PEKEYR_PEKEYR  = 0xFFFFFFFF
+    FLASH_PRGKEYR_PRGKEYR = 0xFFFFFFFF
+    FLASH_OPTKEYR_OPTKEYR = 0xFFFFFFFF
+    FLASH_SR_BSY         = 0x00000001
+endconst
+
+const(uint32):
+    FLASH_SR_EOP         = 0x00000002
+    FLASH_SR_HVOFF       = 0x00000004
+    FLASH_SR_READY       = 0x00000008
+    FLASH_SR_WRPERR      = 0x00000100
+    FLASH_SR_PGAERR      = 0x00000200
+    FLASH_SR_SIZERR      = 0x00000400
+    FLASH_SR_OPTVERR     = 0x00000800
+    FLASH_SR_RDERR       = 0x00002000
+    FLASH_SR_NOTZEROERR  = 0x00010000
+    FLASH_SR_FWWERR      = 0x00020000
+    FLASH_SR_FWWER       = FLASH_SR_FWWERR
+    FLASH_SR_ENHV        = FLASH_SR_HVOFF
+    FLASH_SR_ENDHV       = FLASH_SR_HVOFF
+    FLASH_OPTR_RDPROT    = 0x000000FF
+    FLASH_OPTR_WPRMOD    = 0x00000100
+    FLASH_OPTR_BOR_LEV   = 0x000F0000
+    FLASH_OPTR_IWDG_SW   = 0x00100000
+    FLASH_OPTR_nRST_STOP = 0x00200000
+    FLASH_OPTR_nRST_STDBY = 0x00400000
+    FLASH_OPTR_USER      = 0x00700000
+    FLASH_OPTR_BOOT1     = 0x80000000
+    FLASH_WRPR_WRP       = 0x0000FFFF
+    GPIO_MODER_MODE0     = 0x00000003
+    GPIO_MODER_MODE0_0   = 0x00000001
+    GPIO_MODER_MODE0_1   = 0x00000002
+    GPIO_MODER_MODE1     = 0x0000000C
+    GPIO_MODER_MODE1_0   = 0x00000004
+    GPIO_MODER_MODE1_1   = 0x00000008
+    GPIO_MODER_MODE2     = 0x00000030
+    GPIO_MODER_MODE2_0   = 0x00000010
+    GPIO_MODER_MODE2_1   = 0x00000020
+    GPIO_MODER_MODE3     = 0x000000C0
+endconst
+
+const(uint32):
+    GPIO_MODER_MODE3_0   = 0x00000040
+    GPIO_MODER_MODE3_1   = 0x00000080
+    GPIO_MODER_MODE4     = 0x00000300
+    GPIO_MODER_MODE4_0   = 0x00000100
+    GPIO_MODER_MODE4_1   = 0x00000200
+    GPIO_MODER_MODE5     = 0x00000C00
+    GPIO_MODER_MODE5_0   = 0x00000400
+    GPIO_MODER_MODE5_1   = 0x00000800
+    GPIO_MODER_MODE6     = 0x00003000
+    GPIO_MODER_MODE6_0   = 0x00001000
+    GPIO_MODER_MODE6_1   = 0x00002000
+    GPIO_MODER_MODE7     = 0x0000C000
+    GPIO_MODER_MODE7_0   = 0x00004000
+    GPIO_MODER_MODE7_1   = 0x00008000
+    GPIO_MODER_MODE8     = 0x00030000
+    GPIO_MODER_MODE8_0   = 0x00010000
+    GPIO_MODER_MODE8_1   = 0x00020000
+    GPIO_MODER_MODE9     = 0x000C0000
+    GPIO_MODER_MODE9_0   = 0x00040000
+    GPIO_MODER_MODE9_1   = 0x00080000
+    GPIO_MODER_MODE10    = 0x00300000
+    GPIO_MODER_MODE10_0  = 0x00100000
+    GPIO_MODER_MODE10_1  = 0x00200000
+    GPIO_MODER_MODE11    = 0x00C00000
+    GPIO_MODER_MODE11_0  = 0x00400000
+    GPIO_MODER_MODE11_1  = 0x00800000
+    GPIO_MODER_MODE12    = 0x03000000
+    GPIO_MODER_MODE12_0  = 0x01000000
+    GPIO_MODER_MODE12_1  = 0x02000000
+    GPIO_MODER_MODE13    = 0x0C000000
+    GPIO_MODER_MODE13_0  = 0x04000000
+    GPIO_MODER_MODE13_1  = 0x08000000
+endconst
+
+const(uint32):
+    GPIO_MODER_MODE14    = 0x30000000
+    GPIO_MODER_MODE14_0  = 0x10000000
+    GPIO_MODER_MODE14_1  = 0x20000000
+    GPIO_MODER_MODE15    = 0xC0000000
+    GPIO_MODER_MODE15_0  = 0x40000000
+    GPIO_MODER_MODE15_1  = 0x80000000
+    GPIO_OTYPER_OT_0     = 0x00000001
+    GPIO_OTYPER_OT_1     = 0x00000002
+    GPIO_OTYPER_OT_2     = 0x00000004
+    GPIO_OTYPER_OT_3     = 0x00000008
+    GPIO_OTYPER_OT_4     = 0x00000010
+    GPIO_OTYPER_OT_5     = 0x00000020
+    GPIO_OTYPER_OT_6     = 0x00000040
+    GPIO_OTYPER_OT_7     = 0x00000080
+    GPIO_OTYPER_OT_8     = 0x00000100
+    GPIO_OTYPER_OT_9     = 0x00000200
+    GPIO_OTYPER_OT_10    = 0x00000400
+    GPIO_OTYPER_OT_11    = 0x00000800
+    GPIO_OTYPER_OT_12    = 0x00001000
+    GPIO_OTYPER_OT_13    = 0x00002000
+    GPIO_OTYPER_OT_14    = 0x00004000
+    GPIO_OTYPER_OT_15    = 0x00008000
+    GPIO_OSPEEDER_OSPEED0 = 0x00000003
+    GPIO_OSPEEDER_OSPEED0_0 = 0x00000001
+    GPIO_OSPEEDER_OSPEED0_1 = 0x00000002
+    GPIO_OSPEEDER_OSPEED1 = 0x0000000C
+    GPIO_OSPEEDER_OSPEED1_0 = 0x00000004
+    GPIO_OSPEEDER_OSPEED1_1 = 0x00000008
+    GPIO_OSPEEDER_OSPEED2 = 0x00000030
+    GPIO_OSPEEDER_OSPEED2_0 = 0x00000010
+    GPIO_OSPEEDER_OSPEED2_1 = 0x00000020
+    GPIO_OSPEEDER_OSPEED3 = 0x000000C0
+endconst
+
+const(uint32):
+    GPIO_OSPEEDER_OSPEED3_0 = 0x00000040
+    GPIO_OSPEEDER_OSPEED3_1 = 0x00000080
+    GPIO_OSPEEDER_OSPEED4 = 0x00000300
+    GPIO_OSPEEDER_OSPEED4_0 = 0x00000100
+    GPIO_OSPEEDER_OSPEED4_1 = 0x00000200
+    GPIO_OSPEEDER_OSPEED5 = 0x00000C00
+    GPIO_OSPEEDER_OSPEED5_0 = 0x00000400
+    GPIO_OSPEEDER_OSPEED5_1 = 0x00000800
+    GPIO_OSPEEDER_OSPEED6 = 0x00003000
+    GPIO_OSPEEDER_OSPEED6_0 = 0x00001000
+    GPIO_OSPEEDER_OSPEED6_1 = 0x00002000
+    GPIO_OSPEEDER_OSPEED7 = 0x0000C000
+    GPIO_OSPEEDER_OSPEED7_0 = 0x00004000
+    GPIO_OSPEEDER_OSPEED7_1 = 0x00008000
+    GPIO_OSPEEDER_OSPEED8 = 0x00030000
+    GPIO_OSPEEDER_OSPEED8_0 = 0x00010000
+    GPIO_OSPEEDER_OSPEED8_1 = 0x00020000
+    GPIO_OSPEEDER_OSPEED9 = 0x000C0000
+    GPIO_OSPEEDER_OSPEED9_0 = 0x00040000
+    GPIO_OSPEEDER_OSPEED9_1 = 0x00080000
+    GPIO_OSPEEDER_OSPEED10 = 0x00300000
+    GPIO_OSPEEDER_OSPEED10_0 = 0x00100000
+    GPIO_OSPEEDER_OSPEED10_1 = 0x00200000
+    GPIO_OSPEEDER_OSPEED11 = 0x00C00000
+    GPIO_OSPEEDER_OSPEED11_0 = 0x00400000
+    GPIO_OSPEEDER_OSPEED11_1 = 0x00800000
+    GPIO_OSPEEDER_OSPEED12 = 0x03000000
+    GPIO_OSPEEDER_OSPEED12_0 = 0x01000000
+    GPIO_OSPEEDER_OSPEED12_1 = 0x02000000
+    GPIO_OSPEEDER_OSPEED13 = 0x0C000000
+    GPIO_OSPEEDER_OSPEED13_0 = 0x04000000
+    GPIO_OSPEEDER_OSPEED13_1 = 0x08000000
+endconst
+
+const(uint32):
+    GPIO_OSPEEDER_OSPEED14 = 0x30000000
+    GPIO_OSPEEDER_OSPEED14_0 = 0x10000000
+    GPIO_OSPEEDER_OSPEED14_1 = 0x20000000
+    GPIO_OSPEEDER_OSPEED15 = 0xC0000000
+    GPIO_OSPEEDER_OSPEED15_0 = 0x40000000
+    GPIO_OSPEEDER_OSPEED15_1 = 0x80000000
+    GPIO_PUPDR_PUPD0     = 0x00000003
+    GPIO_PUPDR_PUPD0_0   = 0x00000001
+    GPIO_PUPDR_PUPD0_1   = 0x00000002
+    GPIO_PUPDR_PUPD1     = 0x0000000C
+    GPIO_PUPDR_PUPD1_0   = 0x00000004
+    GPIO_PUPDR_PUPD1_1   = 0x00000008
+    GPIO_PUPDR_PUPD2     = 0x00000030
+    GPIO_PUPDR_PUPD2_0   = 0x00000010
+    GPIO_PUPDR_PUPD2_1   = 0x00000020
+    GPIO_PUPDR_PUPD3     = 0x000000C0
+    GPIO_PUPDR_PUPD3_0   = 0x00000040
+    GPIO_PUPDR_PUPD3_1   = 0x00000080
+    GPIO_PUPDR_PUPD4     = 0x00000300
+    GPIO_PUPDR_PUPD4_0   = 0x00000100
+    GPIO_PUPDR_PUPD4_1   = 0x00000200
+    GPIO_PUPDR_PUPD5     = 0x00000C00
+    GPIO_PUPDR_PUPD5_0   = 0x00000400
+    GPIO_PUPDR_PUPD5_1   = 0x00000800
+    GPIO_PUPDR_PUPD6     = 0x00003000
+    GPIO_PUPDR_PUPD6_0   = 0x00001000
+    GPIO_PUPDR_PUPD6_1   = 0x00002000
+    GPIO_PUPDR_PUPD7     = 0x0000C000
+    GPIO_PUPDR_PUPD7_0   = 0x00004000
+    GPIO_PUPDR_PUPD7_1   = 0x00008000
+    GPIO_PUPDR_PUPD8     = 0x00030000
+    GPIO_PUPDR_PUPD8_0   = 0x00010000
+endconst
+
+const(uint32):
+    GPIO_PUPDR_PUPD8_1   = 0x00020000
+    GPIO_PUPDR_PUPD9     = 0x000C0000
+    GPIO_PUPDR_PUPD9_0   = 0x00040000
+    GPIO_PUPDR_PUPD9_1   = 0x00080000
+    GPIO_PUPDR_PUPD10    = 0x00300000
+    GPIO_PUPDR_PUPD10_0  = 0x00100000
+    GPIO_PUPDR_PUPD10_1  = 0x00200000
+    GPIO_PUPDR_PUPD11    = 0x00C00000
+    GPIO_PUPDR_PUPD11_0  = 0x00400000
+    GPIO_PUPDR_PUPD11_1  = 0x00800000
+    GPIO_PUPDR_PUPD12    = 0x03000000
+    GPIO_PUPDR_PUPD12_0  = 0x01000000
+    GPIO_PUPDR_PUPD12_1  = 0x02000000
+    GPIO_PUPDR_PUPD13    = 0x0C000000
+    GPIO_PUPDR_PUPD13_0  = 0x04000000
+    GPIO_PUPDR_PUPD13_1  = 0x08000000
+    GPIO_PUPDR_PUPD14    = 0x30000000
+    GPIO_PUPDR_PUPD14_0  = 0x10000000
+    GPIO_PUPDR_PUPD14_1  = 0x20000000
+    GPIO_PUPDR_PUPD15    = 0xC0000000
+    GPIO_PUPDR_PUPD15_0  = 0x40000000
+    GPIO_PUPDR_PUPD15_1  = 0x80000000
+    GPIO_IDR_ID0         = 0x00000001
+    GPIO_IDR_ID1         = 0x00000002
+    GPIO_IDR_ID2         = 0x00000004
+    GPIO_IDR_ID3         = 0x00000008
+    GPIO_IDR_ID4         = 0x00000010
+    GPIO_IDR_ID5         = 0x00000020
+    GPIO_IDR_ID6         = 0x00000040
+    GPIO_IDR_ID7         = 0x00000080
+    GPIO_IDR_ID8         = 0x00000100
+    GPIO_IDR_ID9         = 0x00000200
+endconst
+
+const(uint32):
+    GPIO_IDR_ID10        = 0x00000400
+    GPIO_IDR_ID11        = 0x00000800
+    GPIO_IDR_ID12        = 0x00001000
+    GPIO_IDR_ID13        = 0x00002000
+    GPIO_IDR_ID14        = 0x00004000
+    GPIO_IDR_ID15        = 0x00008000
+    GPIO_ODR_OD0         = 0x00000001
+    GPIO_ODR_OD1         = 0x00000002
+    GPIO_ODR_OD2         = 0x00000004
+    GPIO_ODR_OD3         = 0x00000008
+    GPIO_ODR_OD4         = 0x00000010
+    GPIO_ODR_OD5         = 0x00000020
+    GPIO_ODR_OD6         = 0x00000040
+    GPIO_ODR_OD7         = 0x00000080
+    GPIO_ODR_OD8         = 0x00000100
+    GPIO_ODR_OD9         = 0x00000200
+    GPIO_ODR_OD10        = 0x00000400
+    GPIO_ODR_OD11        = 0x00000800
+    GPIO_ODR_OD12        = 0x00001000
+    GPIO_ODR_OD13        = 0x00002000
+    GPIO_ODR_OD14        = 0x00004000
+    GPIO_ODR_OD15        = 0x00008000
+    GPIO_BSRR_BS_0       = 0x00000001
+    GPIO_BSRR_BS_1       = 0x00000002
+    GPIO_BSRR_BS_2       = 0x00000004
+    GPIO_BSRR_BS_3       = 0x00000008
+    GPIO_BSRR_BS_4       = 0x00000010
+    GPIO_BSRR_BS_5       = 0x00000020
+    GPIO_BSRR_BS_6       = 0x00000040
+    GPIO_BSRR_BS_7       = 0x00000080
+    GPIO_BSRR_BS_8       = 0x00000100
+    GPIO_BSRR_BS_9       = 0x00000200
+endconst
+
+const(uint32):
+    GPIO_BSRR_BS_10      = 0x00000400
+    GPIO_BSRR_BS_11      = 0x00000800
+    GPIO_BSRR_BS_12      = 0x00001000
+    GPIO_BSRR_BS_13      = 0x00002000
+    GPIO_BSRR_BS_14      = 0x00004000
+    GPIO_BSRR_BS_15      = 0x00008000
+    GPIO_BSRR_BR_0       = 0x00010000
+    GPIO_BSRR_BR_1       = 0x00020000
+    GPIO_BSRR_BR_2       = 0x00040000
+    GPIO_BSRR_BR_3       = 0x00080000
+    GPIO_BSRR_BR_4       = 0x00100000
+    GPIO_BSRR_BR_5       = 0x00200000
+    GPIO_BSRR_BR_6       = 0x00400000
+    GPIO_BSRR_BR_7       = 0x00800000
+    GPIO_BSRR_BR_8       = 0x01000000
+    GPIO_BSRR_BR_9       = 0x02000000
+    GPIO_BSRR_BR_10      = 0x04000000
+    GPIO_BSRR_BR_11      = 0x08000000
+    GPIO_BSRR_BR_12      = 0x10000000
+    GPIO_BSRR_BR_13      = 0x20000000
+    GPIO_BSRR_BR_14      = 0x40000000
+    GPIO_BSRR_BR_15      = 0x80000000
+    GPIO_LCKR_LCK0       = 0x00000001
+    GPIO_LCKR_LCK1       = 0x00000002
+    GPIO_LCKR_LCK2       = 0x00000004
+    GPIO_LCKR_LCK3       = 0x00000008
+    GPIO_LCKR_LCK4       = 0x00000010
+    GPIO_LCKR_LCK5       = 0x00000020
+    GPIO_LCKR_LCK6       = 0x00000040
+    GPIO_LCKR_LCK7       = 0x00000080
+    GPIO_LCKR_LCK8       = 0x00000100
+    GPIO_LCKR_LCK9       = 0x00000200
+endconst
+
+const(uint32):
+    GPIO_LCKR_LCK10      = 0x00000400
+    GPIO_LCKR_LCK11      = 0x00000800
+    GPIO_LCKR_LCK12      = 0x00001000
+    GPIO_LCKR_LCK13      = 0x00002000
+    GPIO_LCKR_LCK14      = 0x00004000
+    GPIO_LCKR_LCK15      = 0x00008000
+    GPIO_LCKR_LCKK       = 0x00010000
+    GPIO_AFRL_AFRL0      = 0x0000000F
+    GPIO_AFRL_AFRL1      = 0x000000F0
+    GPIO_AFRL_AFRL2      = 0x00000F00
+    GPIO_AFRL_AFRL3      = 0x0000F000
+    GPIO_AFRL_AFRL4      = 0x000F0000
+    GPIO_AFRL_AFRL5      = 0x00F00000
+    GPIO_AFRL_AFRL6      = 0x0F000000
+    GPIO_AFRL_AFRL7      = 0xF0000000
+    GPIO_AFRH_AFRH0      = 0x0000000F
+    GPIO_AFRH_AFRH1      = 0x000000F0
+    GPIO_AFRH_AFRH2      = 0x00000F00
+    GPIO_AFRH_AFRH3      = 0x0000F000
+    GPIO_AFRH_AFRH4      = 0x000F0000
+    GPIO_AFRH_AFRH5      = 0x00F00000
+    GPIO_AFRH_AFRH6      = 0x0F000000
+    GPIO_AFRH_AFRH7      = 0xF0000000
+    GPIO_BRR_BR_0        = 0x00000001
+    GPIO_BRR_BR_1        = 0x00000002
+    GPIO_BRR_BR_2        = 0x00000004
+    GPIO_BRR_BR_3        = 0x00000008
+    GPIO_BRR_BR_4        = 0x00000010
+    GPIO_BRR_BR_5        = 0x00000020
+    GPIO_BRR_BR_6        = 0x00000040
+    GPIO_BRR_BR_7        = 0x00000080
+    GPIO_BRR_BR_8        = 0x00000100
+endconst
+
+const(uint32):
+    GPIO_BRR_BR_9        = 0x00000200
+    GPIO_BRR_BR_10       = 0x00000400
+    GPIO_BRR_BR_11       = 0x00000800
+    GPIO_BRR_BR_12       = 0x00001000
+    GPIO_BRR_BR_13       = 0x00002000
+    GPIO_BRR_BR_14       = 0x00004000
+    GPIO_BRR_BR_15       = 0x00008000
+    I2C_CR1_PE           = 0x00000001
+    I2C_CR1_TXIE         = 0x00000002
+    I2C_CR1_RXIE         = 0x00000004
+    I2C_CR1_ADDRIE       = 0x00000008
+    I2C_CR1_NACKIE       = 0x00000010
+    I2C_CR1_STOPIE       = 0x00000020
+    I2C_CR1_TCIE         = 0x00000040
+    I2C_CR1_ERRIE        = 0x00000080
+    I2C_CR1_DNF          = 0x00000F00
+    I2C_CR1_ANFOFF       = 0x00001000
+    I2C_CR1_TXDMAEN      = 0x00004000
+    I2C_CR1_RXDMAEN      = 0x00008000
+    I2C_CR1_SBC          = 0x00010000
+    I2C_CR1_NOSTRETCH    = 0x00020000
+    I2C_CR1_WUPEN        = 0x00040000
+    I2C_CR1_GCEN         = 0x00080000
+    I2C_CR1_SMBHEN       = 0x00100000
+    I2C_CR1_SMBDEN       = 0x00200000
+    I2C_CR1_ALERTEN      = 0x00400000
+    I2C_CR1_PECEN        = 0x00800000
+    I2C_CR2_SADD         = 0x000003FF
+    I2C_CR2_RD_WRN       = 0x00000400
+    I2C_CR2_ADD10        = 0x00000800
+    I2C_CR2_HEAD10R      = 0x00001000
+    I2C_CR2_START        = 0x00002000
+endconst
+
+const(uint32):
+    I2C_CR2_STOP         = 0x00004000
+    I2C_CR2_NACK         = 0x00008000
+    I2C_CR2_NBYTES       = 0x00FF0000
+    I2C_CR2_RELOAD       = 0x01000000
+    I2C_CR2_AUTOEND      = 0x02000000
+    I2C_CR2_PECBYTE      = 0x04000000
+    I2C_OAR1_OA1         = 0x000003FF
+    I2C_OAR1_OA1MODE     = 0x00000400
+    I2C_OAR1_OA1EN       = 0x00008000
+    I2C_OAR2_OA2         = 0x000000FE
+    I2C_OAR2_OA2MSK      = 0x00000700
+    I2C_OAR2_OA2NOMASK   = 0x00000000
+    I2C_OAR2_OA2MASK01   = 0x00000100
+    I2C_OAR2_OA2MASK02   = 0x00000200
+    I2C_OAR2_OA2MASK03   = 0x00000300
+    I2C_OAR2_OA2MASK04   = 0x00000400
+    I2C_OAR2_OA2MASK05   = 0x00000500
+    I2C_OAR2_OA2MASK06   = 0x00000600
+    I2C_OAR2_OA2MASK07   = 0x00000700
+    I2C_OAR2_OA2EN       = 0x00008000
+    I2C_TIMINGR_SCLL     = 0x000000FF
+    I2C_TIMINGR_SCLH     = 0x0000FF00
+    I2C_TIMINGR_SDADEL   = 0x000F0000
+    I2C_TIMINGR_SCLDEL   = 0x00F00000
+    I2C_TIMINGR_PRESC    = 0xF0000000
+    I2C_TIMEOUTR_TIMEOUTA = 0x00000FFF
+    I2C_TIMEOUTR_TIDLE   = 0x00001000
+    I2C_TIMEOUTR_TIMOUTEN = 0x00008000
+    I2C_TIMEOUTR_TIMEOUTB = 0x0FFF0000
+    I2C_TIMEOUTR_TEXTEN  = 0x80000000
+    I2C_ISR_TXE          = 0x00000001
+    I2C_ISR_TXIS         = 0x00000002
+endconst
+
+const(uint32):
+    I2C_ISR_RXNE         = 0x00000004
+    I2C_ISR_ADDR         = 0x00000008
+    I2C_ISR_NACKF        = 0x00000010
+    I2C_ISR_STOPF        = 0x00000020
+    I2C_ISR_TC           = 0x00000040
+    I2C_ISR_TCR          = 0x00000080
+    I2C_ISR_BERR         = 0x00000100
+    I2C_ISR_ARLO         = 0x00000200
+    I2C_ISR_OVR          = 0x00000400
+    I2C_ISR_PECERR       = 0x00000800
+    I2C_ISR_TIMEOUT      = 0x00001000
+    I2C_ISR_ALERT        = 0x00002000
+    I2C_ISR_BUSY         = 0x00008000
+    I2C_ISR_DIR          = 0x00010000
+    I2C_ISR_ADDCODE      = 0x00FE0000
+    I2C_ICR_ADDRCF       = 0x00000008
+    I2C_ICR_NACKCF       = 0x00000010
+    I2C_ICR_STOPCF       = 0x00000020
+    I2C_ICR_BERRCF       = 0x00000100
+    I2C_ICR_ARLOCF       = 0x00000200
+    I2C_ICR_OVRCF        = 0x00000400
+    I2C_ICR_PECCF        = 0x00000800
+    I2C_ICR_TIMOUTCF     = 0x00001000
+    I2C_ICR_ALERTCF      = 0x00002000
+    I2C_PECR_PEC         = 0x000000FF
+    I2C_RXDR_RXDATA      = 0x000000FF
+    I2C_TXDR_TXDATA      = 0x000000FF
+    IWDG_KR_KEY          = 0x0000FFFF
+    IWDG_PR_PR           = 0x00000007
+    IWDG_PR_PR_0         = 0x00000001
+    IWDG_PR_PR_1         = 0x00000002
+    IWDG_PR_PR_2         = 0x00000004
+endconst
+
+const(uint32):
+    IWDG_RLR_RL          = 0x00000FFF
+    IWDG_SR_PVU          = 0x00000001
+    IWDG_SR_RVU          = 0x00000002
+    IWDG_SR_WVU          = 0x00000004
+    IWDG_WINR_WIN        = 0x00000FFF
+    LPTIM_ISR_CMPM       = 0x00000001
+    LPTIM_ISR_ARRM       = 0x00000002
+    LPTIM_ISR_EXTTRIG    = 0x00000004
+    LPTIM_ISR_CMPOK      = 0x00000008
+    LPTIM_ISR_ARROK      = 0x00000010
+    LPTIM_ISR_UP         = 0x00000020
+    LPTIM_ISR_DOWN       = 0x00000040
+    LPTIM_ICR_CMPMCF     = 0x00000001
+    LPTIM_ICR_ARRMCF     = 0x00000002
+    LPTIM_ICR_EXTTRIGCF  = 0x00000004
+    LPTIM_ICR_CMPOKCF    = 0x00000008
+    LPTIM_ICR_ARROKCF    = 0x00000010
+    LPTIM_ICR_UPCF       = 0x00000020
+    LPTIM_ICR_DOWNCF     = 0x00000040
+    LPTIM_IER_CMPMIE     = 0x00000001
+    LPTIM_IER_ARRMIE     = 0x00000002
+    LPTIM_IER_EXTTRIGIE  = 0x00000004
+    LPTIM_IER_CMPOKIE    = 0x00000008
+    LPTIM_IER_ARROKIE    = 0x00000010
+    LPTIM_IER_UPIE       = 0x00000020
+    LPTIM_IER_DOWNIE     = 0x00000040
+    LPTIM_CFGR_CKSEL     = 0x00000001
+    LPTIM_CFGR_CKPOL     = 0x00000006
+    LPTIM_CFGR_CKPOL_0   = 0x00000002
+    LPTIM_CFGR_CKPOL_1   = 0x00000004
+    LPTIM_CFGR_CKFLT     = 0x00000018
+    LPTIM_CFGR_CKFLT_0   = 0x00000008
+endconst
+
+const(uint32):
+    LPTIM_CFGR_CKFLT_1   = 0x00000010
+    LPTIM_CFGR_TRGFLT    = 0x000000C0
+    LPTIM_CFGR_TRGFLT_0  = 0x00000040
+    LPTIM_CFGR_TRGFLT_1  = 0x00000080
+    LPTIM_CFGR_PRESC     = 0x00000E00
+    LPTIM_CFGR_PRESC_0   = 0x00000200
+    LPTIM_CFGR_PRESC_1   = 0x00000400
+    LPTIM_CFGR_PRESC_2   = 0x00000800
+    LPTIM_CFGR_TRIGSEL   = 0x0000E000
+    LPTIM_CFGR_TRIGSEL_0 = 0x00002000
+    LPTIM_CFGR_TRIGSEL_1 = 0x00004000
+    LPTIM_CFGR_TRIGSEL_2 = 0x00008000
+    LPTIM_CFGR_TRIGEN    = 0x00060000
+    LPTIM_CFGR_TRIGEN_0  = 0x00020000
+    LPTIM_CFGR_TRIGEN_1  = 0x00040000
+    LPTIM_CFGR_TIMOUT    = 0x00080000
+    LPTIM_CFGR_WAVE      = 0x00100000
+    LPTIM_CFGR_WAVPOL    = 0x00200000
+    LPTIM_CFGR_PRELOAD   = 0x00400000
+    LPTIM_CFGR_COUNTMODE = 0x00800000
+    LPTIM_CFGR_ENC       = 0x01000000
+    LPTIM_CR_ENABLE      = 0x00000001
+    LPTIM_CR_SNGSTRT     = 0x00000002
+    LPTIM_CR_CNTSTRT     = 0x00000004
+    LPTIM_CMP_CMP        = 0x0000FFFF
+    LPTIM_ARR_ARR        = 0x0000FFFF
+    LPTIM_CNT_CNT        = 0x0000FFFF
+    PWR_CR_LPSDSR        = 0x00000001
+    PWR_CR_PDDS          = 0x00000002
+    PWR_CR_CWUF          = 0x00000004
+    PWR_CR_CSBF          = 0x00000008
+    PWR_CR_PVDE          = 0x00000010
+endconst
+
+const(uint32):
+    PWR_CR_PLS           = 0x000000E0
+    PWR_CR_PLS_0         = 0x00000020
+    PWR_CR_PLS_1         = 0x00000040
+    PWR_CR_PLS_2         = 0x00000080
+    PWR_CR_PLS_LEV0      = 0x00000000
+    PWR_CR_PLS_LEV1      = 0x00000020
+    PWR_CR_PLS_LEV2      = 0x00000040
+    PWR_CR_PLS_LEV3      = 0x00000060
+    PWR_CR_PLS_LEV4      = 0x00000080
+    PWR_CR_PLS_LEV5      = 0x000000A0
+    PWR_CR_PLS_LEV6      = 0x000000C0
+    PWR_CR_PLS_LEV7      = 0x000000E0
+    PWR_CR_DBP           = 0x00000100
+    PWR_CR_ULP           = 0x00000200
+    PWR_CR_FWU           = 0x00000400
+    PWR_CR_VOS           = 0x00001800
+    PWR_CR_VOS_0         = 0x00000800
+    PWR_CR_VOS_1         = 0x00001000
+    PWR_CR_DSEEKOFF      = 0x00002000
+    PWR_CR_LPRUN         = 0x00004000
+    PWR_CR_LPDS          = 0x00010000
+    PWR_CSR_WUF          = 0x00000001
+    PWR_CSR_SBF          = 0x00000002
+    PWR_CSR_PVDO         = 0x00000004
+    PWR_CSR_VREFINTRDYF  = 0x00000008
+    PWR_CSR_VOSF         = 0x00000010
+    PWR_CSR_REGLPF       = 0x00000020
+    PWR_CSR_EWUP1        = 0x00000100
+    PWR_CSR_EWUP2        = 0x00000200
+    PWR_CSR_EWUP3        = 0x00000400
+    RCC_CR_HSION         = 0x00000001
+    RCC_CR_HSIKERON      = 0x00000002
+endconst
+
+const(uint32):
+    RCC_CR_HSIRDY        = 0x00000004
+    RCC_CR_HSIDIVEN      = 0x00000008
+    RCC_CR_HSIDIVF       = 0x00000010
+    RCC_CR_HSIOUTEN      = 0x00000020
+    RCC_CR_MSION         = 0x00000100
+    RCC_CR_MSIRDY        = 0x00000200
+    RCC_CR_HSEON         = 0x00010000
+    RCC_CR_HSERDY        = 0x00020000
+    RCC_CR_HSEBYP        = 0x00040000
+    RCC_CR_RTCPRE        = 0x00300000
+    RCC_CR_RTCPRE_0      = 0x00100000
+    RCC_CR_RTCPRE_1      = 0x00200000
+    RCC_CR_PLLON         = 0x01000000
+    RCC_CR_PLLRDY        = 0x02000000
+    RCC_ICSCR_HSICAL     = 0x000000FF
+    RCC_ICSCR_HSITRIM    = 0x00001F00
+    RCC_ICSCR_MSIRANGE   = 0x0000E000
+    RCC_ICSCR_MSIRANGE_0 = 0x00000000
+    RCC_ICSCR_MSIRANGE_1 = 0x00002000
+    RCC_ICSCR_MSIRANGE_2 = 0x00004000
+    RCC_ICSCR_MSIRANGE_3 = 0x00006000
+    RCC_ICSCR_MSIRANGE_4 = 0x00008000
+    RCC_ICSCR_MSIRANGE_5 = 0x0000A000
+    RCC_ICSCR_MSIRANGE_6 = 0x0000C000
+    RCC_ICSCR_MSICAL     = 0x00FF0000
+    RCC_ICSCR_MSITRIM    = 0xFF000000
+    RCC_CFGR_SW          = 0x00000003
+    RCC_CFGR_SW_0        = 0x00000001
+    RCC_CFGR_SW_1        = 0x00000002
+    RCC_CFGR_SW_MSI      = 0x00000000
+    RCC_CFGR_SW_HSI      = 0x00000001
+    RCC_CFGR_SW_HSE      = 0x00000002
+endconst
+
+const(uint32):
+    RCC_CFGR_SW_PLL      = 0x00000003
+    RCC_CFGR_SWS         = 0x0000000C
+    RCC_CFGR_SWS_0       = 0x00000004
+    RCC_CFGR_SWS_1       = 0x00000008
+    RCC_CFGR_SWS_MSI     = 0x00000000
+    RCC_CFGR_SWS_HSI     = 0x00000004
+    RCC_CFGR_SWS_HSE     = 0x00000008
+    RCC_CFGR_SWS_PLL     = 0x0000000C
+    RCC_CFGR_HPRE        = 0x000000F0
+    RCC_CFGR_HPRE_0      = 0x00000010
+    RCC_CFGR_HPRE_1      = 0x00000020
+    RCC_CFGR_HPRE_2      = 0x00000040
+    RCC_CFGR_HPRE_3      = 0x00000080
+    RCC_CFGR_HPRE_DIV1   = 0x00000000
+    RCC_CFGR_HPRE_DIV2   = 0x00000080
+    RCC_CFGR_HPRE_DIV4   = 0x00000090
+    RCC_CFGR_HPRE_DIV8   = 0x000000A0
+    RCC_CFGR_HPRE_DIV16  = 0x000000B0
+    RCC_CFGR_HPRE_DIV64  = 0x000000C0
+    RCC_CFGR_HPRE_DIV128 = 0x000000D0
+    RCC_CFGR_HPRE_DIV256 = 0x000000E0
+    RCC_CFGR_HPRE_DIV512 = 0x000000F0
+    RCC_CFGR_PPRE1       = 0x00000700
+    RCC_CFGR_PPRE1_0     = 0x00000100
+    RCC_CFGR_PPRE1_1     = 0x00000200
+    RCC_CFGR_PPRE1_2     = 0x00000400
+    RCC_CFGR_PPRE1_DIV1  = 0x00000000
+    RCC_CFGR_PPRE1_DIV2  = 0x00000400
+    RCC_CFGR_PPRE1_DIV4  = 0x00000500
+    RCC_CFGR_PPRE1_DIV8  = 0x00000600
+    RCC_CFGR_PPRE1_DIV16 = 0x00000700
+    RCC_CFGR_PPRE2       = 0x00003800
+endconst
+
+const(uint32):
+    RCC_CFGR_PPRE2_0     = 0x00000800
+    RCC_CFGR_PPRE2_1     = 0x00001000
+    RCC_CFGR_PPRE2_2     = 0x00002000
+    RCC_CFGR_PPRE2_DIV1  = 0x00000000
+    RCC_CFGR_PPRE2_DIV2  = 0x00002000
+    RCC_CFGR_PPRE2_DIV4  = 0x00002800
+    RCC_CFGR_PPRE2_DIV8  = 0x00003000
+    RCC_CFGR_PPRE2_DIV16 = 0x00003800
+    RCC_CFGR_STOPWUCK    = 0x00008000
+    RCC_CFGR_PLLSRC      = 0x00010000
+    RCC_CFGR_PLLSRC_HSI  = 0x00000000
+    RCC_CFGR_PLLSRC_HSE  = 0x00010000
+    RCC_CFGR_PLLMUL      = 0x003C0000
+    RCC_CFGR_PLLMUL_0    = 0x00040000
+    RCC_CFGR_PLLMUL_1    = 0x00080000
+    RCC_CFGR_PLLMUL_2    = 0x00100000
+    RCC_CFGR_PLLMUL_3    = 0x00200000
+    RCC_CFGR_PLLMUL3     = 0x00000000
+    RCC_CFGR_PLLMUL4     = 0x00040000
+    RCC_CFGR_PLLMUL6     = 0x00080000
+    RCC_CFGR_PLLMUL8     = 0x000C0000
+    RCC_CFGR_PLLMUL12    = 0x00100000
+    RCC_CFGR_PLLMUL16    = 0x00140000
+    RCC_CFGR_PLLMUL24    = 0x00180000
+    RCC_CFGR_PLLMUL32    = 0x001C0000
+    RCC_CFGR_PLLMUL48    = 0x00200000
+    RCC_CFGR_PLLDIV      = 0x00C00000
+    RCC_CFGR_PLLDIV_0    = 0x00400000
+    RCC_CFGR_PLLDIV_1    = 0x00800000
+    RCC_CFGR_PLLDIV2     = 0x00400000
+    RCC_CFGR_PLLDIV3     = 0x00800000
+    RCC_CFGR_PLLDIV4     = 0x00C00000
+endconst
+
+const(uint32):
+    RCC_CFGR_MCOSEL      = 0x0F000000
+    RCC_CFGR_MCOSEL_0    = 0x01000000
+    RCC_CFGR_MCOSEL_1    = 0x02000000
+    RCC_CFGR_MCOSEL_2    = 0x04000000
+    RCC_CFGR_MCOSEL_3    = 0x08000000
+    RCC_CFGR_MCO_NOCLOCK = 0x00000000
+    RCC_CFGR_MCO_SYSCLK  = 0x01000000
+    RCC_CFGR_MCO_HSI     = 0x02000000
+    RCC_CFGR_MCO_MSI     = 0x03000000
+    RCC_CFGR_MCO_HSE     = 0x04000000
+    RCC_CFGR_MCO_PLL     = 0x05000000
+    RCC_CFGR_MCO_LSI     = 0x06000000
+    RCC_CFGR_MCO_LSE     = 0x07000000
+    RCC_CFGR_MCOPRE      = 0x70000000
+    RCC_CFGR_MCOPRE_0    = 0x10000000
+    RCC_CFGR_MCOPRE_1    = 0x20000000
+    RCC_CFGR_MCOPRE_2    = 0x40000000
+    RCC_CFGR_MCOPRE_DIV1 = 0x00000000
+    RCC_CFGR_MCOPRE_DIV2 = 0x10000000
+    RCC_CFGR_MCOPRE_DIV4 = 0x20000000
+    RCC_CFGR_MCOPRE_DIV8 = 0x30000000
+    RCC_CFGR_MCOPRE_DIV16 = 0x40000000
+    RCC_CFGR_MCO_PRE     = RCC_CFGR_MCOPRE
+    RCC_CFGR_MCO_PRE_1   = RCC_CFGR_MCOPRE_DIV1
+    RCC_CFGR_MCO_PRE_2   = RCC_CFGR_MCOPRE_DIV2
+    RCC_CFGR_MCO_PRE_4   = RCC_CFGR_MCOPRE_DIV4
+    RCC_CFGR_MCO_PRE_8   = RCC_CFGR_MCOPRE_DIV8
+    RCC_CFGR_MCO_PRE_16  = RCC_CFGR_MCOPRE_DIV16
+    RCC_CIER_LSIRDYIE    = 0x00000001
+    RCC_CIER_LSERDYIE    = 0x00000002
+    RCC_CIER_HSIRDYIE    = 0x00000004
+    RCC_CIER_HSERDYIE    = 0x00000008
+endconst
+
+const(uint32):
+    RCC_CIER_PLLRDYIE    = 0x00000010
+    RCC_CIER_MSIRDYIE    = 0x00000020
+    RCC_CIER_CSSLSE      = 0x00000080
+    RCC_CIER_LSECSSIE    = RCC_CIER_CSSLSE
+    RCC_CIFR_LSIRDYF     = 0x00000001
+    RCC_CIFR_LSERDYF     = 0x00000002
+    RCC_CIFR_HSIRDYF     = 0x00000004
+    RCC_CIFR_HSERDYF     = 0x00000008
+    RCC_CIFR_PLLRDYF     = 0x00000010
+    RCC_CIFR_MSIRDYF     = 0x00000020
+    RCC_CIFR_CSSLSEF     = 0x00000080
+    RCC_CIFR_LSECSSF     = RCC_CIFR_CSSLSEF
+    RCC_CICR_LSIRDYC     = 0x00000001
+    RCC_CICR_LSERDYC     = 0x00000002
+    RCC_CICR_HSIRDYC     = 0x00000004
+    RCC_CICR_HSERDYC     = 0x00000008
+    RCC_CICR_PLLRDYC     = 0x00000010
+    RCC_CICR_MSIRDYC     = 0x00000020
+    RCC_CICR_CSSLSEC     = 0x00000080
+    RCC_CICR_LSECSSC     = RCC_CICR_CSSLSEC
+    RCC_IOPRSTR_IOPARST  = 0x00000001
+    RCC_IOPRSTR_IOPBRST  = 0x00000002
+    RCC_IOPRSTR_IOPCRST  = 0x00000004
+    RCC_IOPRSTR_GPIOARST = RCC_IOPRSTR_IOPARST
+    RCC_IOPRSTR_GPIOBRST = RCC_IOPRSTR_IOPBRST
+    RCC_IOPRSTR_GPIOCRST = RCC_IOPRSTR_IOPCRST
+    RCC_AHBRSTR_DMARST   = 0x00000001
+    RCC_AHBRSTR_MIFRST   = 0x00000100
+    RCC_AHBRSTR_CRCRST   = 0x00001000
+    RCC_AHBRSTR_DMA1RST  = RCC_AHBRSTR_DMARST
+    RCC_APB2RSTR_SYSCFGRST = 0x00000001
+    RCC_APB2RSTR_TIM21RST = 0x00000004
+endconst
+
+const(uint32):
+    RCC_APB2RSTR_ADCRST  = 0x00000200
+    RCC_APB2RSTR_SPI1RST = 0x00001000
+    RCC_APB2RSTR_DBGRST  = 0x00400000
+    RCC_APB2RSTR_ADC1RST = RCC_APB2RSTR_ADCRST
+    RCC_APB2RSTR_DBGMCURST = RCC_APB2RSTR_DBGRST
+    RCC_APB1RSTR_TIM2RST = 0x00000001
+    RCC_APB1RSTR_WWDGRST = 0x00000800
+    RCC_APB1RSTR_USART2RST = 0x00020000
+    RCC_APB1RSTR_LPUART1RST = 0x00040000
+    RCC_APB1RSTR_I2C1RST = 0x00200000
+    RCC_APB1RSTR_PWRRST  = 0x10000000
+    RCC_APB1RSTR_LPTIM1RST = 0x80000000
+    RCC_IOPENR_IOPAEN    = 0x00000001
+    RCC_IOPENR_IOPBEN    = 0x00000002
+    RCC_IOPENR_IOPCEN    = 0x00000004
+    RCC_IOPENR_GPIOAEN   = RCC_IOPENR_IOPAEN
+    RCC_IOPENR_GPIOBEN   = RCC_IOPENR_IOPBEN
+    RCC_IOPENR_GPIOCEN   = RCC_IOPENR_IOPCEN
+    RCC_AHBENR_DMAEN     = 0x00000001
+    RCC_AHBENR_MIFEN     = 0x00000100
+    RCC_AHBENR_CRCEN     = 0x00001000
+    RCC_AHBENR_DMA1EN    = RCC_AHBENR_DMAEN
+    RCC_APB2ENR_SYSCFGEN = 0x00000001
+    RCC_APB2ENR_TIM21EN  = 0x00000004
+    RCC_APB2ENR_FWEN     = 0x00000080
+    RCC_APB2ENR_ADCEN    = 0x00000200
+    RCC_APB2ENR_SPI1EN   = 0x00001000
+    RCC_APB2ENR_DBGEN    = 0x00400000
+    RCC_APB2ENR_MIFIEN   = RCC_APB2ENR_FWEN
+    RCC_APB2ENR_ADC1EN   = RCC_APB2ENR_ADCEN
+    RCC_APB2ENR_DBGMCUEN = RCC_APB2ENR_DBGEN
+    RCC_APB1ENR_TIM2EN   = 0x00000001
+endconst
+
+const(uint32):
+    RCC_APB1ENR_WWDGEN   = 0x00000800
+    RCC_APB1ENR_USART2EN = 0x00020000
+    RCC_APB1ENR_LPUART1EN = 0x00040000
+    RCC_APB1ENR_I2C1EN   = 0x00200000
+    RCC_APB1ENR_PWREN    = 0x10000000
+    RCC_APB1ENR_LPTIM1EN = 0x80000000
+    RCC_IOPSMENR_IOPASMEN = 0x00000001
+    RCC_IOPSMENR_IOPBSMEN = 0x00000002
+    RCC_IOPSMENR_IOPCSMEN = 0x00000004
+    RCC_IOPSMENR_GPIOASMEN = RCC_IOPSMENR_IOPASMEN
+    RCC_IOPSMENR_GPIOBSMEN = RCC_IOPSMENR_IOPBSMEN
+    RCC_IOPSMENR_GPIOCSMEN = RCC_IOPSMENR_IOPCSMEN
+    RCC_AHBSMENR_DMASMEN = 0x00000001
+    RCC_AHBSMENR_MIFSMEN = 0x00000100
+    RCC_AHBSMENR_SRAMSMEN = 0x00000200
+    RCC_AHBSMENR_CRCSMEN = 0x00001000
+    RCC_AHBSMENR_DMA1SMEN = RCC_AHBSMENR_DMASMEN
+    RCC_APB2SMENR_SYSCFGSMEN = 0x00000001
+    RCC_APB2SMENR_TIM21SMEN = 0x00000004
+    RCC_APB2SMENR_ADCSMEN = 0x00000200
+    RCC_APB2SMENR_SPI1SMEN = 0x00001000
+    RCC_APB2SMENR_DBGSMEN = 0x00400000
+    RCC_APB2SMENR_ADC1SMEN = RCC_APB2SMENR_ADCSMEN
+    RCC_APB2SMENR_DBGMCUSMEN = RCC_APB2SMENR_DBGSMEN
+    RCC_APB1SMENR_TIM2SMEN = 0x00000001
+    RCC_APB1SMENR_WWDGSMEN = 0x00000800
+    RCC_APB1SMENR_USART2SMEN = 0x00020000
+    RCC_APB1SMENR_LPUART1SMEN = 0x00040000
+    RCC_APB1SMENR_I2C1SMEN = 0x00200000
+    RCC_APB1SMENR_PWRSMEN = 0x10000000
+    RCC_APB1SMENR_LPTIM1SMEN = 0x80000000
+    RCC_CCIPR_USART2SEL  = 0x0000000C
+endconst
+
+const(uint32):
+    RCC_CCIPR_USART2SEL_0 = 0x00000004
+    RCC_CCIPR_USART2SEL_1 = 0x00000008
+    RCC_CCIPR_LPUART1SEL = 0x0000C00
+    RCC_CCIPR_LPUART1SEL_0 = 0x0000400
+    RCC_CCIPR_LPUART1SEL_1 = 0x0000800
+    RCC_CCIPR_I2C1SEL    = 0x00003000
+    RCC_CCIPR_I2C1SEL_0  = 0x00001000
+    RCC_CCIPR_I2C1SEL_1  = 0x00002000
+    RCC_CCIPR_LPTIM1SEL  = 0x000C0000
+    RCC_CCIPR_LPTIM1SEL_0 = 0x00040000
+    RCC_CCIPR_LPTIM1SEL_1 = 0x00080000
+    RCC_CSR_LSION        = 0x00000001
+    RCC_CSR_LSIRDY       = 0x00000002
+    RCC_CSR_LSEON        = 0x00000100
+    RCC_CSR_LSERDY       = 0x00000200
+    RCC_CSR_LSEBYP       = 0x00000400
+    RCC_CSR_LSEDRV       = 0x00001800
+    RCC_CSR_LSEDRV_0     = 0x00000800
+    RCC_CSR_LSEDRV_1     = 0x00001000
+    RCC_CSR_LSECSSON     = 0x00002000
+    RCC_CSR_LSECSSD      = 0x00004000
+    RCC_CSR_RTCSEL       = 0x00030000
+    RCC_CSR_RTCSEL_0     = 0x00010000
+    RCC_CSR_RTCSEL_1     = 0x00020000
+    RCC_CSR_RTCSEL_NOCLOCK = 0x00000000
+    RCC_CSR_RTCSEL_LSE   = 0x00010000
+    RCC_CSR_RTCSEL_LSI   = 0x00020000
+    RCC_CSR_RTCSEL_HSE   = 0x00030000
+    RCC_CSR_RTCEN        = 0x00040000
+    RCC_CSR_RTCRST       = 0x00080000
+    RCC_CSR_RMVF         = 0x00800000
+    RCC_CSR_OBLRSTF      = 0x02000000
+endconst
+
+const(uint32):
+    RCC_CSR_PINRSTF      = 0x04000000
+    RCC_CSR_PORRSTF      = 0x08000000
+    RCC_CSR_SFTRSTF      = 0x10000000
+    RCC_CSR_IWDGRSTF     = 0x20000000
+    RCC_CSR_WWDGRSTF     = 0x40000000
+    RCC_CSR_LPWRRSTF     = 0x80000000
+    RCC_CSR_OBL          = RCC_CSR_OBLRSTF
+    RTC_TR_PM            = 0x00400000
+    RTC_TR_HT            = 0x00300000
+    RTC_TR_HT_0          = 0x00100000
+    RTC_TR_HT_1          = 0x00200000
+    RTC_TR_HU            = 0x000F0000
+    RTC_TR_HU_0          = 0x00010000
+    RTC_TR_HU_1          = 0x00020000
+    RTC_TR_HU_2          = 0x00040000
+    RTC_TR_HU_3          = 0x00080000
+    RTC_TR_MNT           = 0x00007000
+    RTC_TR_MNT_0         = 0x00001000
+    RTC_TR_MNT_1         = 0x00002000
+    RTC_TR_MNT_2         = 0x00004000
+    RTC_TR_MNU           = 0x00000F00
+    RTC_TR_MNU_0         = 0x00000100
+    RTC_TR_MNU_1         = 0x00000200
+    RTC_TR_MNU_2         = 0x00000400
+    RTC_TR_MNU_3         = 0x00000800
+    RTC_TR_ST            = 0x00000070
+    RTC_TR_ST_0          = 0x00000010
+    RTC_TR_ST_1          = 0x00000020
+    RTC_TR_ST_2          = 0x00000040
+    RTC_TR_SU            = 0x0000000F
+    RTC_TR_SU_0          = 0x00000001
+    RTC_TR_SU_1          = 0x00000002
+endconst
+
+const(uint32):
+    RTC_TR_SU_2          = 0x00000004
+    RTC_TR_SU_3          = 0x00000008
+    RTC_DR_YT            = 0x00F00000
+    RTC_DR_YT_0          = 0x00100000
+    RTC_DR_YT_1          = 0x00200000
+    RTC_DR_YT_2          = 0x00400000
+    RTC_DR_YT_3          = 0x00800000
+    RTC_DR_YU            = 0x000F0000
+    RTC_DR_YU_0          = 0x00010000
+    RTC_DR_YU_1          = 0x00020000
+    RTC_DR_YU_2          = 0x00040000
+    RTC_DR_YU_3          = 0x00080000
+    RTC_DR_WDU           = 0x0000E000
+    RTC_DR_WDU_0         = 0x00002000
+    RTC_DR_WDU_1         = 0x00004000
+    RTC_DR_WDU_2         = 0x00008000
+    RTC_DR_MT            = 0x00001000
+    RTC_DR_MU            = 0x00000F00
+    RTC_DR_MU_0          = 0x00000100
+    RTC_DR_MU_1          = 0x00000200
+    RTC_DR_MU_2          = 0x00000400
+    RTC_DR_MU_3          = 0x00000800
+    RTC_DR_DT            = 0x00000030
+    RTC_DR_DT_0          = 0x00000010
+    RTC_DR_DT_1          = 0x00000020
+    RTC_DR_DU            = 0x0000000F
+    RTC_DR_DU_0          = 0x00000001
+    RTC_DR_DU_1          = 0x00000002
+    RTC_DR_DU_2          = 0x00000004
+    RTC_DR_DU_3          = 0x00000008
+    RTC_CR_COE           = 0x00800000
+    RTC_CR_OSEL          = 0x00600000
+endconst
+
+const(uint32):
+    RTC_CR_OSEL_0        = 0x00200000
+    RTC_CR_OSEL_1        = 0x00400000
+    RTC_CR_POL           = 0x00100000
+    RTC_CR_COSEL         = 0x00080000
+    RTC_CR_BCK           = 0x00040000
+    RTC_CR_SUB1H         = 0x00020000
+    RTC_CR_ADD1H         = 0x00010000
+    RTC_CR_TSIE          = 0x00008000
+    RTC_CR_WUTIE         = 0x00004000
+    RTC_CR_ALRBIE        = 0x00002000
+    RTC_CR_ALRAIE        = 0x00001000
+    RTC_CR_TSE           = 0x00000800
+    RTC_CR_WUTE          = 0x00000400
+    RTC_CR_ALRBE         = 0x00000200
+    RTC_CR_ALRAE         = 0x00000100
+    RTC_CR_FMT           = 0x00000040
+    RTC_CR_BYPSHAD       = 0x00000020
+    RTC_CR_REFCKON       = 0x00000010
+    RTC_CR_TSEDGE        = 0x00000008
+    RTC_CR_WUCKSEL       = 0x00000007
+    RTC_CR_WUCKSEL_0     = 0x00000001
+    RTC_CR_WUCKSEL_1     = 0x00000002
+    RTC_CR_WUCKSEL_2     = 0x00000004
+    RTC_ISR_RECALPF      = 0x00010000
+    RTC_ISR_TAMP3F       = 0x00008000
+    RTC_ISR_TAMP2F       = 0x00004000
+    RTC_ISR_TSOVF        = 0x00001000
+    RTC_ISR_TSF          = 0x00000800
+    RTC_ISR_WUTF         = 0x00000400
+    RTC_ISR_ALRBF        = 0x00000200
+    RTC_ISR_ALRAF        = 0x00000100
+    RTC_ISR_INIT         = 0x00000080
+endconst
+
+const(uint32):
+    RTC_ISR_INITF        = 0x00000040
+    RTC_ISR_RSF          = 0x00000020
+    RTC_ISR_INITS        = 0x00000010
+    RTC_ISR_SHPF         = 0x00000008
+    RTC_ISR_WUTWF        = 0x00000004
+    RTC_ISR_ALRBWF       = 0x00000002
+    RTC_ISR_ALRAWF       = 0x00000001
+    RTC_PRER_PREDIV_A    = 0x007F0000
+    RTC_PRER_PREDIV_S    = 0x00007FFF
+    RTC_WUTR_WUT         = 0x0000FFFF
+    RTC_ALRMAR_MSK4      = 0x80000000
+    RTC_ALRMAR_WDSEL     = 0x40000000
+    RTC_ALRMAR_DT        = 0x30000000
+    RTC_ALRMAR_DT_0      = 0x10000000
+    RTC_ALRMAR_DT_1      = 0x20000000
+    RTC_ALRMAR_DU        = 0x0F000000
+    RTC_ALRMAR_DU_0      = 0x01000000
+    RTC_ALRMAR_DU_1      = 0x02000000
+    RTC_ALRMAR_DU_2      = 0x04000000
+    RTC_ALRMAR_DU_3      = 0x08000000
+    RTC_ALRMAR_MSK3      = 0x00800000
+    RTC_ALRMAR_PM        = 0x00400000
+    RTC_ALRMAR_HT        = 0x00300000
+    RTC_ALRMAR_HT_0      = 0x00100000
+    RTC_ALRMAR_HT_1      = 0x00200000
+    RTC_ALRMAR_HU        = 0x000F0000
+    RTC_ALRMAR_HU_0      = 0x00010000
+    RTC_ALRMAR_HU_1      = 0x00020000
+    RTC_ALRMAR_HU_2      = 0x00040000
+    RTC_ALRMAR_HU_3      = 0x00080000
+    RTC_ALRMAR_MSK2      = 0x00008000
+    RTC_ALRMAR_MNT       = 0x00007000
+endconst
+
+const(uint32):
+    RTC_ALRMAR_MNT_0     = 0x00001000
+    RTC_ALRMAR_MNT_1     = 0x00002000
+    RTC_ALRMAR_MNT_2     = 0x00004000
+    RTC_ALRMAR_MNU       = 0x00000F00
+    RTC_ALRMAR_MNU_0     = 0x00000100
+    RTC_ALRMAR_MNU_1     = 0x00000200
+    RTC_ALRMAR_MNU_2     = 0x00000400
+    RTC_ALRMAR_MNU_3     = 0x00000800
+    RTC_ALRMAR_MSK1      = 0x00000080
+    RTC_ALRMAR_ST        = 0x00000070
+    RTC_ALRMAR_ST_0      = 0x00000010
+    RTC_ALRMAR_ST_1      = 0x00000020
+    RTC_ALRMAR_ST_2      = 0x00000040
+    RTC_ALRMAR_SU        = 0x0000000F
+    RTC_ALRMAR_SU_0      = 0x00000001
+    RTC_ALRMAR_SU_1      = 0x00000002
+    RTC_ALRMAR_SU_2      = 0x00000004
+    RTC_ALRMAR_SU_3      = 0x00000008
+    RTC_ALRMBR_MSK4      = 0x80000000
+    RTC_ALRMBR_WDSEL     = 0x40000000
+    RTC_ALRMBR_DT        = 0x30000000
+    RTC_ALRMBR_DT_0      = 0x10000000
+    RTC_ALRMBR_DT_1      = 0x20000000
+    RTC_ALRMBR_DU        = 0x0F000000
+    RTC_ALRMBR_DU_0      = 0x01000000
+    RTC_ALRMBR_DU_1      = 0x02000000
+    RTC_ALRMBR_DU_2      = 0x04000000
+    RTC_ALRMBR_DU_3      = 0x08000000
+    RTC_ALRMBR_MSK3      = 0x00800000
+    RTC_ALRMBR_PM        = 0x00400000
+    RTC_ALRMBR_HT        = 0x00300000
+    RTC_ALRMBR_HT_0      = 0x00100000
+endconst
+
+const(uint32):
+    RTC_ALRMBR_HT_1      = 0x00200000
+    RTC_ALRMBR_HU        = 0x000F0000
+    RTC_ALRMBR_HU_0      = 0x00010000
+    RTC_ALRMBR_HU_1      = 0x00020000
+    RTC_ALRMBR_HU_2      = 0x00040000
+    RTC_ALRMBR_HU_3      = 0x00080000
+    RTC_ALRMBR_MSK2      = 0x00008000
+    RTC_ALRMBR_MNT       = 0x00007000
+    RTC_ALRMBR_MNT_0     = 0x00001000
+    RTC_ALRMBR_MNT_1     = 0x00002000
+    RTC_ALRMBR_MNT_2     = 0x00004000
+    RTC_ALRMBR_MNU       = 0x00000F00
+    RTC_ALRMBR_MNU_0     = 0x00000100
+    RTC_ALRMBR_MNU_1     = 0x00000200
+    RTC_ALRMBR_MNU_2     = 0x00000400
+    RTC_ALRMBR_MNU_3     = 0x00000800
+    RTC_ALRMBR_MSK1      = 0x00000080
+    RTC_ALRMBR_ST        = 0x00000070
+    RTC_ALRMBR_ST_0      = 0x00000010
+    RTC_ALRMBR_ST_1      = 0x00000020
+    RTC_ALRMBR_ST_2      = 0x00000040
+    RTC_ALRMBR_SU        = 0x0000000F
+    RTC_ALRMBR_SU_0      = 0x00000001
+    RTC_ALRMBR_SU_1      = 0x00000002
+    RTC_ALRMBR_SU_2      = 0x00000004
+    RTC_ALRMBR_SU_3      = 0x00000008
+    RTC_WPR_KEY          = 0x000000FF
+    RTC_SSR_SS           = 0x0000FFFF
+    RTC_SHIFTR_SUBFS     = 0x00007FFF
+    RTC_SHIFTR_ADD1S     = 0x80000000
+    RTC_TSTR_PM          = 0x00400000
+    RTC_TSTR_HT          = 0x00300000
+endconst
+
+const(uint32):
+    RTC_TSTR_HT_0        = 0x00100000
+    RTC_TSTR_HT_1        = 0x00200000
+    RTC_TSTR_HU          = 0x000F0000
+    RTC_TSTR_HU_0        = 0x00010000
+    RTC_TSTR_HU_1        = 0x00020000
+    RTC_TSTR_HU_2        = 0x00040000
+    RTC_TSTR_HU_3        = 0x00080000
+    RTC_TSTR_MNT         = 0x00007000
+    RTC_TSTR_MNT_0       = 0x00001000
+    RTC_TSTR_MNT_1       = 0x00002000
+    RTC_TSTR_MNT_2       = 0x00004000
+    RTC_TSTR_MNU         = 0x00000F00
+    RTC_TSTR_MNU_0       = 0x00000100
+    RTC_TSTR_MNU_1       = 0x00000200
+    RTC_TSTR_MNU_2       = 0x00000400
+    RTC_TSTR_MNU_3       = 0x00000800
+    RTC_TSTR_ST          = 0x00000070
+    RTC_TSTR_ST_0        = 0x00000010
+    RTC_TSTR_ST_1        = 0x00000020
+    RTC_TSTR_ST_2        = 0x00000040
+    RTC_TSTR_SU          = 0x0000000F
+    RTC_TSTR_SU_0        = 0x00000001
+    RTC_TSTR_SU_1        = 0x00000002
+    RTC_TSTR_SU_2        = 0x00000004
+    RTC_TSTR_SU_3        = 0x00000008
+    RTC_TSDR_WDU         = 0x0000E000
+    RTC_TSDR_WDU_0       = 0x00002000
+    RTC_TSDR_WDU_1       = 0x00004000
+    RTC_TSDR_WDU_2       = 0x00008000
+    RTC_TSDR_MT          = 0x00001000
+    RTC_TSDR_MU          = 0x00000F00
+    RTC_TSDR_MU_0        = 0x00000100
+endconst
+
+const(uint32):
+    RTC_TSDR_MU_1        = 0x00000200
+    RTC_TSDR_MU_2        = 0x00000400
+    RTC_TSDR_MU_3        = 0x00000800
+    RTC_TSDR_DT          = 0x00000030
+    RTC_TSDR_DT_0        = 0x00000010
+    RTC_TSDR_DT_1        = 0x00000020
+    RTC_TSDR_DU          = 0x0000000F
+    RTC_TSDR_DU_0        = 0x00000001
+    RTC_TSDR_DU_1        = 0x00000002
+    RTC_TSDR_DU_2        = 0x00000004
+    RTC_TSDR_DU_3        = 0x00000008
+    RTC_TSSSR_SS         = 0x0000FFFF
+    RTC_CALR_CALP        = 0x00008000
+    RTC_CALR_CALW8       = 0x00004000
+    RTC_CALR_CALW16      = 0x00002000
+    RTC_CALR_CALM        = 0x000001FF
+    RTC_CALR_CALM_0      = 0x00000001
+    RTC_CALR_CALM_1      = 0x00000002
+    RTC_CALR_CALM_2      = 0x00000004
+    RTC_CALR_CALM_3      = 0x00000008
+    RTC_CALR_CALM_4      = 0x00000010
+    RTC_CALR_CALM_5      = 0x00000020
+    RTC_CALR_CALM_6      = 0x00000040
+    RTC_CALR_CALM_7      = 0x00000080
+    RTC_CALR_CALM_8      = 0x00000100
+    RTC_CAL_CALP         = RTC_CALR_CALP
+    RTC_CAL_CALW8        = RTC_CALR_CALW8
+    RTC_CAL_CALW16       = RTC_CALR_CALW16
+    RTC_CAL_CALM         = RTC_CALR_CALM
+    RTC_CAL_CALM_0       = RTC_CALR_CALM_0
+    RTC_CAL_CALM_1       = RTC_CALR_CALM_1
+    RTC_CAL_CALM_2       = RTC_CALR_CALM_2
+endconst
+
+const(uint32):
+    RTC_CAL_CALM_3       = RTC_CALR_CALM_3
+    RTC_CAL_CALM_4       = RTC_CALR_CALM_4
+    RTC_CAL_CALM_5       = RTC_CALR_CALM_5
+    RTC_CAL_CALM_6       = RTC_CALR_CALM_6
+    RTC_CAL_CALM_7       = RTC_CALR_CALM_7
+    RTC_CAL_CALM_8       = RTC_CALR_CALM_8
+    RTC_TAMPCR_TAMP3MF   = 0x01000000
+    RTC_TAMPCR_TAMP3NOERASE = 0x00800000
+    RTC_TAMPCR_TAMP3IE   = 0x00400000
+    RTC_TAMPCR_TAMP2MF   = 0x00200000
+    RTC_TAMPCR_TAMP2NOERASE = 0x00100000
+    RTC_TAMPCR_TAMP2IE   = 0x00080000
+    RTC_TAMPCR_TAMPPUDIS = 0x00008000
+    RTC_TAMPCR_TAMPPRCH  = 0x00006000
+    RTC_TAMPCR_TAMPPRCH_0 = 0x00002000
+    RTC_TAMPCR_TAMPPRCH_1 = 0x00004000
+    RTC_TAMPCR_TAMPFLT   = 0x00001800
+    RTC_TAMPCR_TAMPFLT_0 = 0x00000800
+    RTC_TAMPCR_TAMPFLT_1 = 0x00001000
+    RTC_TAMPCR_TAMPFREQ  = 0x00000700
+    RTC_TAMPCR_TAMPFREQ_0 = 0x00000100
+    RTC_TAMPCR_TAMPFREQ_1 = 0x00000200
+    RTC_TAMPCR_TAMPFREQ_2 = 0x00000400
+    RTC_TAMPCR_TAMPTS    = 0x00000080
+    RTC_TAMPCR_TAMP3TRG  = 0x00000040
+    RTC_TAMPCR_TAMP3E    = 0x00000020
+    RTC_TAMPCR_TAMP2TRG  = 0x00000010
+    RTC_TAMPCR_TAMP2E    = 0x00000008
+    RTC_TAMPCR_TAMPIE    = 0x00000004
+    RTC_ALRMASSR_MASKSS  = 0x0F000000
+    RTC_ALRMASSR_MASKSS_0 = 0x01000000
+    RTC_ALRMASSR_MASKSS_1 = 0x02000000
+endconst
+
+const(uint32):
+    RTC_ALRMASSR_MASKSS_2 = 0x04000000
+    RTC_ALRMASSR_MASKSS_3 = 0x08000000
+    RTC_ALRMASSR_SS      = 0x00007FFF
+    RTC_ALRMBSSR_MASKSS  = 0x0F000000
+    RTC_ALRMBSSR_MASKSS_0 = 0x01000000
+    RTC_ALRMBSSR_MASKSS_1 = 0x02000000
+    RTC_ALRMBSSR_MASKSS_2 = 0x04000000
+    RTC_ALRMBSSR_MASKSS_3 = 0x08000000
+    RTC_ALRMBSSR_SS      = 0x00007FFF
+    RTC_OR_OUT_RMP       = 0x00000002
+    RTC_OR_ALARMOUTTYPE  = 0x00000001
+    RTC_OR_RTC_OUT_RMP   = RTC_OR_OUT_RMP
+    RTC_BKP0R            = 0xFFFFFFFF
+    RTC_BKP1R            = 0xFFFFFFFF
+    RTC_BKP2R            = 0xFFFFFFFF
+    RTC_BKP3R            = 0xFFFFFFFF
+    RTC_BKP4R            = 0xFFFFFFFF
+    RTC_BKP_NUMBER       = 0x00000005
+    SPI_CR1_CPHA         = 0x00000001
+    SPI_CR1_CPOL         = 0x00000002
+    SPI_CR1_MSTR         = 0x00000004
+    SPI_CR1_BR           = 0x00000038
+    SPI_CR1_BR_0         = 0x00000008
+    SPI_CR1_BR_1         = 0x00000010
+    SPI_CR1_BR_2         = 0x00000020
+    SPI_CR1_SPE          = 0x00000040
+    SPI_CR1_LSBFIRST     = 0x00000080
+    SPI_CR1_SSI          = 0x00000100
+    SPI_CR1_SSM          = 0x00000200
+    SPI_CR1_RXONLY       = 0x00000400
+    SPI_CR1_DFF          = 0x00000800
+    SPI_CR1_CRCNEXT      = 0x00001000
+endconst
+
+const(uint32):
+    SPI_CR1_CRCEN        = 0x00002000
+    SPI_CR1_BIDIOE       = 0x00004000
+    SPI_CR1_BIDIMODE     = 0x00008000
+    SPI_CR2_RXDMAEN      = 0x00000001
+    SPI_CR2_TXDMAEN      = 0x00000002
+    SPI_CR2_SSOE         = 0x00000004
+    SPI_CR2_FRF          = 0x00000010
+    SPI_CR2_ERRIE        = 0x00000020
+    SPI_CR2_RXNEIE       = 0x00000040
+    SPI_CR2_TXEIE        = 0x00000080
+    SPI_SR_RXNE          = 0x00000001
+    SPI_SR_TXE           = 0x00000002
+    SPI_SR_CHSIDE        = 0x00000004
+    SPI_SR_UDR           = 0x00000008
+    SPI_SR_CRCERR        = 0x00000010
+    SPI_SR_MODF          = 0x00000020
+    SPI_SR_OVR           = 0x00000040
+    SPI_SR_BSY           = 0x00000080
+    SPI_SR_FRE           = 0x00000100
+    SPI_DR_DR            = 0x0000FFFF
+    SPI_CRCPR_CRCPOLY    = 0x0000FFFF
+    SPI_RXCRCR_RXCRC     = 0x0000FFFF
+    SPI_TXCRCR_TXCRC     = 0x0000FFFF
+    SYSCFG_CFGR1_MEM_MODE = 0x00000003
+    SYSCFG_CFGR1_MEM_MODE_0 = 0x00000001
+    SYSCFG_CFGR1_MEM_MODE_1 = 0x00000002
+    SYSCFG_CFGR1_BOOT_MODE = 0x00000300
+    SYSCFG_CFGR1_BOOT_MODE_0 = 0x00000100
+    SYSCFG_CFGR1_BOOT_MODE_1 = 0x00000200
+    SYSCFG_CFGR2_FWDISEN = 0x00000001
+    SYSCFG_CFGR2_I2C_PB6_FMP = 0x00000100
+    SYSCFG_CFGR2_I2C_PB7_FMP = 0x00000200
+endconst
+
+const(uint32):
+    SYSCFG_CFGR2_I2C_PB8_FMP = 0x00000400
+    SYSCFG_CFGR2_I2C_PB9_FMP = 0x00000800
+    SYSCFG_CFGR2_I2C1_FMP = 0x00001000
+    SYSCFG_EXTICR1_EXTI0 = 0x0000000F
+    SYSCFG_EXTICR1_EXTI1 = 0x000000F0
+    SYSCFG_EXTICR1_EXTI2 = 0x00000F00
+    SYSCFG_EXTICR1_EXTI3 = 0x0000F000
+    SYSCFG_EXTICR1_EXTI0_PA = 0x00000000
+    SYSCFG_EXTICR1_EXTI0_PB = 0x00000001
+    SYSCFG_EXTICR1_EXTI0_PC = 0x00000002
+    SYSCFG_EXTICR1_EXTI0_PH = 0x00000005
+    SYSCFG_EXTICR1_EXTI1_PA = 0x00000000
+    SYSCFG_EXTICR1_EXTI1_PB = 0x00000010
+    SYSCFG_EXTICR1_EXTI1_PC = 0x00000020
+    SYSCFG_EXTICR1_EXTI1_PH = 0x00000050
+    SYSCFG_EXTICR1_EXTI2_PA = 0x00000000
+    SYSCFG_EXTICR1_EXTI2_PB = 0x00000100
+    SYSCFG_EXTICR1_EXTI2_PC = 0x00000200
+    SYSCFG_EXTICR1_EXTI2_PD = 0x00000300
+    SYSCFG_EXTICR1_EXTI3_PA = 0x00000000
+    SYSCFG_EXTICR1_EXTI3_PB = 0x00001000
+    SYSCFG_EXTICR1_EXTI3_PC = 0x00002000
+    SYSCFG_EXTICR2_EXTI4 = 0x0000000F
+    SYSCFG_EXTICR2_EXTI5 = 0x000000F0
+    SYSCFG_EXTICR2_EXTI6 = 0x00000F00
+    SYSCFG_EXTICR2_EXTI7 = 0x0000F000
+    SYSCFG_EXTICR2_EXTI4_PA = 0x00000000
+    SYSCFG_EXTICR2_EXTI4_PB = 0x00000001
+    SYSCFG_EXTICR2_EXTI4_PC = 0x00000002
+    SYSCFG_EXTICR2_EXTI5_PA = 0x00000000
+    SYSCFG_EXTICR2_EXTI5_PB = 0x00000010
+    SYSCFG_EXTICR2_EXTI5_PC = 0x00000020
+endconst
+
+const(uint32):
+    SYSCFG_EXTICR2_EXTI6_PA = 0x00000000
+    SYSCFG_EXTICR2_EXTI6_PB = 0x00000100
+    SYSCFG_EXTICR2_EXTI6_PC = 0x00000200
+    SYSCFG_EXTICR2_EXTI7_PA = 0x00000000
+    SYSCFG_EXTICR2_EXTI7_PB = 0x00001000
+    SYSCFG_EXTICR2_EXTI7_PC = 0x00002000
+    SYSCFG_EXTICR3_EXTI8 = 0x0000000F
+    SYSCFG_EXTICR3_EXTI9 = 0x000000F0
+    SYSCFG_EXTICR3_EXTI10 = 0x00000F00
+    SYSCFG_EXTICR3_EXTI11 = 0x0000F000
+    SYSCFG_EXTICR3_EXTI8_PA = 0x00000000
+    SYSCFG_EXTICR3_EXTI8_PB = 0x00000001
+    SYSCFG_EXTICR3_EXTI8_PC = 0x00000002
+    SYSCFG_EXTICR3_EXTI9_PA = 0x00000000
+    SYSCFG_EXTICR3_EXTI9_PB = 0x00000010
+    SYSCFG_EXTICR3_EXTI9_PC = 0x00000020
+    SYSCFG_EXTICR3_EXTI10_PA = 0x00000000
+    SYSCFG_EXTICR3_EXTI10_PB = 0x00000100
+    SYSCFG_EXTICR3_EXTI10_PC = 0x00000200
+    SYSCFG_EXTICR3_EXTI11_PA = 0x00000000
+    SYSCFG_EXTICR3_EXTI11_PB = 0x00001000
+    SYSCFG_EXTICR3_EXTI11_PC = 0x00002000
+    SYSCFG_EXTICR4_EXTI12 = 0x0000000F
+    SYSCFG_EXTICR4_EXTI13 = 0x000000F0
+    SYSCFG_EXTICR4_EXTI14 = 0x00000F00
+    SYSCFG_EXTICR4_EXTI15 = 0x0000F000
+    SYSCFG_EXTICR4_EXTI12_PA = 0x00000000
+    SYSCFG_EXTICR4_EXTI12_PB = 0x00000001
+    SYSCFG_EXTICR4_EXTI12_PC = 0x00000002
+    SYSCFG_EXTICR4_EXTI13_PA = 0x00000000
+    SYSCFG_EXTICR4_EXTI13_PB = 0x00000010
+    SYSCFG_EXTICR4_EXTI13_PC = 0x00000020
+endconst
+
+const(uint32):
+    SYSCFG_EXTICR4_EXTI14_PA = 0x00000000
+    SYSCFG_EXTICR4_EXTI14_PB = 0x00000100
+    SYSCFG_EXTICR4_EXTI14_PC = 0x00000200
+    SYSCFG_EXTICR4_EXTI15_PA = 0x00000000
+    SYSCFG_EXTICR4_EXTI15_PB = 0x00001000
+    SYSCFG_EXTICR4_EXTI15_PC = 0x00002000
+    SYSCFG_CFGR3_EN_VREFINT = 0x00000001
+    SYSCFG_CFGR3_VREF_OUT = 0x00000030
+    SYSCFG_CFGR3_VREF_OUT_0 = 0x00000010
+    SYSCFG_CFGR3_VREF_OUT_1 = 0x00000020
+    SYSCFG_CFGR3_ENBUF_VREFINT_ADC = 0x00000100
+    SYSCFG_CFGR3_ENBUF_SENSOR_ADC = 0x00000200
+    SYSCFG_CFGR3_ENBUFLP_VREFINT_COMP = 0x00001000
+    SYSCFG_CFGR3_SENSOR_ADC_RDYF = 0x08000000
+    SYSCFG_CFGR3_VREFINT_ADC_RDYF = 0x10000000
+    SYSCFG_CFGR3_VREFINT_COMP_RDYF = 0x20000000
+    SYSCFG_CFGR3_VREFINT_RDYF = 0x40000000
+    SYSCFG_CFGR3_REF_LOCK = 0x80000000
+    SYSCFG_CFGR3_EN_BGAP = SYSCFG_CFGR3_EN_VREFINT
+    SYSCFG_CFGR3_ENBUF_BGAP_ADC = SYSCFG_CFGR3_ENBUF_VREFINT_ADC
+    SYSCFG_CFGR3_ENBUFLP_BGAP_COMP = SYSCFG_CFGR3_ENBUFLP_VREFINT_COMP
+    SYSCFG_VREFINT_ADC_RDYF = SYSCFG_CFGR3_VREFINT_ADC_RDYF
+    TIM_CR1_CEN          = 0x00000001
+    TIM_CR1_UDIS         = 0x00000002
+    TIM_CR1_URS          = 0x00000004
+    TIM_CR1_OPM          = 0x00000008
+    TIM_CR1_DIR          = 0x00000010
+    TIM_CR1_CMS          = 0x00000060
+    TIM_CR1_CMS_0        = 0x00000020
+    TIM_CR1_CMS_1        = 0x00000040
+    TIM_CR1_ARPE         = 0x00000080
+    TIM_CR1_CKD          = 0x00000300
+endconst
+
+const(uint32):
+    TIM_CR1_CKD_0        = 0x00000100
+    TIM_CR1_CKD_1        = 0x00000200
+    TIM_CR2_CCDS         = 0x00000008
+    TIM_CR2_MMS          = 0x00000070
+    TIM_CR2_MMS_0        = 0x00000010
+    TIM_CR2_MMS_1        = 0x00000020
+    TIM_CR2_MMS_2        = 0x00000040
+    TIM_CR2_TI1S         = 0x00000080
+    TIM_SMCR_SMS         = 0x00000007
+    TIM_SMCR_SMS_0       = 0x00000001
+    TIM_SMCR_SMS_1       = 0x00000002
+    TIM_SMCR_SMS_2       = 0x00000004
+    TIM_SMCR_OCCS        = 0x00000008
+    TIM_SMCR_TS          = 0x00000070
+    TIM_SMCR_TS_0        = 0x00000010
+    TIM_SMCR_TS_1        = 0x00000020
+    TIM_SMCR_TS_2        = 0x00000040
+    TIM_SMCR_MSM         = 0x00000080
+    TIM_SMCR_ETF         = 0x00000F00
+    TIM_SMCR_ETF_0       = 0x00000100
+    TIM_SMCR_ETF_1       = 0x00000200
+    TIM_SMCR_ETF_2       = 0x00000400
+    TIM_SMCR_ETF_3       = 0x00000800
+    TIM_SMCR_ETPS        = 0x00003000
+    TIM_SMCR_ETPS_0      = 0x00001000
+    TIM_SMCR_ETPS_1      = 0x00002000
+    TIM_SMCR_ECE         = 0x00004000
+    TIM_SMCR_ETP         = 0x00008000
+    TIM_DIER_UIE         = 0x00000001
+    TIM_DIER_CC1IE       = 0x00000002
+    TIM_DIER_CC2IE       = 0x00000004
+    TIM_DIER_CC3IE       = 0x00000008
+endconst
+
+const(uint32):
+    TIM_DIER_CC4IE       = 0x00000010
+    TIM_DIER_TIE         = 0x00000040
+    TIM_DIER_UDE         = 0x00000100
+    TIM_DIER_CC1DE       = 0x00000200
+    TIM_DIER_CC2DE       = 0x00000400
+    TIM_DIER_CC3DE       = 0x00000800
+    TIM_DIER_CC4DE       = 0x00001000
+    TIM_DIER_TDE         = 0x00004000
+    TIM_SR_UIF           = 0x00000001
+    TIM_SR_CC1IF         = 0x00000002
+    TIM_SR_CC2IF         = 0x00000004
+    TIM_SR_CC3IF         = 0x00000008
+    TIM_SR_CC4IF         = 0x00000010
+    TIM_SR_TIF           = 0x00000040
+    TIM_SR_CC1OF         = 0x00000200
+    TIM_SR_CC2OF         = 0x00000400
+    TIM_SR_CC3OF         = 0x00000800
+    TIM_SR_CC4OF         = 0x00001000
+    TIM_EGR_UG           = 0x00000001
+    TIM_EGR_CC1G         = 0x00000002
+    TIM_EGR_CC2G         = 0x00000004
+    TIM_EGR_CC3G         = 0x00000008
+    TIM_EGR_CC4G         = 0x00000010
+    TIM_EGR_TG           = 0x00000040
+    TIM_CCMR1_CC1S       = 0x00000003
+    TIM_CCMR1_CC1S_0     = 0x00000001
+    TIM_CCMR1_CC1S_1     = 0x00000002
+    TIM_CCMR1_OC1FE      = 0x00000004
+    TIM_CCMR1_OC1PE      = 0x00000008
+    TIM_CCMR1_OC1M       = 0x00000070
+    TIM_CCMR1_OC1M_0     = 0x00000010
+    TIM_CCMR1_OC1M_1     = 0x00000020
+endconst
+
+const(uint32):
+    TIM_CCMR1_OC1M_2     = 0x00000040
+    TIM_CCMR1_OC1CE      = 0x00000080
+    TIM_CCMR1_CC2S       = 0x00000300
+    TIM_CCMR1_CC2S_0     = 0x00000100
+    TIM_CCMR1_CC2S_1     = 0x00000200
+    TIM_CCMR1_OC2FE      = 0x00000400
+    TIM_CCMR1_OC2PE      = 0x00000800
+    TIM_CCMR1_OC2M       = 0x00007000
+    TIM_CCMR1_OC2M_0     = 0x00001000
+    TIM_CCMR1_OC2M_1     = 0x00002000
+    TIM_CCMR1_OC2M_2     = 0x00004000
+    TIM_CCMR1_OC2CE      = 0x00008000
+    TIM_CCMR1_IC1PSC     = 0x0000000C
+    TIM_CCMR1_IC1PSC_0   = 0x00000004
+    TIM_CCMR1_IC1PSC_1   = 0x00000008
+    TIM_CCMR1_IC1F       = 0x000000F0
+    TIM_CCMR1_IC1F_0     = 0x00000010
+    TIM_CCMR1_IC1F_1     = 0x00000020
+    TIM_CCMR1_IC1F_2     = 0x00000040
+    TIM_CCMR1_IC1F_3     = 0x00000080
+    TIM_CCMR1_IC2PSC     = 0x00000C00
+    TIM_CCMR1_IC2PSC_0   = 0x00000400
+    TIM_CCMR1_IC2PSC_1   = 0x00000800
+    TIM_CCMR1_IC2F       = 0x0000F000
+    TIM_CCMR1_IC2F_0     = 0x00001000
+    TIM_CCMR1_IC2F_1     = 0x00002000
+    TIM_CCMR1_IC2F_2     = 0x00004000
+    TIM_CCMR1_IC2F_3     = 0x00008000
+    TIM_CCMR2_CC3S       = 0x00000003
+    TIM_CCMR2_CC3S_0     = 0x00000001
+    TIM_CCMR2_CC3S_1     = 0x00000002
+    TIM_CCMR2_OC3FE      = 0x00000004
+endconst
+
+const(uint32):
+    TIM_CCMR2_OC3PE      = 0x00000008
+    TIM_CCMR2_OC3M       = 0x00000070
+    TIM_CCMR2_OC3M_0     = 0x00000010
+    TIM_CCMR2_OC3M_1     = 0x00000020
+    TIM_CCMR2_OC3M_2     = 0x00000040
+    TIM_CCMR2_OC3CE      = 0x00000080
+    TIM_CCMR2_CC4S       = 0x00000300
+    TIM_CCMR2_CC4S_0     = 0x00000100
+    TIM_CCMR2_CC4S_1     = 0x00000200
+    TIM_CCMR2_OC4FE      = 0x00000400
+    TIM_CCMR2_OC4PE      = 0x00000800
+    TIM_CCMR2_OC4M       = 0x00007000
+    TIM_CCMR2_OC4M_0     = 0x00001000
+    TIM_CCMR2_OC4M_1     = 0x00002000
+    TIM_CCMR2_OC4M_2     = 0x00004000
+    TIM_CCMR2_OC4CE      = 0x00008000
+    TIM_CCMR2_IC3PSC     = 0x0000000C
+    TIM_CCMR2_IC3PSC_0   = 0x00000004
+    TIM_CCMR2_IC3PSC_1   = 0x00000008
+    TIM_CCMR2_IC3F       = 0x000000F0
+    TIM_CCMR2_IC3F_0     = 0x00000010
+    TIM_CCMR2_IC3F_1     = 0x00000020
+    TIM_CCMR2_IC3F_2     = 0x00000040
+    TIM_CCMR2_IC3F_3     = 0x00000080
+    TIM_CCMR2_IC4PSC     = 0x00000C00
+    TIM_CCMR2_IC4PSC_0   = 0x00000400
+    TIM_CCMR2_IC4PSC_1   = 0x00000800
+    TIM_CCMR2_IC4F       = 0x0000F000
+    TIM_CCMR2_IC4F_0     = 0x00001000
+    TIM_CCMR2_IC4F_1     = 0x00002000
+    TIM_CCMR2_IC4F_2     = 0x00004000
+    TIM_CCMR2_IC4F_3     = 0x00008000
+endconst
+
+const(uint32):
+    TIM_CCER_CC1E        = 0x00000001
+    TIM_CCER_CC1P        = 0x00000002
+    TIM_CCER_CC1NP       = 0x00000008
+    TIM_CCER_CC2E        = 0x00000010
+    TIM_CCER_CC2P        = 0x00000020
+    TIM_CCER_CC2NP       = 0x00000080
+    TIM_CCER_CC3E        = 0x00000100
+    TIM_CCER_CC3P        = 0x00000200
+    TIM_CCER_CC3NP       = 0x00000800
+    TIM_CCER_CC4E        = 0x00001000
+    TIM_CCER_CC4P        = 0x00002000
+    TIM_CCER_CC4NP       = 0x00008000
+    TIM_CNT_CNT          = 0x0000FFFF
+    TIM_PSC_PSC          = 0x0000FFFF
+    TIM_ARR_ARR          = 0x0000FFFF
+    TIM_CCR1_CCR1        = 0x0000FFFF
+    TIM_CCR2_CCR2        = 0x0000FFFF
+    TIM_CCR3_CCR3        = 0x0000FFFF
+    TIM_CCR4_CCR4        = 0x0000FFFF
+    TIM_DCR_DBA          = 0x0000001F
+    TIM_DCR_DBA_0        = 0x00000001
+    TIM_DCR_DBA_1        = 0x00000002
+    TIM_DCR_DBA_2        = 0x00000004
+    TIM_DCR_DBA_3        = 0x00000008
+    TIM_DCR_DBA_4        = 0x00000010
+    TIM_DCR_DBL          = 0x00001F00
+    TIM_DCR_DBL_0        = 0x00000100
+    TIM_DCR_DBL_1        = 0x00000200
+    TIM_DCR_DBL_2        = 0x00000400
+    TIM_DCR_DBL_3        = 0x00000800
+    TIM_DCR_DBL_4        = 0x00001000
+    TIM_DMAR_DMAB        = 0x0000FFFF
+endconst
+
+const(uint32):
+    TIM2_OR_ETR_RMP      = 0x00000007
+    TIM2_OR_ETR_RMP_0    = 0x00000001
+    TIM2_OR_ETR_RMP_1    = 0x00000002
+    TIM2_OR_ETR_RMP_2    = 0x00000004
+    TIM2_OR_TI4_RMP      = 0x0000018
+    TIM2_OR_TI4_RMP_0    = 0x00000008
+    TIM2_OR_TI4_RMP_1    = 0x00000010
+    TIM21_OR_ETR_RMP     = 0x00000003
+    TIM21_OR_ETR_RMP_0   = 0x00000001
+    TIM21_OR_ETR_RMP_1   = 0x00000002
+    TIM21_OR_TI1_RMP     = 0x0000001C
+    TIM21_OR_TI1_RMP_0   = 0x00000004
+    TIM21_OR_TI1_RMP_1   = 0x00000008
+    TIM21_OR_TI1_RMP_2   = 0x00000010
+    TIM21_OR_TI2_RMP     = 0x00000020
+    USART_CR1_UE         = 0x00000001
+    USART_CR1_UESM       = 0x00000002
+    USART_CR1_RE         = 0x00000004
+    USART_CR1_TE         = 0x00000008
+    USART_CR1_IDLEIE     = 0x00000010
+    USART_CR1_RXNEIE     = 0x00000020
+    USART_CR1_TCIE       = 0x00000040
+    USART_CR1_TXEIE      = 0x00000080
+    USART_CR1_PEIE       = 0x00000100
+    USART_CR1_PS         = 0x00000200
+    USART_CR1_PCE        = 0x00000400
+    USART_CR1_WAKE       = 0x00000800
+    USART_CR1_M          = 0x10001000
+    USART_CR1_M0         = 0x00001000
+    USART_CR1_MME        = 0x00002000
+    USART_CR1_CMIE       = 0x00004000
+    USART_CR1_OVER8      = 0x00008000
+endconst
+
+const(uint32):
+    USART_CR1_DEDT       = 0x001F0000
+    USART_CR1_DEDT_0     = 0x00010000
+    USART_CR1_DEDT_1     = 0x00020000
+    USART_CR1_DEDT_2     = 0x00040000
+    USART_CR1_DEDT_3     = 0x00080000
+    USART_CR1_DEDT_4     = 0x00100000
+    USART_CR1_DEAT       = 0x03E00000
+    USART_CR1_DEAT_0     = 0x00200000
+    USART_CR1_DEAT_1     = 0x00400000
+    USART_CR1_DEAT_2     = 0x00800000
+    USART_CR1_DEAT_3     = 0x01000000
+    USART_CR1_DEAT_4     = 0x02000000
+    USART_CR1_RTOIE      = 0x04000000
+    USART_CR1_EOBIE      = 0x08000000
+    USART_CR1_M1         = 0x10000000
+    USART_CR2_ADDM7      = 0x00000010
+    USART_CR2_LBDL       = 0x00000020
+    USART_CR2_LBDIE      = 0x00000040
+    USART_CR2_LBCL       = 0x00000100
+    USART_CR2_CPHA       = 0x00000200
+    USART_CR2_CPOL       = 0x00000400
+    USART_CR2_CLKEN      = 0x00000800
+    USART_CR2_STOP       = 0x00003000
+    USART_CR2_STOP_0     = 0x00001000
+    USART_CR2_STOP_1     = 0x00002000
+    USART_CR2_LINEN      = 0x00004000
+    USART_CR2_SWAP       = 0x00008000
+    USART_CR2_RXINV      = 0x00010000
+    USART_CR2_TXINV      = 0x00020000
+    USART_CR2_DATAINV    = 0x00040000
+    USART_CR2_MSBFIRST   = 0x00080000
+    USART_CR2_ABREN      = 0x00100000
+endconst
+
+const(uint32):
+    USART_CR2_ABRMODE    = 0x00600000
+    USART_CR2_ABRMODE_0  = 0x00200000
+    USART_CR2_ABRMODE_1  = 0x00400000
+    USART_CR2_RTOEN      = 0x00800000
+    USART_CR2_ADD        = 0xFF000000
+    USART_CR3_EIE        = 0x00000001
+    USART_CR3_IREN       = 0x00000002
+    USART_CR3_IRLP       = 0x00000004
+    USART_CR3_HDSEL      = 0x00000008
+    USART_CR3_NACK       = 0x00000010
+    USART_CR3_SCEN       = 0x00000020
+    USART_CR3_DMAR       = 0x00000040
+    USART_CR3_DMAT       = 0x00000080
+    USART_CR3_RTSE       = 0x00000100
+    USART_CR3_CTSE       = 0x00000200
+    USART_CR3_CTSIE      = 0x00000400
+    USART_CR3_ONEBIT     = 0x00000800
+    USART_CR3_OVRDIS     = 0x00001000
+    USART_CR3_DDRE       = 0x00002000
+    USART_CR3_DEM        = 0x00004000
+    USART_CR3_DEP        = 0x00008000
+    USART_CR3_SCARCNT    = 0x000E0000
+    USART_CR3_SCARCNT_0  = 0x00020000
+    USART_CR3_SCARCNT_1  = 0x00040000
+    USART_CR3_SCARCNT_2  = 0x00080000
+    USART_CR3_WUS        = 0x00300000
+    USART_CR3_WUS_0      = 0x00100000
+    USART_CR3_WUS_1      = 0x00200000
+    USART_CR3_WUFIE      = 0x00400000
+    USART_CR3_UCESM      = 0x00800000
+    USART_CR3_TCBGTIE    = 0x01000000
+    USART_BRR_DIV_FRACTION = 0x0000000F
+endconst
+
+const(uint32):
+    USART_BRR_DIV_MANTISSA = 0x0000FFF0
+    USART_GTPR_PSC       = 0x000000FF
+    USART_GTPR_GT        = 0x0000FF00
+    USART_RTOR_RTO       = 0x00FFFFFF
+    USART_RTOR_BLEN      = 0xFF000000
+    USART_RQR_ABRRQ      = 0x00000001
+    USART_RQR_SBKRQ      = 0x00000002
+    USART_RQR_MMRQ       = 0x00000004
+    USART_RQR_RXFRQ      = 0x00000008
+    USART_RQR_TXFRQ      = 0x00000010
+    USART_ISR_PE         = 0x00000001
+    USART_ISR_FE         = 0x00000002
+    USART_ISR_NE         = 0x00000004
+    USART_ISR_ORE        = 0x00000008
+    USART_ISR_IDLE       = 0x00000010
+    USART_ISR_RXNE       = 0x00000020
+    USART_ISR_TC         = 0x00000040
+    USART_ISR_TXE        = 0x00000080
+    USART_ISR_LBDF       = 0x00000100
+    USART_ISR_CTSIF      = 0x00000200
+    USART_ISR_CTS        = 0x00000400
+    USART_ISR_RTOF       = 0x00000800
+    USART_ISR_EOBF       = 0x00001000
+    USART_ISR_ABRE       = 0x00004000
+    USART_ISR_ABRF       = 0x00008000
+    USART_ISR_BUSY       = 0x00010000
+    USART_ISR_CMF        = 0x00020000
+    USART_ISR_SBKF       = 0x00040000
+    USART_ISR_RWU        = 0x00080000
+    USART_ISR_WUF        = 0x00100000
+    USART_ISR_TEACK      = 0x00200000
+    USART_ISR_REACK      = 0x00400000
+endconst
+
+const(uint32):
+    USART_ISR_TCBGT      = 0x02000000
+    USART_ICR_PECF       = 0x00000001
+    USART_ICR_FECF       = 0x00000002
+    USART_ICR_NCF        = 0x00000004
+    USART_ICR_ORECF      = 0x00000008
+    USART_ICR_IDLECF     = 0x00000010
+    USART_ICR_TCCF       = 0x00000040
+    USART_ICR_TCBGTCF    = 0x00000080
+    USART_ICR_LBDCF      = 0x00000100
+    USART_ICR_CTSCF      = 0x00000200
+    USART_ICR_RTOCF      = 0x00000800
+    USART_ICR_EOBCF      = 0x00001000
+    USART_ICR_CMCF       = 0x00020000
+    USART_ICR_WUCF       = 0x00100000
+    USART_RDR_RDR        = 0x000001FF
+    USART_TDR_TDR        = 0x000001FF
+    WWDG_CR_T            = 0x0000007F
+    WWDG_CR_T_0          = 0x00000001
+    WWDG_CR_T_1          = 0x00000002
+    WWDG_CR_T_2          = 0x00000004
+    WWDG_CR_T_3          = 0x00000008
+    WWDG_CR_T_4          = 0x00000010
+    WWDG_CR_T_5          = 0x00000020
+    WWDG_CR_T_6          = 0x00000040
+    WWDG_CR_T0           = WWDG_CR_T_0
+    WWDG_CR_T1           = WWDG_CR_T_1
+    WWDG_CR_T2           = WWDG_CR_T_2
+    WWDG_CR_T3           = WWDG_CR_T_3
+    WWDG_CR_T4           = WWDG_CR_T_4
+    WWDG_CR_T5           = WWDG_CR_T_5
+    WWDG_CR_T6           = WWDG_CR_T_6
+    WWDG_CR_WDGA         = 0x00000080
+endconst
+
+const(uint32):
+    WWDG_CFR_W           = 0x0000007F
+    WWDG_CFR_W_0         = 0x00000001
+    WWDG_CFR_W_1         = 0x00000002
+    WWDG_CFR_W_2         = 0x00000004
+    WWDG_CFR_W_3         = 0x00000008
+    WWDG_CFR_W_4         = 0x00000010
+    WWDG_CFR_W_5         = 0x00000020
+    WWDG_CFR_W_6         = 0x00000040
+    WWDG_CFR_W0          = WWDG_CFR_W_0
+    WWDG_CFR_W1          = WWDG_CFR_W_1
+    WWDG_CFR_W2          = WWDG_CFR_W_2
+    WWDG_CFR_W3          = WWDG_CFR_W_3
+    WWDG_CFR_W4          = WWDG_CFR_W_4
+    WWDG_CFR_W5          = WWDG_CFR_W_5
+    WWDG_CFR_W6          = WWDG_CFR_W_6
+    WWDG_CFR_WDGTB       = 0x00000180
+    WWDG_CFR_WDGTB_0     = 0x00000080
+    WWDG_CFR_WDGTB_1     = 0x00000100
+    WWDG_CFR_WDGTB0      = WWDG_CFR_WDGTB_0
+    WWDG_CFR_WDGTB1      = WWDG_CFR_WDGTB_1
+    WWDG_CFR_EWI         = 0x00000200
+    WWDG_SR_EWIF         = 0x00000001
+    RNG_LPUART1_IRQn     = LPUART1_IRQn
+    AES_LPUART1_IRQn     = LPUART1_IRQn
+    AES_RNG_LPUART1_IRQn = LPUART1_IRQn
+    RCC_CRS_IRQn         = RCC_IRQn
+endconst
+

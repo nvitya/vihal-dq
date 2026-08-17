@@ -1,0 +1,1921 @@
+const(int):
+    NonMaskableInt_IRQn  = -14
+    HardFault_IRQn       = -13
+    SVCall_IRQn          = -5
+    PendSV_IRQn          = -2
+    SysTick_IRQn         = -1
+    WWDT0_INT_IRQn       = 0
+    DEBUGSS_INT_IRQn     = 0
+    WWDT1_INT_IRQn       = 0
+    SYSCTL_INT_IRQn      = 0
+    FLASHCTL_INT_IRQn    = 0
+    COMP2_INT_IRQn       = 1
+    GPIOA_INT_IRQn       = 1
+    GPIOB_INT_IRQn       = 1
+    COMP1_INT_IRQn       = 1
+    COMP0_INT_IRQn       = 1
+    TRNG_INT_IRQn        = 1
+    GPIOC_INT_IRQn       = 1
+    TIMG8_INT_IRQn       = 2
+    UART3_INT_IRQn       = 3
+    ADC0_INT_IRQn        = 4
+    ADC1_INT_IRQn        = 5
+    CANFD0_INT_IRQn      = 6
+    DAC0_INT_IRQn        = 7
+    TIMG9_INT_IRQn       = 8
+    SPI0_INT_IRQn        = 9
+    SPI1_INT_IRQn        = 10
+    SPI2_INT_IRQn        = 11
+    CANFD1_INT_IRQn      = 12
+    UART1_INT_IRQn       = 13
+    UART4_INT_IRQn       = 14
+    UART0_INT_IRQn       = 15
+    TIMG0_INT_IRQn       = 16
+endconst
+
+const(int):
+    TIMG6_INT_IRQn       = 17
+    TIMA0_INT_IRQn       = 18
+    TIMA1_INT_IRQn       = 19
+    TIMG7_INT_IRQn       = 20
+    TIMG12_INT_IRQn      = 21
+    TIMG14_INT_IRQn      = 22
+    UART5_INT_IRQn       = 23
+    I2C0_INT_IRQn        = 24
+    I2C1_INT_IRQn        = 25
+    I2C2_INT_IRQn        = 26
+    UART7_INT_IRQn       = 27
+    AESADV_INT_IRQn      = 28
+    UART6_INT_IRQn       = 29
+    LFSS_INT_IRQn        = 30
+    RTC_B_INT_IRQn       = 30
+    DMA_INT_IRQn         = 31
+endconst
+
+struct ADC12_SVTMEM_Regs:
+    RESERVED0    :            [88] uint32
+    FIFODATA     : [[regro]]  uint32  
+    RESERVED1    :            [71] uint32
+    MEMRES       : [[regro]]  [24] uint32
+endstruct
+
+struct ADC12_PERIPHERALREGIONSVT_Regs:
+    SVTMEM       :            ADC12_SVTMEM_Regs
+endstruct
+
+struct ADC12_DMA_TRIG_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct ADC12_GEN_EVENT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct ADC12_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct ADC12_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    CLKCFG       : [[regrw]]  uint32  
+    RESERVED0    :            [2] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct ADC12_ULLMEM_Regs:
+    RESERVED0    :            [256] uint32
+    FSUB_0       : [[regrw]]  uint32  
+    RESERVED1    :            [16] uint32
+    FPUB_1       : [[regrw]]  uint32  
+    RESERVED2    :            [238] uint32
+    GPRCM        :            ADC12_GPRCM_Regs
+    RESERVED3    :            [514] uint32
+    CPU_INT      :            ADC12_CPU_INT_Regs
+    RESERVED4    :            uint32  
+    GEN_EVENT    :            ADC12_GEN_EVENT_Regs
+    RESERVED5    :            uint32  
+    DMA_TRIG     :            ADC12_DMA_TRIG_Regs
+    RESERVED6    :            [13] uint32
+    EVT_MODE     : [[regro]]  uint32  
+    RESERVED7    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    CTL0         : [[regrw]]  uint32  
+    CTL1         : [[regrw]]  uint32  
+    CTL2         : [[regrw]]  uint32  
+    RESERVED8    :            uint32  
+    CLKFREQ      : [[regrw]]  uint32  
+    SCOMP0       : [[regrw]]  uint32  
+    SCOMP1       : [[regrw]]  uint32  
+    RESERVED9    :            [11] uint32
+    WCLOW        : [[regrw]]  uint32  
+    RESERVED10   :            uint32  
+    WCHIGH       : [[regrw]]  uint32  
+    RESERVED11   :            [3] uint32
+    FIFODATA     : [[regro]]  uint32  
+    RESERVED12   :            [7] uint32
+    MEMCTL       : [[regrw]]  [24] uint32
+    RESERVED13   :            [40] uint32
+    MEMRES       : [[regro]]  [24] uint32
+    RESERVED14   :            [24] uint32
+    STATUS       : [[regro]]  uint32  
+endstruct
+
+struct ADC12_Regs:
+    ULLMEM       :            ADC12_ULLMEM_Regs
+endstruct
+
+struct AESADV_DMA_TRIG_DATAOUT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct AESADV_DMA_TRIG_DATAIN_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct AESADV_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct AESADV_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct AESADV_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            AESADV_GPRCM_Regs
+    RESERVED1    :            [512] uint32
+    PDBGCTL      : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    CPU_INT      :            AESADV_CPU_INT_Regs
+    RESERVED3    :            uint32  
+    DMA_TRIG_DATAIN :            AESADV_DMA_TRIG_DATAIN_Regs
+    RESERVED4    :            uint32  
+    DMA_TRIG_DATAOUT :            AESADV_DMA_TRIG_DATAOUT_Regs
+    RESERVED5    :            [13] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED6    :            [7] uint32
+    GCMCCM_TAG0  : [[regrw]]  uint32  
+    GCMCCM_TAG1  : [[regrw]]  uint32  
+    GCMCCM_TAG2  : [[regrw]]  uint32  
+    GCMCCM_TAG3  : [[regrw]]  uint32  
+    GHASH_H0     : [[regrw]]  uint32  
+    GHASH_H1     : [[regrw]]  uint32  
+    GHASH_H2     : [[regrw]]  uint32  
+    GHASH_H3     : [[regrw]]  uint32  
+    KEY0         : [[regrw]]  uint32  
+    KEY1         : [[regrw]]  uint32  
+    KEY2         : [[regrw]]  uint32  
+    KEY3         : [[regrw]]  uint32  
+    KEY4         : [[regrw]]  uint32  
+    KEY5         : [[regrw]]  uint32  
+    KEY6         : [[regrw]]  uint32  
+    KEY7         : [[regrw]]  uint32  
+    IV0          : [[regrw]]  uint32  
+    IV1          : [[regrw]]  uint32  
+    IV2          : [[regrw]]  uint32  
+    IV3          : [[regrw]]  uint32  
+    CTRL         : [[regrw]]  uint32  
+    C_LENGTH_0   : [[regrw]]  uint32  
+    C_LENGTH_1   : [[regrw]]  uint32  
+    AAD_LENGTH   : [[regrw]]  uint32  
+    DATA0        : [[regrw]]  uint32  
+    DATA1        : [[regrw]]  uint32  
+    DATA2        : [[regrw]]  uint32  
+    DATA3        : [[regrw]]  uint32  
+    TAG0         : [[regro]]  uint32  
+    TAG1         : [[regro]]  uint32  
+    TAG2         : [[regro]]  uint32  
+    TAG3         : [[regro]]  uint32  
+    STATUS       : [[regro]]  uint32  
+    DATA_IN      : [[regrw]]  uint32  
+    DATA_OUT     : [[regro]]  uint32  
+    RESERVED7    :            [17] uint32
+    FORCE_IN_AV  : [[regrw]]  uint32  
+    CCM_ALN_WRD  : [[regrw]]  uint32  
+    BLK_CNT0     : [[regrw]]  uint32  
+    BLK_CNT1     : [[regrw]]  uint32  
+    RESERVED8    :            [5] uint32
+    DMA_HS       : [[regrw]]  uint32  
+endstruct
+
+struct COMP_GEN_EVENT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct COMP_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct COMP_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    CLKCFG       : [[regrw]]  uint32  
+    RESERVED0    :            [2] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct COMP_Regs:
+    RESERVED0    :            [256] uint32
+    FSUB_0       : [[regrw]]  uint32  
+    FSUB_1       : [[regrw]]  uint32  
+    RESERVED1    :            [15] uint32
+    FPUB_1       : [[regrw]]  uint32  
+    RESERVED2    :            [238] uint32
+    GPRCM        :            COMP_GPRCM_Regs
+    RESERVED3    :            [514] uint32
+    CPU_INT      :            COMP_CPU_INT_Regs
+    RESERVED4    :            uint32  
+    GEN_EVENT    :            COMP_GEN_EVENT_Regs
+    RESERVED5    :            [25] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED6    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    CTL0         : [[regrw]]  uint32  
+    CTL1         : [[regrw]]  uint32  
+    CTL2         : [[regrw]]  uint32  
+    CTL3         : [[regrw]]  uint32  
+    RESERVED7    :            [4] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct CRCP_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct CRCP_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            CRCP_GPRCM_Regs
+    RESERVED1    :            [507] uint32
+    CLKSEL       : [[regro]]  uint32  
+    RESERVED2    :            [61] uint32
+    DESC         : [[regro]]  uint32  
+    CRCCTRL      : [[regrw]]  uint32  
+    CRCSEED      : [[regrw]]  uint32  
+    CRCIN        : [[regrw]]  uint32  
+    CRCOUT       : [[regro]]  uint32  
+    CRCPOLY      : [[regrw]]  uint32  
+    RESERVED3    :            [443] uint32
+    CRCIN_IDX    : [[regrw]]  [512] uint32
+endstruct
+
+struct DAC12_GEN_EVENT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct DAC12_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct DAC12_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct DAC12_Regs:
+    RESERVED0    :            [256] uint32
+    FSUB_0       : [[regrw]]  uint32  
+    RESERVED1    :            [16] uint32
+    FPUB_1       : [[regrw]]  uint32  
+    RESERVED2    :            [238] uint32
+    GPRCM        :            DAC12_GPRCM_Regs
+    RESERVED3    :            [514] uint32
+    CPU_INT      :            DAC12_CPU_INT_Regs
+    RESERVED4    :            uint32  
+    GEN_EVENT    :            DAC12_GEN_EVENT_Regs
+    RESERVED5    :            [25] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED6    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    CTL0         : [[regrw]]  uint32  
+    RESERVED7    :            [3] uint32
+    CTL1         : [[regrw]]  uint32  
+    RESERVED8    :            [3] uint32
+    CTL2         : [[regrw]]  uint32  
+    RESERVED9    :            [3] uint32
+    CTL3         : [[regrw]]  uint32  
+    RESERVED10   :            [3] uint32
+    CALCTL       : [[regrw]]  uint32  
+    RESERVED11   :            [7] uint32
+    CALDATA      : [[regro]]  uint32  
+    RESERVED12   :            [39] uint32
+    DATA0        : [[regrw]]  uint32  
+endstruct
+
+struct DMA_DMACHAN_Regs:
+    DMACTL       : [[regrw]]  uint32  
+    DMASA        : [[regrw]]  uint32  
+    DMADA        : [[regrw]]  uint32  
+    DMASZ        : [[regrw]]  uint32  
+endstruct
+
+struct DMA_DMATRIG_Regs:
+    DMATCTL      : [[regrw]]  uint32  
+endstruct
+
+struct DMA_GEN_EVENT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct DMA_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct DMA_Regs:
+    RESERVED0    :            [256] uint32
+    FSUB_0       : [[regrw]]  uint32  
+    FSUB_1       : [[regrw]]  uint32  
+    RESERVED1    :            [15] uint32
+    FPUB_1       : [[regrw]]  uint32  
+    RESERVED2    :            [756] uint32
+    PDBGCTL      : [[regrw]]  uint32  
+    RESERVED3    :            uint32  
+    CPU_INT      :            DMA_CPU_INT_Regs
+    RESERVED4    :            uint32  
+    GEN_EVENT    :            DMA_GEN_EVENT_Regs
+    RESERVED5    :            [25] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED6    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    DMAPRIO      : [[regrw]]  uint32  
+    RESERVED7    :            [3] uint32
+    DMATRIG      :            [16] DMA_DMATRIG_Regs
+    RESERVED8    :            [44] uint32
+    DMACHAN      :            [16] DMA_DMACHAN_Regs
+endstruct
+
+struct FLASHCTL_GEN_Regs:
+    RESERVED0    :            [1032] uint32
+    IIDX         : [[regro]]  uint32  
+    RESERVED1    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED2    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED4    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED5    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+    RESERVED6    :            [37] uint32
+    EVT_MODE     : [[regro]]  uint32  
+    RESERVED7    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    CMDEXEC      : [[regrw]]  uint32  
+    CMDTYPE      : [[regrw]]  uint32  
+    CMDCTL       : [[regrw]]  uint32  
+    RESERVED8    :            [5] uint32
+    CMDADDR      : [[regrw]]  uint32  
+    CMDBYTEN     : [[regrw]]  uint32  
+    RESERVED9    :            uint32  
+    CMDDATAINDEX : [[regrw]]  uint32  
+    CMDDATA0     : [[regrw]]  uint32  
+    CMDDATA1     : [[regrw]]  uint32  
+    CMDDATA2     : [[regrw]]  uint32  
+    CMDDATA3     : [[regrw]]  uint32  
+    CMDDATA4     : [[regrw]]  uint32  
+    CMDDATA5     : [[regrw]]  uint32  
+    CMDDATA6     : [[regrw]]  uint32  
+    CMDDATA7     : [[regrw]]  uint32  
+    CMDDATA8     : [[regrw]]  uint32  
+    CMDDATA9     : [[regrw]]  uint32  
+    CMDDATA10    : [[regrw]]  uint32  
+    CMDDATA11    : [[regrw]]  uint32  
+    CMDDATA12    : [[regrw]]  uint32  
+    CMDDATA13    : [[regrw]]  uint32  
+    CMDDATA14    : [[regrw]]  uint32  
+    CMDDATA15    : [[regrw]]  uint32  
+    CMDDATA16    : [[regrw]]  uint32  
+    CMDDATA17    : [[regrw]]  uint32  
+    CMDDATA18    : [[regrw]]  uint32  
+    CMDDATA19    : [[regrw]]  uint32  
+    CMDDATA20    : [[regrw]]  uint32  
+    CMDDATA21    : [[regrw]]  uint32  
+    CMDDATA22    : [[regrw]]  uint32  
+    CMDDATA23    : [[regrw]]  uint32  
+    CMDDATA24    : [[regrw]]  uint32  
+    CMDDATA25    : [[regrw]]  uint32  
+    CMDDATA26    : [[regrw]]  uint32  
+    CMDDATA27    : [[regrw]]  uint32  
+    CMDDATA28    : [[regrw]]  uint32  
+    CMDDATA29    : [[regrw]]  uint32  
+    CMDDATA30    : [[regrw]]  uint32  
+    CMDDATA31    : [[regrw]]  uint32  
+    CMDDATAECC0  : [[regrw]]  uint32  
+    CMDDATAECC1  : [[regrw]]  uint32  
+    CMDDATAECC2  : [[regrw]]  uint32  
+    CMDDATAECC3  : [[regrw]]  uint32  
+    CMDDATAECC4  : [[regrw]]  uint32  
+    CMDDATAECC5  : [[regrw]]  uint32  
+    CMDDATAECC6  : [[regrw]]  uint32  
+    CMDDATAECC7  : [[regrw]]  uint32  
+    CMDWEPROTA   : [[regrw]]  uint32  
+    CMDWEPROTB   : [[regrw]]  uint32  
+    CMDWEPROTC   : [[regrw]]  uint32  
+    RESERVED10   :            [13] uint32
+    CMDWEPROTNM  : [[regrw]]  uint32  
+    CMDWEPROTTR  : [[regrw]]  uint32  
+    CMDWEPROTEN  : [[regrw]]  uint32  
+    RESERVED11   :            [101] uint32
+    CFGCMD       : [[regrw]]  uint32  
+    CFGPCNT      : [[regrw]]  uint32  
+    RESERVED12   :            [6] uint32
+    STATCMD      : [[regro]]  uint32  
+    STATADDR     : [[regro]]  uint32  
+    STATPCNT     : [[regro]]  uint32  
+    STATMODE     : [[regro]]  uint32  
+    RESERVED13   :            [4] uint32
+    GBLINFO0     : [[regro]]  uint32  
+    GBLINFO1     : [[regro]]  uint32  
+    GBLINFO2     : [[regro]]  uint32  
+    RESERVED14   :            uint32  
+    BANK0INFO0   : [[regro]]  uint32  
+    BANK0INFO1   : [[regro]]  uint32  
+    RESERVED15   :            [2] uint32
+    BANK1INFO0   : [[regro]]  uint32  
+    BANK1INFO1   : [[regro]]  uint32  
+    RESERVED16   :            [2] uint32
+    BANK2INFO0   : [[regro]]  uint32  
+    BANK2INFO1   : [[regro]]  uint32  
+    RESERVED17   :            [2] uint32
+    BANK3INFO0   : [[regro]]  uint32  
+    BANK3INFO1   : [[regro]]  uint32  
+    RESERVED18   :            [2] uint32
+    BANK4INFO0   : [[regro]]  uint32  
+    BANK4INFO1   : [[regro]]  uint32  
+endstruct
+
+struct FLASHCTL_Regs:
+    GEN          :            FLASHCTL_GEN_Regs
+endstruct
+
+struct GPIO_GEN_EVENT1_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct GPIO_GEN_EVENT0_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct GPIO_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct GPIO_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct GPIO_Regs:
+    RESERVED0    :            [256] uint32
+    FSUB_0       : [[regrw]]  uint32  
+    FSUB_1       : [[regrw]]  uint32  
+    RESERVED1    :            [15] uint32
+    FPUB_0       : [[regrw]]  uint32  
+    FPUB_1       : [[regrw]]  uint32  
+    RESERVED2    :            [237] uint32
+    GPRCM        :            GPIO_GPRCM_Regs
+    RESERVED3    :            [510] uint32
+    CLKOVR       : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    PDBGCTL      : [[regrw]]  uint32  
+    RESERVED5    :            uint32  
+    CPU_INT      :            GPIO_CPU_INT_Regs
+    RESERVED6    :            uint32  
+    GEN_EVENT0   :            GPIO_GEN_EVENT0_Regs
+    RESERVED7    :            uint32  
+    GEN_EVENT1   :            GPIO_GEN_EVENT1_Regs
+    RESERVED8    :            [13] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED9    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    RESERVED10   :            [64] uint32
+    DOUT3_0      : [[regrw]]  uint32  
+    DOUT7_4      : [[regrw]]  uint32  
+    DOUT11_8     : [[regrw]]  uint32  
+    DOUT15_12    : [[regrw]]  uint32  
+    DOUT19_16    : [[regrw]]  uint32  
+    DOUT23_20    : [[regrw]]  uint32  
+    DOUT27_24    : [[regrw]]  uint32  
+    DOUT31_28    : [[regrw]]  uint32  
+    RESERVED11   :            [24] uint32
+    DOUT31_0     : [[regrw]]  uint32  
+    RESERVED12   :            [3] uint32
+    DOUTSET31_0  : [[regrw]]  uint32  
+    RESERVED13   :            [3] uint32
+    DOUTCLR31_0  : [[regrw]]  uint32  
+    RESERVED14   :            [3] uint32
+    DOUTTGL31_0  : [[regrw]]  uint32  
+    RESERVED15   :            [3] uint32
+    DOE31_0      : [[regrw]]  uint32  
+    RESERVED16   :            [3] uint32
+    DOESET31_0   : [[regrw]]  uint32  
+    RESERVED17   :            [3] uint32
+    DOECLR31_0   : [[regrw]]  uint32  
+    RESERVED18   :            [7] uint32
+    DIN3_0       : [[regro]]  uint32  
+    DIN7_4       : [[regro]]  uint32  
+    DIN11_8      : [[regro]]  uint32  
+    DIN15_12     : [[regro]]  uint32  
+    DIN19_16     : [[regro]]  uint32  
+    DIN23_20     : [[regro]]  uint32  
+    DIN27_24     : [[regro]]  uint32  
+    DIN31_28     : [[regro]]  uint32  
+    RESERVED19   :            [24] uint32
+    DIN31_0      : [[regro]]  uint32  
+    RESERVED20   :            [3] uint32
+    POLARITY15_0 : [[regrw]]  uint32  
+    RESERVED21   :            [3] uint32
+    POLARITY31_16 : [[regrw]]  uint32  
+    RESERVED22   :            [23] uint32
+    CTL          : [[regrw]]  uint32  
+    FASTWAKE     : [[regrw]]  uint32  
+    RESERVED23   :            [62] uint32
+    SUB0CFG      : [[regrw]]  uint32  
+    RESERVED24   :            uint32  
+    FILTEREN15_0 : [[regrw]]  uint32  
+    FILTEREN31_16 : [[regrw]]  uint32  
+    DMAMASK      : [[regrw]]  uint32  
+    RESERVED25   :            [3] uint32
+    SUB1CFG      : [[regrw]]  uint32  
+endstruct
+
+struct GPTIMER_COUNTERREGS_Regs:
+    CTR          : [[regrw]]  uint32  
+    CTRCTL       : [[regrw]]  uint32  
+    LOAD         : [[regrw]]  uint32  
+    RESERVED0    :            uint32  
+    CC_01        : [[regrw]]  [2] uint32
+    CC_23        : [[regrw]]  [2] uint32
+    CC_45        : [[regrw]]  [2] uint32
+    RESERVED1    :            [2] uint32
+    CCCTL_01     : [[regrw]]  [2] uint32
+    CCCTL_23     : [[regrw]]  [2] uint32
+    CCCTL_45     : [[regrw]]  [2] uint32
+    RESERVED2    :            [2] uint32
+    OCTL_01      : [[regrw]]  [2] uint32
+    OCTL_23      : [[regrw]]  [2] uint32
+    RESERVED3    :            [4] uint32
+    CCACT_01     : [[regrw]]  [2] uint32
+    CCACT_23     : [[regrw]]  [2] uint32
+    IFCTL_01     : [[regrw]]  [2] uint32
+    IFCTL_23     : [[regrw]]  [2] uint32
+    RESERVED4    :            [4] uint32
+    PL           : [[regrw]]  uint32  
+    DBCTL        : [[regrw]]  uint32  
+    RESERVED5    :            [2] uint32
+    TSEL         : [[regrw]]  uint32  
+    RC           : [[regro]]  uint32  
+    RCLD         : [[regrw]]  uint32  
+    QDIR         : [[regro]]  uint32  
+    RESERVED6    :            [4] uint32
+    FCTL         : [[regrw]]  uint32  
+    FIFCTL       : [[regrw]]  uint32  
+endstruct
+
+struct GPTIMER_COMMONREGS_Regs:
+    CCPD         : [[regrw]]  uint32  
+    ODIS         : [[regrw]]  uint32  
+    CCLKCTL      : [[regrw]]  uint32  
+    CPS          : [[regrw]]  uint32  
+    CPSV         : [[regro]]  uint32  
+    CTTRIGCTL    : [[regrw]]  uint32  
+    RESERVED0    :            uint32  
+    CTTRIG       : [[regrw]]  uint32  
+    FSCTL        : [[regrw]]  uint32  
+    GCTL         : [[regrw]]  uint32  
+endstruct
+
+struct GPTIMER_GEN_EVENT1_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct GPTIMER_GEN_EVENT0_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct GPTIMER_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct GPTIMER_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct GPTIMER_Regs:
+    RESERVED0    :            [256] uint32
+    FSUB_0       : [[regrw]]  uint32  
+    FSUB_1       : [[regrw]]  uint32  
+    RESERVED1    :            [15] uint32
+    FPUB_0       : [[regrw]]  uint32  
+    FPUB_1       : [[regrw]]  uint32  
+    RESERVED2    :            [237] uint32
+    GPRCM        :            GPTIMER_GPRCM_Regs
+    RESERVED3    :            [506] uint32
+    CLKDIV       : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    CLKSEL       : [[regrw]]  uint32  
+    RESERVED5    :            [3] uint32
+    PDBGCTL      : [[regrw]]  uint32  
+    RESERVED6    :            uint32  
+    CPU_INT      :            GPTIMER_CPU_INT_Regs
+    RESERVED7    :            uint32  
+    GEN_EVENT0   :            GPTIMER_GEN_EVENT0_Regs
+    RESERVED8    :            uint32  
+    GEN_EVENT1   :            GPTIMER_GEN_EVENT1_Regs
+    RESERVED9    :            [13] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED10   :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    COMMONREGS   :            GPTIMER_COMMONREGS_Regs
+    RESERVED11   :            [438] uint32
+    COUNTERREGS  :            GPTIMER_COUNTERREGS_Regs
+endstruct
+
+struct I2C_SLAVE_Regs:
+    SOAR         : [[regrw]]  uint32  
+    SOAR2        : [[regrw]]  uint32  
+    SCTR         : [[regrw]]  uint32  
+    SSR          : [[regro]]  uint32  
+    SRXDATA      : [[regro]]  uint32  
+    STXDATA      : [[regrw]]  uint32  
+    SACKCTL      : [[regrw]]  uint32  
+    SFIFOCTL     : [[regrw]]  uint32  
+    SFIFOSR      : [[regro]]  uint32  
+    TARGET_PECCTL : [[regrw]]  uint32  
+    TARGET_PECSR : [[regro]]  uint32  
+endstruct
+
+struct I2C_MASTER_Regs:
+    MSA          : [[regrw]]  uint32  
+    MCTR         : [[regrw]]  uint32  
+    MSR          : [[regro]]  uint32  
+    MRXDATA      : [[regro]]  uint32  
+    MTXDATA      : [[regrw]]  uint32  
+    MTPR         : [[regrw]]  uint32  
+    MCR          : [[regrw]]  uint32  
+    RESERVED0    :            [2] uint32
+    MBMON        : [[regro]]  uint32  
+    MFIFOCTL     : [[regrw]]  uint32  
+    MFIFOSR      : [[regro]]  uint32  
+    CONTROLLER_I2CPECCTL : [[regrw]]  uint32  
+    CONTROLLER_PECSR : [[regro]]  uint32  
+endstruct
+
+struct I2C_DMA_TRIG0_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct I2C_DMA_TRIG1_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct I2C_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct I2C_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    CLKCFG       : [[regrw]]  uint32  
+    RESERVED0    :            [2] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct I2C_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            I2C_GPRCM_Regs
+    RESERVED1    :            [506] uint32
+    CLKDIV       : [[regrw]]  uint32  
+    CLKSEL       : [[regrw]]  uint32  
+    RESERVED2    :            [4] uint32
+    PDBGCTL      : [[regrw]]  uint32  
+    RESERVED3    :            uint32  
+    CPU_INT      :            I2C_CPU_INT_Regs
+    RESERVED4    :            uint32  
+    DMA_TRIG1    :            I2C_DMA_TRIG1_Regs
+    RESERVED5    :            uint32  
+    DMA_TRIG0    :            I2C_DMA_TRIG0_Regs
+    RESERVED6    :            [13] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    INTCTL       : [[regrw]]  uint32  
+    RESERVED7    :            [5] uint32
+    DESC         : [[regro]]  uint32  
+    RESERVED8    :            [64] uint32
+    GFCTL        : [[regrw]]  uint32  
+    TIMEOUT_CTL  : [[regrw]]  uint32  
+    TIMEOUT_CNT  : [[regro]]  uint32  
+    RESERVED9    :            uint32  
+    MASTER       :            I2C_MASTER_Regs
+    RESERVED10   :            [2] uint32
+    SLAVE        :            I2C_SLAVE_Regs
+endstruct
+
+struct IOMUX_SECCFG_Regs:
+    RESERVED0    :            uint32  
+    PINCM        : [[regrw]]  [251] uint32
+endstruct
+
+struct IOMUX_Regs:
+    SECCFG       :            IOMUX_SECCFG_Regs
+endstruct
+
+struct KEYSTORECTL_Regs:
+    RESERVED0    :            [1088] uint32
+    CFG          : [[regrw]]  uint32  
+    KEYWR        : [[regrw]]  uint32  
+    KEYRD        : [[regrw]]  uint32  
+    STATUS       : [[regro]]  uint32  
+    KEYIN        : [[regrw]]  uint32  
+endstruct
+
+struct LFSS_IPSPECIFIC_MEM_Regs:
+    SPMEM        : [[regrw]]  [32] uint32
+    RESERVED0    :            [32] uint32
+    SPMWPROT0    : [[regrw]]  uint32  
+    SPMWPROT1    : [[regrw]]  uint32  
+    SPMWPROT2    : [[regrw]]  uint32  
+    SPMWPROT3    : [[regrw]]  uint32  
+    SPMWPROT4    : [[regrw]]  uint32  
+    SPMWPROT5    : [[regrw]]  uint32  
+    SPMWPROT6    : [[regrw]]  uint32  
+    SPMWPROT7    : [[regrw]]  uint32  
+    RESERVED1    :            [8] uint32
+    SPMTERASE0   : [[regrw]]  uint32  
+    SPMTERASE1   : [[regrw]]  uint32  
+    SPMTERASE2   : [[regrw]]  uint32  
+    SPMTERASE3   : [[regrw]]  uint32  
+    SPMTERASE4   : [[regrw]]  uint32  
+    SPMTERASE5   : [[regrw]]  uint32  
+    SPMTERASE6   : [[regrw]]  uint32  
+    SPMTERASE7   : [[regrw]]  uint32  
+endstruct
+
+struct LFSS_IPSPECIFIC_WDT_Regs:
+    WDTEN        : [[regrw]]  uint32  
+    WDTDBGCTL    : [[regrw]]  uint32  
+    WDTCTL       : [[regrw]]  uint32  
+    WDTCNTRST    : [[regrw]]  uint32  
+    WDTSTAT      : [[regro]]  uint32  
+    RESERVED0    :            [58] uint32
+    WDTLOCK      : [[regrw]]  uint32  
+endstruct
+
+struct LFSS_IPSPECIFIC_TIO_Regs:
+    TIOCTL       : [[regrw]]  [16] uint32
+    RESERVED0    :            [16] uint32
+    TOUT3_0      : [[regrw]]  uint32  
+    TOUT7_4      : [[regrw]]  uint32  
+    TOUT11_8     : [[regrw]]  uint32  
+    TOUT15_12    : [[regrw]]  uint32  
+    TOE3_0       : [[regrw]]  uint32  
+    TOE7_4       : [[regrw]]  uint32  
+    TOE11_8      : [[regrw]]  uint32  
+    TOE15_12     : [[regrw]]  uint32  
+    TIN3_0       : [[regro]]  uint32  
+    TIN7_4       : [[regro]]  uint32  
+    TIN11_8      : [[regro]]  uint32  
+    TIN15_12     : [[regro]]  uint32  
+    RESERVED1    :            [4] uint32
+    HEARTBEAT    : [[regrw]]  uint32  
+    RESERVED2    :            [14] uint32
+    TIOLOCK      : [[regrw]]  uint32  
+endstruct
+
+struct LFSS_IPSPECIFIC_RTC_Regs:
+    CLKCTL       : [[regrw]]  uint32  
+    DBGCTL       : [[regrw]]  uint32  
+    CTL          : [[regrw]]  uint32  
+    STA          : [[regro]]  uint32  
+    CAL          : [[regrw]]  uint32  
+    TCMP         : [[regrw]]  uint32  
+    SEC          : [[regrw]]  uint32  
+    MIN          : [[regrw]]  uint32  
+    HOUR         : [[regrw]]  uint32  
+    DAY          : [[regrw]]  uint32  
+    MON          : [[regrw]]  uint32  
+    YEAR         : [[regrw]]  uint32  
+    A1MIN        : [[regrw]]  uint32  
+    A1HOUR       : [[regrw]]  uint32  
+    A1DAY        : [[regrw]]  uint32  
+    A2MIN        : [[regrw]]  uint32  
+    A2HOUR       : [[regrw]]  uint32  
+    A2DAY        : [[regrw]]  uint32  
+    PSCTL        : [[regrw]]  uint32  
+    EXTPSCTL     : [[regrw]]  uint32  
+    TSSEC        : [[regro]]  uint32  
+    TSMIN        : [[regro]]  uint32  
+    TSHOUR       : [[regro]]  uint32  
+    TSDAY        : [[regro]]  uint32  
+    TSMON        : [[regro]]  uint32  
+    TSYEAR       : [[regro]]  uint32  
+    TSSTAT       : [[regro]]  uint32  
+    TSCTL        : [[regrw]]  uint32  
+    TSCLR        : [[regrw]]  uint32  
+    RESERVED0    :            [31] uint32
+    LFSSRST      : [[regrw]]  uint32  
+    RESERVED1    :            [2] uint32
+    RTCLOCK      : [[regrw]]  uint32  
+endstruct
+
+struct LFSS_GEN_EVENT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct LFSS_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct LFSS_Regs:
+    RESERVED0    :            [256] uint32
+    FSUB_0       : [[regrw]]  uint32  
+    RESERVED1    :            [16] uint32
+    FPUB_0       : [[regrw]]  uint32  
+    RESERVED2    :            [751] uint32
+    CLKSEL       : [[regro]]  uint32  
+    RESERVED3    :            [6] uint32
+    CPU_INT      :            LFSS_CPU_INT_Regs
+    RESERVED4    :            uint32  
+    GEN_EVENT    :            LFSS_GEN_EVENT_Regs
+    RESERVED5    :            [25] uint32
+    EVT_MODE     : [[regro]]  uint32  
+    RESERVED6    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    IPSPECIFIC_RTC :            LFSS_IPSPECIFIC_RTC_Regs
+    IPSPECIFIC_TIO :            LFSS_IPSPECIFIC_TIO_Regs
+    IPSPECIFIC_WDT :            LFSS_IPSPECIFIC_WDT_Regs
+    IPSPECIFIC_MEM :            LFSS_IPSPECIFIC_MEM_Regs
+endstruct
+
+struct MATHACL_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct MATHACL_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            MATHACL_GPRCM_Regs
+    RESERVED1    :            [570] uint32
+    CTL          : [[regrw]]  uint32  
+    RESERVED2    :            [5] uint32
+    OP2          : [[regrw]]  uint32  
+    OP1          : [[regrw]]  uint32  
+    RES1         : [[regrw]]  uint32  
+    RES2         : [[regrw]]  uint32  
+    RESERVED3    :            [2] uint32
+    STATUS       : [[regro]]  uint32  
+    RESERVED4    :            [3] uint32
+    STATUSCLR    : [[regrw]]  uint32  
+endstruct
+
+struct MCAN_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct MCAN_MSP_Regs:
+    RESERVED0    :            [8] uint32
+    CPU_INT      :            MCAN_CPU_INT_Regs
+    RESERVED1    :            [37] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED2    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    MCANSS_CLKEN : [[regrw]]  uint32  
+    MCANSS_CLKDIV : [[regrw]]  uint32  
+    MCANSS_CLKCTL : [[regrw]]  uint32  
+    MCANSS_CLKSTS : [[regro]]  uint32  
+endstruct
+
+struct MCAN_ECC_REGS_Regs:
+    MCANERR_REV  : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    MCANERR_VECTOR : [[regrw]]  uint32  
+    MCANERR_STAT : [[regro]]  uint32  
+    MCANERR_WRAP_REV : [[regro]]  uint32  
+    MCANERR_CTRL : [[regrw]]  uint32  
+    MCANERR_ERR_CTRL1 : [[regrw]]  uint32  
+    MCANERR_ERR_CTRL2 : [[regrw]]  uint32  
+    MCANERR_ERR_STAT1 : [[regrw]]  uint32  
+    MCANERR_ERR_STAT2 : [[regro]]  uint32  
+    MCANERR_ERR_STAT3 : [[regrw]]  uint32  
+    RESERVED1    :            [4] uint32
+    MCANERR_SEC_EOI : [[regrw]]  uint32  
+    MCANERR_SEC_STATUS : [[regrw]]  uint32  
+    RESERVED2    :            [15] uint32
+    MCANERR_SEC_ENABLE_SET : [[regrw]]  uint32  
+    RESERVED3    :            [15] uint32
+    MCANERR_SEC_ENABLE_CLR : [[regrw]]  uint32  
+    RESERVED4    :            [30] uint32
+    MCANERR_DED_EOI : [[regrw]]  uint32  
+    MCANERR_DED_STATUS : [[regrw]]  uint32  
+    RESERVED5    :            [15] uint32
+    MCANERR_DED_ENABLE_SET : [[regrw]]  uint32  
+    RESERVED6    :            [15] uint32
+    MCANERR_DED_ENABLE_CLR : [[regrw]]  uint32  
+    RESERVED7    :            [15] uint32
+    MCANERR_AGGR_ENABLE_SET : [[regrw]]  uint32  
+    MCANERR_AGGR_ENABLE_CLR : [[regrw]]  uint32  
+    MCANERR_AGGR_STATUS_SET : [[regrw]]  uint32  
+    MCANERR_AGGR_STATUS_CLR : [[regrw]]  uint32  
+endstruct
+
+struct MCAN_REGS_Regs:
+    MCANSS_PID   : [[regro]]  uint32  
+    MCANSS_CTRL  : [[regrw]]  uint32  
+    MCANSS_STAT  : [[regro]]  uint32  
+    MCANSS_ICS   : [[regrw]]  uint32  
+    MCANSS_IRS   : [[regrw]]  uint32  
+    MCANSS_IECS  : [[regrw]]  uint32  
+    MCANSS_IE    : [[regrw]]  uint32  
+    MCANSS_IES   : [[regro]]  uint32  
+    MCANSS_EOI   : [[regrw]]  uint32  
+    MCANSS_EXT_TS_PRESCALER : [[regrw]]  uint32  
+    MCANSS_EXT_TS_UNSERVICED_INTR_CNTR : [[regro]]  uint32  
+endstruct
+
+struct MCAN_PROCESSORS_Regs:
+    MCANSS_REGS  :            MCAN_REGS_Regs
+    RESERVED0    :            [117] uint32
+    MCAN_ECC_REGS :            MCAN_ECC_REGS_Regs
+endstruct
+
+struct MCAN_TI_WRAPPER_Regs:
+    PROCESSORS   :            MCAN_PROCESSORS_Regs
+    RESERVED0    :            [124] uint32
+    MSP          :            MCAN_MSP_Regs
+endstruct
+
+struct MCAN_MCAN_Regs:
+    MCAN_CREL    : [[regro]]  uint32  
+    MCAN_ENDN    : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    MCAN_DBTP    : [[regrw]]  uint32  
+    MCAN_TEST    : [[regrw]]  uint32  
+    MCAN_RWD     : [[regrw]]  uint32  
+    MCAN_CCCR    : [[regrw]]  uint32  
+    MCAN_NBTP    : [[regrw]]  uint32  
+    MCAN_TSCC    : [[regrw]]  uint32  
+    MCAN_TSCV    : [[regrw]]  uint32  
+    MCAN_TOCC    : [[regrw]]  uint32  
+    MCAN_TOCV    : [[regrw]]  uint32  
+    RESERVED1    :            [4] uint32
+    MCAN_ECR     : [[regro]]  uint32  
+    MCAN_PSR     : [[regro]]  uint32  
+    MCAN_TDCR    : [[regrw]]  uint32  
+    RESERVED2    :            uint32  
+    MCAN_IR      : [[regrw]]  uint32  
+    MCAN_IE      : [[regrw]]  uint32  
+    MCAN_ILS     : [[regrw]]  uint32  
+    MCAN_ILE     : [[regrw]]  uint32  
+    RESERVED3    :            [8] uint32
+    MCAN_GFC     : [[regrw]]  uint32  
+    MCAN_SIDFC   : [[regrw]]  uint32  
+    MCAN_XIDFC   : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    MCAN_XIDAM   : [[regrw]]  uint32  
+    MCAN_HPMS    : [[regro]]  uint32  
+    MCAN_NDAT1   : [[regrw]]  uint32  
+    MCAN_NDAT2   : [[regrw]]  uint32  
+    MCAN_RXF0C   : [[regrw]]  uint32  
+    MCAN_RXF0S   : [[regro]]  uint32  
+    MCAN_RXF0A   : [[regrw]]  uint32  
+    MCAN_RXBC    : [[regrw]]  uint32  
+    MCAN_RXF1C   : [[regrw]]  uint32  
+    MCAN_RXF1S   : [[regro]]  uint32  
+    MCAN_RXF1A   : [[regrw]]  uint32  
+    MCAN_RXESC   : [[regrw]]  uint32  
+    MCAN_TXBC    : [[regrw]]  uint32  
+    MCAN_TXFQS   : [[regro]]  uint32  
+    MCAN_TXESC   : [[regrw]]  uint32  
+    MCAN_TXBRP   : [[regro]]  uint32  
+    MCAN_TXBAR   : [[regrw]]  uint32  
+    MCAN_TXBCR   : [[regrw]]  uint32  
+    MCAN_TXBTO   : [[regro]]  uint32  
+    MCAN_TXBCF   : [[regro]]  uint32  
+    MCAN_TXBTIE  : [[regrw]]  uint32  
+    MCAN_TXBCIE  : [[regrw]]  uint32  
+    RESERVED5    :            [2] uint32
+    MCAN_TXEFC   : [[regrw]]  uint32  
+    MCAN_TXEFS   : [[regro]]  uint32  
+    MCAN_TXEFA   : [[regrw]]  uint32  
+endstruct
+
+struct MCAN_MCANSS_Regs:
+    RESERVED0    :            [512] uint32
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED1    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+    RESERVED2    :            [506] uint32
+    MCAN         :            MCAN_MCAN_Regs
+    RESERVED3    :            [65] uint32
+    TI_WRAPPER   :            MCAN_TI_WRAPPER_Regs
+endstruct
+
+struct MCAN_Regs:
+    RESERVED0    :            [6144] uint32
+    MCANSS       :            MCAN_MCANSS_Regs
+endstruct
+
+struct RTC_GEN_EVENT_Regs:
+    IIDX         : [[regro]]  uint32  
+    IMASK        : [[regrw]]  uint32  
+    RIS          : [[regro]]  uint32  
+    MIS          : [[regro]]  uint32  
+    ISET         : [[regrw]]  uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct RTC_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct RTC_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    CLKCFG       : [[regrw]]  uint32  
+    RESERVED0    :            [2] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct RTC_Regs:
+    RESERVED0    :            [273] uint32
+    FPUB_0       : [[regrw]]  uint32  
+    RESERVED1    :            [238] uint32
+    GPRCM        :            RTC_GPRCM_Regs
+    RESERVED2    :            [507] uint32
+    CLKSEL       : [[regro]]  uint32  
+    RESERVED3    :            [6] uint32
+    CPU_INT      :            RTC_CPU_INT_Regs
+    RESERVED4    :            uint32  
+    GEN_EVENT    :            RTC_GEN_EVENT_Regs
+    RESERVED5    :            [30] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED6    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    CLKCTL       : [[regrw]]  uint32  
+    DBGCTL       : [[regrw]]  uint32  
+    CTL          : [[regrw]]  uint32  
+    STA          : [[regro]]  uint32  
+    CAL          : [[regrw]]  uint32  
+    TCMP         : [[regrw]]  uint32  
+    SEC          : [[regrw]]  uint32  
+    MIN          : [[regrw]]  uint32  
+    HOUR         : [[regrw]]  uint32  
+    DAY          : [[regrw]]  uint32  
+    MON          : [[regrw]]  uint32  
+    YEAR         : [[regrw]]  uint32  
+    A1MIN        : [[regrw]]  uint32  
+    A1HOUR       : [[regrw]]  uint32  
+    A1DAY        : [[regrw]]  uint32  
+    A2MIN        : [[regrw]]  uint32  
+    A2HOUR       : [[regrw]]  uint32  
+    A2DAY        : [[regrw]]  uint32  
+    PSCTL        : [[regrw]]  uint32  
+    EXTPSCTL     : [[regrw]]  uint32  
+    TSSEC        : [[regro]]  uint32  
+    TSMIN        : [[regro]]  uint32  
+    TSHOUR       : [[regro]]  uint32  
+    TSDAY        : [[regro]]  uint32  
+    TSMON        : [[regro]]  uint32  
+    TSYEAR       : [[regro]]  uint32  
+    TSSTAT       : [[regro]]  uint32  
+    TSCTL        : [[regrw]]  uint32  
+    TSCLR        : [[regrw]]  uint32  
+    RESERVED7    :            [31] uint32
+    LFSSRST      : [[regrw]]  uint32  
+    RESERVED8    :            [2] uint32
+    RTCLOCK      : [[regrw]]  uint32  
+endstruct
+
+struct SPI_DMA_TRIG_TX_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct SPI_DMA_TRIG_RX_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct SPI_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct SPI_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    CLKCFG       : [[regrw]]  uint32  
+    RESERVED0    :            [2] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct SPI_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            SPI_GPRCM_Regs
+    RESERVED1    :            [506] uint32
+    CLKDIV       : [[regrw]]  uint32  
+    CLKSEL       : [[regrw]]  uint32  
+    RESERVED2    :            [4] uint32
+    PDBGCTL      : [[regrw]]  uint32  
+    RESERVED3    :            uint32  
+    CPU_INT      :            SPI_CPU_INT_Regs
+    RESERVED4    :            uint32  
+    DMA_TRIG_RX  :            SPI_DMA_TRIG_RX_Regs
+    RESERVED5    :            uint32  
+    DMA_TRIG_TX  :            SPI_DMA_TRIG_TX_Regs
+    RESERVED6    :            [13] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    INTCTL       : [[regrw]]  uint32  
+    RESERVED7    :            [6] uint32
+    CTL0         : [[regrw]]  uint32  
+    CTL1         : [[regrw]]  uint32  
+    CLKCTL       : [[regrw]]  uint32  
+    IFLS         : [[regrw]]  uint32  
+    STAT         : [[regro]]  uint32  
+    RESERVED8    :            [7] uint32
+    RXDATA       : [[regro]]  uint32  
+    RESERVED9    :            [3] uint32
+    TXDATA       : [[regrw]]  uint32  
+endstruct
+
+struct TRNG_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct TRNG_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct TRNG_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            TRNG_GPRCM_Regs
+    RESERVED1    :            [514] uint32
+    CPU_INT      :            TRNG_CPU_INT_Regs
+    RESERVED2    :            [44] uint32
+    DESC         : [[regro]]  uint32  
+    CTL          : [[regrw]]  uint32  
+    STAT         : [[regro]]  uint32  
+    DATA_CAPTURE : [[regro]]  uint32  
+    TEST_RESULTS : [[regro]]  uint32  
+    CLKDIVIDE    : [[regrw]]  uint32  
+endstruct
+
+struct UART_DMA_TRIG_TX_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct UART_DMA_TRIG_RX_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct UART_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct UART_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    CLKCFG       : [[regrw]]  uint32  
+    RESERVED0    :            [2] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct UART_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            UART_GPRCM_Regs
+    RESERVED1    :            [506] uint32
+    CLKDIV       : [[regrw]]  uint32  
+    RESERVED2    :            uint32  
+    CLKSEL       : [[regrw]]  uint32  
+    RESERVED3    :            [3] uint32
+    PDBGCTL      : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    CPU_INT      :            UART_CPU_INT_Regs
+    RESERVED5    :            uint32  
+    DMA_TRIG_RX  :            UART_DMA_TRIG_RX_Regs
+    RESERVED6    :            uint32  
+    DMA_TRIG_TX  :            UART_DMA_TRIG_TX_Regs
+    RESERVED7    :            [13] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    INTCTL       : [[regrw]]  uint32  
+    RESERVED8    :            [6] uint32
+    CTL0         : [[regrw]]  uint32  
+    LCRH         : [[regrw]]  uint32  
+    STAT         : [[regro]]  uint32  
+    IFLS         : [[regrw]]  uint32  
+    IBRD         : [[regrw]]  uint32  
+    FBRD         : [[regrw]]  uint32  
+    GFCTL        : [[regrw]]  uint32  
+    RESERVED9    :            uint32  
+    TXDATA       : [[regrw]]  uint32  
+    RXDATA       : [[regro]]  uint32  
+    RESERVED10   :            [2] uint32
+    LINCNT       : [[regrw]]  uint32  
+    LINCTL       : [[regrw]]  uint32  
+    LINC0        : [[regrw]]  uint32  
+    LINC1        : [[regrw]]  uint32  
+    IRCTL        : [[regrw]]  uint32  
+    RESERVED11   :            uint32  
+    AMASK        : [[regrw]]  uint32  
+    ADDR         : [[regrw]]  uint32  
+    RESERVED12   :            [4] uint32
+    CLKDIV2      : [[regrw]]  uint32  
+endstruct
+
+struct VREF_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct VREF_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            VREF_GPRCM_Regs
+    RESERVED1    :            [506] uint32
+    CLKDIV       : [[regrw]]  uint32  
+    RESERVED2    :            uint32  
+    CLKSEL       : [[regrw]]  uint32  
+    RESERVED3    :            [61] uint32
+    CTL0         : [[regrw]]  uint32  
+    CTL1         : [[regrw]]  uint32  
+    CTL2         : [[regrw]]  uint32  
+endstruct
+
+struct WUC_Regs:
+    RESERVED0    :            [256] uint32
+    FSUB_0       : [[regrw]]  uint32  
+    FSUB_1       : [[regrw]]  uint32  
+endstruct
+
+struct WWDT_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct WWDT_GPRCM_Regs:
+    PWREN        : [[regrw]]  uint32  
+    RSTCTL       : [[regrw]]  uint32  
+    RESERVED0    :            [3] uint32
+    STAT         : [[regro]]  uint32  
+endstruct
+
+struct WWDT_Regs:
+    RESERVED0    :            [512] uint32
+    GPRCM        :            WWDT_GPRCM_Regs
+    RESERVED1    :            [512] uint32
+    PDBGCTL      : [[regrw]]  uint32  
+    RESERVED2    :            uint32  
+    CPU_INT      :            WWDT_CPU_INT_Regs
+    RESERVED3    :            [37] uint32
+    EVT_MODE     : [[regrw]]  uint32  
+    RESERVED4    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    WWDTCTL0     : [[regrw]]  uint32  
+    WWDTCTL1     : [[regrw]]  uint32  
+    WWDTCNTRST   : [[regrw]]  uint32  
+    WWDTSTAT     : [[regro]]  uint32  
+endstruct
+
+struct FACTORYREGION_OPEN_Regs:
+    USERID       : [[regro]]  uint32  
+    DEVICEID     : [[regro]]  uint32  
+    TRACEID      : [[regro]]  uint32  
+    BSLPIN_UART  : [[regro]]  uint32  
+    BSLPIN_I2C   : [[regro]]  uint32  
+    BSLPIN_INVOKE : [[regro]]  uint32  
+    SRAMFLASH    : [[regro]]  uint32  
+    PLLSTARTUP0_4_8MHZ : [[regro]]  uint32  
+    PLLSTARTUP1_4_8MHZ : [[regro]]  uint32  
+    PLLSTARTUP0_8_16MHZ : [[regro]]  uint32  
+    PLLSTARTUP1_8_16MHZ : [[regro]]  uint32  
+    PLLSTARTUP0_16_32MHZ : [[regro]]  uint32  
+    PLLSTARTUP1_16_32MHZ : [[regro]]  uint32  
+    PLLSTARTUP0_32_48MHZ : [[regro]]  uint32  
+    PLLSTARTUP1_32_48MHZ : [[regro]]  uint32  
+    TEMP_SENSE0  : [[regro]]  uint32  
+    RESERVED0    : [[regro]]  uint32  
+    RESERVED1    : [[regro]]  uint32  
+    RESERVED2    : [[regro]]  uint32  
+    RESERVED3    : [[regro]]  uint32  
+    RESERVED4    : [[regro]]  uint32  
+    RESERVED5    : [[regro]]  uint32  
+    RESERVED6    : [[regro]]  uint32  
+    RESERVED7    : [[regro]]  uint32  
+    RESERVED8    : [[regro]]  uint32  
+    RESERVED9    : [[regro]]  uint32  
+    RESERVED10   : [[regro]]  uint32  
+    RESERVED11   : [[regro]]  uint32  
+    RESERVED12   : [[regro]]  uint32  
+    RESERVED13   : [[regro]]  uint32  
+    RESERVED14   : [[regro]]  uint32  
+    BOOTCRC      : [[regro]]  uint32  
+endstruct
+
+struct FACTORYREGION_Regs:
+    RESERVED0    :            [275841024] uint32
+    OPEN         :            FACTORYREGION_OPEN_Regs
+endstruct
+
+struct CPUSS_INT_GROUP_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regro]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+    RESERVED5    :            uint32  
+endstruct
+
+struct CPUSS_Regs:
+    RESERVED0    :            [1080] uint32
+    EVT_MODE     : [[regro]]  uint32  
+    RESERVED1    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    INT_GROUP    :            [5] CPUSS_INT_GROUP_Regs
+    RESERVED2    :            [68] uint32
+    CTL          : [[regrw]]  uint32  
+endstruct
+
+struct DEBUGSS_CPU_INT_Regs:
+    IIDX         : [[regro]]  uint32  
+    RESERVED0    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED1    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED2    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED4    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+endstruct
+
+struct DEBUGSS_Regs:
+    RESERVED0    :            [1032] uint32
+    CPU_INT      :            DEBUGSS_CPU_INT_Regs
+    RESERVED1    :            [37] uint32
+    EVT_MODE     : [[regro]]  uint32  
+    RESERVED2    :            [6] uint32
+    DESC         : [[regro]]  uint32  
+    TXD          : [[regro]]  uint32  
+    TXCTL        : [[regro]]  uint32  
+    RXD          : [[regrw]]  uint32  
+    RXCTL        : [[regrw]]  uint32  
+    RESERVED3    :            [60] uint32
+    SPECIAL_AUTH : [[regro]]  uint32  
+    RESERVED4    :            [3] uint32
+    APP_AUTH     : [[regro]]  uint32  
+endstruct
+
+struct SYSCTL_SECCFG_Regs:
+    FWEPROTMAIN  : [[regrw]]  uint32  
+    RESERVED0    :            [4] uint32
+    FWPROTMAINDATA : [[regrw]]  uint32  
+    FRXPROTMAINSTART : [[regrw]]  uint32  
+    FRXPROTMAINEND : [[regrw]]  uint32  
+    FIPPROTMAINSTART : [[regrw]]  uint32  
+    FIPPROTMAINEND : [[regrw]]  uint32  
+    RESERVED1    :            [4] uint32
+    FLBANKSWPPOLICY : [[regrw]]  uint32  
+    FLBANKSWP    : [[regrw]]  uint32  
+    RESERVED2    :            uint32  
+    FWENABLE     : [[regrw]]  uint32  
+    SECSTATUS    : [[regro]]  uint32  
+    RESERVED3    :            [5] uint32
+    INITDONE     : [[regrw]]  uint32  
+endstruct
+
+struct SYSCTL_SOCLOCK_Regs:
+    RESERVED0    :            [8] uint32
+    IIDX         : [[regro]]  uint32  
+    RESERVED1    :            uint32  
+    IMASK        : [[regrw]]  uint32  
+    RESERVED2    :            uint32  
+    RIS          : [[regro]]  uint32  
+    RESERVED3    :            uint32  
+    MIS          : [[regro]]  uint32  
+    RESERVED4    :            uint32  
+    ISET         : [[regrw]]  uint32  
+    RESERVED5    :            uint32  
+    ICLR         : [[regrw]]  uint32  
+    RESERVED6    :            uint32  
+    NMIIIDX      : [[regro]]  uint32  
+    RESERVED7    :            [3] uint32
+    NMIRIS       : [[regro]]  uint32  
+    RESERVED8    :            [3] uint32
+    NMIISET      : [[regrw]]  uint32  
+    RESERVED9    :            uint32  
+    NMIICLR      : [[regrw]]  uint32  
+    RESERVED10   :            [33] uint32
+    SYSOSCCFG    : [[regrw]]  uint32  
+    MCLKCFG      : [[regrw]]  uint32  
+    HSCLKEN      : [[regrw]]  uint32  
+    HSCLKCFG     : [[regrw]]  uint32  
+    HFCLKCLKCFG  : [[regrw]]  uint32  
+    LFCLKCFG     : [[regrw]]  uint32  
+    RESERVED11   :            [2] uint32
+    SYSPLLCFG0   : [[regrw]]  uint32  
+    SYSPLLCFG1   : [[regrw]]  uint32  
+    SYSPLLPARAM0 : [[regrw]]  uint32  
+    SYSPLLPARAM1 : [[regrw]]  uint32  
+    RESERVED12   :            [2] uint32
+    GENCLKCFG    : [[regrw]]  uint32  
+    GENCLKEN     : [[regrw]]  uint32  
+    PMODECFG     : [[regrw]]  uint32  
+    RESERVED13   :            [3] uint32
+    FCC          : [[regro]]  uint32  
+    RESERVED14   :            [7] uint32
+    SYSOSCTRIMUSER : [[regrw]]  uint32  
+    RESERVED15   :            uint32  
+    SRAMBOUNDARY : [[regrw]]  uint32  
+    SRAMBOUNDARYHIGH : [[regrw]]  uint32  
+    SYSTEMCFG    : [[regrw]]  uint32  
+    SRAMCFG      : [[regrw]]  uint32  
+    RESERVED16   :            [30] uint32
+    WRITELOCK    : [[regrw]]  uint32  
+    CLKSTATUS    : [[regro]]  uint32  
+    SYSSTATUS    : [[regro]]  uint32  
+    DEDERRADDR   : [[regro]]  uint32  
+    RESERVED17   :            [4] uint32
+    RSTCAUSE     : [[regro]]  uint32  
+    RESERVED18   :            [55] uint32
+    RESETLEVEL   : [[regrw]]  uint32  
+    RESETCMD     : [[regrw]]  uint32  
+    BORTHRESHOLD : [[regrw]]  uint32  
+    BORCLRCMD    : [[regrw]]  uint32  
+    SYSOSCFCLCTL : [[regrw]]  uint32  
+    LFXTCTL      : [[regrw]]  uint32  
+    EXLFCTL      : [[regrw]]  uint32  
+    SHDNIOREL    : [[regrw]]  uint32  
+    EXRSTPIN     : [[regrw]]  uint32  
+    SYSSTATUSCLR : [[regrw]]  uint32  
+    SWDCFG       : [[regrw]]  uint32  
+    FCCCMD       : [[regrw]]  uint32  
+    RESERVED19   :            [52] uint32
+    SHUTDNSTORE0 : [[regrw]]  uint32  
+    SHUTDNSTORE1 : [[regrw]]  uint32  
+    SHUTDNSTORE2 : [[regrw]]  uint32  
+    SHUTDNSTORE3 : [[regrw]]  uint32  
+endstruct
+
+struct SYSCTL_Regs:
+    RESERVED0    :            [1024] uint32
+    SOCLOCK      :            SYSCTL_SOCLOCK_Regs
+    RESERVED1    :            [1788] uint32
+    SECCFG       :            SYSCTL_SECCFG_Regs
+endstruct
+
+const(int):
+    IOMUX_PINCM1         = (0)
+    IOMUX_PINCM2         = (1)
+    IOMUX_PINCM3         = (2)
+    IOMUX_PINCM4         = (3)
+    IOMUX_PINCM5         = (4)
+    IOMUX_PINCM6         = (5)
+    IOMUX_PINCM7         = (6)
+    IOMUX_PINCM8         = (7)
+    IOMUX_PINCM9         = (8)
+    IOMUX_PINCM10        = (9)
+    IOMUX_PINCM11        = (10)
+    IOMUX_PINCM12        = (11)
+    IOMUX_PINCM13        = (12)
+    IOMUX_PINCM14        = (13)
+    IOMUX_PINCM15        = (14)
+    IOMUX_PINCM16        = (15)
+    IOMUX_PINCM17        = (16)
+    IOMUX_PINCM18        = (17)
+    IOMUX_PINCM19        = (18)
+    IOMUX_PINCM20        = (19)
+    IOMUX_PINCM21        = (20)
+    IOMUX_PINCM22        = (21)
+    IOMUX_PINCM23        = (22)
+    IOMUX_PINCM24        = (23)
+    IOMUX_PINCM25        = (24)
+    IOMUX_PINCM26        = (25)
+    IOMUX_PINCM27        = (26)
+    IOMUX_PINCM28        = (27)
+    IOMUX_PINCM29        = (28)
+    IOMUX_PINCM30        = (29)
+    IOMUX_PINCM31        = (30)
+    IOMUX_PINCM32        = (31)
+endconst
+
+const(int):
+    IOMUX_PINCM33        = (32)
+    IOMUX_PINCM34        = (33)
+    IOMUX_PINCM35        = (34)
+    IOMUX_PINCM36        = (35)
+    IOMUX_PINCM37        = (36)
+    IOMUX_PINCM38        = (37)
+    IOMUX_PINCM39        = (38)
+    IOMUX_PINCM40        = (39)
+    IOMUX_PINCM41        = (40)
+    IOMUX_PINCM42        = (41)
+    IOMUX_PINCM43        = (42)
+    IOMUX_PINCM44        = (43)
+    IOMUX_PINCM45        = (44)
+    IOMUX_PINCM46        = (45)
+    IOMUX_PINCM47        = (46)
+    IOMUX_PINCM48        = (47)
+    IOMUX_PINCM49        = (48)
+    IOMUX_PINCM50        = (49)
+    IOMUX_PINCM51        = (50)
+    IOMUX_PINCM52        = (51)
+    IOMUX_PINCM53        = (52)
+    IOMUX_PINCM54        = (53)
+    IOMUX_PINCM55        = (54)
+    IOMUX_PINCM56        = (55)
+    IOMUX_PINCM57        = (56)
+    IOMUX_PINCM58        = (57)
+    IOMUX_PINCM59        = (58)
+    IOMUX_PINCM60        = (59)
+    IOMUX_PINCM61        = (60)
+    IOMUX_PINCM62        = (61)
+    IOMUX_PINCM63        = (62)
+    IOMUX_PINCM64        = (63)
+endconst
+
+const(int):
+    IOMUX_PINCM65        = (64)
+    IOMUX_PINCM66        = (65)
+    IOMUX_PINCM67        = (66)
+    IOMUX_PINCM68        = (67)
+    IOMUX_PINCM69        = (68)
+    IOMUX_PINCM70        = (69)
+    IOMUX_PINCM71        = (70)
+    IOMUX_PINCM72        = (71)
+    IOMUX_PINCM73        = (72)
+    IOMUX_PINCM74        = (73)
+    IOMUX_PINCM75        = (74)
+    IOMUX_PINCM76        = (75)
+    IOMUX_PINCM77        = (76)
+    IOMUX_PINCM78        = (77)
+    IOMUX_PINCM79        = (78)
+    IOMUX_PINCM80        = (79)
+    IOMUX_PINCM81        = (80)
+    IOMUX_PINCM82        = (81)
+    IOMUX_PINCM83        = (82)
+    IOMUX_PINCM84        = (83)
+    IOMUX_PINCM85        = (84)
+    IOMUX_PINCM86        = (85)
+    IOMUX_PINCM87        = (86)
+    IOMUX_PINCM88        = (87)
+    IOMUX_PINCM89        = (88)
+    IOMUX_PINCM90        = (89)
+    IOMUX_PINCM91        = (90)
+    IOMUX_PINCM92        = (91)
+    IOMUX_PINCM93        = (92)
+    IOMUX_PINCM94        = (93)
+endconst
+

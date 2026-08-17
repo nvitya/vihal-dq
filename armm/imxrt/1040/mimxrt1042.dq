@@ -1,0 +1,3027 @@
+const(int):
+    NotAvail_IRQn        = -128
+    NonMaskableInt_IRQn  = -14
+    HardFault_IRQn       = -13
+    MemoryManagement_IRQn = -12
+    BusFault_IRQn        = -11
+    UsageFault_IRQn      = -10
+    SVCall_IRQn          = -5
+    DebugMonitor_IRQn    = -4
+    PendSV_IRQn          = -2
+    SysTick_IRQn         = -1
+    DMA0_DMA16_IRQn      = 0
+    DMA1_DMA17_IRQn      = 1
+    DMA2_DMA18_IRQn      = 2
+    DMA3_DMA19_IRQn      = 3
+    DMA4_DMA20_IRQn      = 4
+    DMA5_DMA21_IRQn      = 5
+    DMA6_DMA22_IRQn      = 6
+    DMA7_DMA23_IRQn      = 7
+    DMA8_DMA24_IRQn      = 8
+    DMA9_DMA25_IRQn      = 9
+    DMA10_DMA26_IRQn     = 10
+    DMA11_DMA27_IRQn     = 11
+    DMA12_DMA28_IRQn     = 12
+    DMA13_DMA29_IRQn     = 13
+    DMA14_DMA30_IRQn     = 14
+    DMA15_DMA31_IRQn     = 15
+    DMA_ERROR_IRQn       = 16
+    CTI0_ERROR_IRQn      = 17
+    CTI1_ERROR_IRQn      = 18
+    CORE_IRQn            = 19
+    LPUART1_IRQn         = 20
+    LPUART2_IRQn         = 21
+endconst
+
+const(int):
+    LPUART3_IRQn         = 22
+    LPUART4_IRQn         = 23
+    LPUART5_IRQn         = 24
+    LPUART6_IRQn         = 25
+    LPUART7_IRQn         = 26
+    LPUART8_IRQn         = 27
+    LPI2C1_IRQn          = 28
+    LPI2C2_IRQn          = 29
+    LPI2C3_IRQn          = 30
+    LPI2C4_IRQn          = 31
+    LPSPI1_IRQn          = 32
+    LPSPI2_IRQn          = 33
+    Reserved50_IRQn      = 34
+    LPSPI3_IRQn          = 35
+    CAN1_IRQn            = 36
+    CAN2_IRQn            = 37
+    FLEXRAM_IRQn         = 38
+    Reserved55_IRQn      = 39
+    Reserved56_IRQn      = 40
+    GPR_IRQ_IRQn         = 41
+    LCDIF_IRQn           = 42
+    Reserved59_IRQn      = 43
+    PXP_IRQn             = 44
+    WDOG2_IRQn           = 45
+    SNVS_HP_WRAPPER_IRQn = 46
+    SNVS_HP_WRAPPER_TZ_IRQn = 47
+    SNVS_LP_WRAPPER_IRQn = 48
+    CSU_IRQn             = 49
+    DCP_IRQn             = 50
+    DCP_VMI_IRQn         = 51
+    Reserved68_IRQn      = 52
+    TRNG_IRQn            = 53
+endconst
+
+const(int):
+    Reserved70_IRQn      = 54
+    BEE_IRQn             = 55
+    SAI1_IRQn            = 56
+    SAI2_IRQn            = 57
+    SAI3_RX_IRQn         = 58
+    SAI3_TX_IRQn         = 59
+    SPDIF_IRQn           = 60
+    PMU_EVENT_IRQn       = 61
+    Reserved78_IRQn      = 62
+    TEMP_LOW_HIGH_IRQn   = 63
+    TEMP_PANIC_IRQn      = 64
+    USB_PHY_IRQn         = 65
+    Reserved82_IRQn      = 66
+    ADC1_IRQn            = 67
+    ADC2_IRQn            = 68
+    DCDC_IRQn            = 69
+    Reserved86_IRQn      = 70
+    Reserved87_IRQn      = 71
+    GPIO1_INT0_IRQn      = 72
+    GPIO1_INT1_IRQn      = 73
+    GPIO1_INT2_IRQn      = 74
+    GPIO1_INT3_IRQn      = 75
+    GPIO1_INT4_IRQn      = 76
+    GPIO1_INT5_IRQn      = 77
+    GPIO1_INT6_IRQn      = 78
+    GPIO1_INT7_IRQn      = 79
+    GPIO1_Combined_0_15_IRQn = 80
+    GPIO1_Combined_16_31_IRQn = 81
+    GPIO2_Combined_0_15_IRQn = 82
+    GPIO2_Combined_16_31_IRQn = 83
+    GPIO3_Combined_0_15_IRQn = 84
+    GPIO3_Combined_16_31_IRQn = 85
+endconst
+
+const(int):
+    GPIO4_Combined_0_15_IRQn = 86
+    GPIO4_Combined_16_31_IRQn = 87
+    GPIO5_Combined_0_15_IRQn = 88
+    GPIO5_Combined_16_31_IRQn = 89
+    FLEXIO1_IRQn         = 90
+    FLEXIO2_IRQn         = 91
+    WDOG1_IRQn           = 92
+    RTWDOG_IRQn          = 93
+    EWM_IRQn             = 94
+    CCM_1_IRQn           = 95
+    CCM_2_IRQn           = 96
+    GPC_IRQn             = 97
+    SRC_IRQn             = 98
+    Reserved115_IRQn     = 99
+    GPT1_IRQn            = 100
+    GPT2_IRQn            = 101
+    PWM1_0_IRQn          = 102
+    PWM1_1_IRQn          = 103
+    PWM1_2_IRQn          = 104
+    PWM1_3_IRQn          = 105
+    PWM1_FAULT_IRQn      = 106
+    FLEXSPI2_IRQn        = 107
+    FLEXSPI_IRQn         = 108
+    SEMC_IRQn            = 109
+    USDHC1_IRQn          = 110
+    USDHC2_IRQn          = 111
+    Reserved112_IRQn     = 112
+    USB_OTG_IRQn         = 113
+    ENET_IRQn            = 114
+    ENET_1588_Timer_IRQn = 115
+    XBAR1_IRQ_0_1_IRQn   = 116
+    XBAR1_IRQ_2_3_IRQn   = 117
+endconst
+
+const(int):
+    ADC_ETC_IRQ0_IRQn    = 118
+    ADC_ETC_IRQ1_IRQn    = 119
+    ADC_ETC_IRQ2_IRQn    = 120
+    ADC_ETC_ERROR_IRQ_IRQn = 121
+    PIT_IRQn             = 122
+    ACMP1_IRQn           = 123
+    ACMP2_IRQn           = 124
+    ACMP3_IRQn           = 125
+    ACMP4_IRQn           = 126
+    Reserved143_IRQn     = 127
+    Reserved144_IRQn     = 128
+    ENC1_IRQn            = 129
+    ENC2_IRQn            = 130
+    ENC3_IRQn            = 131
+    ENC4_IRQn            = 132
+    TMR1_IRQn            = 133
+    TMR2_IRQn            = 134
+    TMR3_IRQn            = 135
+    TMR4_IRQn            = 136
+    PWM2_0_IRQn          = 137
+    PWM2_1_IRQn          = 138
+    PWM2_2_IRQn          = 139
+    PWM2_3_IRQn          = 140
+    PWM2_FAULT_IRQn      = 141
+    PWM3_0_IRQn          = 142
+    PWM3_1_IRQn          = 143
+    PWM3_2_IRQn          = 144
+    PWM3_3_IRQn          = 145
+    PWM3_FAULT_IRQn      = 146
+    PWM4_0_IRQn          = 147
+    PWM4_1_IRQn          = 148
+    PWM4_2_IRQn          = 149
+endconst
+
+const(int):
+    PWM4_3_IRQn          = 150
+    PWM4_FAULT_IRQn      = 151
+    Reserved168_IRQn     = 152
+    Reserved169_IRQn     = 153
+    CAN3_IRQn            = 154
+    Reserved171_IRQn     = 155
+    FLEXIO3_IRQn         = 156
+    GPIO6_7_8_9_IRQn     = 157
+endconst
+
+struct ADC_Type:
+    HC           : [[regrw]]  [8] uint32
+    HS           : [[regro]]  uint32  
+    R            : [[regro]]  [8] uint32
+    CFG          : [[regrw]]  uint32  
+    GC           : [[regrw]]  uint32  
+    GS           : [[regrw]]  uint32  
+    CV           : [[regrw]]  uint32  
+    OFS          : [[regrw]]  uint32  
+    CAL          : [[regrw]]  uint32  
+endstruct
+
+struct NestedStruct_1:
+        TRIGn_CTRL   : [[regrw]]  uint32  
+        TRIGn_COUNTER : [[regrw]]  uint32  
+        TRIGn_CHAIN_1_0 : [[regrw]]  uint32  
+        TRIGn_CHAIN_3_2 : [[regrw]]  uint32  
+        TRIGn_CHAIN_5_4 : [[regrw]]  uint32  
+        TRIGn_CHAIN_7_6 : [[regrw]]  uint32  
+        TRIGn_RESULT_1_0 : [[regro]]  uint32  
+        TRIGn_RESULT_3_2 : [[regro]]  uint32  
+        TRIGn_RESULT_5_4 : [[regro]]  uint32  
+        TRIGn_RESULT_7_6 : [[regro]]  uint32  
+endstruct
+
+struct ADC_ETC_Type:
+    CTRL         : [[regrw]]  uint32  
+    DONE0_1_IRQ  : [[regrw]]  uint32  
+    DONE2_3_ERR_IRQ : [[regrw]]  uint32  
+    DMA_CTRL     : [[regrw]]  uint32  
+    TRIG         :            [8] NestedStruct_1
+endstruct
+
+struct AIPSTZ_Type:
+    MPR          : [[regrw]]  uint32  
+    RESERVED_0   :            [60] uint8
+    OPACR        : [[regrw]]  uint32  
+    OPACR1       : [[regrw]]  uint32  
+    OPACR2       : [[regrw]]  uint32  
+    OPACR3       : [[regrw]]  uint32  
+    OPACR4       : [[regrw]]  uint32  
+endstruct
+
+struct NestedStruct_2:
+        BFCRT01      : [[regrw]]  uint16  
+        BFCRT23      : [[regrw]]  uint16  
+endstruct
+
+struct AOI_Type:
+    BFCRT        :            [4] NestedStruct_2
+endstruct
+
+struct BEE_Type:
+    CTRL         : [[regrw]]  uint32  
+    ADDR_OFFSET0 : [[regrw]]  uint32  
+    ADDR_OFFSET1 : [[regrw]]  uint32  
+    AES_KEY0_W0  : [[regwo]]  uint32  
+    AES_KEY0_W1  : [[regwo]]  uint32  
+    AES_KEY0_W2  : [[regwo]]  uint32  
+    AES_KEY0_W3  : [[regwo]]  uint32  
+    STATUS       : [[regrw]]  uint32  
+    CTR_NONCE0_W0 : [[regwo]]  uint32  
+    CTR_NONCE0_W1 : [[regwo]]  uint32  
+    CTR_NONCE0_W2 : [[regwo]]  uint32  
+    CTR_NONCE0_W3 : [[regwo]]  uint32  
+    CTR_NONCE1_W0 : [[regwo]]  uint32  
+    CTR_NONCE1_W1 : [[regwo]]  uint32  
+    CTR_NONCE1_W2 : [[regwo]]  uint32  
+    CTR_NONCE1_W3 : [[regwo]]  uint32  
+    REGION1_TOP  : [[regrw]]  uint32  
+    REGION1_BOT  : [[regrw]]  uint32  
+endstruct
+
+struct NestedStruct_3:
+        CS           : [[regrw]]  uint32  
+        ID           : [[regrw]]  uint32  
+        WORD         : [[regrw]]  [2] uint32
+endstruct
+
+struct NestedStruct_4:
+        CS           : [[regrw]]  uint32  
+        ID           : [[regrw]]  uint32  
+        WORD         : [[regrw]]  [4] uint32
+endstruct
+
+struct NestedStruct_5:
+        CS           : [[regrw]]  uint32  
+        ID           : [[regrw]]  uint32  
+        WORD         : [[regrw]]  [4] uint32
+endstruct
+
+struct NestedStruct_6:
+        MB_16B_L     :            [21] NestedStruct_4
+        RESERVED_0   :            [8] uint8
+        MB_16B_H     :            [21] NestedStruct_5
+endstruct
+
+struct NestedStruct_7:
+        CS           : [[regrw]]  uint32  
+        ID           : [[regrw]]  uint32  
+        WORD         : [[regrw]]  [8] uint32
+endstruct
+
+struct NestedStruct_8:
+        CS           : [[regrw]]  uint32  
+        ID           : [[regrw]]  uint32  
+        WORD         : [[regrw]]  [8] uint32
+endstruct
+
+struct NestedStruct_9:
+        MB_32B_L     :            [12] NestedStruct_7
+        RESERVED_0   :            [32] uint8
+        MB_32B_H     :            [12] NestedStruct_8
+endstruct
+
+struct NestedStruct_10:
+        CS           : [[regrw]]  uint32  
+        ID           : [[regrw]]  uint32  
+        WORD         : [[regrw]]  [16] uint32
+endstruct
+
+struct NestedStruct_11:
+        CS           : [[regrw]]  uint32  
+        ID           : [[regrw]]  uint32  
+        WORD         : [[regrw]]  [16] uint32
+endstruct
+
+struct NestedStruct_12:
+        MB_64B_L     :            [7] NestedStruct_10
+        RESERVED_0   :            [8] uint8
+        MB_64B_H     :            [7] NestedStruct_11
+endstruct
+
+struct NestedStruct_13:
+        CS           : [[regrw]]  uint32  
+        ID           : [[regrw]]  uint32  
+        WORD0        : [[regrw]]  uint32  
+        WORD1        : [[regrw]]  uint32  
+endstruct
+
+struct CAN_Type:
+    MCR          : [[regrw]]  uint32  
+    CTRL1        : [[regrw]]  uint32  
+    TIMER        : [[regrw]]  uint32  
+    RESERVED_0   :            [4] uint8
+    RXMGMASK     : [[regrw]]  uint32  
+    RX14MASK     : [[regrw]]  uint32  
+    RX15MASK     : [[regrw]]  uint32  
+    ECR          : [[regrw]]  uint32  
+    ESR1         : [[regrw]]  uint32  
+    IMASK2       : [[regrw]]  uint32  
+    IMASK1       : [[regrw]]  uint32  
+    IFLAG2       : [[regrw]]  uint32  
+    IFLAG1       : [[regrw]]  uint32  
+    CTRL2        : [[regrw]]  uint32  
+    ESR2         : [[regro]]  uint32  
+    RESERVED_1   :            [8] uint8
+    CRCR         : [[regro]]  uint32  
+    RXFGMASK     : [[regrw]]  uint32  
+    RXFIR        : [[regro]]  uint32  
+    CBT          : [[regrw]]  uint32  
+    RESERVED_2   :            [4] uint8
+    DBG1         : [[regro]]  uint32  
+    DBG2         : [[regro]]  uint32  
+    RESERVED_3   :            [32] uint8
+    union u_MB_8B:
+        MB_8B        :            [64] NestedStruct_3
+        MB_16B       :            NestedStruct_6
+        MB_32B       :            NestedStruct_9
+        MB_64B       :            NestedStruct_12
+        MB           :            [64] NestedStruct_13
+    endunion
+    RESERVED_4   :            [1024] uint8
+    RXIMR        : [[regrw]]  [64] uint32
+    RESERVED_5   :            [96] uint8
+    GFWR         : [[regrw]]  uint32  
+    RESERVED_6   :            [540] uint8
+    FDCTRL       : [[regrw]]  uint32  
+    FDCBT        : [[regrw]]  uint32  
+    FDCRC        : [[regro]]  uint32  
+endstruct
+
+struct CCM_Type:
+    CCR          : [[regrw]]  uint32  
+    RESERVED_0   :            [4] uint8
+    CSR          : [[regro]]  uint32  
+    CCSR         : [[regrw]]  uint32  
+    CACRR        : [[regrw]]  uint32  
+    CBCDR        : [[regrw]]  uint32  
+    CBCMR        : [[regrw]]  uint32  
+    CSCMR1       : [[regrw]]  uint32  
+    CSCMR2       : [[regrw]]  uint32  
+    CSCDR1       : [[regrw]]  uint32  
+    CS1CDR       : [[regrw]]  uint32  
+    CS2CDR       : [[regrw]]  uint32  
+    CDCDR        : [[regrw]]  uint32  
+    RESERVED_1   :            [4] uint8
+    CSCDR2       : [[regrw]]  uint32  
+    CSCDR3       :            uint32  
+    RESERVED_2   :            [8] uint8
+    CDHIPR       : [[regro]]  uint32  
+    RESERVED_3   :            [8] uint8
+    CLPCR        : [[regrw]]  uint32  
+    CISR         : [[regrw]]  uint32  
+    CIMR         : [[regrw]]  uint32  
+    CCOSR        : [[regrw]]  uint32  
+    CGPR         : [[regrw]]  uint32  
+    CCGR0        : [[regrw]]  uint32  
+    CCGR1        : [[regrw]]  uint32  
+    CCGR2        : [[regrw]]  uint32  
+    CCGR3        : [[regrw]]  uint32  
+    CCGR4        : [[regrw]]  uint32  
+    CCGR5        : [[regrw]]  uint32  
+    CCGR6        : [[regrw]]  uint32  
+    CCGR7        : [[regrw]]  uint32  
+    CMEOR        : [[regrw]]  uint32  
+endstruct
+
+struct CCM_ANALOG_Type:
+    PLL_ARM      : [[regrw]]  uint32  
+    PLL_ARM_SET  : [[regrw]]  uint32  
+    PLL_ARM_CLR  : [[regrw]]  uint32  
+    PLL_ARM_TOG  : [[regrw]]  uint32  
+    PLL_USB1     : [[regrw]]  uint32  
+    PLL_USB1_SET : [[regrw]]  uint32  
+    PLL_USB1_CLR : [[regrw]]  uint32  
+    PLL_USB1_TOG : [[regrw]]  uint32  
+    RESERVED_0   :            [16] uint8
+    PLL_SYS      : [[regrw]]  uint32  
+    PLL_SYS_SET  : [[regrw]]  uint32  
+    PLL_SYS_CLR  : [[regrw]]  uint32  
+    PLL_SYS_TOG  : [[regrw]]  uint32  
+    PLL_SYS_SS   : [[regrw]]  uint32  
+    RESERVED_1   :            [12] uint8
+    PLL_SYS_NUM  : [[regrw]]  uint32  
+    RESERVED_2   :            [12] uint8
+    PLL_SYS_DENOM : [[regrw]]  uint32  
+    RESERVED_3   :            [12] uint8
+    PLL_AUDIO    : [[regrw]]  uint32  
+    PLL_AUDIO_SET : [[regrw]]  uint32  
+    PLL_AUDIO_CLR : [[regrw]]  uint32  
+    PLL_AUDIO_TOG : [[regrw]]  uint32  
+    PLL_AUDIO_NUM : [[regrw]]  uint32  
+    RESERVED_4   :            [12] uint8
+    PLL_AUDIO_DENOM : [[regrw]]  uint32  
+    RESERVED_5   :            [12] uint8
+    PLL_VIDEO    : [[regrw]]  uint32  
+    PLL_VIDEO_SET : [[regrw]]  uint32  
+    PLL_VIDEO_CLR : [[regrw]]  uint32  
+    PLL_VIDEO_TOG : [[regrw]]  uint32  
+    PLL_VIDEO_NUM : [[regrw]]  uint32  
+    RESERVED_6   :            [12] uint8
+    PLL_VIDEO_DENOM : [[regrw]]  uint32  
+    RESERVED_7   :            [28] uint8
+    PLL_ENET     : [[regrw]]  uint32  
+    PLL_ENET_SET : [[regrw]]  uint32  
+    PLL_ENET_CLR : [[regrw]]  uint32  
+    PLL_ENET_TOG : [[regrw]]  uint32  
+    PFD_480      : [[regrw]]  uint32  
+    PFD_480_SET  : [[regrw]]  uint32  
+    PFD_480_CLR  : [[regrw]]  uint32  
+    PFD_480_TOG  : [[regrw]]  uint32  
+    PFD_528      : [[regrw]]  uint32  
+    PFD_528_SET  : [[regrw]]  uint32  
+    PFD_528_CLR  : [[regrw]]  uint32  
+    PFD_528_TOG  : [[regrw]]  uint32  
+    RESERVED_8   :            [64] uint8
+    MISC0        : [[regrw]]  uint32  
+    MISC0_SET    : [[regrw]]  uint32  
+    MISC0_CLR    : [[regrw]]  uint32  
+    MISC0_TOG    : [[regrw]]  uint32  
+    MISC1        : [[regrw]]  uint32  
+    MISC1_SET    : [[regrw]]  uint32  
+    MISC1_CLR    : [[regrw]]  uint32  
+    MISC1_TOG    : [[regrw]]  uint32  
+    MISC2        : [[regrw]]  uint32  
+    MISC2_SET    : [[regrw]]  uint32  
+    MISC2_CLR    : [[regrw]]  uint32  
+    MISC2_TOG    : [[regrw]]  uint32  
+endstruct
+
+struct CM7_MCM_Type:
+    RESERVED_0   :            [16] uint8
+    ISCR         : [[regrw]]  uint32  
+endstruct
+
+struct CMP_Type:
+    CR0          : [[regrw]]  uint8   
+    CR1          : [[regrw]]  uint8   
+    FPR          : [[regrw]]  uint8   
+    SCR          : [[regrw]]  uint8   
+    DACCR        : [[regrw]]  uint8   
+    MUXCR        : [[regrw]]  uint8   
+endstruct
+
+struct CSU_Type:
+    CSL          : [[regrw]]  [32] uint32
+    RESERVED_0   :            [384] uint8
+    HP0          : [[regrw]]  uint32  
+    RESERVED_1   :            [20] uint8
+    SA           : [[regrw]]  uint32  
+    RESERVED_2   :            [316] uint8
+    HPCONTROL0   : [[regrw]]  uint32  
+endstruct
+
+struct DCDC_Type:
+    REG0         : [[regrw]]  uint32  
+    REG1         : [[regrw]]  uint32  
+    REG2         : [[regrw]]  uint32  
+    REG3         : [[regrw]]  uint32  
+endstruct
+
+struct DCP_Type:
+    CTRL         : [[regrw]]  uint32  
+    CTRL_SET     : [[regrw]]  uint32  
+    CTRL_CLR     : [[regrw]]  uint32  
+    CTRL_TOG     : [[regrw]]  uint32  
+    STAT         : [[regrw]]  uint32  
+    STAT_SET     : [[regrw]]  uint32  
+    STAT_CLR     : [[regrw]]  uint32  
+    STAT_TOG     : [[regrw]]  uint32  
+    CHANNELCTRL  : [[regrw]]  uint32  
+    CHANNELCTRL_SET : [[regrw]]  uint32  
+    CHANNELCTRL_CLR : [[regrw]]  uint32  
+    CHANNELCTRL_TOG : [[regrw]]  uint32  
+    CAPABILITY0  : [[regrw]]  uint32  
+    RESERVED_0   :            [12] uint8
+    CAPABILITY1  : [[regro]]  uint32  
+    RESERVED_1   :            [12] uint8
+    CONTEXT      : [[regrw]]  uint32  
+    RESERVED_2   :            [12] uint8
+    KEY          : [[regrw]]  uint32  
+    RESERVED_3   :            [12] uint8
+    KEYDATA      : [[regrw]]  uint32  
+    RESERVED_4   :            [12] uint8
+    PACKET0      : [[regro]]  uint32  
+    RESERVED_5   :            [12] uint8
+    PACKET1      : [[regro]]  uint32  
+    RESERVED_6   :            [12] uint8
+    PACKET2      : [[regro]]  uint32  
+    RESERVED_7   :            [12] uint8
+    PACKET3      : [[regro]]  uint32  
+    RESERVED_8   :            [12] uint8
+    PACKET4      : [[regro]]  uint32  
+    RESERVED_9   :            [12] uint8
+    PACKET5      : [[regro]]  uint32  
+    RESERVED_10  :            [12] uint8
+    PACKET6      : [[regro]]  uint32  
+    RESERVED_11  :            [28] uint8
+    CH0CMDPTR    : [[regrw]]  uint32  
+    RESERVED_12  :            [12] uint8
+    CH0SEMA      : [[regrw]]  uint32  
+    RESERVED_13  :            [12] uint8
+    CH0STAT      : [[regrw]]  uint32  
+    CH0STAT_SET  : [[regrw]]  uint32  
+    CH0STAT_CLR  : [[regrw]]  uint32  
+    CH0STAT_TOG  : [[regrw]]  uint32  
+    CH0OPTS      : [[regrw]]  uint32  
+    CH0OPTS_SET  : [[regrw]]  uint32  
+    CH0OPTS_CLR  : [[regrw]]  uint32  
+    CH0OPTS_TOG  : [[regrw]]  uint32  
+    CH1CMDPTR    : [[regrw]]  uint32  
+    RESERVED_14  :            [12] uint8
+    CH1SEMA      : [[regrw]]  uint32  
+    RESERVED_15  :            [12] uint8
+    CH1STAT      : [[regrw]]  uint32  
+    CH1STAT_SET  : [[regrw]]  uint32  
+    CH1STAT_CLR  : [[regrw]]  uint32  
+    CH1STAT_TOG  : [[regrw]]  uint32  
+    CH1OPTS      : [[regrw]]  uint32  
+    CH1OPTS_SET  : [[regrw]]  uint32  
+    CH1OPTS_CLR  : [[regrw]]  uint32  
+    CH1OPTS_TOG  : [[regrw]]  uint32  
+    CH2CMDPTR    : [[regrw]]  uint32  
+    RESERVED_16  :            [12] uint8
+    CH2SEMA      : [[regrw]]  uint32  
+    RESERVED_17  :            [12] uint8
+    CH2STAT      : [[regrw]]  uint32  
+    CH2STAT_SET  : [[regrw]]  uint32  
+    CH2STAT_CLR  : [[regrw]]  uint32  
+    CH2STAT_TOG  : [[regrw]]  uint32  
+    CH2OPTS      : [[regrw]]  uint32  
+    CH2OPTS_SET  : [[regrw]]  uint32  
+    CH2OPTS_CLR  : [[regrw]]  uint32  
+    CH2OPTS_TOG  : [[regrw]]  uint32  
+    CH3CMDPTR    : [[regrw]]  uint32  
+    RESERVED_18  :            [12] uint8
+    CH3SEMA      : [[regrw]]  uint32  
+    RESERVED_19  :            [12] uint8
+    CH3STAT      : [[regrw]]  uint32  
+    CH3STAT_SET  : [[regrw]]  uint32  
+    CH3STAT_CLR  : [[regrw]]  uint32  
+    CH3STAT_TOG  : [[regrw]]  uint32  
+    CH3OPTS      : [[regrw]]  uint32  
+    CH3OPTS_SET  : [[regrw]]  uint32  
+    CH3OPTS_CLR  : [[regrw]]  uint32  
+    CH3OPTS_TOG  : [[regrw]]  uint32  
+    RESERVED_20  :            [512] uint8
+    DBGSELECT    : [[regrw]]  uint32  
+    RESERVED_21  :            [12] uint8
+    DBGDATA      : [[regro]]  uint32  
+    RESERVED_22  :            [12] uint8
+    PAGETABLE    : [[regrw]]  uint32  
+    RESERVED_23  :            [12] uint8
+    VERSION      : [[regro]]  uint32  
+endstruct
+
+struct NestedStruct_18:
+        SADDR        : [[regrw]]  uint32  
+        SOFF         : [[regrw]]  uint16  
+        ATTR         : [[regrw]]  uint16  
+        union u_NBYTES_MLNO:
+            NBYTES_MLNO  : [[regrw]]  uint32  
+            NBYTES_MLOFFNO : [[regrw]]  uint32  
+            NBYTES_MLOFFYES : [[regrw]]  uint32  
+        endunion
+        SLAST        : [[regrw]]  int32   
+        DADDR        : [[regrw]]  uint32  
+        DOFF         : [[regrw]]  uint16  
+        union u_CITER_ELINKNO:
+            CITER_ELINKNO : [[regrw]]  uint16  
+            CITER_ELINKYES : [[regrw]]  uint16  
+        endunion
+        DLAST_SGA    : [[regrw]]  int32   
+        CSR          : [[regrw]]  uint16  
+        union u_BITER_ELINKNO:
+            BITER_ELINKNO : [[regrw]]  uint16  
+            BITER_ELINKYES : [[regrw]]  uint16  
+        endunion
+endstruct
+
+struct DMA_Type:
+    CR           : [[regrw]]  uint32  
+    ES           : [[regro]]  uint32  
+    RESERVED_0   :            [4] uint8
+    ERQ          : [[regrw]]  uint32  
+    RESERVED_1   :            [4] uint8
+    EEI          : [[regrw]]  uint32  
+    CEEI         : [[regrw]]  uint8   
+    SEEI         : [[regrw]]  uint8   
+    CERQ         : [[regrw]]  uint8   
+    SERQ         : [[regrw]]  uint8   
+    CDNE         : [[regrw]]  uint8   
+    SSRT         : [[regrw]]  uint8   
+    CERR         : [[regrw]]  uint8   
+    CINT         : [[regrw]]  uint8   
+    RESERVED_2   :            [4] uint8
+    INT          : [[regrw]]  uint32  
+    RESERVED_3   :            [4] uint8
+    ERR          : [[regrw]]  uint32  
+    RESERVED_4   :            [4] uint8
+    HRS          : [[regro]]  uint32  
+    RESERVED_5   :            [12] uint8
+    EARS         : [[regrw]]  uint32  
+    RESERVED_6   :            [184] uint8
+    DCHPRI3      : [[regrw]]  uint8   
+    DCHPRI2      : [[regrw]]  uint8   
+    DCHPRI1      : [[regrw]]  uint8   
+    DCHPRI0      : [[regrw]]  uint8   
+    DCHPRI7      : [[regrw]]  uint8   
+    DCHPRI6      : [[regrw]]  uint8   
+    DCHPRI5      : [[regrw]]  uint8   
+    DCHPRI4      : [[regrw]]  uint8   
+    DCHPRI11     : [[regrw]]  uint8   
+    DCHPRI10     : [[regrw]]  uint8   
+    DCHPRI9      : [[regrw]]  uint8   
+    DCHPRI8      : [[regrw]]  uint8   
+    DCHPRI15     : [[regrw]]  uint8   
+    DCHPRI14     : [[regrw]]  uint8   
+    DCHPRI13     : [[regrw]]  uint8   
+    DCHPRI12     : [[regrw]]  uint8   
+    DCHPRI19     : [[regrw]]  uint8   
+    DCHPRI18     : [[regrw]]  uint8   
+    DCHPRI17     : [[regrw]]  uint8   
+    DCHPRI16     : [[regrw]]  uint8   
+    DCHPRI23     : [[regrw]]  uint8   
+    DCHPRI22     : [[regrw]]  uint8   
+    DCHPRI21     : [[regrw]]  uint8   
+    DCHPRI20     : [[regrw]]  uint8   
+    DCHPRI27     : [[regrw]]  uint8   
+    DCHPRI26     : [[regrw]]  uint8   
+    DCHPRI25     : [[regrw]]  uint8   
+    DCHPRI24     : [[regrw]]  uint8   
+    DCHPRI31     : [[regrw]]  uint8   
+    DCHPRI30     : [[regrw]]  uint8   
+    DCHPRI29     : [[regrw]]  uint8   
+    DCHPRI28     : [[regrw]]  uint8   
+    RESERVED_7   :            [3808] uint8
+    TCD          :            [32] NestedStruct_18
+endstruct
+
+const(int):
+    kDmaRequestMuxFlexIO1Request0Request1 = 0 OR 0x100
+    kDmaRequestMuxFlexIO2Request0Request1 = 1 OR 0x100
+    kDmaRequestMuxLPUART1Tx = 2 OR 0x100
+    kDmaRequestMuxLPUART1Rx = 3 OR 0x100
+    kDmaRequestMuxLPUART3Tx = 4 OR 0x100
+    kDmaRequestMuxLPUART3Rx = 5 OR 0x100
+    kDmaRequestMuxLPUART5Tx = 6 OR 0x100
+    kDmaRequestMuxLPUART5Rx = 7 OR 0x100
+    kDmaRequestMuxLPUART7Tx = 8 OR 0x100
+    kDmaRequestMuxLPUART7Rx = 9 OR 0x100
+    kDmaRequestMuxCAN3   = 11 OR 0x100
+    kDmaRequestMuxLPSPI1Rx = 13 OR 0x100
+    kDmaRequestMuxLPSPI1Tx = 14 OR 0x100
+    kDmaRequestMuxLPI2C1 = 17 OR 0x100
+    kDmaRequestMuxLPI2C3 = 18 OR 0x100
+    kDmaRequestMuxSai1Rx = 19 OR 0x100
+    kDmaRequestMuxSai1Tx = 20 OR 0x100
+    kDmaRequestMuxSai2Rx = 21 OR 0x100
+    kDmaRequestMuxSai2Tx = 22 OR 0x100
+    kDmaRequestMuxADC_ETC = 23 OR 0x100
+    kDmaRequestMuxADC1   = 24 OR 0x100
+    kDmaRequestMuxACMP1  = 25 OR 0x100
+    kDmaRequestMuxACMP3  = 26 OR 0x100
+    kDmaRequestMuxFlexSPIRx = 28 OR 0x100
+    kDmaRequestMuxFlexSPITx = 29 OR 0x100
+    kDmaRequestMuxXBAR1Request0 = 30 OR 0x100
+    kDmaRequestMuxXBAR1Request1 = 31 OR 0x100
+    kDmaRequestMuxFlexPWM1CaptureSub0 = 32 OR 0x100
+    kDmaRequestMuxFlexPWM1CaptureSub1 = 33 OR 0x100
+    kDmaRequestMuxFlexPWM1CaptureSub2 = 34 OR 0x100
+    kDmaRequestMuxFlexPWM1CaptureSub3 = 35 OR 0x100
+    kDmaRequestMuxFlexPWM1ValueSub0 = 36 OR 0x100
+endconst
+
+const(int):
+    kDmaRequestMuxFlexPWM1ValueSub1 = 37 OR 0x100
+    kDmaRequestMuxFlexPWM1ValueSub2 = 38 OR 0x100
+    kDmaRequestMuxFlexPWM1ValueSub3 = 39 OR 0x100
+    kDmaRequestMuxFlexPWM3CaptureSub0 = 40 OR 0x100
+    kDmaRequestMuxFlexPWM3CaptureSub1 = 41 OR 0x100
+    kDmaRequestMuxFlexPWM3CaptureSub2 = 42 OR 0x100
+    kDmaRequestMuxFlexPWM3CaptureSub3 = 43 OR 0x100
+    kDmaRequestMuxFlexPWM3ValueSub0 = 44 OR 0x100
+    kDmaRequestMuxFlexPWM3ValueSub1 = 45 OR 0x100
+    kDmaRequestMuxFlexPWM3ValueSub2 = 46 OR 0x100
+    kDmaRequestMuxFlexPWM3ValueSub3 = 47 OR 0x100
+    kDmaRequestMuxQTIMER1CaptTimer0 = 48 OR 0x100
+    kDmaRequestMuxQTIMER1CaptTimer1 = 49 OR 0x100
+    kDmaRequestMuxQTIMER1CaptTimer2 = 50 OR 0x100
+    kDmaRequestMuxQTIMER1CaptTimer3 = 51 OR 0x100
+    kDmaRequestMuxQTIMER1Cmpld1Timer0Cmpld2Timer1 = 52 OR 0x100
+    kDmaRequestMuxQTIMER1Cmpld1Timer1Cmpld2Timer0 = 53 OR 0x100
+    kDmaRequestMuxQTIMER1Cmpld1Timer2Cmpld2Timer3 = 54 OR 0x100
+    kDmaRequestMuxQTIMER1Cmpld1Timer3Cmpld2Timer2 = 55 OR 0x100
+    kDmaRequestMuxQTIMER3CaptTimer0Cmpld1Timer0Cmpld2Timer1 = 56 OR 0x100
+    kDmaRequestMuxQTIMER3CaptTimer1Cmpld1Timer1Cmpld2Timer0 = 57 OR 0x100
+    kDmaRequestMuxQTIMER3CaptTimer2Cmpld1Timer2Cmpld2Timer3 = 58 OR 0x100
+    kDmaRequestMuxQTIMER3CaptTimer3Cmpld1Timer3Cmpld2Timer2 = 59 OR 0x100
+    kDmaRequestMuxFlexSPI2Rx = 60 OR 0x100
+    kDmaRequestMuxFlexSPI2Tx = 61 OR 0x100
+    kDmaRequestMuxFlexIO1Request2Request3 = 64 OR 0x100
+    kDmaRequestMuxFlexIO2Request2Request3 = 65 OR 0x100
+    kDmaRequestMuxLPUART2Tx = 66 OR 0x100
+    kDmaRequestMuxLPUART2Rx = 67 OR 0x100
+    kDmaRequestMuxLPUART4Tx = 68 OR 0x100
+    kDmaRequestMuxLPUART4Rx = 69 OR 0x100
+    kDmaRequestMuxLPUART6Tx = 70 OR 0x100
+endconst
+
+const(int):
+    kDmaRequestMuxLPUART6Rx = 71 OR 0x100
+    kDmaRequestMuxLPUART8Tx = 72 OR 0x100
+    kDmaRequestMuxLPUART8Rx = 73 OR 0x100
+    kDmaRequestMuxLPSPI2Rx = 77 OR 0x100
+    kDmaRequestMuxLPSPI2Tx = 78 OR 0x100
+    kDmaRequestMuxLPSPI3Rx = 79 OR 0x100
+    kDmaRequestMuxLPSPI3Tx = 80 OR 0x100
+    kDmaRequestMuxLPI2C2 = 81 OR 0x100
+    kDmaRequestMuxLPI2C4 = 82 OR 0x100
+    kDmaRequestMuxSai3Rx = 83 OR 0x100
+    kDmaRequestMuxSai3Tx = 84 OR 0x100
+    kDmaRequestMuxSpdifRx = 85 OR 0x100
+    kDmaRequestMuxSpdifTx = 86 OR 0x100
+    kDmaRequestMuxADC2   = 88 OR 0x100
+    kDmaRequestMuxACMP2  = 89 OR 0x100
+    kDmaRequestMuxACMP4  = 90 OR 0x100
+    kDmaRequestMuxEnetTimer0 = 92 OR 0x100
+    kDmaRequestMuxEnetTimer1 = 93 OR 0x100
+    kDmaRequestMuxXBAR1Request2 = 94 OR 0x100
+    kDmaRequestMuxXBAR1Request3 = 95 OR 0x100
+    kDmaRequestMuxFlexPWM2CaptureSub0 = 96 OR 0x100
+    kDmaRequestMuxFlexPWM2CaptureSub1 = 97 OR 0x100
+    kDmaRequestMuxFlexPWM2CaptureSub2 = 98 OR 0x100
+    kDmaRequestMuxFlexPWM2CaptureSub3 = 99 OR 0x100
+    kDmaRequestMuxFlexPWM2ValueSub0 = 100 OR 0x100
+    kDmaRequestMuxFlexPWM2ValueSub1 = 101 OR 0x100
+    kDmaRequestMuxFlexPWM2ValueSub2 = 102 OR 0x100
+    kDmaRequestMuxFlexPWM2ValueSub3 = 103 OR 0x100
+    kDmaRequestMuxFlexPWM4CaptureSub0 = 104 OR 0x100
+    kDmaRequestMuxFlexPWM4CaptureSub1 = 105 OR 0x100
+    kDmaRequestMuxFlexPWM4CaptureSub2 = 106 OR 0x100
+    kDmaRequestMuxFlexPWM4CaptureSub3 = 107 OR 0x100
+endconst
+
+const(int):
+    kDmaRequestMuxFlexPWM4ValueSub0 = 108 OR 0x100
+    kDmaRequestMuxFlexPWM4ValueSub1 = 109 OR 0x100
+    kDmaRequestMuxFlexPWM4ValueSub2 = 110 OR 0x100
+    kDmaRequestMuxFlexPWM4ValueSub3 = 111 OR 0x100
+    kDmaRequestMuxQTIMER2CaptTimer0 = 112 OR 0x100
+    kDmaRequestMuxQTIMER2CaptTimer1 = 113 OR 0x100
+    kDmaRequestMuxQTIMER2CaptTimer2 = 114 OR 0x100
+    kDmaRequestMuxQTIMER2CaptTimer3 = 115 OR 0x100
+    kDmaRequestMuxQTIMER2Cmpld1Timer0Cmpld2Timer1 = 116 OR 0x100
+    kDmaRequestMuxQTIMER2Cmpld1Timer1Cmpld2Timer0 = 117 OR 0x100
+    kDmaRequestMuxQTIMER2Cmpld1Timer2Cmpld2Timer3 = 118 OR 0x100
+    kDmaRequestMuxQTIMER2Cmpld1Timer3Cmpld2Timer2 = 119 OR 0x100
+    kDmaRequestMuxQTIMER4CaptTimer0Cmpld1Timer0Cmpld2Timer1 = 120 OR 0x100
+    kDmaRequestMuxQTIMER4CaptTimer1Cmpld1Timer1Cmpld2Timer0 = 121 OR 0x100
+    kDmaRequestMuxQTIMER4CaptTimer2Cmpld1Timer2Cmpld2Timer3 = 122 OR 0x100
+    kDmaRequestMuxQTIMER4CaptTimer3Cmpld1Timer3Cmpld2Timer2 = 123 OR 0x100
+    kDmaRequestMuxPxp    = 75 OR 0x100
+    kDmaRequestMuxLCDIF  = 76 OR 0x100
+    kDmaRequestMuxLPSPI4Rx = 15 OR 0x100
+    kDmaRequestMuxLPSPI4Tx = 16 OR 0x100
+    kDmaRequestMuxEnet2Timer0 = 124 OR 0x100
+    kDmaRequestMuxEnet2Timer1 = 125 OR 0x100
+endconst
+
+struct DMAMUX_Type:
+    CHCFG        : [[regrw]]  [32] uint32
+endstruct
+
+struct ENC_Type:
+    CTRL         : [[regrw]]  uint16  
+    FILT         : [[regrw]]  uint16  
+    WTR          : [[regrw]]  uint16  
+    POSD         : [[regrw]]  uint16  
+    POSDH        : [[regro]]  uint16  
+    REV          : [[regrw]]  uint16  
+    REVH         : [[regro]]  uint16  
+    UPOS         : [[regrw]]  uint16  
+    LPOS         : [[regrw]]  uint16  
+    UPOSH        : [[regro]]  uint16  
+    LPOSH        : [[regro]]  uint16  
+    UINIT        : [[regrw]]  uint16  
+    LINIT        : [[regrw]]  uint16  
+    IMR          : [[regro]]  uint16  
+    TST          : [[regrw]]  uint16  
+    CTRL2        : [[regrw]]  uint16  
+    UMOD         : [[regrw]]  uint16  
+    LMOD         : [[regrw]]  uint16  
+    UCOMP        : [[regrw]]  uint16  
+    LCOMP        : [[regrw]]  uint16  
+endstruct
+
+struct NestedStruct_19:
+        TCSR         : [[regrw]]  uint32  
+        TCCR         : [[regrw]]  uint32  
+endstruct
+
+struct ENET_Type:
+    RESERVED_0   :            [4] uint8
+    EIR          : [[regrw]]  uint32  
+    EIMR         : [[regrw]]  uint32  
+    RESERVED_1   :            [4] uint8
+    RDAR         : [[regrw]]  uint32  
+    TDAR         : [[regrw]]  uint32  
+    RESERVED_2   :            [12] uint8
+    ECR          : [[regrw]]  uint32  
+    RESERVED_3   :            [24] uint8
+    MMFR         : [[regrw]]  uint32  
+    MSCR         : [[regrw]]  uint32  
+    RESERVED_4   :            [28] uint8
+    MIBC         : [[regrw]]  uint32  
+    RESERVED_5   :            [28] uint8
+    RCR          : [[regrw]]  uint32  
+    RESERVED_6   :            [60] uint8
+    TCR          : [[regrw]]  uint32  
+    RESERVED_7   :            [28] uint8
+    PALR         : [[regrw]]  uint32  
+    PAUR         : [[regrw]]  uint32  
+    OPD          : [[regrw]]  uint32  
+    TXIC         : [[regrw]]  [1] uint32
+    RESERVED_8   :            [12] uint8
+    RXIC         : [[regrw]]  [1] uint32
+    RESERVED_9   :            [20] uint8
+    IAUR         : [[regrw]]  uint32  
+    IALR         : [[regrw]]  uint32  
+    GAUR         : [[regrw]]  uint32  
+    GALR         : [[regrw]]  uint32  
+    RESERVED_10  :            [28] uint8
+    TFWR         : [[regrw]]  uint32  
+    RESERVED_11  :            [56] uint8
+    RDSR         : [[regrw]]  uint32  
+    TDSR         : [[regrw]]  uint32  
+    MRBR         : [[regrw]]  uint32  
+    RESERVED_12  :            [4] uint8
+    RSFL         : [[regrw]]  uint32  
+    RSEM         : [[regrw]]  uint32  
+    RAEM         : [[regrw]]  uint32  
+    RAFL         : [[regrw]]  uint32  
+    TSEM         : [[regrw]]  uint32  
+    TAEM         : [[regrw]]  uint32  
+    TAFL         : [[regrw]]  uint32  
+    TIPG         : [[regrw]]  uint32  
+    FTRL         : [[regrw]]  uint32  
+    RESERVED_13  :            [12] uint8
+    TACC         : [[regrw]]  uint32  
+    RACC         : [[regrw]]  uint32  
+    RESERVED_14  :            [60] uint8
+    RMON_T_PACKETS : [[regro]]  uint32  
+    RMON_T_BC_PKT : [[regro]]  uint32  
+    RMON_T_MC_PKT : [[regro]]  uint32  
+    RMON_T_CRC_ALIGN : [[regro]]  uint32  
+    RMON_T_UNDERSIZE : [[regro]]  uint32  
+    RMON_T_OVERSIZE : [[regro]]  uint32  
+    RMON_T_FRAG  : [[regro]]  uint32  
+    RMON_T_JAB   : [[regro]]  uint32  
+    RMON_T_COL   : [[regro]]  uint32  
+    RMON_T_P64   : [[regro]]  uint32  
+    RMON_T_P65TO127 : [[regro]]  uint32  
+    RMON_T_P128TO255 : [[regro]]  uint32  
+    RMON_T_P256TO511 : [[regro]]  uint32  
+    RMON_T_P512TO1023 : [[regro]]  uint32  
+    RMON_T_P1024TO2047 : [[regro]]  uint32  
+    RMON_T_P_GTE2048 : [[regro]]  uint32  
+    RMON_T_OCTETS : [[regro]]  uint32  
+    RESERVED_15  :            [4] uint8
+    IEEE_T_FRAME_OK : [[regro]]  uint32  
+    IEEE_T_1COL  : [[regro]]  uint32  
+    IEEE_T_MCOL  : [[regro]]  uint32  
+    IEEE_T_DEF   : [[regro]]  uint32  
+    IEEE_T_LCOL  : [[regro]]  uint32  
+    IEEE_T_EXCOL : [[regro]]  uint32  
+    IEEE_T_MACERR : [[regro]]  uint32  
+    IEEE_T_CSERR : [[regro]]  uint32  
+    IEEE_T_SQE   : [[regro]]  uint32  
+    IEEE_T_FDXFC : [[regro]]  uint32  
+    IEEE_T_OCTETS_OK : [[regro]]  uint32  
+    RESERVED_16  :            [12] uint8
+    RMON_R_PACKETS : [[regro]]  uint32  
+    RMON_R_BC_PKT : [[regro]]  uint32  
+    RMON_R_MC_PKT : [[regro]]  uint32  
+    RMON_R_CRC_ALIGN : [[regro]]  uint32  
+    RMON_R_UNDERSIZE : [[regro]]  uint32  
+    RMON_R_OVERSIZE : [[regro]]  uint32  
+    RMON_R_FRAG  : [[regro]]  uint32  
+    RMON_R_JAB   : [[regro]]  uint32  
+    RESERVED_17  :            [4] uint8
+    RMON_R_P64   : [[regro]]  uint32  
+    RMON_R_P65TO127 : [[regro]]  uint32  
+    RMON_R_P128TO255 : [[regro]]  uint32  
+    RMON_R_P256TO511 : [[regro]]  uint32  
+    RMON_R_P512TO1023 : [[regro]]  uint32  
+    RMON_R_P1024TO2047 : [[regro]]  uint32  
+    RMON_R_P_GTE2048 : [[regro]]  uint32  
+    RMON_R_OCTETS : [[regro]]  uint32  
+    IEEE_R_DROP  : [[regro]]  uint32  
+    IEEE_R_FRAME_OK : [[regro]]  uint32  
+    IEEE_R_CRC   : [[regro]]  uint32  
+    IEEE_R_ALIGN : [[regro]]  uint32  
+    IEEE_R_MACERR : [[regro]]  uint32  
+    IEEE_R_FDXFC : [[regro]]  uint32  
+    IEEE_R_OCTETS_OK : [[regro]]  uint32  
+    RESERVED_18  :            [284] uint8
+    ATCR         : [[regrw]]  uint32  
+    ATVR         : [[regrw]]  uint32  
+    ATOFF        : [[regrw]]  uint32  
+    ATPER        : [[regrw]]  uint32  
+    ATCOR        : [[regrw]]  uint32  
+    ATINC        : [[regrw]]  uint32  
+    ATSTMP       : [[regro]]  uint32  
+    RESERVED_19  :            [488] uint8
+    TGSR         : [[regrw]]  uint32  
+    CHANNEL      :            [4] NestedStruct_19
+endstruct
+
+struct EWM_Type:
+    CTRL         : [[regrw]]  uint8   
+    SERV         : [[regrw]]  uint8   
+    CMPL         : [[regrw]]  uint8   
+    CMPH         : [[regrw]]  uint8   
+    CLKCTRL      : [[regrw]]  uint8   
+    CLKPRESCALER : [[regrw]]  uint8   
+endstruct
+
+struct FLEXIO_Type:
+    VERID        : [[regro]]  uint32  
+    PARAM        : [[regro]]  uint32  
+    CTRL         : [[regrw]]  uint32  
+    PIN          : [[regro]]  uint32  
+    SHIFTSTAT    : [[regrw]]  uint32  
+    SHIFTERR     : [[regrw]]  uint32  
+    TIMSTAT      : [[regrw]]  uint32  
+    RESERVED_0   :            [4] uint8
+    SHIFTSIEN    : [[regrw]]  uint32  
+    SHIFTEIEN    : [[regrw]]  uint32  
+    TIMIEN       : [[regrw]]  uint32  
+    RESERVED_1   :            [4] uint8
+    SHIFTSDEN    : [[regrw]]  uint32  
+    RESERVED_2   :            [12] uint8
+    SHIFTSTATE   : [[regrw]]  uint32  
+    RESERVED_3   :            [60] uint8
+    SHIFTCTL     : [[regrw]]  [8] uint32
+    RESERVED_4   :            [96] uint8
+    SHIFTCFG     : [[regrw]]  [8] uint32
+    RESERVED_5   :            [224] uint8
+    SHIFTBUF     : [[regrw]]  [8] uint32
+    RESERVED_6   :            [96] uint8
+    SHIFTBUFBIS  : [[regrw]]  [8] uint32
+    RESERVED_7   :            [96] uint8
+    SHIFTBUFBYS  : [[regrw]]  [8] uint32
+    RESERVED_8   :            [96] uint8
+    SHIFTBUFBBS  : [[regrw]]  [8] uint32
+    RESERVED_9   :            [96] uint8
+    TIMCTL       : [[regrw]]  [8] uint32
+    RESERVED_10  :            [96] uint8
+    TIMCFG       : [[regrw]]  [8] uint32
+    RESERVED_11  :            [96] uint8
+    TIMCMP       : [[regrw]]  [8] uint32
+    RESERVED_12  :            [352] uint8
+    SHIFTBUFNBS  : [[regrw]]  [8] uint32
+    RESERVED_13  :            [96] uint8
+    SHIFTBUFHWS  : [[regrw]]  [8] uint32
+    RESERVED_14  :            [96] uint8
+    SHIFTBUFNIS  : [[regrw]]  [8] uint32
+endstruct
+
+struct FLEXRAM_Type:
+    TCM_CTRL     : [[regrw]]  uint32  
+    RESERVED_0   :            [12] uint8
+    INT_STATUS   : [[regrw]]  uint32  
+    INT_STAT_EN  : [[regrw]]  uint32  
+    INT_SIG_EN   : [[regrw]]  uint32  
+endstruct
+
+struct FLEXSPI_Type:
+    MCR0         : [[regrw]]  uint32  
+    MCR1         : [[regrw]]  uint32  
+    MCR2         : [[regrw]]  uint32  
+    AHBCR        : [[regrw]]  uint32  
+    INTEN        : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    LUTKEY       : [[regrw]]  uint32  
+    LUTCR        : [[regrw]]  uint32  
+    AHBRXBUFCR0  : [[regrw]]  [4] uint32
+    RESERVED_0   :            [48] uint8
+    FLSHCR0      : [[regrw]]  [4] uint32
+    FLSHCR1      : [[regrw]]  [4] uint32
+    FLSHCR2      : [[regrw]]  [4] uint32
+    RESERVED_1   :            [4] uint8
+    FLSHCR4      : [[regrw]]  uint32  
+    RESERVED_2   :            [8] uint8
+    IPCR0        : [[regrw]]  uint32  
+    IPCR1        : [[regrw]]  uint32  
+    RESERVED_3   :            [8] uint8
+    IPCMD        : [[regrw]]  uint32  
+    RESERVED_4   :            [4] uint8
+    IPRXFCR      : [[regrw]]  uint32  
+    IPTXFCR      : [[regrw]]  uint32  
+    DLLCR        : [[regrw]]  [2] uint32
+    RESERVED_5   :            [24] uint8
+    STS0         : [[regro]]  uint32  
+    STS1         : [[regro]]  uint32  
+    STS2         : [[regro]]  uint32  
+    AHBSPNDSTS   : [[regro]]  uint32  
+    IPRXFSTS     : [[regro]]  uint32  
+    IPTXFSTS     : [[regro]]  uint32  
+    RESERVED_6   :            [8] uint8
+    RFDR         : [[regro]]  [32] uint32
+    TFDR         : [[regwo]]  [32] uint32
+    LUT          : [[regrw]]  [64] uint32
+endstruct
+
+struct GPC_Type:
+    CNTR         : [[regrw]]  uint32  
+    RESERVED_0   :            [4] uint8
+    IMR          : [[regrw]]  [4] uint32
+    ISR          : [[regro]]  [4] uint32
+    RESERVED_1   :            [12] uint8
+    IMR5         : [[regrw]]  uint32  
+    ISR5         : [[regro]]  uint32  
+endstruct
+
+struct GPIO_Type:
+    DR           : [[regrw]]  uint32  
+    GDIR         : [[regrw]]  uint32  
+    PSR          : [[regro]]  uint32  
+    ICR1         : [[regrw]]  uint32  
+    ICR2         : [[regrw]]  uint32  
+    IMR          : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32  
+    EDGE_SEL     : [[regrw]]  uint32  
+    RESERVED_0   :            [100] uint8
+    DR_SET       : [[regwo]]  uint32  
+    DR_CLEAR     : [[regwo]]  uint32  
+    DR_TOGGLE    : [[regwo]]  uint32  
+endstruct
+
+struct GPT_Type:
+    CR           : [[regrw]]  uint32  
+    PR           : [[regrw]]  uint32  
+    SR           : [[regrw]]  uint32  
+    IR           : [[regrw]]  uint32  
+    OCR          : [[regrw]]  [3] uint32
+    ICR          : [[regro]]  [2] uint32
+    CNT          : [[regro]]  uint32  
+endstruct
+
+struct I2S_Type:
+    VERID        : [[regro]]  uint32  
+    PARAM        : [[regro]]  uint32  
+    TCSR         : [[regrw]]  uint32  
+    TCR1         : [[regrw]]  uint32  
+    TCR2         : [[regrw]]  uint32  
+    TCR3         : [[regrw]]  uint32  
+    TCR4         : [[regrw]]  uint32  
+    TCR5         : [[regrw]]  uint32  
+    TDR          : [[regrw]]  [4] uint32
+    RESERVED_0   :            [16] uint8
+    TFR          : [[regro]]  [4] uint32
+    RESERVED_1   :            [16] uint8
+    TMR          : [[regrw]]  uint32  
+    RESERVED_2   :            [36] uint8
+    RCSR         : [[regrw]]  uint32  
+    RCR1         : [[regrw]]  uint32  
+    RCR2         : [[regrw]]  uint32  
+    RCR3         : [[regrw]]  uint32  
+    RCR4         : [[regrw]]  uint32  
+    RCR5         : [[regrw]]  uint32  
+    RDR          : [[regro]]  [4] uint32
+    RESERVED_3   :            [16] uint8
+    RFR          : [[regro]]  [4] uint32
+    RESERVED_4   :            [16] uint8
+    RMR          : [[regrw]]  uint32  
+endstruct
+
+const(int):
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_00 = 0
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_01 = 1
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_02 = 2
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_03 = 3
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_04 = 4
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_05 = 5
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_06 = 6
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_07 = 7
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_08 = 8
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_09 = 9
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_10 = 10
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_11 = 11
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_12 = 12
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_13 = 13
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_14 = 14
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_15 = 15
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_16 = 16
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_17 = 17
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_18 = 18
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_19 = 19
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_20 = 20
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_21 = 21
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_22 = 22
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_23 = 23
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_24 = 24
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_25 = 25
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_26 = 26
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_27 = 27
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_28 = 28
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_29 = 29
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_30 = 30
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_31 = 31
+endconst
+
+const(int):
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_32 = 32
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_33 = 33
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_34 = 34
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_35 = 35
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_36 = 36
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_37 = 37
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_38 = 38
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_39 = 39
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_40 = 40
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_EMC_41 = 41
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_04 = 46
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_05 = 47
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_06 = 48
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_07 = 49
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_08 = 50
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_09 = 51
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_10 = 52
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_11 = 53
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_12 = 54
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_13 = 55
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_14 = 56
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B0_15 = 57
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_00 = 58
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_01 = 59
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_02 = 60
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_03 = 61
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_04 = 62
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_05 = 63
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_06 = 64
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_07 = 65
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_08 = 66
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_09 = 67
+endconst
+
+const(int):
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_10 = 68
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_11 = 69
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_12 = 70
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_13 = 71
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_14 = 72
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_AD_B1_15 = 73
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_00 = 74
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_01 = 75
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_02 = 76
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_03 = 77
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_04 = 78
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_05 = 79
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_06 = 80
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_07 = 81
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_08 = 82
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_09 = 83
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_10 = 84
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_11 = 85
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_12 = 86
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_13 = 87
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_14 = 88
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B0_15 = 89
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_00 = 90
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_01 = 91
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_02 = 92
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_03 = 93
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_04 = 94
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_05 = 95
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_06 = 96
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_07 = 97
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_08 = 98
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_09 = 99
+endconst
+
+const(int):
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_10 = 100
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_11 = 101
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_12 = 102
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_13 = 103
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_14 = 104
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_B1_15 = 105
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B0_00 = 106
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B0_01 = 107
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B0_02 = 108
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B0_03 = 109
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B0_04 = 110
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B0_05 = 111
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_00 = 112
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_01 = 113
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_02 = 114
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_03 = 115
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_04 = 116
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_05 = 117
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_06 = 118
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_07 = 119
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_08 = 120
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_09 = 121
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_10 = 122
+    kIOMUXC_SW_MUX_CTL_PAD_GPIO_SD_B1_11 = 123
+endconst
+
+const(int):
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_00 = 0
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_01 = 1
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_02 = 2
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_03 = 3
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_04 = 4
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_05 = 5
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_06 = 6
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_07 = 7
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_08 = 8
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_09 = 9
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_10 = 10
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_11 = 11
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_12 = 12
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_13 = 13
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_14 = 14
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_15 = 15
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_16 = 16
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_17 = 17
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_18 = 18
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_19 = 19
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_20 = 20
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_21 = 21
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_22 = 22
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_23 = 23
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_24 = 24
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_25 = 25
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_26 = 26
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_27 = 27
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_28 = 28
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_29 = 29
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_30 = 30
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_31 = 31
+endconst
+
+const(int):
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_32 = 32
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_33 = 33
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_34 = 34
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_35 = 35
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_36 = 36
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_37 = 37
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_38 = 38
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_39 = 39
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_40 = 40
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_EMC_41 = 41
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_04 = 46
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_05 = 47
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_06 = 48
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_07 = 49
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_08 = 50
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_09 = 51
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_10 = 52
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_11 = 53
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_12 = 54
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_13 = 55
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_14 = 56
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B0_15 = 57
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_00 = 58
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_01 = 59
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_02 = 60
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_03 = 61
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_04 = 62
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_05 = 63
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_06 = 64
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_07 = 65
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_08 = 66
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_09 = 67
+endconst
+
+const(int):
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_10 = 68
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_11 = 69
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_12 = 70
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_13 = 71
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_14 = 72
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_AD_B1_15 = 73
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_00 = 74
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_01 = 75
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_02 = 76
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_03 = 77
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_04 = 78
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_05 = 79
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_06 = 80
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_07 = 81
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_08 = 82
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_09 = 83
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_10 = 84
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_11 = 85
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_12 = 86
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_13 = 87
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_14 = 88
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B0_15 = 89
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_00 = 90
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_01 = 91
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_02 = 92
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_03 = 93
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_04 = 94
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_05 = 95
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_06 = 96
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_07 = 97
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_08 = 98
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_09 = 99
+endconst
+
+const(int):
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_10 = 100
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_11 = 101
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_12 = 102
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_13 = 103
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_14 = 104
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_B1_15 = 105
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B0_00 = 106
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B0_01 = 107
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B0_02 = 108
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B0_03 = 109
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B0_04 = 110
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B0_05 = 111
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_00 = 112
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_01 = 113
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_02 = 114
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_03 = 115
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_04 = 116
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_05 = 117
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_06 = 118
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_07 = 119
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_08 = 120
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_09 = 121
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_10 = 122
+    kIOMUXC_SW_PAD_CTL_PAD_GPIO_SD_B1_11 = 123
+endconst
+
+const(int):
+    kIOMUXC_ANATOP_USB_OTG1_ID_SELECT_INPUT = 0
+    kIOMUXC_CCM_PMIC_READY_SELECT_INPUT = 2
+    kIOMUXC_ENET_IPG_CLK_RMII_SELECT_INPUT = 14
+    kIOMUXC_ENET_MDIO_SELECT_INPUT = 15
+    kIOMUXC_ENET0_RXDATA_SELECT_INPUT = 16
+    kIOMUXC_ENET1_RXDATA_SELECT_INPUT = 17
+    kIOMUXC_ENET_RXEN_SELECT_INPUT = 18
+    kIOMUXC_ENET_RXERR_SELECT_INPUT = 19
+    kIOMUXC_ENET0_TIMER_SELECT_INPUT = 20
+    kIOMUXC_ENET_TXCLK_SELECT_INPUT = 21
+    kIOMUXC_FLEXCAN1_RX_SELECT_INPUT = 22
+    kIOMUXC_FLEXCAN2_RX_SELECT_INPUT = 23
+    kIOMUXC_FLEXPWM1_PWMA3_SELECT_INPUT = 24
+    kIOMUXC_FLEXPWM1_PWMA0_SELECT_INPUT = 25
+    kIOMUXC_FLEXPWM1_PWMA1_SELECT_INPUT = 26
+    kIOMUXC_FLEXPWM1_PWMA2_SELECT_INPUT = 27
+    kIOMUXC_FLEXPWM1_PWMB3_SELECT_INPUT = 28
+    kIOMUXC_FLEXPWM1_PWMB0_SELECT_INPUT = 29
+    kIOMUXC_FLEXPWM1_PWMB1_SELECT_INPUT = 30
+    kIOMUXC_FLEXPWM1_PWMB2_SELECT_INPUT = 31
+    kIOMUXC_FLEXPWM2_PWMA3_SELECT_INPUT = 32
+    kIOMUXC_FLEXPWM2_PWMA0_SELECT_INPUT = 33
+    kIOMUXC_FLEXPWM2_PWMA1_SELECT_INPUT = 34
+    kIOMUXC_FLEXPWM2_PWMA2_SELECT_INPUT = 35
+    kIOMUXC_FLEXPWM2_PWMB3_SELECT_INPUT = 36
+    kIOMUXC_FLEXPWM2_PWMB0_SELECT_INPUT = 37
+    kIOMUXC_FLEXPWM2_PWMB1_SELECT_INPUT = 38
+    kIOMUXC_FLEXPWM2_PWMB2_SELECT_INPUT = 39
+    kIOMUXC_FLEXPWM4_PWMA0_SELECT_INPUT = 40
+    kIOMUXC_FLEXPWM4_PWMA1_SELECT_INPUT = 41
+    kIOMUXC_FLEXPWM4_PWMA2_SELECT_INPUT = 42
+    kIOMUXC_FLEXPWM4_PWMA3_SELECT_INPUT = 43
+endconst
+
+const(int):
+    kIOMUXC_FLEXSPIA_DQS_SELECT_INPUT = 44
+    kIOMUXC_FLEXSPIA_DATA0_SELECT_INPUT = 45
+    kIOMUXC_FLEXSPIA_DATA1_SELECT_INPUT = 46
+    kIOMUXC_FLEXSPIA_DATA2_SELECT_INPUT = 47
+    kIOMUXC_FLEXSPIA_DATA3_SELECT_INPUT = 48
+    kIOMUXC_FLEXSPIB_DATA0_SELECT_INPUT = 49
+    kIOMUXC_FLEXSPIB_DATA1_SELECT_INPUT = 50
+    kIOMUXC_FLEXSPIB_DATA2_SELECT_INPUT = 51
+    kIOMUXC_FLEXSPIB_DATA3_SELECT_INPUT = 52
+    kIOMUXC_FLEXSPIA_SCK_SELECT_INPUT = 53
+    kIOMUXC_LPI2C1_SCL_SELECT_INPUT = 54
+    kIOMUXC_LPI2C1_SDA_SELECT_INPUT = 55
+    kIOMUXC_LPI2C2_SCL_SELECT_INPUT = 56
+    kIOMUXC_LPI2C2_SDA_SELECT_INPUT = 57
+    kIOMUXC_LPI2C3_SCL_SELECT_INPUT = 58
+    kIOMUXC_LPI2C3_SDA_SELECT_INPUT = 59
+    kIOMUXC_LPI2C4_SCL_SELECT_INPUT = 60
+    kIOMUXC_LPI2C4_SDA_SELECT_INPUT = 61
+    kIOMUXC_LPSPI1_PCS0_SELECT_INPUT = 62
+    kIOMUXC_LPSPI1_SCK_SELECT_INPUT = 63
+    kIOMUXC_LPSPI1_SDI_SELECT_INPUT = 64
+    kIOMUXC_LPSPI1_SDO_SELECT_INPUT = 65
+    kIOMUXC_LPSPI2_PCS0_SELECT_INPUT = 66
+    kIOMUXC_LPSPI2_SCK_SELECT_INPUT = 67
+    kIOMUXC_LPSPI2_SDI_SELECT_INPUT = 68
+    kIOMUXC_LPSPI2_SDO_SELECT_INPUT = 69
+    kIOMUXC_LPSPI4_PCS0_SELECT_INPUT = 70
+    kIOMUXC_LPSPI4_SCK_SELECT_INPUT = 71
+    kIOMUXC_LPSPI4_SDI_SELECT_INPUT = 72
+    kIOMUXC_LPSPI4_SDO_SELECT_INPUT = 73
+    kIOMUXC_LPSPI3_PCS0_SELECT_INPUT = 74
+    kIOMUXC_LPSPI3_SCK_SELECT_INPUT = 75
+endconst
+
+const(int):
+    kIOMUXC_LPSPI3_SDI_SELECT_INPUT = 76
+    kIOMUXC_LPSPI3_SDO_SELECT_INPUT = 77
+    kIOMUXC_LPUART2_RX_SELECT_INPUT = 78
+    kIOMUXC_LPUART2_TX_SELECT_INPUT = 79
+    kIOMUXC_LPUART3_CTS_B_SELECT_INPUT = 80
+    kIOMUXC_LPUART3_RX_SELECT_INPUT = 81
+    kIOMUXC_LPUART3_TX_SELECT_INPUT = 82
+    kIOMUXC_LPUART4_RX_SELECT_INPUT = 83
+    kIOMUXC_LPUART4_TX_SELECT_INPUT = 84
+    kIOMUXC_LPUART5_RX_SELECT_INPUT = 85
+    kIOMUXC_LPUART5_TX_SELECT_INPUT = 86
+    kIOMUXC_LPUART6_RX_SELECT_INPUT = 87
+    kIOMUXC_LPUART6_TX_SELECT_INPUT = 88
+    kIOMUXC_LPUART7_RX_SELECT_INPUT = 89
+    kIOMUXC_LPUART7_TX_SELECT_INPUT = 90
+    kIOMUXC_LPUART8_RX_SELECT_INPUT = 91
+    kIOMUXC_LPUART8_TX_SELECT_INPUT = 92
+    kIOMUXC_NMI_SELECT_INPUT = 93
+    kIOMUXC_QTIMER2_TIMER0_SELECT_INPUT = 94
+    kIOMUXC_QTIMER2_TIMER1_SELECT_INPUT = 95
+    kIOMUXC_QTIMER2_TIMER2_SELECT_INPUT = 96
+    kIOMUXC_QTIMER2_TIMER3_SELECT_INPUT = 97
+    kIOMUXC_QTIMER3_TIMER0_SELECT_INPUT = 98
+    kIOMUXC_QTIMER3_TIMER1_SELECT_INPUT = 99
+    kIOMUXC_QTIMER3_TIMER2_SELECT_INPUT = 100
+    kIOMUXC_QTIMER3_TIMER3_SELECT_INPUT = 101
+    kIOMUXC_SAI1_MCLK2_SELECT_INPUT = 102
+    kIOMUXC_SAI1_RX_BCLK_SELECT_INPUT = 103
+    kIOMUXC_SAI1_RX_DATA0_SELECT_INPUT = 104
+    kIOMUXC_SAI1_RX_DATA1_SELECT_INPUT = 105
+    kIOMUXC_SAI1_RX_DATA2_SELECT_INPUT = 106
+    kIOMUXC_SAI1_RX_DATA3_SELECT_INPUT = 107
+endconst
+
+const(int):
+    kIOMUXC_SAI1_RX_SYNC_SELECT_INPUT = 108
+    kIOMUXC_SAI1_TX_BCLK_SELECT_INPUT = 109
+    kIOMUXC_SAI1_TX_SYNC_SELECT_INPUT = 110
+    kIOMUXC_SAI2_MCLK2_SELECT_INPUT = 111
+    kIOMUXC_SAI2_RX_BCLK_SELECT_INPUT = 112
+    kIOMUXC_SAI2_RX_DATA0_SELECT_INPUT = 113
+    kIOMUXC_SAI2_RX_SYNC_SELECT_INPUT = 114
+    kIOMUXC_SAI2_TX_BCLK_SELECT_INPUT = 115
+    kIOMUXC_SAI2_TX_SYNC_SELECT_INPUT = 116
+    kIOMUXC_SPDIF_IN_SELECT_INPUT = 117
+    kIOMUXC_USB_OTG1_OC_SELECT_INPUT = 119
+    kIOMUXC_USDHC1_CD_B_SELECT_INPUT = 120
+    kIOMUXC_USDHC1_WP_SELECT_INPUT = 121
+    kIOMUXC_USDHC2_CLK_SELECT_INPUT = 122
+    kIOMUXC_USDHC2_CD_B_SELECT_INPUT = 123
+    kIOMUXC_USDHC2_CMD_SELECT_INPUT = 124
+    kIOMUXC_USDHC2_DATA0_SELECT_INPUT = 125
+    kIOMUXC_USDHC2_DATA1_SELECT_INPUT = 126
+    kIOMUXC_USDHC2_DATA2_SELECT_INPUT = 127
+    kIOMUXC_USDHC2_DATA3_SELECT_INPUT = 128
+    kIOMUXC_USDHC2_DATA4_SELECT_INPUT = 129
+    kIOMUXC_USDHC2_DATA5_SELECT_INPUT = 130
+    kIOMUXC_USDHC2_DATA6_SELECT_INPUT = 131
+    kIOMUXC_USDHC2_DATA7_SELECT_INPUT = 132
+    kIOMUXC_USDHC2_WP_SELECT_INPUT = 133
+    kIOMUXC_XBAR1_IN02_SELECT_INPUT = 134
+    kIOMUXC_XBAR1_IN03_SELECT_INPUT = 135
+    kIOMUXC_XBAR1_IN04_SELECT_INPUT = 136
+    kIOMUXC_XBAR1_IN05_SELECT_INPUT = 137
+    kIOMUXC_XBAR1_IN06_SELECT_INPUT = 138
+    kIOMUXC_XBAR1_IN07_SELECT_INPUT = 139
+    kIOMUXC_XBAR1_IN08_SELECT_INPUT = 140
+endconst
+
+const(int):
+    kIOMUXC_XBAR1_IN09_SELECT_INPUT = 141
+    kIOMUXC_XBAR1_IN17_SELECT_INPUT = 142
+    kIOMUXC_XBAR1_IN18_SELECT_INPUT = 143
+    kIOMUXC_XBAR1_IN20_SELECT_INPUT = 144
+    kIOMUXC_XBAR1_IN22_SELECT_INPUT = 145
+    kIOMUXC_XBAR1_IN23_SELECT_INPUT = 146
+    kIOMUXC_XBAR1_IN24_SELECT_INPUT = 147
+    kIOMUXC_XBAR1_IN14_SELECT_INPUT = 148
+    kIOMUXC_XBAR1_IN15_SELECT_INPUT = 149
+    kIOMUXC_XBAR1_IN16_SELECT_INPUT = 150
+    kIOMUXC_XBAR1_IN25_SELECT_INPUT = 151
+    kIOMUXC_XBAR1_IN19_SELECT_INPUT = 152
+    kIOMUXC_XBAR1_IN21_SELECT_INPUT = 153
+    kIOMUXC_ENET2_IPG_CLK_RMII_SELECT_INPUT = 198
+    kIOMUXC_ENET2_IPP_IND_MAC0_MDIO_SELECT_INPUT = 199
+    kIOMUXC_ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_0 = 200
+    kIOMUXC_ENET2_IPP_IND_MAC0_RXDATA_SELECT_INPUT_1 = 201
+    kIOMUXC_ENET2_IPP_IND_MAC0_RXEN_SELECT_INPUT = 202
+    kIOMUXC_ENET2_IPP_IND_MAC0_RXERR_SELECT_INPUT = 203
+    kIOMUXC_ENET2_IPP_IND_MAC0_TIMER_SELECT_INPUT_0 = 204
+    kIOMUXC_ENET2_IPP_IND_MAC0_TXCLK_SELECT_INPUT = 205
+    kIOMUXC_FLEXSPI2_IPP_IND_DQS_FA_SELECT_INPUT = 206
+    kIOMUXC_FLEXSPI2_IPP_IND_IO_FA_BIT0_SELECT_INPUT = 207
+    kIOMUXC_FLEXSPI2_IPP_IND_IO_FA_BIT1_SELECT_INPUT = 208
+    kIOMUXC_FLEXSPI2_IPP_IND_IO_FA_BIT2_SELECT_INPUT = 209
+    kIOMUXC_FLEXSPI2_IPP_IND_IO_FA_BIT3_SELECT_INPUT = 210
+    kIOMUXC_FLEXSPI2_IPP_IND_IO_FB_BIT0_SELECT_INPUT = 211
+    kIOMUXC_FLEXSPI2_IPP_IND_IO_FB_BIT1_SELECT_INPUT = 212
+    kIOMUXC_FLEXSPI2_IPP_IND_IO_FB_BIT2_SELECT_INPUT = 213
+    kIOMUXC_FLEXSPI2_IPP_IND_IO_FB_BIT3_SELECT_INPUT = 214
+    kIOMUXC_FLEXSPI2_IPP_IND_SCK_FA_SELECT_INPUT = 215
+    kIOMUXC_FLEXSPI2_IPP_IND_SCK_FB_SELECT_INPUT = 216
+endconst
+
+const(int):
+    kIOMUXC_GPT1_IPP_IND_CAPIN1_SELECT_INPUT = 217
+    kIOMUXC_GPT1_IPP_IND_CAPIN2_SELECT_INPUT = 218
+    kIOMUXC_GPT1_IPP_IND_CLKIN_SELECT_INPUT = 219
+    kIOMUXC_GPT2_IPP_IND_CAPIN1_SELECT_INPUT = 220
+    kIOMUXC_GPT2_IPP_IND_CAPIN2_SELECT_INPUT = 221
+    kIOMUXC_GPT2_IPP_IND_CLKIN_SELECT_INPUT = 222
+    kIOMUXC_SAI3_IPG_CLK_SAI_MCLK_SELECT_INPUT_2 = 223
+    kIOMUXC_SAI3_IPP_IND_SAI_RXBCLK_SELECT_INPUT = 224
+    kIOMUXC_SAI3_IPP_IND_SAI_RXDATA_SELECT_INPUT_0 = 225
+    kIOMUXC_SAI3_IPP_IND_SAI_RXSYNC_SELECT_INPUT = 226
+    kIOMUXC_SAI3_IPP_IND_SAI_TXBCLK_SELECT_INPUT = 227
+    kIOMUXC_SAI3_IPP_IND_SAI_TXSYNC_SELECT_INPUT = 228
+    kIOMUXC_SEMC_I_IPP_IND_DQS4_SELECT_INPUT = 229
+    kIOMUXC_CANFD_IPP_IND_CANRX_SELECT_INPUT = 230
+endconst
+
+struct IOMUXC_Type:
+    RESERVED_0   :            [20] uint8
+    SW_MUX_CTL_PAD : [[regrw]]  [124] uint32
+    SW_PAD_CTL_PAD : [[regrw]]  [124] uint32
+    SELECT_INPUT : [[regrw]]  [231] uint32
+endstruct
+
+struct IOMUXC_GPR_Type:
+    GPR0         :            uint32  
+    GPR1         : [[regrw]]  uint32  
+    GPR2         : [[regrw]]  uint32  
+    GPR3         : [[regrw]]  uint32  
+    GPR4         : [[regrw]]  uint32  
+    GPR5         : [[regrw]]  uint32  
+    GPR6         : [[regrw]]  uint32  
+    GPR7         : [[regrw]]  uint32  
+    GPR8         : [[regrw]]  uint32  
+    GPR9         :            uint32  
+    GPR10        : [[regrw]]  uint32  
+    GPR11        : [[regrw]]  uint32  
+    GPR12        : [[regrw]]  uint32  
+    GPR13        : [[regrw]]  uint32  
+    GPR14        : [[regrw]]  uint32  
+    GPR15        :            uint32  
+    GPR16        : [[regrw]]  uint32  
+    GPR17        : [[regrw]]  uint32  
+    GPR18        : [[regrw]]  uint32  
+    GPR19        : [[regrw]]  uint32  
+    GPR20        : [[regrw]]  uint32  
+    GPR21        : [[regrw]]  uint32  
+    GPR22        : [[regrw]]  uint32  
+    GPR23        : [[regrw]]  uint32  
+    GPR24        : [[regrw]]  uint32  
+    GPR25        : [[regrw]]  uint32  
+    GPR26        : [[regrw]]  uint32  
+    GPR27        : [[regrw]]  uint32  
+    GPR28        : [[regrw]]  uint32  
+    GPR29        : [[regrw]]  uint32  
+    GPR30        : [[regrw]]  uint32  
+    GPR31        : [[regrw]]  uint32  
+    GPR32        : [[regrw]]  uint32  
+    GPR33        : [[regrw]]  uint32  
+    GPR34        : [[regrw]]  uint32  
+endstruct
+
+struct IOMUXC_SNVS_Type:
+    SW_MUX_CTL_PAD_WAKEUP : [[regrw]]  uint32  
+    SW_MUX_CTL_PAD_PMIC_ON_REQ : [[regrw]]  uint32  
+    SW_MUX_CTL_PAD_PMIC_STBY_REQ : [[regrw]]  uint32  
+    SW_PAD_CTL_PAD_TEST_MODE : [[regrw]]  uint32  
+    SW_PAD_CTL_PAD_POR_B : [[regrw]]  uint32  
+    SW_PAD_CTL_PAD_ONOFF : [[regrw]]  uint32  
+    SW_PAD_CTL_PAD_WAKEUP : [[regrw]]  uint32  
+    SW_PAD_CTL_PAD_PMIC_ON_REQ : [[regrw]]  uint32  
+    SW_PAD_CTL_PAD_PMIC_STBY_REQ : [[regrw]]  uint32  
+endstruct
+
+struct IOMUXC_SNVS_GPR_Type:
+    GPR0         :            uint32  
+    GPR1         :            uint32  
+    GPR2         :            uint32  
+    GPR3         : [[regrw]]  uint32  
+endstruct
+
+struct NestedStruct_20:
+        PIGEON_0     : [[regrw]]  uint32  
+        RESERVED_0   :            [12] uint8
+        PIGEON_1     : [[regrw]]  uint32  
+        RESERVED_1   :            [12] uint8
+        PIGEON_2     : [[regrw]]  uint32  
+        RESERVED_2   :            [28] uint8
+endstruct
+
+struct LCDIF_Type:
+    CTRL         : [[regrw]]  uint32  
+    CTRL_SET     : [[regrw]]  uint32  
+    CTRL_CLR     : [[regrw]]  uint32  
+    CTRL_TOG     : [[regrw]]  uint32  
+    CTRL1        : [[regrw]]  uint32  
+    CTRL1_SET    : [[regrw]]  uint32  
+    CTRL1_CLR    : [[regrw]]  uint32  
+    CTRL1_TOG    : [[regrw]]  uint32  
+    CTRL2        : [[regrw]]  uint32  
+    CTRL2_SET    : [[regrw]]  uint32  
+    CTRL2_CLR    : [[regrw]]  uint32  
+    CTRL2_TOG    : [[regrw]]  uint32  
+    TRANSFER_COUNT : [[regrw]]  uint32  
+    RESERVED_0   :            [12] uint8
+    CUR_BUF      : [[regrw]]  uint32  
+    RESERVED_1   :            [12] uint8
+    NEXT_BUF     : [[regrw]]  uint32  
+    RESERVED_2   :            [28] uint8
+    VDCTRL0      : [[regrw]]  uint32  
+    VDCTRL0_SET  : [[regrw]]  uint32  
+    VDCTRL0_CLR  : [[regrw]]  uint32  
+    VDCTRL0_TOG  : [[regrw]]  uint32  
+    VDCTRL1      : [[regrw]]  uint32  
+    RESERVED_3   :            [12] uint8
+    VDCTRL2      : [[regrw]]  uint32  
+    RESERVED_4   :            [12] uint8
+    VDCTRL3      : [[regrw]]  uint32  
+    RESERVED_5   :            [12] uint8
+    VDCTRL4      : [[regrw]]  uint32  
+    RESERVED_6   :            [220] uint8
+    BM_ERROR_STAT : [[regrw]]  uint32  
+    RESERVED_7   :            [12] uint8
+    CRC_STAT     : [[regrw]]  uint32  
+    RESERVED_8   :            [12] uint8
+    STAT         : [[regro]]  uint32  
+    RESERVED_9   :            [460] uint8
+    PIGEONCTRL0  : [[regrw]]  uint32  
+    PIGEONCTRL0_SET : [[regrw]]  uint32  
+    PIGEONCTRL0_CLR : [[regrw]]  uint32  
+    PIGEONCTRL0_TOG : [[regrw]]  uint32  
+    PIGEONCTRL1  : [[regrw]]  uint32  
+    PIGEONCTRL1_SET : [[regrw]]  uint32  
+    PIGEONCTRL1_CLR : [[regrw]]  uint32  
+    PIGEONCTRL1_TOG : [[regrw]]  uint32  
+    PIGEONCTRL2  : [[regrw]]  uint32  
+    PIGEONCTRL2_SET : [[regrw]]  uint32  
+    PIGEONCTRL2_CLR : [[regrw]]  uint32  
+    PIGEONCTRL2_TOG : [[regrw]]  uint32  
+    RESERVED_10  :            [1104] uint8
+    PIGEON       :            [12] NestedStruct_20
+    LUT_CTRL     : [[regrw]]  uint32  
+    RESERVED_11  :            [12] uint8
+    LUT0_ADDR    : [[regrw]]  uint32  
+    RESERVED_12  :            [12] uint8
+    LUT0_DATA    : [[regrw]]  uint32  
+    RESERVED_13  :            [12] uint8
+    LUT1_ADDR    : [[regrw]]  uint32  
+    RESERVED_14  :            [12] uint8
+    LUT1_DATA    : [[regrw]]  uint32  
+endstruct
+
+struct LPI2C_Type:
+    VERID        : [[regro]]  uint32  
+    PARAM        : [[regro]]  uint32  
+    RESERVED_0   :            [8] uint8
+    MCR          : [[regrw]]  uint32  
+    MSR          : [[regrw]]  uint32  
+    MIER         : [[regrw]]  uint32  
+    MDER         : [[regrw]]  uint32  
+    MCFGR0       : [[regrw]]  uint32  
+    MCFGR1       : [[regrw]]  uint32  
+    MCFGR2       : [[regrw]]  uint32  
+    MCFGR3       : [[regrw]]  uint32  
+    RESERVED_1   :            [16] uint8
+    MDMR         : [[regrw]]  uint32  
+    RESERVED_2   :            [4] uint8
+    MCCR0        : [[regrw]]  uint32  
+    RESERVED_3   :            [4] uint8
+    MCCR1        : [[regrw]]  uint32  
+    RESERVED_4   :            [4] uint8
+    MFCR         : [[regrw]]  uint32  
+    MFSR         : [[regro]]  uint32  
+    MTDR         : [[regwo]]  uint32  
+    RESERVED_5   :            [12] uint8
+    MRDR         : [[regro]]  uint32  
+    RESERVED_6   :            [156] uint8
+    SCR          : [[regrw]]  uint32  
+    SSR          : [[regrw]]  uint32  
+    SIER         : [[regrw]]  uint32  
+    SDER         : [[regrw]]  uint32  
+    RESERVED_7   :            [4] uint8
+    SCFGR1       : [[regrw]]  uint32  
+    SCFGR2       : [[regrw]]  uint32  
+    RESERVED_8   :            [20] uint8
+    SAMR         : [[regrw]]  uint32  
+    RESERVED_9   :            [12] uint8
+    SASR         : [[regro]]  uint32  
+    STAR         : [[regrw]]  uint32  
+    RESERVED_10  :            [8] uint8
+    STDR         : [[regwo]]  uint32  
+    RESERVED_11  :            [12] uint8
+    SRDR         : [[regro]]  uint32  
+endstruct
+
+struct LPSPI_Type:
+    VERID        : [[regro]]  uint32  
+    PARAM        : [[regro]]  uint32  
+    RESERVED_0   :            [8] uint8
+    CR           : [[regrw]]  uint32  
+    SR           : [[regrw]]  uint32  
+    IER          : [[regrw]]  uint32  
+    DER          : [[regrw]]  uint32  
+    CFGR0        : [[regrw]]  uint32  
+    CFGR1        : [[regrw]]  uint32  
+    RESERVED_1   :            [8] uint8
+    DMR0         : [[regrw]]  uint32  
+    DMR1         : [[regrw]]  uint32  
+    RESERVED_2   :            [8] uint8
+    CCR          : [[regrw]]  uint32  
+    RESERVED_3   :            [20] uint8
+    FCR          : [[regrw]]  uint32  
+    FSR          : [[regro]]  uint32  
+    TCR          : [[regrw]]  uint32  
+    TDR          : [[regwo]]  uint32  
+    RESERVED_4   :            [8] uint8
+    RSR          : [[regro]]  uint32  
+    RDR          : [[regro]]  uint32  
+endstruct
+
+struct LPUART_Type:
+    VERID        : [[regro]]  uint32  
+    PARAM        : [[regro]]  uint32  
+    GLOBAL       : [[regrw]]  uint32  
+    PINCFG       : [[regrw]]  uint32  
+    BAUD         : [[regrw]]  uint32  
+    STAT         : [[regrw]]  uint32  
+    CTRL         : [[regrw]]  uint32  
+    DATA         : [[regrw]]  uint32  
+    MATCH        : [[regrw]]  uint32  
+    MODIR        : [[regrw]]  uint32  
+    FIFO         : [[regrw]]  uint32  
+    WATER        : [[regrw]]  uint32  
+endstruct
+
+struct OCOTP_Type:
+    CTRL         : [[regrw]]  uint32  
+    CTRL_SET     : [[regrw]]  uint32  
+    CTRL_CLR     : [[regrw]]  uint32  
+    CTRL_TOG     : [[regrw]]  uint32  
+    TIMING       : [[regrw]]  uint32  
+    RESERVED_0   :            [12] uint8
+    DATA         : [[regrw]]  uint32  
+    RESERVED_1   :            [12] uint8
+    READ_CTRL    : [[regrw]]  uint32  
+    RESERVED_2   :            [12] uint8
+    READ_FUSE_DATA : [[regrw]]  uint32  
+    RESERVED_3   :            [12] uint8
+    SW_STICKY    : [[regrw]]  uint32  
+    RESERVED_4   :            [12] uint8
+    SCS          : [[regrw]]  uint32  
+    SCS_SET      : [[regrw]]  uint32  
+    SCS_CLR      : [[regrw]]  uint32  
+    SCS_TOG      : [[regrw]]  uint32  
+    RESERVED_5   :            [32] uint8
+    VERSION      : [[regro]]  uint32  
+    RESERVED_6   :            [108] uint8
+    TIMING2      : [[regrw]]  uint32  
+    RESERVED_7   :            [764] uint8
+    LOCK         : [[regrw]]  uint32  
+    RESERVED_8   :            [12] uint8
+    CFG0         : [[regrw]]  uint32  
+    RESERVED_9   :            [12] uint8
+    CFG1         : [[regrw]]  uint32  
+    RESERVED_10  :            [12] uint8
+    CFG2         : [[regrw]]  uint32  
+    RESERVED_11  :            [12] uint8
+    CFG3         : [[regrw]]  uint32  
+    RESERVED_12  :            [12] uint8
+    CFG4         : [[regrw]]  uint32  
+    RESERVED_13  :            [12] uint8
+    CFG5         : [[regrw]]  uint32  
+    RESERVED_14  :            [12] uint8
+    CFG6         : [[regrw]]  uint32  
+    RESERVED_15  :            [12] uint8
+    MEM0         : [[regrw]]  uint32  
+    RESERVED_16  :            [12] uint8
+    MEM1         : [[regrw]]  uint32  
+    RESERVED_17  :            [12] uint8
+    MEM2         : [[regrw]]  uint32  
+    RESERVED_18  :            [12] uint8
+    MEM3         : [[regrw]]  uint32  
+    RESERVED_19  :            [12] uint8
+    MEM4         : [[regrw]]  uint32  
+    RESERVED_20  :            [12] uint8
+    ANA0         : [[regrw]]  uint32  
+    RESERVED_21  :            [12] uint8
+    ANA1         : [[regrw]]  uint32  
+    RESERVED_22  :            [12] uint8
+    ANA2         : [[regrw]]  uint32  
+    RESERVED_23  :            [140] uint8
+    SRK0         : [[regrw]]  uint32  
+    RESERVED_24  :            [12] uint8
+    SRK1         : [[regrw]]  uint32  
+    RESERVED_25  :            [12] uint8
+    SRK2         : [[regrw]]  uint32  
+    RESERVED_26  :            [12] uint8
+    SRK3         : [[regrw]]  uint32  
+    RESERVED_27  :            [12] uint8
+    SRK4         : [[regrw]]  uint32  
+    RESERVED_28  :            [12] uint8
+    SRK5         : [[regrw]]  uint32  
+    RESERVED_29  :            [12] uint8
+    SRK6         : [[regrw]]  uint32  
+    RESERVED_30  :            [12] uint8
+    SRK7         : [[regrw]]  uint32  
+    RESERVED_31  :            [12] uint8
+    SJC_RESP0    : [[regrw]]  uint32  
+    RESERVED_32  :            [12] uint8
+    SJC_RESP1    : [[regrw]]  uint32  
+    RESERVED_33  :            [12] uint8
+    MAC0         : [[regrw]]  uint32  
+    RESERVED_34  :            [12] uint8
+    MAC1         : [[regrw]]  uint32  
+    RESERVED_35  :            [12] uint8
+    MAC2         : [[regrw]]  uint32  
+    RESERVED_36  :            [28] uint8
+    GP1          : [[regrw]]  uint32  
+    RESERVED_37  :            [12] uint8
+    GP2          : [[regrw]]  uint32  
+    RESERVED_38  :            [12] uint8
+    SW_GP1       : [[regrw]]  uint32  
+    RESERVED_39  :            [12] uint8
+    SW_GP20      : [[regrw]]  uint32  
+    RESERVED_40  :            [12] uint8
+    SW_GP21      : [[regrw]]  uint32  
+    RESERVED_41  :            [12] uint8
+    SW_GP22      : [[regrw]]  uint32  
+    RESERVED_42  :            [12] uint8
+    SW_GP23      : [[regrw]]  uint32  
+    RESERVED_43  :            [12] uint8
+    MISC_CONF0   : [[regrw]]  uint32  
+    RESERVED_44  :            [12] uint8
+    MISC_CONF1   : [[regrw]]  uint32  
+    RESERVED_45  :            [12] uint8
+    SRK_REVOKE   : [[regrw]]  uint32  
+    RESERVED_46  :            [396] uint8
+    GP30         : [[regrw]]  uint32  
+    RESERVED_47  :            [12] uint8
+    GP31         : [[regrw]]  uint32  
+    RESERVED_48  :            [12] uint8
+    GP32         : [[regrw]]  uint32  
+    RESERVED_49  :            [12] uint8
+    GP33         : [[regrw]]  uint32  
+    RESERVED_50  :            [12] uint8
+    GP40         : [[regrw]]  uint32  
+    RESERVED_51  :            [12] uint8
+    GP41         : [[regrw]]  uint32  
+    RESERVED_52  :            [12] uint8
+    GP42         : [[regrw]]  uint32  
+    RESERVED_53  :            [12] uint8
+    GP43         : [[regrw]]  uint32  
+endstruct
+
+struct PGC_Type:
+    RESERVED_0   :            [544] uint8
+    MEGA_CTRL    : [[regrw]]  uint32  
+    MEGA_PUPSCR  : [[regrw]]  uint32  
+    MEGA_PDNSCR  : [[regrw]]  uint32  
+    MEGA_SR      : [[regrw]]  uint32  
+    RESERVED_1   :            [112] uint8
+    CPU_CTRL     : [[regrw]]  uint32  
+    CPU_PUPSCR   : [[regrw]]  uint32  
+    CPU_PDNSCR   : [[regrw]]  uint32  
+    CPU_SR       : [[regrw]]  uint32  
+endstruct
+
+struct NestedStruct_21:
+        LDVAL        : [[regrw]]  uint32  
+        CVAL         : [[regro]]  uint32  
+        TCTRL        : [[regrw]]  uint32  
+        TFLG         : [[regrw]]  uint32  
+endstruct
+
+struct PIT_Type:
+    MCR          : [[regrw]]  uint32  
+    RESERVED_0   :            [220] uint8
+    LTMR64H      : [[regro]]  uint32  
+    LTMR64L      : [[regro]]  uint32  
+    RESERVED_1   :            [24] uint8
+    CHANNEL      :            [4] NestedStruct_21
+endstruct
+
+struct PMU_Type:
+    RESERVED_0   :            [272] uint8
+    REG_1P1      : [[regrw]]  uint32  
+    REG_1P1_SET  : [[regrw]]  uint32  
+    REG_1P1_CLR  : [[regrw]]  uint32  
+    REG_1P1_TOG  : [[regrw]]  uint32  
+    REG_3P0      : [[regrw]]  uint32  
+    REG_3P0_SET  : [[regrw]]  uint32  
+    REG_3P0_CLR  : [[regrw]]  uint32  
+    REG_3P0_TOG  : [[regrw]]  uint32  
+    REG_2P5      : [[regrw]]  uint32  
+    REG_2P5_SET  : [[regrw]]  uint32  
+    REG_2P5_CLR  : [[regrw]]  uint32  
+    REG_2P5_TOG  : [[regrw]]  uint32  
+    REG_CORE     : [[regrw]]  uint32  
+    REG_CORE_SET : [[regrw]]  uint32  
+    REG_CORE_CLR : [[regrw]]  uint32  
+    REG_CORE_TOG : [[regrw]]  uint32  
+    MISC0        : [[regrw]]  uint32  
+    MISC0_SET    : [[regrw]]  uint32  
+    MISC0_CLR    : [[regrw]]  uint32  
+    MISC0_TOG    : [[regrw]]  uint32  
+    MISC1        : [[regrw]]  uint32  
+    MISC1_SET    : [[regrw]]  uint32  
+    MISC1_CLR    : [[regrw]]  uint32  
+    MISC1_TOG    : [[regrw]]  uint32  
+    MISC2        : [[regrw]]  uint32  
+    MISC2_SET    : [[regrw]]  uint32  
+    MISC2_CLR    : [[regrw]]  uint32  
+    MISC2_TOG    : [[regrw]]  uint32  
+endstruct
+
+struct NestedStruct_22:
+        CNT          : [[regro]]  uint16  
+        INIT         : [[regrw]]  uint16  
+        CTRL2        : [[regrw]]  uint16  
+        CTRL         : [[regrw]]  uint16  
+        RESERVED_0   :            [2] uint8
+        VAL0         : [[regrw]]  uint16  
+        FRACVAL1     : [[regrw]]  uint16  
+        VAL1         : [[regrw]]  uint16  
+        FRACVAL2     : [[regrw]]  uint16  
+        VAL2         : [[regrw]]  uint16  
+        FRACVAL3     : [[regrw]]  uint16  
+        VAL3         : [[regrw]]  uint16  
+        FRACVAL4     : [[regrw]]  uint16  
+        VAL4         : [[regrw]]  uint16  
+        FRACVAL5     : [[regrw]]  uint16  
+        VAL5         : [[regrw]]  uint16  
+        FRCTRL       : [[regrw]]  uint16  
+        OCTRL        : [[regrw]]  uint16  
+        STS          : [[regrw]]  uint16  
+        INTEN        : [[regrw]]  uint16  
+        DMAEN        : [[regrw]]  uint16  
+        TCTRL        : [[regrw]]  uint16  
+        DISMAP       : [[regrw]]  [1] uint16
+        RESERVED_1   :            [2] uint8
+        DTCNT0       : [[regrw]]  uint16  
+        DTCNT1       : [[regrw]]  uint16  
+        CAPTCTRLA    : [[regrw]]  uint16  
+        CAPTCOMPA    : [[regrw]]  uint16  
+        CAPTCTRLB    : [[regrw]]  uint16  
+        CAPTCOMPB    : [[regrw]]  uint16  
+        CAPTCTRLX    : [[regrw]]  uint16  
+        CAPTCOMPX    : [[regrw]]  uint16  
+        CVAL0        : [[regro]]  uint16  
+        CVAL0CYC     : [[regro]]  uint16  
+        CVAL1        : [[regro]]  uint16  
+        CVAL1CYC     : [[regro]]  uint16  
+        CVAL2        : [[regro]]  uint16  
+        CVAL2CYC     : [[regro]]  uint16  
+        CVAL3        : [[regro]]  uint16  
+        CVAL3CYC     : [[regro]]  uint16  
+        CVAL4        : [[regro]]  uint16  
+        CVAL4CYC     : [[regro]]  uint16  
+        CVAL5        : [[regro]]  uint16  
+        CVAL5CYC     : [[regro]]  uint16  
+        RESERVED_2   :            [8] uint8
+endstruct
+
+struct PWM_Type:
+    SM           :            [4] NestedStruct_22
+    OUTEN        : [[regrw]]  uint16  
+    MASK         : [[regrw]]  uint16  
+    SWCOUT       : [[regrw]]  uint16  
+    DTSRCSEL     : [[regrw]]  uint16  
+    MCTRL        : [[regrw]]  uint16  
+    MCTRL2       : [[regrw]]  uint16  
+    FCTRL        : [[regrw]]  uint16  
+    FSTS         : [[regrw]]  uint16  
+    FFILT        : [[regrw]]  uint16  
+    FTST         : [[regrw]]  uint16  
+    FCTRL2       : [[regrw]]  uint16  
+endstruct
+
+struct PXP_Type:
+    CTRL         : [[regrw]]  uint32  
+    CTRL_SET     : [[regrw]]  uint32  
+    CTRL_CLR     : [[regrw]]  uint32  
+    CTRL_TOG     : [[regrw]]  uint32  
+    STAT         : [[regrw]]  uint32  
+    STAT_SET     : [[regrw]]  uint32  
+    STAT_CLR     : [[regrw]]  uint32  
+    STAT_TOG     : [[regrw]]  uint32  
+    OUT_CTRL     : [[regrw]]  uint32  
+    OUT_CTRL_SET : [[regrw]]  uint32  
+    OUT_CTRL_CLR : [[regrw]]  uint32  
+    OUT_CTRL_TOG : [[regrw]]  uint32  
+    OUT_BUF      : [[regrw]]  uint32  
+    RESERVED_0   :            [12] uint8
+    OUT_BUF2     : [[regrw]]  uint32  
+    RESERVED_1   :            [12] uint8
+    OUT_PITCH    : [[regrw]]  uint32  
+    RESERVED_2   :            [12] uint8
+    OUT_LRC      : [[regrw]]  uint32  
+    RESERVED_3   :            [12] uint8
+    OUT_PS_ULC   : [[regrw]]  uint32  
+    RESERVED_4   :            [12] uint8
+    OUT_PS_LRC   : [[regrw]]  uint32  
+    RESERVED_5   :            [12] uint8
+    OUT_AS_ULC   : [[regrw]]  uint32  
+    RESERVED_6   :            [12] uint8
+    OUT_AS_LRC   : [[regrw]]  uint32  
+    RESERVED_7   :            [12] uint8
+    PS_CTRL      : [[regrw]]  uint32  
+    PS_CTRL_SET  : [[regrw]]  uint32  
+    PS_CTRL_CLR  : [[regrw]]  uint32  
+    PS_CTRL_TOG  : [[regrw]]  uint32  
+    PS_BUF       : [[regrw]]  uint32  
+    RESERVED_8   :            [12] uint8
+    PS_UBUF      : [[regrw]]  uint32  
+    RESERVED_9   :            [12] uint8
+    PS_VBUF      : [[regrw]]  uint32  
+    RESERVED_10  :            [12] uint8
+    PS_PITCH     : [[regrw]]  uint32  
+    RESERVED_11  :            [12] uint8
+    PS_BACKGROUND : [[regrw]]  uint32  
+    RESERVED_12  :            [12] uint8
+    PS_SCALE     : [[regrw]]  uint32  
+    RESERVED_13  :            [12] uint8
+    PS_OFFSET    : [[regrw]]  uint32  
+    RESERVED_14  :            [12] uint8
+    PS_CLRKEYLOW : [[regrw]]  uint32  
+    RESERVED_15  :            [12] uint8
+    PS_CLRKEYHIGH : [[regrw]]  uint32  
+    RESERVED_16  :            [12] uint8
+    AS_CTRL      : [[regrw]]  uint32  
+    RESERVED_17  :            [12] uint8
+    AS_BUF       : [[regrw]]  uint32  
+    RESERVED_18  :            [12] uint8
+    AS_PITCH     : [[regrw]]  uint32  
+    RESERVED_19  :            [12] uint8
+    AS_CLRKEYLOW : [[regrw]]  uint32  
+    RESERVED_20  :            [12] uint8
+    AS_CLRKEYHIGH : [[regrw]]  uint32  
+    RESERVED_21  :            [12] uint8
+    CSC1_COEF0   : [[regrw]]  uint32  
+    RESERVED_22  :            [12] uint8
+    CSC1_COEF1   : [[regrw]]  uint32  
+    RESERVED_23  :            [12] uint8
+    CSC1_COEF2   : [[regrw]]  uint32  
+    RESERVED_24  :            [348] uint8
+    POWER        : [[regrw]]  uint32  
+    RESERVED_25  :            [220] uint8
+    NEXT         : [[regrw]]  uint32  
+    RESERVED_26  :            [60] uint8
+    PORTER_DUFF_CTRL : [[regrw]]  uint32  
+endstruct
+
+struct RTWDOG_Type:
+    CS           : [[regrw]]  uint32  
+    CNT          : [[regrw]]  uint32  
+    TOVAL        : [[regrw]]  uint32  
+    WIN          : [[regrw]]  uint32  
+endstruct
+
+struct SEMC_Type:
+    MCR          : [[regrw]]  uint32  
+    IOCR         : [[regrw]]  uint32  
+    BMCR0        : [[regrw]]  uint32  
+    BMCR1        : [[regrw]]  uint32  
+    BR           : [[regrw]]  [9] uint32
+    DLLCR        : [[regrw]]  uint32  
+    INTEN        : [[regrw]]  uint32  
+    INTR         : [[regrw]]  uint32  
+    SDRAMCR0     : [[regrw]]  uint32  
+    SDRAMCR1     : [[regrw]]  uint32  
+    SDRAMCR2     : [[regrw]]  uint32  
+    SDRAMCR3     : [[regrw]]  uint32  
+    NANDCR0      : [[regrw]]  uint32  
+    NANDCR1      : [[regrw]]  uint32  
+    NANDCR2      : [[regrw]]  uint32  
+    NANDCR3      : [[regrw]]  uint32  
+    NORCR0       : [[regrw]]  uint32  
+    NORCR1       : [[regrw]]  uint32  
+    NORCR2       : [[regrw]]  uint32  
+    NORCR3       : [[regrw]]  uint32  
+    SRAMCR0      : [[regrw]]  uint32  
+    SRAMCR1      : [[regrw]]  uint32  
+    SRAMCR2      : [[regrw]]  uint32  
+    SRAMCR3      :            uint32  
+    DBICR0       : [[regrw]]  uint32  
+    DBICR1       : [[regrw]]  uint32  
+    RESERVED_0   :            [8] uint8
+    IPCR0        : [[regrw]]  uint32  
+    IPCR1        : [[regrw]]  uint32  
+    IPCR2        : [[regrw]]  uint32  
+    IPCMD        : [[regrw]]  uint32  
+    IPTXDAT      : [[regrw]]  uint32  
+    RESERVED_1   :            [12] uint8
+    IPRXDAT      : [[regro]]  uint32  
+    RESERVED_2   :            [12] uint8
+    STS0         : [[regro]]  uint32  
+    STS1         :            uint32  
+    STS2         : [[regro]]  uint32  
+    STS3         :            uint32  
+    STS4         :            uint32  
+    STS5         :            uint32  
+    STS6         :            uint32  
+    STS7         :            uint32  
+    STS8         :            uint32  
+    STS9         :            uint32  
+    STS10        :            uint32  
+    STS11        :            uint32  
+    STS12        : [[regro]]  uint32  
+    STS13        : [[regro]]  uint32  
+    STS14        :            uint32  
+    STS15        :            uint32  
+endstruct
+
+struct SNVS_Type:
+    HPLR         : [[regrw]]  uint32  
+    HPCOMR       : [[regrw]]  uint32  
+    HPCR         : [[regrw]]  uint32  
+    HPSICR       : [[regrw]]  uint32  
+    HPSVCR       : [[regrw]]  uint32  
+    HPSR         : [[regrw]]  uint32  
+    HPSVSR       : [[regrw]]  uint32  
+    HPHACIVR     : [[regrw]]  uint32  
+    HPHACR       : [[regro]]  uint32  
+    HPRTCMR      : [[regrw]]  uint32  
+    HPRTCLR      : [[regrw]]  uint32  
+    HPTAMR       : [[regrw]]  uint32  
+    HPTALR       : [[regrw]]  uint32  
+    LPLR         : [[regrw]]  uint32  
+    LPCR         : [[regrw]]  uint32  
+    LPMKCR       : [[regrw]]  uint32  
+    LPSVCR       : [[regrw]]  uint32  
+    RESERVED_0   :            [4] uint8
+    LPSECR       : [[regrw]]  uint32  
+    LPSR         : [[regrw]]  uint32  
+    LPSRTCMR     : [[regrw]]  uint32  
+    LPSRTCLR     : [[regrw]]  uint32  
+    LPTAR        : [[regrw]]  uint32  
+    LPSMCMR      : [[regrw]]  uint32  
+    LPSMCLR      : [[regrw]]  uint32  
+    LPLVDR       : [[regrw]]  uint32  
+    LPGPR0_LEGACY_ALIAS : [[regrw]]  uint32  
+    LPZMKR       : [[regrw]]  [8] uint32
+    RESERVED_1   :            [4] uint8
+    LPGPR_ALIAS  : [[regrw]]  [4] uint32
+    RESERVED_2   :            [96] uint8
+    LPGPR        : [[regrw]]  [8] uint32
+    RESERVED_3   :            [2776] uint8
+    HPVIDR1      : [[regro]]  uint32  
+    HPVIDR2      : [[regro]]  uint32  
+endstruct
+
+struct SPDIF_Type:
+    SCR          : [[regrw]]  uint32  
+    SRCD         : [[regrw]]  uint32  
+    SRPC         : [[regrw]]  uint32  
+    SIE          : [[regrw]]  uint32  
+    union u_SIC:
+        SIC          : [[regwo]]  uint32  
+        SIS          : [[regro]]  uint32  
+    endunion
+    SRL          : [[regro]]  uint32  
+    SRR          : [[regro]]  uint32  
+    SRCSH        : [[regro]]  uint32  
+    SRCSL        : [[regro]]  uint32  
+    SRU          : [[regro]]  uint32  
+    SRQ          : [[regro]]  uint32  
+    STL          : [[regwo]]  uint32  
+    STR          : [[regwo]]  uint32  
+    STCSCH       : [[regrw]]  uint32  
+    STCSCL       : [[regrw]]  uint32  
+    RESERVED_0   :            [8] uint8
+    SRFM         : [[regro]]  uint32  
+    RESERVED_1   :            [8] uint8
+    STC          : [[regrw]]  uint32  
+endstruct
+
+struct SRC_Type:
+    SCR          : [[regrw]]  uint32  
+    SBMR1        : [[regro]]  uint32  
+    SRSR         : [[regrw]]  uint32  
+    RESERVED_0   :            [16] uint8
+    SBMR2        : [[regro]]  uint32  
+    GPR          : [[regrw]]  [10] uint32
+endstruct
+
+struct TEMPMON_Type:
+    RESERVED_0   :            [384] uint8
+    TEMPSENSE0   : [[regrw]]  uint32  
+    TEMPSENSE0_SET : [[regrw]]  uint32  
+    TEMPSENSE0_CLR : [[regrw]]  uint32  
+    TEMPSENSE0_TOG : [[regrw]]  uint32  
+    TEMPSENSE1   : [[regrw]]  uint32  
+    TEMPSENSE1_SET : [[regrw]]  uint32  
+    TEMPSENSE1_CLR : [[regrw]]  uint32  
+    TEMPSENSE1_TOG : [[regrw]]  uint32  
+    RESERVED_1   :            [240] uint8
+    TEMPSENSE2   : [[regrw]]  uint32  
+    TEMPSENSE2_SET : [[regrw]]  uint32  
+    TEMPSENSE2_CLR : [[regrw]]  uint32  
+    TEMPSENSE2_TOG : [[regrw]]  uint32  
+endstruct
+
+struct NestedStruct_24:
+        COMP1        : [[regrw]]  uint16  
+        COMP2        : [[regrw]]  uint16  
+        CAPT         : [[regrw]]  uint16  
+        LOAD         : [[regrw]]  uint16  
+        HOLD         : [[regrw]]  uint16  
+        CNTR         : [[regrw]]  uint16  
+        CTRL         : [[regrw]]  uint16  
+        SCTRL        : [[regrw]]  uint16  
+        CMPLD1       : [[regrw]]  uint16  
+        CMPLD2       : [[regrw]]  uint16  
+        CSCTRL       : [[regrw]]  uint16  
+        FILT         : [[regrw]]  uint16  
+        DMA          : [[regrw]]  uint16  
+        RESERVED_0   :            [4] uint8
+        ENBL         : [[regrw]]  uint16  
+endstruct
+
+struct TMR_Type:
+    CHANNEL      :            [4] NestedStruct_24
+endstruct
+
+struct TRNG_Type:
+    MCTL         : [[regrw]]  uint32  
+    SCMISC       : [[regrw]]  uint32  
+    PKRRNG       : [[regrw]]  uint32  
+    union u_PKRMAX:
+        PKRMAX       : [[regrw]]  uint32  
+        PKRSQ        : [[regro]]  uint32  
+    endunion
+    SDCTL        : [[regrw]]  uint32  
+    union u_SBLIM:
+        SBLIM        : [[regrw]]  uint32  
+        TOTSAM       : [[regro]]  uint32  
+    endunion
+    FRQMIN       : [[regrw]]  uint32  
+    union u_FRQCNT:
+        FRQCNT       : [[regro]]  uint32  
+        FRQMAX       : [[regrw]]  uint32  
+    endunion
+    union u_SCMC:
+        SCMC         : [[regro]]  uint32  
+        SCML         : [[regrw]]  uint32  
+    endunion
+    union u_SCR1C:
+        SCR1C        : [[regro]]  uint32  
+        SCR1L        : [[regrw]]  uint32  
+    endunion
+    union u_SCR2C:
+        SCR2C        : [[regro]]  uint32  
+        SCR2L        : [[regrw]]  uint32  
+    endunion
+    union u_SCR3C:
+        SCR3C        : [[regro]]  uint32  
+        SCR3L        : [[regrw]]  uint32  
+    endunion
+    union u_SCR4C:
+        SCR4C        : [[regro]]  uint32  
+        SCR4L        : [[regrw]]  uint32  
+    endunion
+    union u_SCR5C:
+        SCR5C        : [[regro]]  uint32  
+        SCR5L        : [[regrw]]  uint32  
+    endunion
+    union u_SCR6PC:
+        SCR6PC       : [[regro]]  uint32  
+        SCR6PL       : [[regrw]]  uint32  
+    endunion
+    STATUS       : [[regro]]  uint32  
+    ENT          : [[regro]]  [16] uint32
+    PKRCNT10     : [[regro]]  uint32  
+    PKRCNT32     : [[regro]]  uint32  
+    PKRCNT54     : [[regro]]  uint32  
+    PKRCNT76     : [[regro]]  uint32  
+    PKRCNT98     : [[regro]]  uint32  
+    PKRCNTBA     : [[regro]]  uint32  
+    PKRCNTDC     : [[regro]]  uint32  
+    PKRCNTFE     : [[regro]]  uint32  
+    SEC_CFG      : [[regrw]]  uint32  
+    INT_CTRL     : [[regrw]]  uint32  
+    INT_MASK     : [[regrw]]  uint32  
+    INT_STATUS   : [[regro]]  uint32  
+    RESERVED_0   :            [64] uint8
+    VID1         : [[regro]]  uint32  
+    VID2         : [[regro]]  uint32  
+endstruct
+
+struct USB_Type:
+    ID           : [[regro]]  uint32  
+    HWGENERAL    : [[regro]]  uint32  
+    HWHOST       : [[regro]]  uint32  
+    HWDEVICE     : [[regro]]  uint32  
+    HWTXBUF      : [[regro]]  uint32  
+    HWRXBUF      : [[regro]]  uint32  
+    RESERVED_0   :            [104] uint8
+    GPTIMER0LD   : [[regrw]]  uint32  
+    GPTIMER0CTRL : [[regrw]]  uint32  
+    GPTIMER1LD   : [[regrw]]  uint32  
+    GPTIMER1CTRL : [[regrw]]  uint32  
+    SBUSCFG      : [[regrw]]  uint32  
+    RESERVED_1   :            [108] uint8
+    CAPLENGTH    : [[regro]]  uint8   
+    RESERVED_2   :            [1] uint8
+    HCIVERSION   : [[regro]]  uint16  
+    HCSPARAMS    : [[regro]]  uint32  
+    HCCPARAMS    : [[regro]]  uint32  
+    RESERVED_3   :            [20] uint8
+    DCIVERSION   : [[regro]]  uint16  
+    RESERVED_4   :            [2] uint8
+    DCCPARAMS    : [[regro]]  uint32  
+    RESERVED_5   :            [24] uint8
+    USBCMD       : [[regrw]]  uint32  
+    USBSTS       : [[regrw]]  uint32  
+    USBINTR      : [[regrw]]  uint32  
+    FRINDEX      : [[regrw]]  uint32  
+    RESERVED_6   :            [4] uint8
+    union u_DEVICEADDR:
+        DEVICEADDR   : [[regrw]]  uint32  
+        PERIODICLISTBASE : [[regrw]]  uint32  
+    endunion
+    union u_ASYNCLISTADDR:
+        ASYNCLISTADDR : [[regrw]]  uint32  
+        ENDPTLISTADDR : [[regrw]]  uint32  
+    endunion
+    RESERVED_7   :            [4] uint8
+    BURSTSIZE    : [[regrw]]  uint32  
+    TXFILLTUNING : [[regrw]]  uint32  
+    RESERVED_8   :            [16] uint8
+    ENDPTNAK     : [[regrw]]  uint32  
+    ENDPTNAKEN   : [[regrw]]  uint32  
+    CONFIGFLAG   : [[regro]]  uint32  
+    PORTSC1      : [[regrw]]  uint32  
+    RESERVED_9   :            [28] uint8
+    OTGSC        : [[regrw]]  uint32  
+    USBMODE      : [[regrw]]  uint32  
+    ENDPTSETUPSTAT : [[regrw]]  uint32  
+    ENDPTPRIME   : [[regrw]]  uint32  
+    ENDPTFLUSH   : [[regrw]]  uint32  
+    ENDPTSTAT    : [[regro]]  uint32  
+    ENDPTCOMPLETE : [[regrw]]  uint32  
+    ENDPTCTRL0   : [[regrw]]  uint32  
+    ENDPTCTRL    : [[regrw]]  [7] uint32
+endstruct
+
+struct USBNC_Type:
+    RESERVED_0   :            [2048] uint8
+    USB_OTGn_CTRL : [[regrw]]  uint32  
+    RESERVED_1   :            [20] uint8
+    USB_OTGn_PHY_CTRL_0 : [[regrw]]  uint32  
+endstruct
+
+struct USBPHY_Type:
+    PWD          : [[regrw]]  uint32  
+    PWD_SET      : [[regrw]]  uint32  
+    PWD_CLR      : [[regrw]]  uint32  
+    PWD_TOG      : [[regrw]]  uint32  
+    TX           : [[regrw]]  uint32  
+    TX_SET       : [[regrw]]  uint32  
+    TX_CLR       : [[regrw]]  uint32  
+    TX_TOG       : [[regrw]]  uint32  
+    RX           : [[regrw]]  uint32  
+    RX_SET       : [[regrw]]  uint32  
+    RX_CLR       : [[regrw]]  uint32  
+    RX_TOG       : [[regrw]]  uint32  
+    CTRL         : [[regrw]]  uint32  
+    CTRL_SET     : [[regrw]]  uint32  
+    CTRL_CLR     : [[regrw]]  uint32  
+    CTRL_TOG     : [[regrw]]  uint32  
+    STATUS       : [[regrw]]  uint32  
+    RESERVED_0   :            [12] uint8
+    DEBUGr       : [[regrw]]  uint32  
+    DEBUG_SET    : [[regrw]]  uint32  
+    DEBUG_CLR    : [[regrw]]  uint32  
+    DEBUG_TOG    : [[regrw]]  uint32  
+    DEBUG0_STATUS : [[regro]]  uint32  
+    RESERVED_1   :            [12] uint8
+    DEBUG1       : [[regrw]]  uint32  
+    DEBUG1_SET   : [[regrw]]  uint32  
+    DEBUG1_CLR   : [[regrw]]  uint32  
+    DEBUG1_TOG   : [[regrw]]  uint32  
+    VERSION      : [[regro]]  uint32  
+endstruct
+
+struct NestedStruct_37:
+        VBUS_DETECT  : [[regrw]]  uint32  
+        VBUS_DETECT_SET : [[regrw]]  uint32  
+        VBUS_DETECT_CLR : [[regrw]]  uint32  
+        VBUS_DETECT_TOG : [[regrw]]  uint32  
+        CHRG_DETECT  : [[regrw]]  uint32  
+        CHRG_DETECT_SET : [[regrw]]  uint32  
+        CHRG_DETECT_CLR : [[regrw]]  uint32  
+        CHRG_DETECT_TOG : [[regrw]]  uint32  
+        VBUS_DETECT_STAT : [[regro]]  uint32  
+        RESERVED_0   :            [12] uint8
+        CHRG_DETECT_STAT : [[regro]]  uint32  
+        RESERVED_1   :            [12] uint8
+        LOOPBACK     : [[regrw]]  uint32  
+        LOOPBACK_SET : [[regrw]]  uint32  
+        LOOPBACK_CLR : [[regrw]]  uint32  
+        LOOPBACK_TOG : [[regrw]]  uint32  
+        MISC         : [[regrw]]  uint32  
+        MISC_SET     : [[regrw]]  uint32  
+        MISC_CLR     : [[regrw]]  uint32  
+        MISC_TOG     : [[regrw]]  uint32  
+endstruct
+
+struct USB_ANALOG_Type:
+    RESERVED_0   :            [416] uint8
+    INSTANCE     :            [1] NestedStruct_37
+    RESERVED_1   :            [96] uint8
+    DIGPROG      : [[regro]]  uint32  
+endstruct
+
+struct USDHC_Type:
+    DS_ADDR      : [[regrw]]  uint32  
+    BLK_ATT      : [[regrw]]  uint32  
+    CMD_ARG      : [[regrw]]  uint32  
+    CMD_XFR_TYP  : [[regrw]]  uint32  
+    CMD_RSP0     : [[regro]]  uint32  
+    CMD_RSP1     : [[regro]]  uint32  
+    CMD_RSP2     : [[regro]]  uint32  
+    CMD_RSP3     : [[regro]]  uint32  
+    DATA_BUFF_ACC_PORT : [[regrw]]  uint32  
+    PRES_STATE   : [[regro]]  uint32  
+    PROT_CTRL    : [[regrw]]  uint32  
+    SYS_CTRL     : [[regrw]]  uint32  
+    INT_STATUS   : [[regrw]]  uint32  
+    INT_STATUS_EN : [[regrw]]  uint32  
+    INT_SIGNAL_EN : [[regrw]]  uint32  
+    AUTOCMD12_ERR_STATUS : [[regrw]]  uint32  
+    HOST_CTRL_CAP : [[regrw]]  uint32  
+    WTMK_LVL     : [[regrw]]  uint32  
+    MIX_CTRL     : [[regrw]]  uint32  
+    RESERVED_0   :            [4] uint8
+    FORCE_EVENT  : [[regrw]]  uint32  
+    ADMA_ERR_STATUS : [[regro]]  uint32  
+    ADMA_SYS_ADDR : [[regrw]]  uint32  
+    RESERVED_1   :            [4] uint8
+    DLL_CTRL     : [[regrw]]  uint32  
+    DLL_STATUS   : [[regro]]  uint32  
+    CLK_TUNE_CTRL_STATUS : [[regrw]]  uint32  
+    RESERVED_2   :            [84] uint8
+    VEND_SPEC    : [[regrw]]  uint32  
+    MMC_BOOT     : [[regrw]]  uint32  
+    VEND_SPEC2   : [[regrw]]  uint32  
+    TUNING_CTRL  : [[regrw]]  uint32  
+endstruct
+
+struct WDOG_Type:
+    WCR          : [[regrw]]  uint16  
+    WSR          : [[regrw]]  uint16  
+    WRSR         : [[regro]]  uint16  
+    WICR         : [[regrw]]  uint16  
+    WMCR         : [[regrw]]  uint16  
+endstruct
+
+const(int):
+    kXBARA1_InputLogicLow = 0 OR 0x100
+    kXBARA1_InputLogicHigh = 1 OR 0x100
+    kXBARA1_InputIomuxXbarIn02 = 2 OR 0x100
+    kXBARA1_InputIomuxXbarIn03 = 3 OR 0x100
+    kXBARA1_InputIomuxXbarInout04 = 4 OR 0x100
+    kXBARA1_InputIomuxXbarInout05 = 5 OR 0x100
+    kXBARA1_InputIomuxXbarInout06 = 6 OR 0x100
+    kXBARA1_InputIomuxXbarInout07 = 7 OR 0x100
+    kXBARA1_InputIomuxXbarInout08 = 8 OR 0x100
+    kXBARA1_InputIomuxXbarInout09 = 9 OR 0x100
+    kXBARA1_InputIomuxXbarInout10 = 10 OR 0x100
+    kXBARA1_InputIomuxXbarInout11 = 11 OR 0x100
+    kXBARA1_InputIomuxXbarInout12 = 12 OR 0x100
+    kXBARA1_InputIomuxXbarInout13 = 13 OR 0x100
+    kXBARA1_InputIomuxXbarInout14 = 14 OR 0x100
+    kXBARA1_InputIomuxXbarInout15 = 15 OR 0x100
+    kXBARA1_InputIomuxXbarInout16 = 16 OR 0x100
+    kXBARA1_InputIomuxXbarInout17 = 17 OR 0x100
+    kXBARA1_InputIomuxXbarInout18 = 18 OR 0x100
+    kXBARA1_InputIomuxXbarInout19 = 19 OR 0x100
+    kXBARA1_InputIomuxXbarIn20 = 20 OR 0x100
+    kXBARA1_InputIomuxXbarIn21 = 21 OR 0x100
+    kXBARA1_InputIomuxXbarIn22 = 22 OR 0x100
+    kXBARA1_InputIomuxXbarIn23 = 23 OR 0x100
+    kXBARA1_InputIomuxXbarIn24 = 24 OR 0x100
+    kXBARA1_InputIomuxXbarIn25 = 25 OR 0x100
+    kXBARA1_InputAcmp1Out = 26 OR 0x100
+    kXBARA1_InputAcmp2Out = 27 OR 0x100
+    kXBARA1_InputAcmp3Out = 28 OR 0x100
+    kXBARA1_InputAcmp4Out = 29 OR 0x100
+    kXBARA1_InputRESERVED30 = 30 OR 0x100
+    kXBARA1_InputRESERVED31 = 31 OR 0x100
+endconst
+
+const(int):
+    kXBARA1_InputQtimer3Tmr0Output = 32 OR 0x100
+    kXBARA1_InputQtimer3Tmr1Output = 33 OR 0x100
+    kXBARA1_InputQtimer3Tmr2Output = 34 OR 0x100
+    kXBARA1_InputQtimer3Tmr3Output = 35 OR 0x100
+    kXBARA1_InputQtimer4Tmr0Output = 36 OR 0x100
+    kXBARA1_InputQtimer4Tmr1Output = 37 OR 0x100
+    kXBARA1_InputQtimer4Tmr2Output = 38 OR 0x100
+    kXBARA1_InputQtimer4Tmr3Output = 39 OR 0x100
+    kXBARA1_InputFlexpwm1Pwm1OutTrig01 = 40 OR 0x100
+    kXBARA1_InputFlexpwm1Pwm2OutTrig01 = 41 OR 0x100
+    kXBARA1_InputFlexpwm1Pwm3OutTrig01 = 42 OR 0x100
+    kXBARA1_InputFlexpwm1Pwm4OutTrig01 = 43 OR 0x100
+    kXBARA1_InputFlexpwm2Pwm1OutTrig01 = 44 OR 0x100
+    kXBARA1_InputFlexpwm2Pwm2OutTrig01 = 45 OR 0x100
+    kXBARA1_InputFlexpwm2Pwm3OutTrig01 = 46 OR 0x100
+    kXBARA1_InputFlexpwm2Pwm4OutTrig01 = 47 OR 0x100
+    kXBARA1_InputFlexpwm3Pwm1OutTrig01 = 48 OR 0x100
+    kXBARA1_InputFlexpwm3Pwm2OutTrig01 = 49 OR 0x100
+    kXBARA1_InputFlexpwm3Pwm3OutTrig01 = 50 OR 0x100
+    kXBARA1_InputFlexpwm3Pwm4OutTrig01 = 51 OR 0x100
+    kXBARA1_InputFlexpwm4Pwm1OutTrig01 = 52 OR 0x100
+    kXBARA1_InputFlexpwm4Pwm2OutTrig01 = 53 OR 0x100
+    kXBARA1_InputFlexpwm4Pwm3OutTrig01 = 54 OR 0x100
+    kXBARA1_InputFlexpwm4Pwm4OutTrig01 = 55 OR 0x100
+    kXBARA1_InputPitTrigger0 = 56 OR 0x100
+    kXBARA1_InputPitTrigger1 = 57 OR 0x100
+    kXBARA1_InputPitTrigger2 = 58 OR 0x100
+    kXBARA1_InputPitTrigger3 = 59 OR 0x100
+    kXBARA1_InputEnc1PosMatch = 60 OR 0x100
+    kXBARA1_InputEnc2PosMatch = 61 OR 0x100
+    kXBARA1_InputEnc3PosMatch = 62 OR 0x100
+    kXBARA1_InputEnc4PosMatch = 63 OR 0x100
+endconst
+
+const(int):
+    kXBARA1_InputDmaDone0 = 64 OR 0x100
+    kXBARA1_InputDmaDone1 = 65 OR 0x100
+    kXBARA1_InputDmaDone2 = 66 OR 0x100
+    kXBARA1_InputDmaDone3 = 67 OR 0x100
+    kXBARA1_InputDmaDone4 = 68 OR 0x100
+    kXBARA1_InputDmaDone5 = 69 OR 0x100
+    kXBARA1_InputDmaDone6 = 70 OR 0x100
+    kXBARA1_InputDmaDone7 = 71 OR 0x100
+    kXBARA1_InputAoi1Out0 = 72 OR 0x100
+    kXBARA1_InputAoi1Out1 = 73 OR 0x100
+    kXBARA1_InputAoi1Out2 = 74 OR 0x100
+    kXBARA1_InputAoi1Out3 = 75 OR 0x100
+    kXBARA1_InputAoi2Out0 = 76 OR 0x100
+    kXBARA1_InputAoi2Out1 = 77 OR 0x100
+    kXBARA1_InputAoi2Out2 = 78 OR 0x100
+    kXBARA1_InputAoi2Out3 = 79 OR 0x100
+    kXBARA1_InputAdcEtcXbar0Coco0 = 80 OR 0x100
+    kXBARA1_InputAdcEtcXbar0Coco1 = 81 OR 0x100
+    kXBARA1_InputAdcEtcXbar0Coco2 = 82 OR 0x100
+    kXBARA1_InputAdcEtcXbar0Coco3 = 83 OR 0x100
+    kXBARA1_InputAdcEtcXbar1Coco0 = 84 OR 0x100
+    kXBARA1_InputAdcEtcXbar1Coco1 = 85 OR 0x100
+    kXBARA1_InputAdcEtcXbar1Coco2 = 86 OR 0x100
+    kXBARA1_InputAdcEtcXbar1Coco3 = 87 OR 0x100
+    kXBARB2_InputLogicLow = 0 OR 0x200
+    kXBARB2_InputLogicHigh = 1 OR 0x200
+    kXBARB2_InputRESERVED2 = 2 OR 0x200
+    kXBARB2_InputRESERVED3 = 3 OR 0x200
+    kXBARB2_InputRESERVED4 = 4 OR 0x200
+    kXBARB2_InputRESERVED5 = 5 OR 0x200
+    kXBARB2_InputAcmp1Out = 6 OR 0x200
+    kXBARB2_InputAcmp2Out = 7 OR 0x200
+endconst
+
+const(int):
+    kXBARB2_InputAcmp3Out = 8 OR 0x200
+    kXBARB2_InputAcmp4Out = 9 OR 0x200
+    kXBARB2_InputRESERVED10 = 10 OR 0x200
+    kXBARB2_InputRESERVED11 = 11 OR 0x200
+    kXBARB2_InputQtimer3Tmr0Output = 12 OR 0x200
+    kXBARB2_InputQtimer3Tmr1Output = 13 OR 0x200
+    kXBARB2_InputQtimer3Tmr2Output = 14 OR 0x200
+    kXBARB2_InputQtimer3Tmr3Output = 15 OR 0x200
+    kXBARB2_InputQtimer4Tmr0Output = 16 OR 0x200
+    kXBARB2_InputQtimer4Tmr1Output = 17 OR 0x200
+    kXBARB2_InputQtimer4Tmr2Output = 18 OR 0x200
+    kXBARB2_InputQtimer4Tmr3Output = 19 OR 0x200
+    kXBARB2_InputFlexpwm1Pwm1OutTrig01 = 20 OR 0x200
+    kXBARB2_InputFlexpwm1Pwm2OutTrig01 = 21 OR 0x200
+    kXBARB2_InputFlexpwm1Pwm3OutTrig01 = 22 OR 0x200
+    kXBARB2_InputFlexpwm1Pwm4OutTrig01 = 23 OR 0x200
+    kXBARB2_InputFlexpwm2Pwm1OutTrig01 = 24 OR 0x200
+    kXBARB2_InputFlexpwm2Pwm2OutTrig01 = 25 OR 0x200
+    kXBARB2_InputFlexpwm2Pwm3OutTrig01 = 26 OR 0x200
+    kXBARB2_InputFlexpwm2Pwm4OutTrig01 = 27 OR 0x200
+    kXBARB2_InputFlexpwm3Pwm1OutTrig01 = 28 OR 0x200
+    kXBARB2_InputFlexpwm3Pwm2OutTrig01 = 29 OR 0x200
+    kXBARB2_InputFlexpwm3Pwm3OutTrig01 = 30 OR 0x200
+    kXBARB2_InputFlexpwm3Pwm4OutTrig01 = 31 OR 0x200
+    kXBARB2_InputFlexpwm4Pwm1OutTrig01 = 32 OR 0x200
+    kXBARB2_InputFlexpwm4Pwm2OutTrig01 = 33 OR 0x200
+    kXBARB2_InputFlexpwm4Pwm3OutTrig01 = 34 OR 0x200
+    kXBARB2_InputFlexpwm4Pwm4OutTrig01 = 35 OR 0x200
+    kXBARB2_InputPitTrigger0 = 36 OR 0x200
+    kXBARB2_InputPitTrigger1 = 37 OR 0x200
+    kXBARB2_InputAdcEtcXbar0Coco0 = 38 OR 0x200
+    kXBARB2_InputAdcEtcXbar0Coco1 = 39 OR 0x200
+endconst
+
+const(int):
+    kXBARB2_InputAdcEtcXbar0Coco2 = 40 OR 0x200
+    kXBARB2_InputAdcEtcXbar0Coco3 = 41 OR 0x200
+    kXBARB2_InputAdcEtcXbar1Coco0 = 42 OR 0x200
+    kXBARB2_InputAdcEtcXbar1Coco1 = 43 OR 0x200
+    kXBARB2_InputAdcEtcXbar1Coco2 = 44 OR 0x200
+    kXBARB2_InputAdcEtcXbar1Coco3 = 45 OR 0x200
+    kXBARB2_InputEnc1PosMatch = 46 OR 0x200
+    kXBARB2_InputEnc2PosMatch = 47 OR 0x200
+    kXBARB2_InputEnc3PosMatch = 48 OR 0x200
+    kXBARB2_InputEnc4PosMatch = 49 OR 0x200
+    kXBARB2_InputDmaDone0 = 50 OR 0x200
+    kXBARB2_InputDmaDone1 = 51 OR 0x200
+    kXBARB2_InputDmaDone2 = 52 OR 0x200
+    kXBARB2_InputDmaDone3 = 53 OR 0x200
+    kXBARB2_InputDmaDone4 = 54 OR 0x200
+    kXBARB2_InputDmaDone5 = 55 OR 0x200
+    kXBARB2_InputDmaDone6 = 56 OR 0x200
+    kXBARB2_InputDmaDone7 = 57 OR 0x200
+    kXBARB3_InputLogicLow = 0 OR 0x300
+    kXBARB3_InputLogicHigh = 1 OR 0x300
+    kXBARB3_InputRESERVED2 = 2 OR 0x300
+    kXBARB3_InputRESERVED3 = 3 OR 0x300
+    kXBARB3_InputRESERVED4 = 4 OR 0x300
+    kXBARB3_InputRESERVED5 = 5 OR 0x300
+    kXBARB3_InputAcmp1Out = 6 OR 0x300
+    kXBARB3_InputAcmp2Out = 7 OR 0x300
+    kXBARB3_InputAcmp3Out = 8 OR 0x300
+    kXBARB3_InputAcmp4Out = 9 OR 0x300
+    kXBARB3_InputRESERVED10 = 10 OR 0x300
+    kXBARB3_InputRESERVED11 = 11 OR 0x300
+    kXBARB3_InputQtimer3Tmr0Output = 12 OR 0x300
+    kXBARB3_InputQtimer3Tmr1Output = 13 OR 0x300
+endconst
+
+const(int):
+    kXBARB3_InputQtimer3Tmr2Output = 14 OR 0x300
+    kXBARB3_InputQtimer3Tmr3Output = 15 OR 0x300
+    kXBARB3_InputQtimer4Tmr0Output = 16 OR 0x300
+    kXBARB3_InputQtimer4Tmr1Output = 17 OR 0x300
+    kXBARB3_InputQtimer4Tmr2Output = 18 OR 0x300
+    kXBARB3_InputQtimer4Tmr3Output = 19 OR 0x300
+    kXBARB3_InputFlexpwm1Pwm1OutTrig01 = 20 OR 0x300
+    kXBARB3_InputFlexpwm1Pwm2OutTrig01 = 21 OR 0x300
+    kXBARB3_InputFlexpwm1Pwm3OutTrig01 = 22 OR 0x300
+    kXBARB3_InputFlexpwm1Pwm4OutTrig01 = 23 OR 0x300
+    kXBARB3_InputFlexpwm2Pwm1OutTrig01 = 24 OR 0x300
+    kXBARB3_InputFlexpwm2Pwm2OutTrig01 = 25 OR 0x300
+    kXBARB3_InputFlexpwm2Pwm3OutTrig01 = 26 OR 0x300
+    kXBARB3_InputFlexpwm2Pwm4OutTrig01 = 27 OR 0x300
+    kXBARB3_InputFlexpwm3Pwm1OutTrig01 = 28 OR 0x300
+    kXBARB3_InputFlexpwm3Pwm2OutTrig01 = 29 OR 0x300
+    kXBARB3_InputFlexpwm3Pwm3OutTrig01 = 30 OR 0x300
+    kXBARB3_InputFlexpwm3Pwm4OutTrig01 = 31 OR 0x300
+    kXBARB3_InputFlexpwm4Pwm1OutTrig01 = 32 OR 0x300
+    kXBARB3_InputFlexpwm4Pwm2OutTrig01 = 33 OR 0x300
+    kXBARB3_InputFlexpwm4Pwm3OutTrig01 = 34 OR 0x300
+    kXBARB3_InputFlexpwm4Pwm4OutTrig01 = 35 OR 0x300
+    kXBARB3_InputPitTrigger0 = 36 OR 0x300
+    kXBARB3_InputPitTrigger1 = 37 OR 0x300
+    kXBARB3_InputAdcEtcXbar0Coco0 = 38 OR 0x300
+    kXBARB3_InputAdcEtcXbar0Coco1 = 39 OR 0x300
+    kXBARB3_InputAdcEtcXbar0Coco2 = 40 OR 0x300
+    kXBARB3_InputAdcEtcXbar0Coco3 = 41 OR 0x300
+    kXBARB3_InputAdcEtcXbar1Coco0 = 42 OR 0x300
+    kXBARB3_InputAdcEtcXbar1Coco1 = 43 OR 0x300
+    kXBARB3_InputAdcEtcXbar1Coco2 = 44 OR 0x300
+    kXBARB3_InputAdcEtcXbar1Coco3 = 45 OR 0x300
+endconst
+
+const(int):
+    kXBARB3_InputEnc1PosMatch = 46 OR 0x300
+    kXBARB3_InputEnc2PosMatch = 47 OR 0x300
+    kXBARB3_InputEnc3PosMatch = 48 OR 0x300
+    kXBARB3_InputEnc4PosMatch = 49 OR 0x300
+    kXBARB3_InputDmaDone0 = 50 OR 0x300
+    kXBARB3_InputDmaDone1 = 51 OR 0x300
+    kXBARB3_InputDmaDone2 = 52 OR 0x300
+    kXBARB3_InputDmaDone3 = 53 OR 0x300
+    kXBARB3_InputDmaDone4 = 54 OR 0x300
+    kXBARB3_InputDmaDone5 = 55 OR 0x300
+    kXBARB3_InputDmaDone6 = 56 OR 0x300
+    kXBARB3_InputDmaDone7 = 57 OR 0x300
+endconst
+
+const(int):
+    kXBARA1_OutputDmaChMuxReq30 = 0 OR 0x100
+    kXBARA1_OutputDmaChMuxReq31 = 1 OR 0x100
+    kXBARA1_OutputDmaChMuxReq94 = 2 OR 0x100
+    kXBARA1_OutputDmaChMuxReq95 = 3 OR 0x100
+    kXBARA1_OutputIomuxXbarInout04 = 4 OR 0x100
+    kXBARA1_OutputIomuxXbarInout05 = 5 OR 0x100
+    kXBARA1_OutputIomuxXbarInout06 = 6 OR 0x100
+    kXBARA1_OutputIomuxXbarInout07 = 7 OR 0x100
+    kXBARA1_OutputIomuxXbarInout08 = 8 OR 0x100
+    kXBARA1_OutputIomuxXbarInout09 = 9 OR 0x100
+    kXBARA1_OutputIomuxXbarInout10 = 10 OR 0x100
+    kXBARA1_OutputIomuxXbarInout11 = 11 OR 0x100
+    kXBARA1_OutputIomuxXbarInout12 = 12 OR 0x100
+    kXBARA1_OutputIomuxXbarInout13 = 13 OR 0x100
+    kXBARA1_OutputIomuxXbarInout14 = 14 OR 0x100
+    kXBARA1_OutputIomuxXbarInout15 = 15 OR 0x100
+    kXBARA1_OutputIomuxXbarInout16 = 16 OR 0x100
+    kXBARA1_OutputIomuxXbarInout17 = 17 OR 0x100
+    kXBARA1_OutputIomuxXbarInout18 = 18 OR 0x100
+    kXBARA1_OutputIomuxXbarInout19 = 19 OR 0x100
+    kXBARA1_OutputAcmp1Sample = 20 OR 0x100
+    kXBARA1_OutputAcmp2Sample = 21 OR 0x100
+    kXBARA1_OutputAcmp3Sample = 22 OR 0x100
+    kXBARA1_OutputAcmp4Sample = 23 OR 0x100
+    kXBARA1_OutputRESERVED24 = 24 OR 0x100
+    kXBARA1_OutputRESERVED25 = 25 OR 0x100
+    kXBARA1_OutputFlexpwm1Exta0 = 26 OR 0x100
+    kXBARA1_OutputFlexpwm1Exta1 = 27 OR 0x100
+    kXBARA1_OutputFlexpwm1Exta2 = 28 OR 0x100
+    kXBARA1_OutputFlexpwm1Exta3 = 29 OR 0x100
+    kXBARA1_OutputFlexpwm1ExtSync0 = 30 OR 0x100
+    kXBARA1_OutputFlexpwm1ExtSync1 = 31 OR 0x100
+endconst
+
+const(int):
+    kXBARA1_OutputFlexpwm1ExtSync2 = 32 OR 0x100
+    kXBARA1_OutputFlexpwm1ExtSync3 = 33 OR 0x100
+    kXBARA1_OutputFlexpwm1ExtClk = 34 OR 0x100
+    kXBARA1_OutputFlexpwm1Fault0 = 35 OR 0x100
+    kXBARA1_OutputFlexpwm1Fault1 = 36 OR 0x100
+    kXBARA1_OutputFlexpwm1234Fault2 = 37 OR 0x100
+    kXBARA1_OutputFlexpwm1234Fault3 = 38 OR 0x100
+    kXBARA1_OutputFlexpwm1ExtForce = 39 OR 0x100
+    kXBARA1_OutputFlexpwm234Exta0 = 40 OR 0x100
+    kXBARA1_OutputFlexpwm234Exta1 = 41 OR 0x100
+    kXBARA1_OutputFlexpwm234Exta2 = 42 OR 0x100
+    kXBARA1_OutputFlexpwm234Exta3 = 43 OR 0x100
+    kXBARA1_OutputFlexpwm2ExtSync0 = 44 OR 0x100
+    kXBARA1_OutputFlexpwm2ExtSync1 = 45 OR 0x100
+    kXBARA1_OutputFlexpwm2ExtSync2 = 46 OR 0x100
+    kXBARA1_OutputFlexpwm2ExtSync3 = 47 OR 0x100
+    kXBARA1_OutputFlexpwm234ExtClk = 48 OR 0x100
+    kXBARA1_OutputFlexpwm2Fault0 = 49 OR 0x100
+    kXBARA1_OutputFlexpwm2Fault1 = 50 OR 0x100
+    kXBARA1_OutputFlexpwm2ExtForce = 51 OR 0x100
+    kXBARA1_OutputFlexpwm3ExtSync0 = 52 OR 0x100
+    kXBARA1_OutputFlexpwm3ExtSync1 = 53 OR 0x100
+    kXBARA1_OutputFlexpwm3ExtSync2 = 54 OR 0x100
+    kXBARA1_OutputFlexpwm3ExtSync3 = 55 OR 0x100
+    kXBARA1_OutputFlexpwm3Fault0 = 56 OR 0x100
+    kXBARA1_OutputFlexpwm3Fault1 = 57 OR 0x100
+    kXBARA1_OutputFlexpwm3ExtForce = 58 OR 0x100
+    kXBARA1_OutputFlexpwm4ExtSync0 = 59 OR 0x100
+    kXBARA1_OutputFlexpwm4ExtSync1 = 60 OR 0x100
+    kXBARA1_OutputFlexpwm4ExtSync2 = 61 OR 0x100
+    kXBARA1_OutputFlexpwm4ExtSync3 = 62 OR 0x100
+    kXBARA1_OutputFlexpwm4Fault0 = 63 OR 0x100
+endconst
+
+const(int):
+    kXBARA1_OutputFlexpwm4Fault1 = 64 OR 0x100
+    kXBARA1_OutputFlexpwm4ExtForce = 65 OR 0x100
+    kXBARA1_OutputEnc1PhaseAInput = 66 OR 0x100
+    kXBARA1_OutputEnc1PhaseBInput = 67 OR 0x100
+    kXBARA1_OutputEnc1Index = 68 OR 0x100
+    kXBARA1_OutputEnc1Home = 69 OR 0x100
+    kXBARA1_OutputEnc1Trigger = 70 OR 0x100
+    kXBARA1_OutputEnc2PhaseAInput = 71 OR 0x100
+    kXBARA1_OutputEnc2PhaseBInput = 72 OR 0x100
+    kXBARA1_OutputEnc2Index = 73 OR 0x100
+    kXBARA1_OutputEnc2Home = 74 OR 0x100
+    kXBARA1_OutputEnc2Trigger = 75 OR 0x100
+    kXBARA1_OutputEnc3PhaseAInput = 76 OR 0x100
+    kXBARA1_OutputEnc3PhaseBInput = 77 OR 0x100
+    kXBARA1_OutputEnc3Index = 78 OR 0x100
+    kXBARA1_OutputEnc3Home = 79 OR 0x100
+    kXBARA1_OutputEnc3Trigger = 80 OR 0x100
+    kXBARA1_OutputEnc4PhaseAInput = 81 OR 0x100
+    kXBARA1_OutputEnc4PhaseBInput = 82 OR 0x100
+    kXBARA1_OutputEnc4Index = 83 OR 0x100
+    kXBARA1_OutputEnc4Home = 84 OR 0x100
+    kXBARA1_OutputEnc4Trigger = 85 OR 0x100
+    kXBARA1_OutputQtimer1Tmr0Input = 86 OR 0x100
+    kXBARA1_OutputQtimer1Tmr1Input = 87 OR 0x100
+    kXBARA1_OutputQtimer1Tmr2Input = 88 OR 0x100
+    kXBARA1_OutputQtimer1Tmr3Input = 89 OR 0x100
+    kXBARA1_OutputQtimer2Tmr0Input = 90 OR 0x100
+    kXBARA1_OutputQtimer2Tmr1Input = 91 OR 0x100
+    kXBARA1_OutputQtimer2Tmr2Input = 92 OR 0x100
+    kXBARA1_OutputQtimer2Tmr3Input = 93 OR 0x100
+    kXBARA1_OutputQtimer3Tmr0Input = 94 OR 0x100
+    kXBARA1_OutputQtimer3Tmr1Input = 95 OR 0x100
+endconst
+
+const(int):
+    kXBARA1_OutputQtimer3Tmr2Input = 96 OR 0x100
+    kXBARA1_OutputQtimer3Tmr3Input = 97 OR 0x100
+    kXBARA1_OutputQtimer4Tmr0Input = 98 OR 0x100
+    kXBARA1_OutputQtimer4Tmr1Input = 99 OR 0x100
+    kXBARA1_OutputQtimer4Tmr2Input = 100 OR 0x100
+    kXBARA1_OutputQtimer4Tmr3Input = 101 OR 0x100
+    kXBARA1_OutputEwmEwmIn = 102 OR 0x100
+    kXBARA1_OutputAdcEtcXbar0Trig0 = 103 OR 0x100
+    kXBARA1_OutputAdcEtcXbar0Trig1 = 104 OR 0x100
+    kXBARA1_OutputAdcEtcXbar0Trig2 = 105 OR 0x100
+    kXBARA1_OutputAdcEtcXbar0Trig3 = 106 OR 0x100
+    kXBARA1_OutputAdcEtcXbar1Trig0 = 107 OR 0x100
+    kXBARA1_OutputAdcEtcXbar1Trig1 = 108 OR 0x100
+    kXBARA1_OutputAdcEtcXbar1Trig2 = 109 OR 0x100
+    kXBARA1_OutputAdcEtcXbar1Trig3 = 110 OR 0x100
+    kXBARA1_OutputLpi2c1TrgInput = 111 OR 0x100
+    kXBARA1_OutputLpi2c2TrgInput = 112 OR 0x100
+    kXBARA1_OutputLpi2c3TrgInput = 113 OR 0x100
+    kXBARA1_OutputLpi2c4TrgInput = 114 OR 0x100
+    kXBARA1_OutputLpspi1TrgInput = 115 OR 0x100
+    kXBARA1_OutputLpspi2TrgInput = 116 OR 0x100
+    kXBARA1_OutputLpspi4TrgInput = 117 OR 0x100
+    kXBARA1_OutputLpspi3TrgInput = 118 OR 0x100
+    kXBARA1_OutputLpuart1TrgInput = 119 OR 0x100
+    kXBARA1_OutputLpuart2TrgInput = 120 OR 0x100
+    kXBARA1_OutputLpuart3TrgInput = 121 OR 0x100
+    kXBARA1_OutputLpuart4TrgInput = 122 OR 0x100
+    kXBARA1_OutputLpuart5TrgInput = 123 OR 0x100
+    kXBARA1_OutputLpuart6TrgInput = 124 OR 0x100
+    kXBARA1_OutputLpuart7TrgInput = 125 OR 0x100
+    kXBARA1_OutputLpuart8TrgInput = 126 OR 0x100
+    kXBARA1_OutputFlexio1TriggerIn0 = 127 OR 0x100
+endconst
+
+const(int):
+    kXBARA1_OutputFlexio1TriggerIn1 = 128 OR 0x100
+    kXBARA1_OutputFlexio2TriggerIn0 = 129 OR 0x100
+    kXBARA1_OutputFlexio2TriggerIn1 = 130 OR 0x100
+    kXBARB2_OutputAoi1In00 = 0 OR 0x200
+    kXBARB2_OutputAoi1In01 = 1 OR 0x200
+    kXBARB2_OutputAoi1In02 = 2 OR 0x200
+    kXBARB2_OutputAoi1In03 = 3 OR 0x200
+    kXBARB2_OutputAoi1In04 = 4 OR 0x200
+    kXBARB2_OutputAoi1In05 = 5 OR 0x200
+    kXBARB2_OutputAoi1In06 = 6 OR 0x200
+    kXBARB2_OutputAoi1In07 = 7 OR 0x200
+    kXBARB2_OutputAoi1In08 = 8 OR 0x200
+    kXBARB2_OutputAoi1In09 = 9 OR 0x200
+    kXBARB2_OutputAoi1In10 = 10 OR 0x200
+    kXBARB2_OutputAoi1In11 = 11 OR 0x200
+    kXBARB2_OutputAoi1In12 = 12 OR 0x200
+    kXBARB2_OutputAoi1In13 = 13 OR 0x200
+    kXBARB2_OutputAoi1In14 = 14 OR 0x200
+    kXBARB2_OutputAoi1In15 = 15 OR 0x200
+    kXBARB3_OutputAoi2In00 = 0 OR 0x300
+    kXBARB3_OutputAoi2In01 = 1 OR 0x300
+    kXBARB3_OutputAoi2In02 = 2 OR 0x300
+    kXBARB3_OutputAoi2In03 = 3 OR 0x300
+    kXBARB3_OutputAoi2In04 = 4 OR 0x300
+    kXBARB3_OutputAoi2In05 = 5 OR 0x300
+    kXBARB3_OutputAoi2In06 = 6 OR 0x300
+    kXBARB3_OutputAoi2In07 = 7 OR 0x300
+    kXBARB3_OutputAoi2In08 = 8 OR 0x300
+    kXBARB3_OutputAoi2In09 = 9 OR 0x300
+    kXBARB3_OutputAoi2In10 = 10 OR 0x300
+    kXBARB3_OutputAoi2In11 = 11 OR 0x300
+    kXBARB3_OutputAoi2In12 = 12 OR 0x300
+endconst
+
+const(int):
+    kXBARB3_OutputAoi2In13 = 13 OR 0x300
+    kXBARB3_OutputAoi2In14 = 14 OR 0x300
+    kXBARB3_OutputAoi2In15 = 15 OR 0x300
+endconst
+
+struct XBARA_Type:
+    SEL0         : [[regrw]]  uint16  
+    SEL1         : [[regrw]]  uint16  
+    SEL2         : [[regrw]]  uint16  
+    SEL3         : [[regrw]]  uint16  
+    SEL4         : [[regrw]]  uint16  
+    SEL5         : [[regrw]]  uint16  
+    SEL6         : [[regrw]]  uint16  
+    SEL7         : [[regrw]]  uint16  
+    SEL8         : [[regrw]]  uint16  
+    SEL9         : [[regrw]]  uint16  
+    SEL10        : [[regrw]]  uint16  
+    SEL11        : [[regrw]]  uint16  
+    SEL12        : [[regrw]]  uint16  
+    SEL13        : [[regrw]]  uint16  
+    SEL14        : [[regrw]]  uint16  
+    SEL15        : [[regrw]]  uint16  
+    SEL16        : [[regrw]]  uint16  
+    SEL17        : [[regrw]]  uint16  
+    SEL18        : [[regrw]]  uint16  
+    SEL19        : [[regrw]]  uint16  
+    SEL20        : [[regrw]]  uint16  
+    SEL21        : [[regrw]]  uint16  
+    SEL22        : [[regrw]]  uint16  
+    SEL23        : [[regrw]]  uint16  
+    SEL24        : [[regrw]]  uint16  
+    SEL25        : [[regrw]]  uint16  
+    SEL26        : [[regrw]]  uint16  
+    SEL27        : [[regrw]]  uint16  
+    SEL28        : [[regrw]]  uint16  
+    SEL29        : [[regrw]]  uint16  
+    SEL30        : [[regrw]]  uint16  
+    SEL31        : [[regrw]]  uint16  
+    SEL32        : [[regrw]]  uint16  
+    SEL33        : [[regrw]]  uint16  
+    SEL34        : [[regrw]]  uint16  
+    SEL35        : [[regrw]]  uint16  
+    SEL36        : [[regrw]]  uint16  
+    SEL37        : [[regrw]]  uint16  
+    SEL38        : [[regrw]]  uint16  
+    SEL39        : [[regrw]]  uint16  
+    SEL40        : [[regrw]]  uint16  
+    SEL41        : [[regrw]]  uint16  
+    SEL42        : [[regrw]]  uint16  
+    SEL43        : [[regrw]]  uint16  
+    SEL44        : [[regrw]]  uint16  
+    SEL45        : [[regrw]]  uint16  
+    SEL46        : [[regrw]]  uint16  
+    SEL47        : [[regrw]]  uint16  
+    SEL48        : [[regrw]]  uint16  
+    SEL49        : [[regrw]]  uint16  
+    SEL50        : [[regrw]]  uint16  
+    SEL51        : [[regrw]]  uint16  
+    SEL52        : [[regrw]]  uint16  
+    SEL53        : [[regrw]]  uint16  
+    SEL54        : [[regrw]]  uint16  
+    SEL55        : [[regrw]]  uint16  
+    SEL56        : [[regrw]]  uint16  
+    SEL57        : [[regrw]]  uint16  
+    SEL58        : [[regrw]]  uint16  
+    SEL59        : [[regrw]]  uint16  
+    SEL60        : [[regrw]]  uint16  
+    SEL61        : [[regrw]]  uint16  
+    SEL62        : [[regrw]]  uint16  
+    SEL63        : [[regrw]]  uint16  
+    SEL64        : [[regrw]]  uint16  
+    SEL65        : [[regrw]]  uint16  
+    CTRL0        : [[regrw]]  uint16  
+    CTRL1        : [[regrw]]  uint16  
+endstruct
+
+struct XBARB_Type:
+    SEL0         : [[regrw]]  uint16  
+    SEL1         : [[regrw]]  uint16  
+    SEL2         : [[regrw]]  uint16  
+    SEL3         : [[regrw]]  uint16  
+    SEL4         : [[regrw]]  uint16  
+    SEL5         : [[regrw]]  uint16  
+    SEL6         : [[regrw]]  uint16  
+    SEL7         : [[regrw]]  uint16  
+endstruct
+
+struct XTALOSC24M_Type:
+    RESERVED_0   :            [336] uint8
+    MISC0        : [[regrw]]  uint32  
+    MISC0_SET    : [[regrw]]  uint32  
+    MISC0_CLR    : [[regrw]]  uint32  
+    MISC0_TOG    : [[regrw]]  uint32  
+    RESERVED_1   :            [272] uint8
+    LOWPWR_CTRL  : [[regrw]]  uint32  
+    LOWPWR_CTRL_SET : [[regrw]]  uint32  
+    LOWPWR_CTRL_CLR : [[regrw]]  uint32  
+    LOWPWR_CTRL_TOG : [[regrw]]  uint32  
+    RESERVED_2   :            [32] uint8
+    OSC_CONFIG0  : [[regrw]]  uint32  
+    OSC_CONFIG0_SET : [[regrw]]  uint32  
+    OSC_CONFIG0_CLR : [[regrw]]  uint32  
+    OSC_CONFIG0_TOG : [[regrw]]  uint32  
+    OSC_CONFIG1  : [[regrw]]  uint32  
+    OSC_CONFIG1_SET : [[regrw]]  uint32  
+    OSC_CONFIG1_CLR : [[regrw]]  uint32  
+    OSC_CONFIG1_TOG : [[regrw]]  uint32  
+    OSC_CONFIG2  : [[regrw]]  uint32  
+    OSC_CONFIG2_SET : [[regrw]]  uint32  
+    OSC_CONFIG2_CLR : [[regrw]]  uint32  
+    OSC_CONFIG2_TOG : [[regrw]]  uint32  
+endstruct
+
