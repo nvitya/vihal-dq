@@ -1,0 +1,149 @@
+// Pin Configuration Constants
+
+const(uint32):
+    PORTNUM_A  =  0
+    PORTNUM_B  =  1
+    PORTNUM_C  =  2
+    PORTNUM_D  =  3
+    PORTNUM_E  =  4
+    PORTNUM_F  =  5
+    PORTNUM_G  =  6
+    PORTNUM_H  =  7
+    PORTNUM_I  =  8
+    PORTNUM_J  =  9
+    PORTNUM_K  = 10
+    PORTNUM_L  = 11
+    PORTNUM_M  = 12
+    PORTNUM_N  = 13
+    PORTNUM_O  = 14
+    PORTNUM_P  = 15
+endconst
+
+const(uint32):
+    PINCFG_INPUT          = 0x0000  // default
+    PINCFG_OUTPUT         = 0x0001
+    PINCFG_OPENDRAIN      = 0x0002
+    PINCFG_PULLUP         = 0x0004
+    PINCFG_PULLDOWN       = 0x0008
+    PINCFG_ANALOGUE       = 0x0010
+
+    PINCFG_DRIVE_NORMAL   = 0x0000  // default
+    PINCFG_DRIVE_MEDIUM   = 0x0000
+    PINCFG_DRIVE_WEAK     = 0x0020
+    PINCFG_DRIVE_STRONG   = 0x0040
+    PINCFG_DRIVE_MASK     = 0x0060
+
+    PINCFG_SPEED_MASK     = 0x0F00
+    PINCFG_SPEED_MEDIUM   = 0x0000  // default
+    PINCFG_SPEED_SLOW     = 0x0100
+    PINCFG_SPEED_MED2     = 0x0200
+    PINCFG_SPEED_MEDIUM2  = 0x0200
+    PINCFG_SPEED_FAST     = 0x0300
+    PINCFG_SPEED_VERYFAST = 0x0400
+
+    PINCFG_GPIO_INVERT    = 0x4000
+    PINCFG_GPIO_INIT_1    = 0x8000
+    PINCFG_GPIO_INIT_0    = 0x0000
+endconst
+
+const(uint32):
+    PINCFG_AF_MASK   = 0x1F0000
+    PINCFG_AF_SHIFT  = 16
+
+    PINCFG_AF_0      = 0x100000
+    PINCFG_AF_1      = 0x110000
+    PINCFG_AF_2      = 0x120000
+    PINCFG_AF_3      = 0x130000
+    PINCFG_AF_4      = 0x140000
+    PINCFG_AF_5      = 0x150000
+    PINCFG_AF_6      = 0x160000
+    PINCFG_AF_7      = 0x170000
+    PINCFG_AF_8      = 0x180000
+    PINCFG_AF_9      = 0x190000
+    PINCFG_AF_10     = 0x1A0000
+    PINCFG_AF_11     = 0x1B0000
+    PINCFG_AF_12     = 0x1C0000
+    PINCFG_AF_13     = 0x1D0000
+    PINCFG_AF_14     = 0x1E0000
+    PINCFG_AF_15     = 0x1F0000
+
+    PINCFG_AF_A      = 0x100000
+    PINCFG_AF_B      = 0x110000
+    PINCFG_AF_C      = 0x120000
+    PINCFG_AF_D      = 0x130000
+    PINCFG_AF_E      = 0x140000
+    PINCFG_AF_F      = 0x150000
+    PINCFG_AF_G      = 0x160000
+    PINCFG_AF_H      = 0x170000
+    PINCFG_AF_I      = 0x180000
+    PINCFG_AF_J      = 0x190000
+    PINCFG_AF_K      = 0x1A0000
+    PINCFG_AF_L      = 0x1B0000
+    PINCFG_AF_M      = 0x1C0000
+    PINCFG_AF_N      = 0x1D0000
+    PINCFG_AF_O      = 0x1E0000
+    PINCFG_AF_P      = 0x1F0000
+endconst
+
+object OGpioPin_pre:
+	pinnum   : byte = 0xFF
+	portnum  : byte = 0xFF
+	inverted : bool = false
+endobj
+
+// This suits almost all MCU families
+
+object OGpioPin_common(OGpioPin_pre):
+    setbitptr    : ^uint32
+    clrbitptr    : ^uint32
+    getbitptr    : ^uint32
+    getoutbitptr : ^uint32
+
+    setbitvalue  : uint32
+    clrbitvalue  : uint32
+    getbitshift  : uint32
+
+    function InitDummy()
+
+    function *Create():
+        InitDummy()
+    endfunc
+
+	function Set1()  [[inline]]:
+        setbitptr^ = setbitvalue
+    endfunc
+
+	function Set0()  [[inline]]:
+        clrbitptr^ = clrbitvalue
+    endfunc
+
+	function SetTo(value : uint)  [[inline]]:
+        if value AND 1 <> 0:
+            Set1()
+        else:
+            Set0()
+        endif
+    endfunc
+
+	function Value() -> byte:
+        return (getbitptr^ >> getbitshift) AND 1
+    endfunc
+
+	function OutValue() -> byte:
+        return (getoutbitptr^ >> getbitshift) AND 1
+    endfunc
+endobj
+
+implementation
+
+var hwpinctrl_dummy : uint = 0
+
+function OGpioPin_common.InitDummy():
+    use .
+    // Initialize the pointers with harmless target
+    setbitptr = &hwpinctrl_dummy
+    clrbitptr = &hwpinctrl_dummy
+    getbitptr = &hwpinctrl_dummy
+    getoutbitptr = &hwpinctrl_dummy
+endfunc
+
