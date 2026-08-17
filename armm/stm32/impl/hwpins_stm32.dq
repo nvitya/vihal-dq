@@ -161,11 +161,11 @@ endfunc
 
 #endif
 
-function OGpioPin.*Create():
+function OGpioPin.*Create()  [[overload]]:
     inherited Create()
 endfunc
 
-function OGpioPin.*Create(aportnum : int, apinnum : int, ainvert : bool):
+function OGpioPin.*Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]:
     inherited Create()
     Assign(aportnum, apinnum, ainvert)
 endfunc
@@ -203,7 +203,7 @@ endfunc
 function OGpioPin.Setup(flags : uint) -> bool:
     use .
 	if inverted:
-	  flags =OR= PINCFG_GPIO_INVERT
+	  flags =OR= @.PINCFG_GPIO_INVERT
     endif
 	return PinSetup(portnum, pinnum, flags)
 endfunc
