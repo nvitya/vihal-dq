@@ -41,7 +41,7 @@ function Stm32BusSpeed(abusid : byte) -> uint:
 	var clockshr : uint  // clock shift right = division
 
 	// check AHB division
-	tmp = RCC->D1CFGR AND RCC_D1CFGR_HPRE
+	tmp = RCC.D1CFGR AND RCC_D1CFGR_HPRE
 	if tmp AND 8 <> 0:
 		clockshr = 1 // if AHB divided, then surely only with 2
 	else:

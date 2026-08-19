@@ -22,6 +22,8 @@ endobj
 
 implementation
 
+use ./stm32_utils
+
 const(uint):
   #ifdef @.RCC_APB1ENR1_USART2EN
     RCC_APB1ENR_USART2EN = RCC_APB1ENR1_USART2EN
@@ -102,7 +104,7 @@ function OHwUart_impl.Init(adevnum : int) -> bool:
       #if defined(RCC_APBENR1_USART6EN)
 	    APB1ENR_REGISTER =OR= RCC_APBENR1_USART6EN
 	  #else
-		RCC->APB2ENR =OR= RCC_APB2ENR_USART6EN
+		RCC.APB2ENR =OR= RCC_APB2ENR_USART6EN
 		busid = STM32_BUSID_APB2
 	  #endif
   #endif
@@ -172,7 +174,7 @@ function OHwUart_impl.Init(adevnum : int) -> bool:
 	regs.CR2 = cr2
 	regs.CR1 = cr1  // the uart is still not enabled yet !
 
-	periphclock = stm32_bus_speed(busid);
+	periphclock = Stm32BusSpeed(busid);
 	SetBaudRate();  // might change the CR1 !
 
 	// Finally enable the the UART (locks the CR registers)
