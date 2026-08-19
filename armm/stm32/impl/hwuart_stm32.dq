@@ -1,0 +1,249 @@
+use ^/core/pre/hwuart_pre  reexport
+
+object OHwUart_impl(OHwUart_pre):
+
+	regs : ^USART_TypeDef
+
+	function Init(adevnum : int) -> bool
+	function TrySendChar(ach : char) -> bool
+	function TryRecvChar(rch : refout char)
+	function SendFinished() -> bool
+	function SetTransmit(atransmit : bool)  // for single wire mode only
+
+    // Dma
+/*
+	function DmaAssign(istx : bool, admach : ^OHwDmaChannel)
+	function DmaStartSend(THwDmaTransfer * axfer) -> bool
+	function DmaStartRecv(THwDmaTransfer * axfer) -> bool
+	function DmaSendCompleted() -> bool
+	function DmaRecvCompleted() -> bool
+*/
+endobj
+
+implementation
+
+const(uint):
+  #ifdef @.RCC_APB1ENR1_USART2EN
+    RCC_APB1ENR_USART2EN = RCC_APB1ENR1_USART2EN
+    RCC_APB1ENR_USART3EN = RCC_APB1ENR1_USART3EN
+    RCC_APB1ENR_UART4EN  = RCC_APB1ENR1_UART4EN
+    RCC_APB1ENR_UART5EN  = RCC_APB1ENR1_UART5EN
+  #elifdef @.RCC_APBENR1_USART2EN
+    RCC_APB2ENR_USART1EN  = RCC_APBENR2_USART1EN
+    RCC_APB1ENR_USART2EN  = RCC_APBENR1_USART2EN
+    RCC_APB1ENR_USART3EN  = RCC_APBENR1_USART3EN
+    RCC_APB1ENR_USART5EN  = RCC_APBENR1_USART5EN
+    RCC_APB1ENR_USART6EN  = RCC_APBENR1_USART6EN
+    RCC_APB1ENR_LPUART1EN = RCC_APBENR1_LPUART1EN
+  #elifdef @.RCC_APB1LENR_USART2EN
+    RCC_APB1ENR_USART2EN  = RCC_APB1LENR_USART2EN
+    RCC_APB1ENR_USART3EN  = RCC_APB1LENR_USART3EN
+    RCC_APB1ENR_UART4EN   = RCC_APB1LENR_UART4EN
+    RCC_APB1ENR_UART5EN   = RCC_APB1LENR_UART5EN
+  #endif
+endconst
+
+function OHwUart_impl.Init(adevnum : int) -> bool:
+	var code  : uint
+	var busid : byte = STM32_BUSID_APB1
+
+	devnum = adevnum
+	initialized = false
+
+	regs = null
+
+	if 0x101 == devnum  #{ifndef @.USART1_BASE}  or 1 == devnum  #{endif} :
+	#ifdef @.LPUART1_BASE
+    	regs = ^USART_TypeDef(LPUART1_BASE)
+	  #ifdef @.RCC_APB1ENR2_LPUART1EN
+		RCC.APB1ENR2 =OR= RCC_APB1ENR2_LPUART1EN
+	  #else
+       #ifdef @.RCC_APB4ENR_LPUART1EN
+        RCC.APB4ENR =OR= RCC_APB4ENR_LPUART1EN
+       #else
+        APB1ENR_REGISTER =OR= RCC_APB1ENR_LPUART1EN
+       #endif
+	  #endif
+	#endif // LPUART1 defined
+  #ifdef @.USART1_BASE
+	elif 1 == devnum:
+        regs = ^USART_TypeDef(USART1_BASE)
+        APB2ENR_REGISTER =OR= RCC_APB2ENR_USART1EN
+        busid = STM32_BUSID_APB2
+  #endif
+  #ifdef @.USART2_BASE
+	elif 2 == devnum:
+		regs = ^USART_TypeDef(USART2_BASE)
+		APB1ENR_REGISTER =OR= RCC_APB1ENR_USART2EN
+  #endif
+  #ifdef @.USART3_BASE
+	elif 3 == devnum:
+		regs = ^USART_TypeDef(USART3_BASE)
+		APB1ENR_REGISTER =OR= RCC_APB1ENR_USART3EN
+  #endif
+  #ifdef @.UART4_BASE
+	elif 4 == devnum:
+		regs = ^USART_TypeDef(UART4_BASE)
+		APB1ENR_REGISTER =OR= RCC_APB1ENR_UART4EN
+  #endif
+  #ifdef @.UART5_BASE
+	elif 5 == devnum:
+		regs = ^USART_TypeDef(UART5_BASE)
+		APB1ENR_REGISTER =OR= RCC_APB1ENR_UART5EN
+  #endif
+  #if defined(USART5_BASE)
+	elif 5 == devnum:
+		regs = ^USART_TypeDef(USART5_BASE)
+		APB1ENR_REGISTER =OR= RCC_APB1ENR_USART5EN
+  #endif
+  #ifdef @.USART6_BASE
+	elif 6 == devnum:
+		regs = ^USART_TypeDef(USART6_BASE)
+      #if defined(RCC_APBENR1_USART6EN)
+	    APB1ENR_REGISTER =OR= RCC_APBENR1_USART6EN
+	  #else
+		RCC->APB2ENR =OR= RCC_APB2ENR_USART6EN
+		busid = STM32_BUSID_APB2
+	  #endif
+  #endif
+    endif
+
+	if regs == null:
+		return false;
+	endif
+
+	var cr1 : uint = regs.CR1
+	var cr2 : uint = regs.CR2
+
+	// disable UART in order to the CR registers
+	cr1 =AND= NOT USART_CR1_UE
+	regs.CR1 = cr1
+
+	// STOP BITS:
+	code = 0 // = 1 stopbit
+	if   1 == halfstopbits:  code = 1
+	elif 3 == halfstopbits:  code = 3
+	elif 4 == halfstopbits:  code = 2
+    endif
+	cr2 =AND= NOT (3    << 12)
+	cr2 =OR=      (code << 12)
+
+	// DATA BITS = 8:
+	var effdatabits : uint = databits
+
+	// PARITY:
+	code = 0 // parity off
+	if parity:
+		code =OR= 2
+		if oddparity:  code =OR= 1;  endif
+		effdatabits += 1  // parity increases the effective data bits !
+	endif
+	cr1 =AND= NOT (3    << 9)
+	cr1 =OR=      (code << 9)
+
+	code = 0 // = 8 databits
+	if 7 == effdatabits:  code = 2;  endif
+	if 9 == effdatabits:  code = 1;  endif
+	cr1 =AND= NOT ((1 << 28) OR (1 << 12))
+	cr1 =OR= ((code AND 1) << 12) OR (((code >> 1) AND 1) << 28)
+
+  #ifdef @.USART_CR1_FIFOEN
+    cr1 =OR= USART_CR1_FIFOEN
+  #endif
+
+	// Enable RX, TX:
+	cr1 =OR= USART_CR1_TE OR USART_CR1_RE
+
+	// disable LIN and CLK out
+  #ifdef @.USART_CR2_LINEN
+    cr2 =AND= NOT (USART_CR2_LINEN OR USART_CR2_CLKEN)
+    // disable hadware flow control and others:
+    regs.CR3 =AND= NOT (USART_CR3_RTSE OR USART_CR3_CTSE OR USART_CR3_SCEN OR USART_CR3_HDSEL OR USART_CR3_IREN)
+  #else // e.g. F030
+    cr2 =AND= NOT USART_CR2_CLKEN
+    // disable hadware flow control and others:
+    regs.CR3 =AND= NOT (USART_CR3_RTSE OR USART_CR3_CTSE OR USART_CR3_HDSEL)
+  #endif
+
+    #ifdef @.USART_PRESC_PRESCALER
+        regs.PRESC = 0 // do not divide the input clock
+    #endif
+
+	regs.CR2 = cr2
+	regs.CR1 = cr1  // the uart is still not enabled yet !
+
+	periphclock = stm32_bus_speed(busid);
+	SetBaudRate();  // might change the CR1 !
+
+	// Finally enable the the UART (locks the CR registers)
+	regs.CR1 =OR= USART_CR1_UE
+
+	initialized = true
+	return true
+endfunc
+
+function OHwUart_impl.TrySendChar(ach : char) -> bool:
+  #ifdef @.USART_ISR_TXE
+	if regs->ISR AND USART_ISR_TXE == 0:
+		return false
+	endif
+	regs.TDR = ach
+  #elifdef @.USART_ISR_TXE_TXFNF
+	if regs->ISR AND USART_ISR_TXE_TXFNF == 0:
+		return false
+	endif
+	regs.TDR = ach
+  #else
+	if regs.SR AND USART_SR_TC == 0  and  regs.SR AND USART_SR_TXE == 0:
+		return false
+	endif
+	regs.DR = ach
+  #endif
+	return true
+endfunc
+
+function OHwUart_impl.TryRecvChar(rch : refout char):
+  #ifdef @USART_ISR_RXNE
+	if regs.ISR AND USART_ISR_RXNE <> 0:
+		rch = regs.RDR
+		return true
+	else:
+		return false
+	endif
+  #elifdef @.USART_ISR_RXNE_RXFNE
+	if regs->ISR AND USART_ISR_RXNE_RXFNE <> 0:
+		rch = regs.RDR
+		return true
+	else:
+		return false
+	endif
+  #else
+	if regs->SR AND USART_SR_RXNE <> 0
+		rch = regs.DR
+		return true
+	else:
+		return false
+	endif
+  #endif
+endfunc
+
+function OHwUart_impl.SendFinished() -> bool:
+  #ifdef @.USART_ISR_TC
+    // clear transfer complete flag, the flag is immediately set again if uart is idle
+    regs.ICR = USART_ICR_CTSCF
+
+    // __DSB grants that all explicit memory accesses before this instruction are completed
+    __DSB()
+
+	if regs->ISR AND USART_ISR_TC <> 0:
+  #else
+	if regs->SR AND USART_SR_IDLE <> 0:
+  #endif
+		return true
+	else
+		return false
+	endif
+endfunc
+
+function OHwUart_impl.SetTransmit(atransmit : bool):  // for single wire mode only
+endfunc

@@ -1,0 +1,14 @@
+object OHwUart_pre:
+	var devnum       : int  = -1
+	var initialized  : bool = false
+	var baudrate     : int  = 115200
+	var databits     : int  = 8
+	var halfstopbits : int  = 2
+	var parity       : bool = false
+	var oddparity    : bool = false
+    var singlewire   : bool = false  // single wire mode (half duplex)
+	var periphclock  : uint
+
+	//THwDmaChannel *      txdma = nullptr;
+	//THwDmaChannel *      rxdma = nullptr;
+endobj

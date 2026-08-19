@@ -1,0 +1,45 @@
+use ^/core/pre/hwuart_pre  reexport
+
+object OHwUart_noimpl:
+
+	function Init(adevnum : int) -> bool:
+        return false
+    endfunc
+
+	function TrySendChar(ach : char) -> bool:
+        return false
+    endfunc
+
+	function TryRecvChar(rch : refout char):
+        return false
+    endfunc
+
+	function SendFinished() -> bool:
+        return true
+    endfunc
+
+	function SetTransmit(atransmit : bool):  // for single wire mode only
+    endfunc
+
+    // Dma
+/*
+	function DmaAssign(istx : bool, admach : ^OHwDmaChannel):
+    endfunc
+
+	function DmaStartSend(THwDmaTransfer * axfer) -> bool:
+        return false
+    endfunc
+
+	function DmaStartRecv(THwDmaTransfer * axfer) -> bool:
+        return false
+    endfunc
+
+	function DmaSendCompleted() -> bool:
+        return true
+    endfunc
+
+	function DmaRecvCompleted() -> bool:
+        return false
+    endfunc
+*/
+endobj

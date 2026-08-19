@@ -1,0 +1,152 @@
+use ^/platform
+
+#if Defined(@.MCUSF_G4) or Defined(@.MCUSF_WB)
+    const APB1ENR_REGISTER :? = &RCC.APB1ENR1
+    const APB2ENR_REGISTER :? = &RCC.APB2ENR
+#elifdef @.MCUSF_H7
+    const APB1ENR_REGISTER :? = &RCC.APB1LENR
+    const APB2ENR_REGISTER :? = &RCC.APB2ENR
+#elifdef @.MCUSF_H7RS
+    const APB1ENR_REGISTER :? = &RCC.APB1ENR1
+    const APB2ENR_REGISTER :? = &RCC.APB2ENR
+#elifdef @.MCUSF_G0
+    const APB1ENR_REGISTER :? = &RCC.APBENR1
+    const APB2ENR_REGISTER :? = &RCC.APBENR2
+#else
+    const APB1ENR_REGISTER :? = &RCC.APB1ENR
+    const APB2ENR_REGISTER :? = &RCC.APB2ENR
+#endif
+
+// constants helping determine peripheral bus base frequencies
+const(byte):
+    STM32_BUSID_AHB  = 0
+    STM32_BUSID_APB1 = 1
+    STM32_BUSID_APB2 = 2
+    STM32_BUSID_APB3 = 3
+    STM32_BUSID_APB4 = 4
+endconst
+
+function Stm32BusSpeed(abusid : byte) -> uint
+function Stm32StartInternalHsRcOsc()
+
+implementation
+
+#ifdef @.MCUSF_H7
+
+// high speed devices
+
+function Stm32BusSpeed(abusid : byte) -> uint:
+
+	var tmp      : uint
+	var clockshr : uint  // clock shift right = division
+
+	// check AHB division
+	tmp = RCC->D1CFGR AND RCC_D1CFGR_HPRE
+	if tmp AND 8 <> 0:
+		clockshr = 1 // if AHB divided, then surely only with 2
+	else:
+		clockshr = 0
+	endif
+
+    #ifdef @.MCUSF_H7_V2
+    if abusid > STM32_BUSID_AHB:
+        ++clockshr
+    endif
+    #endif
+
+	return SystemCoreClock >> clockshr
+endfunc
+
+#elifdef @.MCUSF_H7RS
+
+function Stm32BusSpeed(abusid : byte) -> uint:
+
+	var tmp      : uint
+	var clockshr : uint  // clock shift right = division
+
+    // TODO: change for a more proper version
+
+    // check AHB division
+    if SystemCoreClock > 300000000:
+        clockshr = 1 // if AHB divided, then surely only with 2
+    else:
+        clockshr = 0 // if AHB divided, then surely only with 2
+    endif
+
+    if abusid > STM32_BUSID_AHB:
+        if SystemCoreClock > 300000000:
+            clockshr = 2
+        elif SystemCoreClock > 150000000:
+            clockshr = 1
+        else:
+            clockshr = 0
+        endif
+    endif
+
+    return SystemCoreClock >> clockshr
+endfunc
+
+#elif Defined(@.MCUSF_G0) or Defined(@.MCUSF_WB)
+
+// missing RCC_CFGR_HPRE_DIV2 etc. defines here ....
+
+function Stm32BusSpeed(abusid : byte) -> uint:
+    return SystemCoreClock; // no division is set up
+endfunc
+
+#else
+
+// classic
+
+function Stm32BusSpeed(abusid : byte) -> uint:
+
+	var tmp      : uint
+	var clockshr : uint  // clock shift right = division
+
+	if STM32_BUSID_AHB == abusid:
+		tmp = RCC.CFGR AND RCC_CFGR_HPRE
+		if   RCC_CFGR_HPRE_DIV2 == tmp:  clockshr = 1
+		elif RCC_CFGR_HPRE_DIV4 == tmp:  clockshr = 2
+		else                             clockshr = 0
+        endif
+#ifdef @.RCC_CFGR_PPRE // smaller devices have only one peripheral bus
+	elif STM32_BUSID_APB1 == abusid  or  STM32_BUSID_APB2 == abusid:
+		tmp = RCC.CFGR AND RCC_CFGR_PPRE
+		if   RCC_CFGR_PPRE_DIV2 == tmp:  clockshr = 1
+		elif RCC_CFGR_PPRE_DIV4 == tmp:  clockshr = 2
+		else                             clockshr = 0
+        endif
+#else
+	elif STM32_BUSID_APB1 == abusid:
+		tmp = RCC.CFGR AND RCC_CFGR_PPRE1
+		if   RCC_CFGR_PPRE1_DIV2 == tmp:  clockshr = 1
+		elif RCC_CFGR_PPRE1_DIV4 == tmp:  clockshr = 2
+		else                              clockshr = 0
+        endif
+	elif STM32_BUSID_APB2 == abusid:
+		tmp = RCC->CFGR AND RCC_CFGR_PPRE2
+		if   RCC_CFGR_PPRE2_DIV2 == tmp:  clockshr = 1
+		elif RCC_CFGR_PPRE2_DIV4 == tmp:  clockshr = 2
+		else                              clockshr = 0
+        endif
+#endif
+	else:
+		clockshr = 0 // unhandled, no division by default
+	endif
+
+	return SystemCoreClock >> clockshr
+endfunc
+
+#endif
+
+
+function Stm32StartInternalHsRcOsc():
+    #ifdef @.RCC_CR_HSIKERON
+        RCC.CR =OR= (RCC_CR_HSION OR RCC_CR_HSIKERON)
+    #else
+        RCC.CR =OR= RCC_CR_HSION
+    #endif
+    while RCC.CR AND RCC_CR_HSIRDY == 0:
+        // wait until it is ready
+    endwhile
+endfunc
