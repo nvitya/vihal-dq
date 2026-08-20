@@ -31,11 +31,11 @@ implementation
 #if __CORTEX_M >= 3
 
 	function ClockCntInit():
-		CoreDebug.DEMCR =OR= CoreDebug_DEMCR_TRCENA_Msk
+		CoreDebug.DEMCR |= CoreDebug_DEMCR_TRCENA_Msk
 		#ifdef @.CPU_ARM_M7F
 			DWT.LAR  = 0xC5ACCE55	// this is requied for Cortex M7
 		#endif
-		DWT.CTRL =OR= 1
+		DWT.CTRL |= 1
 	endfunc
 
 #else  // Cortex-M0
@@ -44,13 +44,13 @@ implementation
 
 		#ifdef @.TIM14
 			#ifdef @.RCC_APBENR2_TIM14EN
-				RCC.APBENR2 =OR= RCC_APBENR2_TIM14EN
+				RCC.APBENR2 |= RCC_APBENR2_TIM14EN
 			#else
-				RCC.APB1ENR =OR= RCC_APB1ENR_TIM14EN
+				RCC.APB1ENR |= RCC_APB1ENR_TIM14EN
 			#endif
 			const CCTIMER :? = TIM14
 		#else
-			RCC.APB2ENR =OR= RCC_APB2ENR_TIM21EN
+			RCC.APB2ENR |= RCC_APB2ENR_TIM21EN
 			const CCTIMER :? = TIM21
 		#endif
 

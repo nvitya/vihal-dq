@@ -390,7 +390,7 @@ struct RTC_TypeDef:
     MISR         : [[regrw]]  uint32  
     RESERVED3    :            uint32  
     SCR          : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
 endstruct
 
 struct TAMP_TypeDef:
@@ -10110,9 +10110,9 @@ const(uint32):
     USB_CHEP_ADDR_Pos    = 0
     USB_CHEP_ADDR_Msk    = (0xF << USB_CHEP_ADDR_Pos)
     USB_CHEP_ADDR        = USB_CHEP_ADDR_Msk
-    USB_CHEP_REG_MASK    = (USB_CHEP_ERRRX  OR  USB_CHEP_ERRTX  OR  USB_CHEP_LSEP  OR                                                      USB_CHEP_DEVADDR  OR  USB_CHEP_VTRX  OR  USB_CHEP_SETUP  OR                                                      USB_CHEP_UTYPE  OR  USB_CHEP_KIND  OR  USB_CHEP_VTTX  OR  USB_CHEP_ADDR  OR                                                     USB_CHEP_NAK)
-    USB_CHEP_TX_DTOGMASK = (USB_CHEP_TX_STTX  OR  USB_CHEP_REG_MASK)
-    USB_CHEP_RX_DTOGMASK = (USB_CHEP_RX_STRX  OR  USB_CHEP_REG_MASK)
+    USB_CHEP_REG_MASK    = (USB_CHEP_ERRRX  |  USB_CHEP_ERRTX  |  USB_CHEP_LSEP  |                                                      USB_CHEP_DEVADDR  |  USB_CHEP_VTRX  |  USB_CHEP_SETUP  |                                                      USB_CHEP_UTYPE  |  USB_CHEP_KIND  |  USB_CHEP_VTTX  |  USB_CHEP_ADDR  |                                                     USB_CHEP_NAK)
+    USB_CHEP_TX_DTOGMASK = (USB_CHEP_TX_STTX  |  USB_CHEP_REG_MASK)
+    USB_CHEP_RX_DTOGMASK = (USB_CHEP_RX_STRX  |  USB_CHEP_REG_MASK)
     USB_CHEP_TX_DTOG1    = 0x00000010
     USB_CHEP_TX_DTOG2    = 0x00000020
     USB_CHEP_RX_DTOG1    = 0x00001000
@@ -10125,10 +10125,10 @@ const(uint32):
 endconst
 
 const(uint32):
-    USB_EP_T_MASK        = (( NOT USB_EP_UTYPE)  AND  USB_CHEP_REG_MASK)
-    USB_CH_T_MASK        = (( NOT USB_CH_UTYPE)  AND  USB_CHEP_REG_MASK)
-    USB_EP_KIND_MASK     = (( NOT USB_EP_KIND)  AND  USB_CHEP_REG_MASK)
-    USB_CH_KIND_MASK     = (( NOT USB_CH_KIND)  AND  USB_CHEP_REG_MASK)
+    USB_EP_T_MASK        = (( ~ USB_EP_UTYPE)  &  USB_CHEP_REG_MASK)
+    USB_CH_T_MASK        = (( ~ USB_CH_UTYPE)  &  USB_CHEP_REG_MASK)
+    USB_EP_KIND_MASK     = (( ~ USB_EP_KIND)  &  USB_CHEP_REG_MASK)
+    USB_CH_KIND_MASK     = (( ~ USB_CH_KIND)  &  USB_CHEP_REG_MASK)
     USB_EP_TX_DIS        = 0x00000000
     USB_EP_TX_STALL      = 0x00000010
     USB_EP_TX_NAK        = 0x00000020

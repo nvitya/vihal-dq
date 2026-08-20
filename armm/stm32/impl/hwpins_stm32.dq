@@ -59,19 +59,19 @@ function GpioPortEnable(aportnum : int) -> bool:
 		return false
     endif
     #ifdef @.RCC_IOPENR_IOPAEN
-        RCC.IOPENR =OR= RCC_IOPENR_IOPAEN << aportnum
+        RCC.IOPENR |= RCC_IOPENR_IOPAEN << aportnum
     #elifdef @.RCC_AHBENR_GPIOAEN
-        RCC.AHBENR =OR= RCC_AHBENR_GPIOAEN << aportnum
+        RCC.AHBENR |= RCC_AHBENR_GPIOAEN << aportnum
     #elifdef @.RCC_APB2ENR_IOPAEN
-        RCC.APB2ENR =OR= RCC_APB2ENR_IOPAEN << aportnum
+        RCC.APB2ENR |= RCC_APB2ENR_IOPAEN << aportnum
     #elifdef @.RCC_AHB2ENR_GPIOAEN
-        RCC.AHB2ENR =OR= RCC_AHB2ENR_GPIOAEN << aportnum
+        RCC.AHB2ENR |= RCC_AHB2ENR_GPIOAEN << aportnum
     #elifdef @.RCC_AHB4ENR_GPIOAEN
-        RCC.AHB4ENR =OR= RCC_AHB4ENR_GPIOAEN << aportnum
+        RCC.AHB4ENR |= RCC_AHB4ENR_GPIOAEN << aportnum
     #elifdef @.RCC_IOPENR_GPIOAEN
-        RCC.IOPENR =OR= RCC_IOPENR_GPIOAEN << aportnum
+        RCC.IOPENR |= RCC_IOPENR_GPIOAEN << aportnum
     #else
-        RCC.AHB1ENR =OR= RCC_AHB1ENR_GPIOAEN << aportnum
+        RCC.AHB1ENR |= RCC_AHB1ENR_GPIOAEN << aportnum
     #endif
     return true
 endfunc
@@ -100,59 +100,59 @@ function PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
     var pinx2 : int = apinnum * 2
 
     // set gpio initial state
-    if flags AND PINCFG_GPIO_INIT_1 <> 0:
+    if flags & PINCFG_GPIO_INIT_1 <> 0:
       	regs.BSRR = (1 << apinnum)
     else:
         regs.BSRR = (0x10000 << apinnum)
     endif
 
     // set mode register
-	if flags AND PINCFG_AF_MASK <> 0:
+	if flags & PINCFG_AF_MASK <> 0:
 		n = 2  // set alternate function mode
-	elif flags AND PINCFG_ANALOGUE <> 0:
+	elif flags & PINCFG_ANALOGUE <> 0:
 		n = 3
-	elif flags AND PINCFG_OUTPUT <> 0:
+	elif flags & PINCFG_OUTPUT <> 0:
 		n = 1
 	else:
 	    n = 0
 	endif
-	regs.MODER =AND= NOT (3 << pinx2)
-	regs.MODER =OR=      (n << pinx2)
+	regs.MODER &= ~(3 << pinx2)
+	regs.MODER |=  (n << pinx2)
 
     // 3. set open-drain
-    if flags AND PINCFG_OPENDRAIN <> 0:
-        regs.OTYPER =OR= (1 << apinnum)
+    if flags & PINCFG_OPENDRAIN <> 0:
+        regs.OTYPER |=  (1 << apinnum)
     else:
-        regs.OTYPER =AND= NOT (1 << apinnum)
+        regs.OTYPER &= ~(1 << apinnum)
     endif
 
     // 4. set pullup / pulldown
-    regs.PUPDR =AND= NOT (3 << pinx2)
-    if flags AND PINCFG_PULLUP <> 0:
-        regs.PUPDR =OR= (1 << pinx2) // pullup
-    elif flags AND PINCFG_PULLDOWN <> 0:
-        regs.PUPDR =OR= (2 << pinx2) // pulldown
+    regs.PUPDR &= ~(3 << pinx2)
+    if flags & PINCFG_PULLUP <> 0:
+        regs.PUPDR |= (1 << pinx2) // pullup
+    elif flags & PINCFG_PULLDOWN <> 0:
+        regs.PUPDR |= (2 << pinx2) // pulldown
     endif
 
     // 5. set speed
-    regs.OSPEEDR =AND= NOT (3 << pinx2)
-    if flags AND PINCFG_SPEED_MASK == PINCFG_SPEED_MEDIUM:
-        regs.OSPEEDR =OR= (1 << pinx2)
-    elif (flags AND PINCFG_SPEED_MASK == PINCFG_SPEED_MED2)  or  (flags AND PINCFG_SPEED_MASK == PINCFG_SPEED_FAST):
-        regs.OSPEEDR =OR= (2 << pinx2)
-    elif flags AND PINCFG_SPEED_MASK == PINCFG_SPEED_VERYFAST:
-        regs.OSPEEDR =OR= (3 << pinx2)  // this is very special, and does not even work for SDRAM pins
+    regs.OSPEEDR &= ~(3 << pinx2)
+    if flags & PINCFG_SPEED_MASK == PINCFG_SPEED_MEDIUM:
+        regs.OSPEEDR |= (1 << pinx2)
+    elif (flags & PINCFG_SPEED_MASK == PINCFG_SPEED_MED2)  or  (flags & PINCFG_SPEED_MASK == PINCFG_SPEED_FAST):
+        regs.OSPEEDR |= (2 << pinx2)
+    elif flags & PINCFG_SPEED_MASK == PINCFG_SPEED_VERYFAST:
+        regs.OSPEEDR |= (3 << pinx2)  // this is very special, and does not even work for SDRAM pins
     endif
 
-	if flags AND PINCFG_AF_MASK <> 0:
+	if flags & PINCFG_AF_MASK <> 0:
 		// set the alternate function
-		n = (flags >> PINCFG_AF_SHIFT) AND 0xF
+		n = (flags >> PINCFG_AF_SHIFT) & 0xF
 		if apinnum < 8:
-			regs.AFR[0] =AND= NOT (0xF << (apinnum * 4))
-			regs.AFR[0] =OR=      (n   << (apinnum * 4))
+			regs.AFR[0] &= ~(0xF << (apinnum * 4))
+			regs.AFR[0] |=  (n   << (apinnum * 4))
 		else:
-			regs.AFR[1] =AND= NOT (0xF << ((apinnum-8) * 4))
-			regs.AFR[1] =OR=      (n   << ((apinnum-8) * 4))
+			regs.AFR[1] &= ~(0xF << ((apinnum-8) * 4))
+			regs.AFR[1] |=  (n   << ((apinnum-8) * 4))
 		endif
 	endif
 
@@ -185,10 +185,10 @@ function OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
         return
     endif
 
-    setbitptr    = &(regs.BSRR)
-    clrbitptr    = &(regs.BSRR)
-    getbitptr    = &(regs.IDR)
-    getoutbitptr = &(regs.ODR)
+    setbitptr    = %(regs.BSRR)
+    clrbitptr    = %(regs.BSRR)
+    getbitptr    = %(regs.IDR)
+    getoutbitptr = %(regs.ODR)
     getbitshift  = apinnum
 
     if ainvert:
@@ -203,7 +203,7 @@ endfunc
 function OGpioPin.Setup(flags : uint) -> bool:
     use .
 	if inverted:
-	  flags =OR= @.PINCFG_GPIO_INVERT
+	  flags |= @.PINCFG_GPIO_INVERT
     endif
 	return PinSetup(portnum, pinnum, flags)
 endfunc

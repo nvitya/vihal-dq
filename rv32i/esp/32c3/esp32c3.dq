@@ -347,7 +347,7 @@ struct esp_spi:
     DMA_INT_CLR  : [[regrw]]  uint32  
     DMA_INT_RAW  : [[regrw]]  uint32  
     DMA_INT_ST   : [[regrw]]  uint32  
-    _pad_44      :            [(0x98-0x44)  IDIV  4] uint32
+    _pad_44      :            [(0x98-0x44)  div  4] uint32
     W            : [[regrw]]  [16] uint32
     _pad_D8      :            uint32  
     _pad_DC      :            uint32  
@@ -376,7 +376,7 @@ struct esp_spi_mem:
     MISC         : [[regrw]]  uint32  
     TX_CRC       : [[regrw]]  uint32  
     CACHE_FCTRL  : [[regrw]]  uint32  
-    _pad_040     :            [(0x54-0x40)  IDIV  4] uint32
+    _pad_040     :            [(0x54-0x40)  div  4] uint32
     FSM          : [[regrw]]  uint32  
     W            : [[regrw]]  [16] uint32
     FLASH_WAITI_CTRL : [[regrw]]  uint32  
@@ -395,7 +395,7 @@ struct esp_spi_mem:
     _pad_0D0     :            [3] uint32
     CLOCK_GATE   : [[regrw]]  uint32  
     CORE_CLK_SEL : [[regrw]]  uint32  
-    _pad_0E4     :            [(0x3FC-0x0E4)  IDIV  4] uint32
+    _pad_0E4     :            [(0x3FC-0x0E4)  div  4] uint32
     DATE         : [[regrw]]  uint32  
 endstruct
 
@@ -421,7 +421,7 @@ struct esp_usb_serial_jtag:
     OUT_EP2_ST   : [[regrw]]  uint32  
     MISC_CONF    : [[regrw]]  uint32  
     MEM_CONF     : [[regrw]]  uint32  
-    _pad         :            [(0x80 - 0x4C)  IDIV  4] uint32
+    _pad         :            [(0x80 - 0x4C)  div  4] uint32
     DATE         : [[regrw]]  uint32  
 endstruct
 
@@ -457,11 +457,11 @@ endstruct
 
 struct esp_gdma:
     INTR         :            [3] esp_dmach_intr
-    _pad_030     :            [(0x40 - 0x30)  IDIV  4] uint32
+    _pad_030     :            [(0x40 - 0x30)  div  4] uint32
     AHB_TEST     : [[regrw]]  uint32  
     MISC_CONF    : [[regrw]]  uint32  
     DATE         : [[regrw]]  uint32  
-    _pad_04C     :            [(0x70 - 0x4C)  IDIV  4] uint32
+    _pad_04C     :            [(0x70 - 0x4C)  div  4] uint32
     CH           :            [3] esp_dmach
 endstruct
 
@@ -518,7 +518,7 @@ struct esp_i2c_regs:
     SCL_MAIN_ST_TIME_OUT : [[regrw]]  uint32  
     SCL_SP_CONF  : [[regrw]]  uint32  
     SCL_STRETCH_CONF : [[regrw]]  uint32  
-    _pad_88      :            [(0xF8-0x88) IDIV 4] uint32
+    _pad_88      :            [(0xF8-0x88) div 4] uint32
     DATE         : [[regrw]]  uint32  
     _pad_FC      :            uint32  
     TXFIFO_START_ADDR : [[regrw]]  [32] uint32
@@ -535,7 +535,7 @@ struct espwai_regs:
     _pad_14      : [[regrw]]  uint32  
     BUS_TIMING_0 : [[regrw]]  uint32  
     BUS_TIMING_1 : [[regrw]]  uint32  
-    _pad_20      :            [(0x2C-0x20) IDIV 4] uint32
+    _pad_20      :            [(0x2C-0x20) div 4] uint32
     ARB_LOST_CAP : [[regrw]]  uint32  
     ERR_CODE_CAP : [[regrw]]  uint32  
     ERR_WARNING_LIMIT : [[regrw]]  uint32  
@@ -574,7 +574,7 @@ struct esp_saradc_regs:
     APB_TSENS_CTRL : [[regrw]]  uint32  
     APB_TSENS_CTRL2 : [[regrw]]  uint32  
     CALI         : [[regrw]]  uint32  
-    _pad_064     :            [(0x3FC-0x64) IDIV 4] uint32
+    _pad_064     :            [(0x3FC-0x64) div 4] uint32
     APB_CTRL_DATE : [[regrw]]  uint32  
 endstruct
 
@@ -610,7 +610,7 @@ struct esp_ledc_regs:
     LSCH5_DUTY   : [[regrw]]  uint32  
     LSCH5_CONF1  : [[regrw]]  uint32  
     LSCH5_DUTY_R : [[regrw]]  uint32  
-    _pad_78      :            [(0xA0-0x78) IDIV 4] uint32
+    _pad_78      :            [(0xA0-0x78) div 4] uint32
     LSTIMER0_CONF : [[regrw]]  uint32  
     LSTIMER0_VALUE : [[regrw]]  uint32  
     LSTIMER1_CONF : [[regrw]]  uint32  
@@ -624,7 +624,7 @@ struct esp_ledc_regs:
     INT_ENA      : [[regrw]]  uint32  
     INT_CLR      : [[regrw]]  uint32  
     CONF         : [[regrw]]  uint32  
-    _pad_D4      :            [(0xFC-0xD4) IDIV 4] uint32
+    _pad_D4      :            [(0xFC-0xD4) div 4] uint32
     DATE         : [[regrw]]  uint32  
 endstruct
 

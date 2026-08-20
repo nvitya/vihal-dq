@@ -585,7 +585,7 @@ struct RTC_TypeDef:
     TAMPCR       : [[regrw]]  uint32    // RTC tamper configuration register,                         Address offset: 0x40
     ALRMASSR     : [[regrw]]  uint32    // RTC alarm A sub second register,                           Address offset: 0x44
     ALRMBSSR     : [[regrw]]  uint32    // RTC alarm B sub second register,                           Address offset: 0x48
-    OR           : [[regrw]]  uint32    // RTC option register,                                       Address offset: 0x4C
+    |           : [[regrw]]  uint32    // RTC option register,                                       Address offset: 0x4C
     BKP0R        : [[regrw]]  uint32    // RTC backup register 0,                                     Address offset: 0x50
     BKP1R        : [[regrw]]  uint32    // RTC backup register 1,                                     Address offset: 0x54
     BKP2R        : [[regrw]]  uint32    // RTC backup register 2,                                     Address offset: 0x58
@@ -717,7 +717,7 @@ struct TIM_TypeDef:
     BDTR         : [[regrw]]  uint32    // TIM break and dead-time register,    Address offset: 0x44
     DCR          : [[regrw]]  uint32    // TIM DMA control register,            Address offset: 0x48
     DMAR         : [[regrw]]  uint32    // TIM DMA address for full transfer,   Address offset: 0x4C
-    OR           : [[regrw]]  uint32    // TIM option register,                 Address offset: 0x50
+    |           : [[regrw]]  uint32    // TIM option register,                 Address offset: 0x50
     CCMR3        : [[regrw]]  uint32    // TIM capture/compare mode register 3,      Address offset: 0x54
     CCR5         : [[regrw]]  uint32    // TIM capture/compare mode register5,       Address offset: 0x58
     CCR6         : [[regrw]]  uint32    // TIM capture/compare mode register6,       Address offset: 0x5C

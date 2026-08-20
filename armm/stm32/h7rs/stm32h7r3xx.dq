@@ -210,7 +210,7 @@ struct ADC_TypeDef:
     DIFSEL       : [[regrw]]  uint32  
     CALFACT      : [[regrw]]  uint32  
     RESERVED10   :            [4] uint32
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
 endstruct
 
 struct ADC_Common_TypeDef:
@@ -468,7 +468,7 @@ struct DTS_TypeDef:
     SR           : [[regrw]]  uint32  
     ITENR        : [[regrw]]  uint32  
     ICIFR        : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
 endstruct
 
 struct ETH_TypeDef:

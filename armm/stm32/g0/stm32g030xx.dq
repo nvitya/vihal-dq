@@ -251,7 +251,7 @@ struct RTC_TypeDef:
     MISR         : [[regrw]]  uint32  
     RESERVED3    :            uint32  
     SCR          : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
 endstruct
 
 struct TAMP_TypeDef:

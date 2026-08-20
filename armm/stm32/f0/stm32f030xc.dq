@@ -241,7 +241,7 @@ struct TIM_TypeDef:
     BDTR         : [[regrw]]  uint32  
     DCR          : [[regrw]]  uint32  
     DMAR         : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
 endstruct
 
 struct USART_TypeDef:

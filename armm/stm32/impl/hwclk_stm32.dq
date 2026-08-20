@@ -11,15 +11,15 @@ use ^/platform
 function StartExcOscillator(aextspeed : uint):
     var crreg : uint = RCC.CR
     #ifdef @.RCC_CR_HSEBYP
-        if aextspeed AND HWCLK_EXTCLK_BYPASS <> 0:
-            crreg =OR= RCC_CR_HSEBYP
+        if aextspeed & HWCLK_EXTCLK_BYPASS <> 0:
+            crreg |= RCC_CR_HSEBYP
             RCC.CR = crreg
         endif
     #endif
-    crreg =OR= RCC_CR_HSEON
+    crreg |= RCC_CR_HSEON
     RCC.CR = crreg
 
-    while 0 == RCC.CR AND RCC_CR_HSERDY:
+    while 0 == RCC.CR & RCC_CR_HSERDY:
         // wait
     endwhile
 endfunc
@@ -29,16 +29,16 @@ endfunc
 function PrepareHiSpeed(acpuspeed : uint):
     // Enable Prefetch Buffer and set Flash Latency
     #ifdef @.FLASH_ACR_PRFTBE
-        FLASH.ACR = FLASH_ACR_PRFTBE OR FLASH_ACR_LATENCY
+        FLASH.ACR = FLASH_ACR_PRFTBE | FLASH_ACR_LATENCY
     #else
-        FLASH.ACR = FLASH_ACR_LATENCY OR FLASH_ACR_PRFTEN
+        FLASH.ACR = FLASH_ACR_LATENCY | FLASH_ACR_PRFTEN
     #endif
 endfunc
 
 #elif Defined(@.MCUSF_F7)
 
 function PrepareHiSpeed(acpuspeed : uint):
-    RCC.APB1ENR =OR= RCC_APB1ENR_PWREN  // Enable Power Control clock
+    RCC.APB1ENR |= RCC_APB1ENR_PWREN  // Enable Power Control clock
 
     // The voltage scaling allows optimizing the power consumption when the
     // device is clocked below the maximum system frequency, to update the
@@ -46,22 +46,22 @@ function PrepareHiSpeed(acpuspeed : uint):
     // datasheet.
 
     // Enable the Over-drive to extend the clock frequency to 216 MHz
-    PWR.CR1 =OR= PWR_CR1_ODEN
-    while PWR.CSR1 AND PWR_CSR1_ODRDY == 0:
+    PWR.CR1 |= PWR_CR1_ODEN
+    while PWR.CSR1 & PWR_CSR1_ODRDY == 0:
     endwhile
 
     // Enable the Over-drive switch
-    PWR.CR1 =OR= PWR_CR1_ODSWEN
-    while PWR.CSR1 AND PWR_CSR1_ODRDY == 0:
+    PWR.CR1 |= PWR_CR1_ODSWEN
+    while PWR.CSR1 & PWR_CSR1_ODRDY == 0:
     endwhile
 
-    PWR.CR1 =OR= PWR_CR1_VOS  // voltage scaling for maximum speed (Scale 1)
+    PWR.CR1 |= PWR_CR1_VOS  // voltage scaling for maximum speed (Scale 1)
 
     // set Flash latency
-    FLASH.ACR =AND= NOT FLASH_ACR_LATENCY
-    FLASH.ACR =OR= FLASH_ACR_LATENCY_6WS
+    FLASH.ACR &= ~ FLASH_ACR_LATENCY
+    FLASH.ACR |= FLASH_ACR_LATENCY_6WS
 
-    FLASH.ACR =OR= FLASH_ACR_ARTEN OR FLASH_ACR_PRFTEN  // turn on the ART accelerator
+    FLASH.ACR |= FLASH_ACR_ARTEN | FLASH_ACR_PRFTEN  // turn on the ART accelerator
 endfunc
 
 #else
@@ -69,7 +69,7 @@ endfunc
 #endif
 
 function IsDivisble(anum : uint, adivisor : uint) -> bool:
-    var res : uint = anum IDIV adivisor
+    var res : uint = anum div adivisor
     return res * adivisor == anum
 endfunc
 
@@ -84,15 +84,15 @@ function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
     var tmp : uint
 
     tmp = RCC.CFGR
-    tmp =AND= NOT 3
-    tmp =OR= RCC_CFGR_SW_HSI
+    tmp &= ~ 3
+    tmp |= RCC_CFGR_SW_HSI
     RCC.CFGR = tmp
-    while (RCC.CFGR >> 2) AND 3 <> RCC_CFGR_SW_HSI:
+    while (RCC.CFGR >> 2) & 3 <> RCC_CFGR_SW_HSI:
         // wait until it is set
     endwhile
 
-    RCC.CR =AND= NOT RCC_CR_PLLON  // disable the PLL
-    while RCC.CR AND RCC_CR_PLLRDY != 0:
+    RCC.CR &= ~ RCC_CR_PLLON  // disable the PLL
+    while RCC.CR & RCC_CR_PLLRDY <> 0:
         // Wait until the PLL is ready
     endwhile
 
@@ -108,7 +108,7 @@ function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
     var pllsrc    : uint
     if external_clock_hz <> 0:
         StartExcOscillator(external_clock_hz)
-        basespeed = (external_clock_hz AND HWCLK_EXTCLK_MASK)
+        basespeed = (external_clock_hz & HWCLK_EXTCLK_MASK)
         pllsrc = 1
     else:
         pllsrc = 0
@@ -131,43 +131,43 @@ function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
     endwhile
 
     var pll_input_freq : uint = 2000000
-    if (external_clock_hz IDIV 1000000) AND 1 <> 0:  // is the input MHz divisible by 2 ?
+    if (external_clock_hz div 1000000) & 1 <> 0:  // is the input MHz divisible by 2 ?
         pll_input_freq = 1000000
     endif
-    var pllm : uint = basespeed IDIV pll_input_freq   // generate 1-2 MHz VCO input
-    var plln : uint = vcospeed  IDIV pll_input_freq   // the vco multiplier
-    var pllq : uint = vcospeed  IDIV 48000000          // usb speed
+    var pllm : uint = basespeed div pll_input_freq   // generate 1-2 MHz VCO input
+    var plln : uint = vcospeed  div pll_input_freq   // the vco multiplier
+    var pllq : uint = vcospeed  div 48000000          // usb speed
 
     RCC.PLLCFGR = (0
-        OR (pllsrc << 22)  // select PLL source
-        OR (pllm   <<  0)
-        OR (plln   <<  6)
-        OR (((pllp >> 1) - 1) << 16)
-        OR (pllq   << 24)
+        | (pllsrc << 22)  // select PLL source
+        | (pllm   <<  0)
+        | (plln   <<  6)
+        | (((pllp >> 1) - 1) << 16)
+        | (pllq   << 24)
     )
 
-    RCC.CR =OR= RCC_CR_PLLON  // enable the PLL
-    while  RCC.CR AND RCC_CR_PLLRDY == 0:
+    RCC.CR |= RCC_CR_PLLON  // enable the PLL
+    while  RCC.CR & RCC_CR_PLLRDY == 0:
         // Wait till PLL is ready
     endwhile
 
     // select bus dividers AHB=1, ABP1=4, APB2=2
     tmp = RCC.CFGR
-    tmp =AND= NOT (RCC_CFGR_HPRE OR RCC_CFGR_PPRE1 OR RCC_CFGR_PPRE2)
-    tmp =OR= (RCC_CFGR_HPRE_DIV1 OR RCC_CFGR_PPRE1_DIV4 OR RCC_CFGR_PPRE2_DIV2)
+    tmp &= ~ (RCC_CFGR_HPRE | RCC_CFGR_PPRE1 | RCC_CFGR_PPRE2)
+    tmp |= (RCC_CFGR_HPRE_DIV1 | RCC_CFGR_PPRE1_DIV4 | RCC_CFGR_PPRE2_DIV2)
     RCC.CFGR = tmp
 
     // Select PLL as system clock source
 
-    tmp =AND= NOT 3
-    tmp =OR= RCC_CFGR_SW_PLL
+    tmp &= ~ 3
+    tmp |= RCC_CFGR_SW_PLL
     RCC.CFGR = tmp
-    while (RCC.CFGR >> 2) AND 3 <> RCC_CFGR_SW_PLL:
+    while (RCC.CFGR >> 2) & 3 <> RCC_CFGR_SW_PLL:
         // wait until it is set
     endwhile
 
     #ifdef @.MCUSF_F7
-        RCC.DCKCFGR2 =AND= NOT (RCC_DCKCFGR2_CK48MSEL) // select the 48 MHz from the PLL
+        RCC.DCKCFGR2 &= ~ (RCC_DCKCFGR2_CK48MSEL) // select the 48 MHz from the PLL
     #endif
 
     SystemCoreClock = target_speed_hz
@@ -186,15 +186,15 @@ function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
     var cfgr : uint
 
     cfgr = RCC.CFGR
-    cfgr =AND= NOT 3
-    cfgr =OR= RCC_CFGR_SW_HSI
+    cfgr &= ~ 3
+    cfgr |= RCC_CFGR_SW_HSI
     RCC.CFGR = cfgr
-    while (RCC.CFGR >> 2) AND 3 <> RCC_CFGR_SW_HSI:
+    while (RCC.CFGR >> 2) & 3 <> RCC_CFGR_SW_HSI:
         // wait until it is set
     endwhile
 
-    RCC.CR =AND= NOT RCC_CR_PLLON  // disable the PLL
-    while RCC.CR AND RCC_CR_PLLRDY <> 0:
+    RCC.CR &= ~ RCC_CR_PLLON  // disable the PLL
+    while RCC.CR & RCC_CR_PLLRDY <> 0:
         // Wait until the PLL is ready
     endwhile
 
@@ -206,13 +206,13 @@ function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
     var pllsrc    : uint
     if external_clock_hz <> 0:
         StartExcOscillator(external_clock_hz)
-        basespeed = external_clock_hz AND HWCLK_EXTCLK_MASK
+        basespeed = external_clock_hz & HWCLK_EXTCLK_MASK
     else:
         // the internal oscillator is usually 8 MHz, but it will be divided by 2 at the PLL input
         basespeed = (MCU_INTERNAL_RC_SPEED >> 1);
     endif
 
-    var freqmul : uint = target_speed_hz IDIV basespeed
+    var freqmul : uint = target_speed_hz div basespeed
     if freqmul < 2  or  freqmul > 16:
         return false
     endif
@@ -238,33 +238,33 @@ function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
         endif
 
         // do not divide the peripheral clocks:
-        cfgr =AND= NOT (RCC_CFGR_HPRE OR RCC_CFGR_PPRE1 OR RCC_CFGR_PPRE2)
+        cfgr &= ~ (RCC_CFGR_HPRE | RCC_CFGR_PPRE1 | RCC_CFGR_PPRE2)
 
         /* PLL configuration = HSE * 6 = 48 MHz */
-        cfgr =AND= NOT (RCC_CFGR_PLLSRC OR RCC_CFGR_PLLDIV OR RCC_CFGR_PLLMUL)
-        cfgr =OR= (pllmul << 18) OR (plldiv << 22)
+        cfgr &= ~ (RCC_CFGR_PLLSRC | RCC_CFGR_PLLDIV | RCC_CFGR_PLLMUL)
+        cfgr |= (pllmul << 18) | (plldiv << 22)
         if external_clock_hz <> 0:
-            cfgr =OR= RCC_CFGR_PLLSRC_HSE
+            cfgr |= RCC_CFGR_PLLSRC_HSE
         endif
 
     #else
 
-        var pllmul : uint = (freqmul - 2) AND 0xF  // STM32F0 multiplyer code
+        var pllmul : uint = (freqmul - 2) & 0xF  // STM32F0 multiplyer code
 
         // setup bus dividers AHB=1, PERIPH=1
-        cfgr =AND= NOT (RCC_CFGR_HPRE OR RCC_CFGR_PPRE)
-        cfgr =OR= (RCC_CFGR_HPRE_DIV1 OR RCC_CFGR_PPRE_DIV1)
+        cfgr &= ~ (RCC_CFGR_HPRE | RCC_CFGR_PPRE)
+        cfgr |= (RCC_CFGR_HPRE_DIV1 | RCC_CFGR_PPRE_DIV1)
 
-        cfgr =AND= NOT (RCC_CFGR_PLLSRC OR RCC_CFGR_PLLXTPRE OR RCC_CFGR_PLLMUL)
-        cfgr =OR= (pllmul << 18)
+        cfgr &= ~ (RCC_CFGR_PLLSRC | RCC_CFGR_PLLXTPRE | RCC_CFGR_PLLMUL)
+        cfgr |= (pllmul << 18)
 
         if external_clock_hz <> 0:
-            cfgr =OR= (RCC_CFGR_PLLSRC_HSE_PREDIV OR RCC_CFGR_PLLXTPRE_HSE_PREDIV_DIV1)
+            cfgr |= (RCC_CFGR_PLLSRC_HSE_PREDIV | RCC_CFGR_PLLXTPRE_HSE_PREDIV_DIV1)
         else:
             #ifdef @.RCC_CFGR_PLLSRC_HSI_DIV2
-                cfgr =OR= RCC_CFGR_PLLSRC_HSI_DIV2
+                cfgr |= RCC_CFGR_PLLSRC_HSI_DIV2
             #else
-                cfgr =OR= RCC_CFGR_PLLSRC_HSI_PREDIV
+                cfgr |= RCC_CFGR_PLLSRC_HSI_PREDIV
             #endif
         endif
 
@@ -272,16 +272,16 @@ function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
 
     RCC.CFGR = cfgr
 
-    RCC.CR =OR= RCC_CR_PLLON  // enable the PLL
-    while RCC.CR AND RCC_CR_PLLRDY == 0:
+    RCC.CR |= RCC_CR_PLLON  // enable the PLL
+    while RCC.CR & RCC_CR_PLLRDY == 0:
         // Wait till PLL is ready
     endwhile
 
     // Select PLL as system clock source
-    cfgr =AND= NOT 3
-    cfgr =OR= RCC_CFGR_SW_PLL
+    cfgr &= ~ 3
+    cfgr |= RCC_CFGR_SW_PLL
     RCC.CFGR = cfgr
-    while (RCC.CFGR >> 2) AND 3 <> RCC_CFGR_SW_PLL:
+    while (RCC.CFGR >> 2) & 3 <> RCC_CFGR_SW_PLL:
         // wait until it is set
     endwhile
 

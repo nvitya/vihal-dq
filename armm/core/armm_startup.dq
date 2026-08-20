@@ -38,8 +38,8 @@ function InitMemRegions()  [[section('.startup')]]:
 
     // 1. Copy preinitialized data sections
 
-    recp = &__data_regions_array_start
-    endp = &__data_regions_array_end
+    recp = %__data_regions_array_start
+    endp = %__data_regions_array_end
     while recp < endp:
         loadaddr    = recp[0]^
         destaddr    = recp[1]^
@@ -56,8 +56,8 @@ function InitMemRegions()  [[section('.startup')]]:
 
     // 2. Zero BSS data sections
 
-    recp = &__bss_regions_array_start
-    endp = &__bss_regions_array_end
+    recp = %__bss_regions_array_start
+    endp = %__bss_regions_array_end
     while recp < endp:
         destaddr    = recp[0]^
         destaddrend = recp[1]^

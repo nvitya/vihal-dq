@@ -227,7 +227,7 @@ struct RTC_TypeDef:
     TAMPCR       : [[regrw]]  uint32  
     ALRMASSR     : [[regrw]]  uint32  
     ALRMBSSR     : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
     BKP0R        : [[regrw]]  uint32  
     BKP1R        : [[regrw]]  uint32  
     BKP2R        : [[regrw]]  uint32  
@@ -266,7 +266,7 @@ struct TIM_TypeDef:
     RESERVED17   :            uint32  
     DCR          : [[regrw]]  uint32  
     DMAR         : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
 endstruct
 
 struct USART_TypeDef:

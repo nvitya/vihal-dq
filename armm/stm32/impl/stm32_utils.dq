@@ -1,20 +1,20 @@
 use ^/platform
 
 #if Defined(@.MCUSF_G4) or Defined(@.MCUSF_WB)
-    const APB1ENR_REGISTER :? = &RCC.APB1ENR1
-    const APB2ENR_REGISTER :? = &RCC.APB2ENR
+    const APB1ENR_REGISTER :? = %RCC.APB1ENR1
+    const APB2ENR_REGISTER :? = %RCC.APB2ENR
 #elifdef @.MCUSF_H7
-    const APB1ENR_REGISTER :? = &RCC.APB1LENR
-    const APB2ENR_REGISTER :? = &RCC.APB2ENR
+    const APB1ENR_REGISTER :? = %RCC.APB1LENR
+    const APB2ENR_REGISTER :? = %RCC.APB2ENR
 #elifdef @.MCUSF_H7RS
-    const APB1ENR_REGISTER :? = &RCC.APB1ENR1
-    const APB2ENR_REGISTER :? = &RCC.APB2ENR
+    const APB1ENR_REGISTER :? = %RCC.APB1ENR1
+    const APB2ENR_REGISTER :? = %RCC.APB2ENR
 #elifdef @.MCUSF_G0
-    const APB1ENR_REGISTER :? = &RCC.APBENR1
-    const APB2ENR_REGISTER :? = &RCC.APBENR2
+    const APB1ENR_REGISTER :? = %RCC.APBENR1
+    const APB2ENR_REGISTER :? = %RCC.APBENR2
 #else
-    const APB1ENR_REGISTER :? = &RCC.APB1ENR
-    const APB2ENR_REGISTER :? = &RCC.APB2ENR
+    const APB1ENR_REGISTER :? = %RCC.APB1ENR
+    const APB2ENR_REGISTER :? = %RCC.APB2ENR
 #endif
 
 // constants helping determine peripheral bus base frequencies
@@ -41,8 +41,8 @@ function Stm32BusSpeed(abusid : byte) -> uint:
 	var clockshr : uint  // clock shift right = division
 
 	// check AHB division
-	tmp = RCC.D1CFGR AND RCC_D1CFGR_HPRE
-	if tmp AND 8 <> 0:
+	tmp = RCC.D1CFGR & RCC_D1CFGR_HPRE
+	if tmp & 8 <> 0:
 		clockshr = 1 // if AHB divided, then surely only with 2
 	else:
 		clockshr = 0
@@ -104,27 +104,27 @@ function Stm32BusSpeed(abusid : byte) -> uint:
 	var clockshr : uint  // clock shift right = division
 
 	if STM32_BUSID_AHB == abusid:
-		tmp = RCC.CFGR AND RCC_CFGR_HPRE
+		tmp = RCC.CFGR & RCC_CFGR_HPRE
 		if   RCC_CFGR_HPRE_DIV2 == tmp:  clockshr = 1
 		elif RCC_CFGR_HPRE_DIV4 == tmp:  clockshr = 2
 		else                             clockshr = 0
         endif
 #ifdef @.RCC_CFGR_PPRE // smaller devices have only one peripheral bus
 	elif STM32_BUSID_APB1 == abusid  or  STM32_BUSID_APB2 == abusid:
-		tmp = RCC.CFGR AND RCC_CFGR_PPRE
+		tmp = RCC.CFGR & RCC_CFGR_PPRE
 		if   RCC_CFGR_PPRE_DIV2 == tmp:  clockshr = 1
 		elif RCC_CFGR_PPRE_DIV4 == tmp:  clockshr = 2
 		else                             clockshr = 0
         endif
 #else
 	elif STM32_BUSID_APB1 == abusid:
-		tmp = RCC.CFGR AND RCC_CFGR_PPRE1
+		tmp = RCC.CFGR & RCC_CFGR_PPRE1
 		if   RCC_CFGR_PPRE1_DIV2 == tmp:  clockshr = 1
 		elif RCC_CFGR_PPRE1_DIV4 == tmp:  clockshr = 2
 		else                              clockshr = 0
         endif
 	elif STM32_BUSID_APB2 == abusid:
-		tmp = RCC->CFGR AND RCC_CFGR_PPRE2
+		tmp = RCC->CFGR & RCC_CFGR_PPRE2
 		if   RCC_CFGR_PPRE2_DIV2 == tmp:  clockshr = 1
 		elif RCC_CFGR_PPRE2_DIV4 == tmp:  clockshr = 2
 		else                              clockshr = 0
@@ -142,11 +142,11 @@ endfunc
 
 function Stm32StartInternalHsRcOsc():
     #ifdef @.RCC_CR_HSIKERON
-        RCC.CR =OR= (RCC_CR_HSION OR RCC_CR_HSIKERON)
+        RCC.CR |= (RCC_CR_HSION | RCC_CR_HSIKERON)
     #else
-        RCC.CR =OR= RCC_CR_HSION
+        RCC.CR |= RCC_CR_HSION
     #endif
-    while RCC.CR AND RCC_CR_HSIRDY == 0:
+    while RCC.CR & RCC_CR_HSIRDY == 0:
         // wait until it is ready
     endwhile
 endfunc

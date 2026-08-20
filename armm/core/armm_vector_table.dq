@@ -102,7 +102,7 @@ const armm_vector_table : [16 + 32] FVectorTableEntry =
 [
 	// Configure Initial Stack Pointer, using linker-generated symbols
 
-    FVectorTableEntry(&__stack),
+    FVectorTableEntry(%__stack),
     cold_entry,                    // application entry
     NMI_Handler,
     HardFault_Handler,
@@ -159,6 +159,6 @@ const armm_vector_table : [16 + 32] FVectorTableEntry =
 
 function ArmmVectorTableInit()  [[inline]]:
     #if not FirstBool(SCB_NO_VTOR, false)
-        SCB.VTOR = uint(&armm_vector_table[0])
+        SCB.VTOR = uint(%armm_vector_table[0])
     #endif
 endfunc

@@ -3,7 +3,7 @@ const(uint32):
     __STM32WBxx_CMSIS_VERSION_SUB1 = 0x0A
     __STM32WBxx_CMSIS_VERSION_SUB2 = 0x00
     __STM32WBxx_CMSIS_VERSION_RC = 0x00
-    __STM32WBxx_CMSIS_DEVICE_VERSION = ((__STM32WBxx_CMSIS_VERSION_MAIN << 24)                                                 OR (__STM32WBxx_CMSIS_VERSION_SUB1 << 16)                                                 OR (__STM32WBxx_CMSIS_VERSION_SUB2 << 8 )                                                 OR (__STM32WBxx_CMSIS_VERSION_RC))
+    __STM32WBxx_CMSIS_DEVICE_VERSION = ((__STM32WBxx_CMSIS_VERSION_MAIN << 24)                                                 | (__STM32WBxx_CMSIS_VERSION_SUB1 << 16)                                                 | (__STM32WBxx_CMSIS_VERSION_SUB2 << 8 )                                                 | (__STM32WBxx_CMSIS_VERSION_RC))
 endconst
 
 const(int):

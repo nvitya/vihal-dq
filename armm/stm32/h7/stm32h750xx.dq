@@ -1057,7 +1057,7 @@ struct RTC_TypeDef:
     TAMPCR       : [[regrw]]  uint32  
     ALRMASSR     : [[regrw]]  uint32  
     ALRMBSSR     : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
     BKP0R        : [[regrw]]  uint32  
     BKP1R        : [[regrw]]  uint32  
     BKP2R        : [[regrw]]  uint32  
@@ -1256,7 +1256,7 @@ endstruct
 struct COMPOPT_TypeDef:
     SR           : [[regrw]]  uint32  
     ICFR         : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
 endstruct
 
 struct COMP_TypeDef:
@@ -1292,7 +1292,7 @@ struct SWPMI_TypeDef:
     RFL          : [[regrw]]  uint32  
     TDR          : [[regrw]]  uint32  
     RDR          : [[regrw]]  uint32  
-    OR           : [[regrw]]  uint32  
+    |           : [[regrw]]  uint32  
 endstruct
 
 struct WWDG_TypeDef:

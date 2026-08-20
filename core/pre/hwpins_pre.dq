@@ -118,7 +118,7 @@ object OGpioPin_common(OGpioPin_pre):
     endfunc
 
 	function SetTo(value : uint)  [[inline]]:
-        if value AND 1 <> 0:
+        if value & 1 <> 0:
             Set1()
         else:
             Set0()
@@ -126,11 +126,11 @@ object OGpioPin_common(OGpioPin_pre):
     endfunc
 
 	function Value() -> byte:
-        return (getbitptr^ >> getbitshift) AND 1
+        return (getbitptr^ >> getbitshift) & 1
     endfunc
 
 	function OutValue() -> byte:
-        return (getoutbitptr^ >> getbitshift) AND 1
+        return (getoutbitptr^ >> getbitshift) & 1
     endfunc
 endobj
 
@@ -141,9 +141,9 @@ var hwpinctrl_dummy : uint = 0
 function OGpioPin_common.InitDummy():
     use .
     // Initialize the pointers with harmless target
-    setbitptr = &hwpinctrl_dummy
-    clrbitptr = &hwpinctrl_dummy
-    getbitptr = &hwpinctrl_dummy
-    getoutbitptr = &hwpinctrl_dummy
+    setbitptr = %hwpinctrl_dummy
+    clrbitptr = %hwpinctrl_dummy
+    getbitptr = %hwpinctrl_dummy
+    getoutbitptr = %hwpinctrl_dummy
 endfunc
 
