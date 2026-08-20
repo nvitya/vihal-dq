@@ -1,8 +1,0 @@
-const(uint32):
-    STM32_BUSID_AHB      = 0
-    STM32_BUSID_APB1     = 1
-    STM32_BUSID_APB2     = 2
-    STM32_BUSID_APB3     = 3
-    STM32_BUSID_APB4     = 4
-endconst
-

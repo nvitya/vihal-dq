@@ -1,3 +1,4 @@
+use ^/platform
 use ^/core/pre/hwuart_pre  reexport
 
 object OHwUart_impl(OHwUart_pre):
@@ -7,10 +8,10 @@ object OHwUart_impl(OHwUart_pre):
 	function Init(adevnum : int) -> bool
 
 	function SetPeriphClock(aclk : uint) -> bool
-	function SetBaudRate(abaudrate : uint = 0) -> bool
+	function SetBaudRate(abaudrate : int = 0) -> bool
 
-	function TrySendChar(ach : char) -> bool
-	function TryRecvChar(rch : refout char)
+	function TrySendChar(ach : byte) -> bool
+	function TryRecvChar(rch : refout byte) -> bool
 	function SendFinished() -> bool
 
     // Dma
@@ -49,6 +50,7 @@ const(uint):
 endconst
 
 function OHwUart_impl.Init(adevnum : int) -> bool:
+	use *
 	var code  : uint
 	var busid : byte = STM32_BUSID_APB1
 
@@ -73,39 +75,39 @@ function OHwUart_impl.Init(adevnum : int) -> bool:
   #ifdef @.USART1_BASE
 	elif 1 == devnum:
         regs = ^USART_TypeDef(USART1_BASE)
-        APB2ENR_REGISTER |= RCC_APB2ENR_USART1EN
+        APB2ENR_REGISTER^ |= RCC_APB2ENR_USART1EN
         busid = STM32_BUSID_APB2
   #endif
   #ifdef @.USART2_BASE
 	elif 2 == devnum:
 		regs = ^USART_TypeDef(USART2_BASE)
-		APB1ENR_REGISTER |= RCC_APB1ENR_USART2EN
+		APB1ENR_REGISTER^ |= RCC_APB1ENR_USART2EN
   #endif
   #ifdef @.USART3_BASE
 	elif 3 == devnum:
 		regs = ^USART_TypeDef(USART3_BASE)
-		APB1ENR_REGISTER |= RCC_APB1ENR_USART3EN
+		APB1ENR_REGISTER^ |= RCC_APB1ENR_USART3EN
   #endif
   #ifdef @.UART4_BASE
 	elif 4 == devnum:
 		regs = ^USART_TypeDef(UART4_BASE)
-		APB1ENR_REGISTER |= RCC_APB1ENR_UART4EN
+		APB1ENR_REGISTER^ |= RCC_APB1ENR_UART4EN
   #endif
   #ifdef @.UART5_BASE
 	elif 5 == devnum:
 		regs = ^USART_TypeDef(UART5_BASE)
-		APB1ENR_REGISTER |= RCC_APB1ENR_UART5EN
+		APB1ENR_REGISTER^ |= RCC_APB1ENR_UART5EN
   #endif
-  #if defined(USART5_BASE)
+  #ifdef @.USART5_BASE
 	elif 5 == devnum:
 		regs = ^USART_TypeDef(USART5_BASE)
-		APB1ENR_REGISTER |= RCC_APB1ENR_USART5EN
+		APB1ENR_REGISTER^ |= RCC_APB1ENR_USART5EN
   #endif
   #ifdef @.USART6_BASE
 	elif 6 == devnum:
 		regs = ^USART_TypeDef(USART6_BASE)
-      #if defined(RCC_APBENR1_USART6EN)
-	    APB1ENR_REGISTER |= RCC_APBENR1_USART6EN
+      #ifdef @.RCC_APBENR1_USART6EN
+	    APB1ENR_REGISTER^ |= RCC_APBENR1_USART6EN
 	  #else
 		RCC.APB2ENR |= RCC_APB2ENR_USART6EN
 		busid = STM32_BUSID_APB2
@@ -194,7 +196,8 @@ function OHwUart_impl.SetPeriphClock(aclk : uint) -> bool:
   	return SetBaudRate()
 endfunc
 
-function OHwUart_impl::SetBaudRate(int abaudrate) -> bool:
+function OHwUart_impl.SetBaudRate(abaudrate : int) -> bool:
+	use *
 	if abaudrate > 0:
 		baudrate = abaudrate
 	endif
@@ -217,12 +220,13 @@ function OHwUart_impl::SetBaudRate(int abaudrate) -> bool:
 	regs->CR1 = tmp & ~USART_CR1_UE
   #endif
 
-	regs->BRR = divider
-	regs->CR1 = tmp
+	regs.BRR = divider
+	regs.CR1 = tmp
 	return true
 endfunc
 
-function OHwUart_impl.TrySendChar(ach : char) -> bool:
+function OHwUart_impl.TrySendChar(ach : byte) -> bool:
+	use *
   #ifdef @.USART_ISR_TXE
 	if regs.ISR & USART_ISR_TXE == 0:
 		return false
@@ -242,7 +246,8 @@ function OHwUart_impl.TrySendChar(ach : char) -> bool:
 	return true
 endfunc
 
-function OHwUart_impl.TryRecvChar(rch : refout char):
+function OHwUart_impl.TryRecvChar(rch : refout byte) -> bool:
+	use *
   #ifdef @.USART_ISR_RXNE
 	if regs.ISR & USART_ISR_RXNE <> 0:
 		rch = regs.RDR
@@ -268,19 +273,20 @@ function OHwUart_impl.TryRecvChar(rch : refout char):
 endfunc
 
 function OHwUart_impl.SendFinished() -> bool:
+	use *
   #ifdef @.USART_ISR_TC
     // clear transfer complete flag, the flag is immediately set again if uart is idle
     regs.ICR = USART_ICR_CTSCF
 
     // __DSB grants that all explicit memory accesses before this instruction are completed
-    __DSB()
+    //__DSB()
 
 	if regs.ISR & USART_ISR_TC <> 0:
   #else
 	if regs.SR & USART_SR_IDLE <> 0:
   #endif
 		return true
-	else
+	else:
 		return false
 	endif
 endfunc

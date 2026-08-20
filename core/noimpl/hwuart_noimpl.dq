@@ -1,16 +1,16 @@
 use ^/core/pre/hwuart_pre  reexport
 
-object OHwUart_noimpl:
+object OHwUart_impl:
 
 	function Init(adevnum : int) -> bool:
         return false
     endfunc
 
-	function TrySendChar(ach : char) -> bool:
+	function TrySendChar(ach : byte) -> bool:
         return false
     endfunc
 
-	function TryRecvChar(rch : refout char):
+	function TryRecvChar(rch : refout byte):
         return false
     endfunc
 

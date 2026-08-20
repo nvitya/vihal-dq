@@ -286,7 +286,7 @@ struct TIM_TypeDef:
     BDTR         : [[regrw]]  uint32    // TIM break and dead-time register,            Address offset: 0x44
     DCR          : [[regrw]]  uint32    // TIM DMA control register,            Address offset: 0x48
     DMAR         : [[regrw]]  uint32    // TIM DMA address for full transfer register,  Address offset: 0x4C
-    |           : [[regrw]]  uint32    // TIM option register,                 Address offset: 0x50
+    OR           : [[regrw]]  uint32    // TIM option register,                 Address offset: 0x50
 endstruct
 
 struct USART_TypeDef:
