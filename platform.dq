@@ -23,6 +23,8 @@ use board      reexport  // the project must define this !
         #error "Unknown ARM CPU"
     #endif
 
+    use ^/armm/core/armm_instr  reexport
+
 #endif
 
 

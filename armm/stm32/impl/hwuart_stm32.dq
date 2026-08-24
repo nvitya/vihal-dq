@@ -10,8 +10,8 @@ object OHwUart_impl(OHwUart_pre):
 	function SetPeriphClock(aclk : uint) -> bool
 	function SetBaudRate(abaudrate : int = 0) -> bool
 
-	function TrySendChar(ach : byte) -> bool
-	function TryRecvChar(rch : refout byte) -> bool
+	function TrySendByte(ach : byte) -> bool
+	function TryRecvByte(rch : refout byte) -> bool
 	function SendFinished() -> bool
 
     // Dma
@@ -225,7 +225,7 @@ function OHwUart_impl.SetBaudRate(abaudrate : int) -> bool:
 	return true
 endfunc
 
-function OHwUart_impl.TrySendChar(ach : byte) -> bool:
+function OHwUart_impl.TrySendByte(ach : byte) -> bool:
 	use *
   #ifdef @.USART_ISR_TXE
 	if regs.ISR & USART_ISR_TXE == 0:
@@ -246,7 +246,7 @@ function OHwUart_impl.TrySendChar(ach : byte) -> bool:
 	return true
 endfunc
 
-function OHwUart_impl.TryRecvChar(rch : refout byte) -> bool:
+function OHwUart_impl.TryRecvByte(rch : refout byte) -> bool:
 	use *
   #ifdef @.USART_ISR_RXNE
 	if regs.ISR & USART_ISR_RXNE <> 0:
@@ -279,7 +279,7 @@ function OHwUart_impl.SendFinished() -> bool:
     regs.ICR = USART_ICR_CTSCF
 
     // __DSB grants that all explicit memory accesses before this instruction are completed
-    //__DSB()
+    __DSB()
 
 	if regs.ISR & USART_ISR_TC <> 0:
   #else

@@ -8,8 +8,8 @@ use ^/platform
 
 object OHwUart(OHwUart_impl):
 
-	function SendChar(ach : byte):
-        while not TrySendChar(ach):
+	function SendByte(ach : byte):
+        while not TrySendByte(ach):
         endwhile
     endfunc
 
