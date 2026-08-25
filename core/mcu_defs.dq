@@ -1,0 +1,38 @@
+
+// the user project must provide the "board" module, which should define the MCU registers and MCU defines !
+
+use board      reexport  // the project must define this !
+
+// VIHAL CPU/MCU constants
+
+#ifdef @.CPU_ARMM
+
+  #ifdef @.CPU_ARM_M7F
+    use ^/armm/core/core_cm7             reexport
+  #elifdef @.CPU_ARM_M33
+    use ^/armm/core/core_cm33            reexport
+  #elifdef @.CPU_ARM_M4
+    use ^/armm/core/core_cm4             reexport
+  #elifdef @.CPU_ARM_M3
+    use ^/armm/core/core_cm3             reexport
+  #elifdef @.CPU_ARM_M0PLUS
+    use ^/armm/core/core_cm0p            reexport
+  #elifdef @.CPU_ARM_M0
+    use ^/armm/core/core_cm0             reexport
+  #else
+    #error "Unknown ARM CPU"
+  #endif
+
+    use ^/armm/core/armm_instr  reexport
+
+#endif
+
+
+#ifdef @.CPU_RV32I
+
+
+
+#endif
+
+
+implementation

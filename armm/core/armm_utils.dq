@@ -1,0 +1,44 @@
+use ^/core/mcu_defs
+
+function Mcu_EnableFpu()  [[inline]]:
+  #if FirstInt(__FPU_PRESENT, 0) <> 0
+    SCB.CPACR |= (0xF << 20)  // enable the FPU
+  #endif
+endfunc
+
+function Mcu_EnableICache()  [[inline]]:
+  #if FirstInt(__ICACHE_PRESENT, 0) <> 0
+    if SCB.CCR & SCB_CCR_IC_Msk <> 0:
+        return  /* return if ICache is already enabled */
+    endif
+    __DSB()
+    __ISB()
+    SCB.ICIALLU = 0  /* invalidate I-Cache */
+    __DSB()
+    __ISB()
+    SCB.CCR |= SCB_CCR_IC_Msk  /* enable I-Cache */
+    __DSB()
+    __ISB()
+  #endif
+endfunc
+
+function Mcu_DisableICache()  [[inline]]:
+  #if FirstInt(__ICACHE_PRESENT, 0) <> 0
+    __DSB()
+    __ISB()
+    SCB.CCR &= ~SCB_CCR_IC_Msk   /* disable I-Cache */
+    SCB.ICIALLU = 0              /* invalidate I-Cache */
+    __DSB()
+    __ISB()
+  #endif
+endfunc
+
+function Mcu_InvalidateICache()  [[inline]]:
+  #if FirstInt(__ICACHE_PRESENT, 0) <> 0
+    __DSB()
+    __ISB()
+    SCB.ICIALLU = 0              /* invalidate I-Cache */
+    __DSB()
+    __ISB()
+  #endif
+endfunc

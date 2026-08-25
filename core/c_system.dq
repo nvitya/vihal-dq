@@ -1,0 +1,137 @@
+
+function _sbrk(incr : int) -> uint                                [[cexport, weak]]
+
+function _getpid() -> int                                         [[cexport, weak]]
+function _kill(pid : int, sig : int) -> int                       [[cexport, weak]]
+function _exit(status : int)                                      [[cexport, weak]]
+function _open(name : ^char, flags : int, mode : int) -> int      [[cexport, weak]]
+function _lseek(file : int, offset : int, whence : int) -> int    [[cexport, weak]]
+function _lseek_r(file : int, offset : int, whence : int) -> int  [[cexport, weak]]
+function _read(file : int, ptr : ^byte, len : int) -> int         [[cexport, weak]]
+function _read_r(file : int, ptr : ^byte, len : int) -> int       [[cexport, weak]]
+function _write(file : int, buf : ^byte, nbytes : int) -> int     [[cexport, weak]]
+function _write_r(file : int, buf : ^byte, nbytes : int) -> int   [[cexport, weak]]
+function _close() -> int                                          [[cexport, weak]]
+function _close_r() -> int                                        [[cexport, weak]]
+function _wait(status : ^int) -> int                              [[cexport, weak]]
+
+implementation
+
+var errno       : int   [[external]]
+
+var __end       : byte  [[external]]  // end of the used ram RAM (where the heap begins), defined in the linker script
+var __stack     : byte  [[external]]  // end of the RAM (where the zero size stack begins), defined in the linker script
+var _Heap_Limit : byte  [[external]]  // end of the RAM available for heap (where the maximal size stack begins), defined in the linker script
+
+var system_heap_size    : uint = 0
+var system_heap_end_ptr : ^byte = null  // actual end of the RAM used as heap
+
+function _sbrk(incr : int) -> uint  [[cexport, weak]]:
+    var sys_heap_limit : ^byte = %_Heap_Limit
+
+    var chunk_begin : ^byte = system_heap_end_ptr
+    if chunk_begin == null:
+        chunk_begin = %__end
+    endif
+
+    var chunk_end : ^byte = chunk_begin[incr]
+    if chunk_end > sys_heap_limit:
+        errno = 12  // ENOMEM
+        return 0xFFFFFFFF
+    endif
+
+    system_heap_size += incr
+    system_heap_end_ptr = chunk_end
+
+    return uint(chunk_begin)
+endfunc
+
+function _getpid() -> int  [[cexport, weak]]:
+    return 1
+endfunc
+
+function _kill(pid : int, sig : int) -> int  [[cexport, weak]]:
+    errno = 22   // EINVAL
+    return -1
+endfunc
+
+function _exit(status : int)  [[cexport, weak]]:
+    while true: // stop here
+    endwhile
+endfunc
+
+function _open(name : ^char, flags : int, mode : int) -> int  [[cexport, weak]]:
+    return -1
+endfunc
+
+function _lseek(file : int, offset : int, whence : int) -> int  [[cexport, weak]]:
+    return -1
+endfunc
+
+function _lseek_r(file : int, offset : int, whence : int) -> int  [[cexport, weak]]:
+    return -1
+endfunc
+
+function _read(file : int, ptr : ^byte, len : int) -> int  [[cexport, weak]]:
+    return 0
+endfunc
+
+function _read_r(file : int, ptr : ^byte, len : int) -> int  [[cexport, weak]]:
+    return 0
+endfunc
+
+function _write(file : int, buf : ^byte, nbytes : int) -> int  [[cexport, weak]]:
+    return 0
+endfunc
+
+function _write_r(file : int, buf : ^byte, nbytes : int) -> int  [[cexport, weak]]:
+    return 0
+endfunc
+
+function _close() -> int  [[cexport, weak]]:
+    return -1
+endfunc
+
+function _close_r() -> int  [[cexport, weak]]:
+    return -1
+endfunc
+
+function _wait(status : ^int) -> int  [[cexport, weak]]:
+    return -1
+endfunc
+
+
+/*
+__attribute__((weak)) int _fstat(int file, struct stat *st)
+{
+  return -1;
+}
+__attribute__((weak)) int _fstat_r(int file, struct stat *st)
+{
+  return -1;
+}
+
+__attribute__((weak)) int _link(char *oldname, char *newname)
+{
+  return -1;
+}
+
+__attribute__((weak)) int _unlink(char *name)
+{
+ return -1;
+}
+
+__attribute__((weak)) int _times(struct tms *buf)
+{
+  return -1;
+}
+
+__attribute__((weak)) int _isatty(int file)
+{
+  return -1;
+}
+__attribute__((weak)) int _isatty_r(int file)
+{
+  return -1;
+}
+*/
