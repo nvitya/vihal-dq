@@ -58,21 +58,21 @@ function GpioPortEnable(aportnum : int) -> bool:
 	if aportnum < 0  or  aportnum >= MAX_PORT_NUMBER:
 		return false
     endif
-    #ifdef @.RCC_IOPENR_IOPAEN
-        RCC.IOPENR |= RCC_IOPENR_IOPAEN << aportnum
-    #elifdef @.RCC_AHBENR_GPIOAEN
-        RCC.AHBENR |= RCC_AHBENR_GPIOAEN << aportnum
-    #elifdef @.RCC_APB2ENR_IOPAEN
-        RCC.APB2ENR |= RCC_APB2ENR_IOPAEN << aportnum
-    #elifdef @.RCC_AHB2ENR_GPIOAEN
-        RCC.AHB2ENR |= RCC_AHB2ENR_GPIOAEN << aportnum
-    #elifdef @.RCC_AHB4ENR_GPIOAEN
-        RCC.AHB4ENR |= RCC_AHB4ENR_GPIOAEN << aportnum
-    #elifdef @.RCC_IOPENR_GPIOAEN
-        RCC.IOPENR |= RCC_IOPENR_GPIOAEN << aportnum
-    #else
-        RCC.AHB1ENR |= RCC_AHB1ENR_GPIOAEN << aportnum
-    #endif
+  #ifdef @.RCC_IOPENR_IOPAEN
+    RCC.IOPENR |= RCC_IOPENR_IOPAEN << aportnum
+  #elifdef @.RCC_AHBENR_GPIOAEN
+    RCC.AHBENR |= RCC_AHBENR_GPIOAEN << aportnum
+  #elifdef @.RCC_APB2ENR_IOPAEN
+    RCC.APB2ENR |= RCC_APB2ENR_IOPAEN << aportnum
+  #elifdef @.RCC_AHB2ENR_GPIOAEN
+    RCC.AHB2ENR |= RCC_AHB2ENR_GPIOAEN << aportnum
+  #elifdef @.RCC_AHB4ENR_GPIOAEN
+    RCC.AHB4ENR |= RCC_AHB4ENR_GPIOAEN << aportnum
+  #elifdef @.RCC_IOPENR_GPIOAEN
+    RCC.IOPENR |= RCC_IOPENR_GPIOAEN << aportnum
+  #else
+    RCC.AHB1ENR |= RCC_AHB1ENR_GPIOAEN << aportnum
+  #endif
     return true
 endfunc
 
