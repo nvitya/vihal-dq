@@ -14,6 +14,7 @@ function _write_r(file : int, buf : ^byte, nbytes : int) -> int   [[cexport, wea
 function _close() -> int                                          [[cexport, weak]]
 function _close_r() -> int                                        [[cexport, weak]]
 function _wait(status : ^int) -> int                              [[cexport, weak]]
+function __throw_out_of_range_fmt(fmt : ^char, arg1 : int)        [[export('_ZSt24__throw_out_of_range_fmtPKcz'), weak]]
 
 implementation
 
@@ -44,6 +45,11 @@ function _sbrk(incr : int) -> uint  [[cexport, weak]]:
     system_heap_end_ptr = chunk_end
 
     return uint(chunk_begin)
+endfunc
+
+function __throw_out_of_range_fmt(fmt : ^char, arg1 : int) [[export('_ZSt24__throw_out_of_range_fmtPKcz'), weak]]:
+    while true: // this C++ exception helper must not return
+    endwhile
 endfunc
 
 function _getpid() -> int  [[cexport, weak]]:
