@@ -26,8 +26,8 @@ const(byte):
     STM32_BUSID_APB4 = 4
 endconst
 
-function Stm32BusSpeed(abusid : byte) -> uint
-function Stm32StartInternalHsRcOsc()
+func Stm32BusSpeed(abusid : byte) -> uint
+func Stm32StartInternalHsRcOsc()
 
 implementation
 
@@ -35,7 +35,7 @@ implementation
 
 // high speed devices
 
-function Stm32BusSpeed(abusid : byte) -> uint:
+func Stm32BusSpeed(abusid : byte) -> uint:
 
 	var tmp      : uint
 	var clockshr : uint  // clock shift right = division
@@ -59,7 +59,7 @@ endfunc
 
 #elifdef @.MCUSF_H7RS
 
-function Stm32BusSpeed(abusid : byte) -> uint:
+func Stm32BusSpeed(abusid : byte) -> uint:
 
 	var tmp      : uint
 	var clockshr : uint  // clock shift right = division
@@ -90,7 +90,7 @@ endfunc
 
 // missing RCC_CFGR_HPRE_DIV2 etc. defines here ....
 
-function Stm32BusSpeed(abusid : byte) -> uint:
+func Stm32BusSpeed(abusid : byte) -> uint:
     return SystemCoreClock; // no division is set up
 endfunc
 
@@ -98,7 +98,7 @@ endfunc
 
 // classic
 
-function Stm32BusSpeed(abusid : byte) -> uint:
+func Stm32BusSpeed(abusid : byte) -> uint:
 
 	var tmp      : uint
 	var clockshr : uint  // clock shift right = division
@@ -140,7 +140,7 @@ endfunc
 #endif
 
 
-function Stm32StartInternalHsRcOsc():
+func Stm32StartInternalHsRcOsc():
     #ifdef @.RCC_CR_HSIKERON
         RCC.CR |= (RCC_CR_HSION | RCC_CR_HSIKERON)
     #else

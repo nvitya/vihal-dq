@@ -8,9 +8,9 @@ use ^/platform
 
 object OHwUart(OHwUart_impl):
 
-	function SendByte(ach : byte):
+	func SendByte(ach : byte):
         while not TrySendByte(ach):
         endwhile
     endfunc
 
-endobj
+endobject

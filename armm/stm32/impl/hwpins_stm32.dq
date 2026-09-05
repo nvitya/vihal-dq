@@ -1,17 +1,17 @@
 use ^/core/pre/hwpins_pre  reexport
 
-function GpioPortEnable(aportnum : int) -> bool
-function PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool
+func GpioPortEnable(aportnum : int) -> bool
+func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool
 
 object OGpioPin(OGpioPin_common):
 
-    function *Create()  [[overload]]
-    function *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]
+    func *Create()  [[overload]]
+    func *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]
 
-    function Assign(aportnum : int, apinnum : int, ainvert : bool)
-    function Setup(flags : uint) -> bool
+    func Assign(aportnum : int, apinnum : int, ainvert : bool)
+    func Setup(flags : uint) -> bool
 
-endobj
+endobject
 
 implementation
 
@@ -47,14 +47,14 @@ use ^/platform
   const MAX_PORT_NUMBER : int = 3
 #endif
 
-function GetGpioRegs(aportnum : int) -> ^GPIO_TypeDef:
+func GetGpioRegs(aportnum : int) -> ^GPIO_TypeDef:
 	if aportnum < 0  or  aportnum >= MAX_PORT_NUMBER:
-		return null
+		return nil
     endif
     return ^GPIO_TypeDef(GPIOA_BASE + (GPIOB_BASE-GPIOA_BASE) * aportnum)
 endfunc
 
-function GpioPortEnable(aportnum : int) -> bool:
+func GpioPortEnable(aportnum : int) -> bool:
 	if aportnum < 0  or  aportnum >= MAX_PORT_NUMBER:
 		return false
     endif
@@ -82,10 +82,10 @@ endfunc
 
 #else
 
-function PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
+func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
 
     var regs : ^GPIO_TypeDef = GetGpioRegs(aportnum)
-	if regs == null:
+	if regs == nil:
 		return false
 	endif
 
@@ -161,23 +161,23 @@ endfunc
 
 #endif
 
-function OGpioPin.*Create()  [[overload]]:
+func OGpioPin.*Create()  [[overload]]:
     inherited Create()
 endfunc
 
-function OGpioPin.*Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]:
+func OGpioPin.*Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]:
     inherited Create()
     Assign(aportnum, apinnum, ainvert)
 endfunc
 
-function OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
+func OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
     use .
     portnum  = aportnum
     pinnum   = apinnum
     inverted = ainvert
 
   	var regs : ^GPIO_TypeDef = GetGpioRegs(aportnum)
-    if regs == null:
+    if regs == nil:
         return
     endif
 
@@ -200,7 +200,7 @@ function OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
     endif
 endfunc
 
-function OGpioPin.Setup(flags : uint) -> bool:
+func OGpioPin.Setup(flags : uint) -> bool:
     use .
 	if inverted:
 	  flags |= @.PINCFG_GPIO_INVERT

@@ -5,24 +5,24 @@ object OHwUart_impl(OHwUart_pre):
 
 	regs : ^USART_TypeDef
 
-	function Init(adevnum : int) -> bool
+	func Init(adevnum : int) -> bool
 
-	function SetPeriphClock(aclk : uint) -> bool
-	function SetBaudRate(abaudrate : int = 0) -> bool
+	func SetPeriphClock(aclk : uint) -> bool
+	func SetBaudRate(abaudrate : int = 0) -> bool
 
-	function TrySendByte(ach : byte) -> bool
-	function TryRecvByte(rch : refout byte) -> bool
-	function SendFinished() -> bool
+	func TrySendByte(ach : byte) -> bool
+	func TryRecvByte(rch : refout byte) -> bool
+	func SendFinished() -> bool
 
     // Dma
 /*
-	function DmaAssign(istx : bool, admach : ^OHwDmaChannel)
-	function DmaStartSend(THwDmaTransfer * axfer) -> bool
-	function DmaStartRecv(THwDmaTransfer * axfer) -> bool
-	function DmaSendCompleted() -> bool
-	function DmaRecvCompleted() -> bool
+	func DmaAssign(istx : bool, admach : ^OHwDmaChannel)
+	func DmaStartSend(THwDmaTransfer * axfer) -> bool
+	func DmaStartRecv(THwDmaTransfer * axfer) -> bool
+	func DmaSendCompleted() -> bool
+	func DmaRecvCompleted() -> bool
 */
-endobj
+endobject
 
 implementation
 
@@ -49,7 +49,7 @@ const(uint):
   #endif
 endconst
 
-function OHwUart_impl.Init(adevnum : int) -> bool:
+func OHwUart_impl.Init(adevnum : int) -> bool:
 	use *
 	var code  : uint
 	var busid : byte = STM32_BUSID_APB1
@@ -57,7 +57,7 @@ function OHwUart_impl.Init(adevnum : int) -> bool:
 	devnum = adevnum
 	initialized = false
 
-	regs = null
+	regs = nil
 
 	if 0x101 == devnum  #{ifndef @.USART1_BASE}  or 1 == devnum  #{endif} :
 	#ifdef @.LPUART1_BASE
@@ -115,7 +115,7 @@ function OHwUart_impl.Init(adevnum : int) -> bool:
   #endif
     endif
 
-	if regs == null:
+	if regs == nil:
 		return false;
 	endif
 
@@ -191,12 +191,12 @@ function OHwUart_impl.Init(adevnum : int) -> bool:
 	return true
 endfunc
 
-function OHwUart_impl.SetPeriphClock(aclk : uint) -> bool:
+func OHwUart_impl.SetPeriphClock(aclk : uint) -> bool:
   	periphclock = aclk
   	return SetBaudRate()
 endfunc
 
-function OHwUart_impl.SetBaudRate(abaudrate : int) -> bool:
+func OHwUart_impl.SetBaudRate(abaudrate : int) -> bool:
 	use *
 	if abaudrate > 0:
 		baudrate = abaudrate
@@ -225,7 +225,7 @@ function OHwUart_impl.SetBaudRate(abaudrate : int) -> bool:
 	return true
 endfunc
 
-function OHwUart_impl.TrySendByte(ach : byte) -> bool:
+func OHwUart_impl.TrySendByte(ach : byte) -> bool:
 	use *
   #ifdef @.USART_ISR_TXE
 	if regs.ISR & USART_ISR_TXE == 0:
@@ -246,7 +246,7 @@ function OHwUart_impl.TrySendByte(ach : byte) -> bool:
 	return true
 endfunc
 
-function OHwUart_impl.TryRecvByte(rch : refout byte) -> bool:
+func OHwUart_impl.TryRecvByte(rch : refout byte) -> bool:
 	use *
   #ifdef @.USART_ISR_RXNE
 	if regs.ISR & USART_ISR_RXNE <> 0:
@@ -272,7 +272,7 @@ function OHwUart_impl.TryRecvByte(rch : refout byte) -> bool:
   #endif
 endfunc
 
-function OHwUart_impl.SendFinished() -> bool:
+func OHwUart_impl.SendFinished() -> bool:
 	use *
   #ifdef @.USART_ISR_TC
     // clear transfer complete flag, the flag is immediately set again if uart is idle

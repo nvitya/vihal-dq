@@ -3,45 +3,45 @@ use ^/core/pre/hwpins_pre  reexport
 
 object OGpioPin(OGpioPin_pre):
 
-    function Assign(aportnum : int, apinnum : int, ainvert : bool):
+    func Assign(aportnum : int, apinnum : int, ainvert : bool):
         portnum  = aportnum
         pinnum   = apinnum
         inverted = ainvert
     endfunc
 
-    function *Create()  [[overload]]:
+    func *Create()  [[overload]]:
     endfunc
 
-    function *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]:
+    func *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]:
         Assign(aportnum, apinnum, ainvert)
     endfunc
 
-    function Setup(flags : uint) -> bool:
+    func Setup(flags : uint) -> bool:
         return false
     endfunc
 
-	function Set1():
+	func Set1():
     endfunc
 
-	function Set0():
+	func Set0():
     endfunc
 
-	function SetTo(value : uint):
+	func SetTo(value : uint):
     endfunc
 
-	function Value() -> byte:
+	func Value() -> byte:
         return 0
     endfunc
 
-	function OutValue() -> byte:
+	func OutValue() -> byte:
         return 0
     endfunc
-endobj
+endobject
 
-function GpioPortEnable(aportnum : int) -> bool:
+func GpioPortEnable(aportnum : int) -> bool:
     return false
 endfunc
 
-function PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
+func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
     return false
 endfunc

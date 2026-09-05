@@ -89,7 +89,7 @@ object OGpioPin_pre:
 	pinnum   : byte = 0xFF
 	portnum  : byte = 0xFF
 	inverted : bool = false
-endobj
+endobject
 
 // This suits almost all MCU families
 
@@ -103,21 +103,21 @@ object OGpioPin_common(OGpioPin_pre):
     clrbitvalue  : uint32
     getbitshift  : uint32
 
-    function InitDummy()
+    func InitDummy()
 
-    function *Create():
+    func *Create():
         InitDummy()
     endfunc
 
-	function Set1()  [[inline]]:
+	func Set1()  [[inline]]:
         setbitptr^ = setbitvalue
     endfunc
 
-	function Set0()  [[inline]]:
+	func Set0()  [[inline]]:
         clrbitptr^ = clrbitvalue
     endfunc
 
-	function SetTo(value : uint)  [[inline]]:
+	func SetTo(value : uint)  [[inline]]:
         if value & 1 <> 0:
             Set1()
         else:
@@ -125,20 +125,20 @@ object OGpioPin_common(OGpioPin_pre):
         endif
     endfunc
 
-	function Value() -> byte:
+	func Value() -> byte:
         return (getbitptr^ >> getbitshift) & 1
     endfunc
 
-	function OutValue() -> byte:
+	func OutValue() -> byte:
         return (getoutbitptr^ >> getbitshift) & 1
     endfunc
-endobj
+endobject
 
 implementation
 
 var hwpinctrl_dummy : uint = 0
 
-function OGpioPin_common.InitDummy():
+func OGpioPin_common.InitDummy():
     use .
     // Initialize the pointers with harmless target
     setbitptr = %hwpinctrl_dummy

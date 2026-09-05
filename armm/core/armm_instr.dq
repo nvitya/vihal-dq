@@ -4,23 +4,23 @@
 // VIHAL Definitions
 //-----------------------------------------------------------------------------
 
-function McuInterrupts_Disable()  [[inline, asm]]:
+func McuInterrupts_Disable()  [[inline, asm]]:
     cpsid  i
     [[clobber(memory)]]
 endfunc
 
-function McuInterrupts_Enable()  [[inline, asm]]:
+func McuInterrupts_Enable()  [[inline, asm]]:
     cpsie  i
     [[clobber(memory)]]
 endfunc
 
-function McuInterrupts_SaveAndDisable() -> uint32  [[inline, asm]]:
+func McuInterrupts_SaveAndDisable() -> uint32  [[inline, asm]]:
     MRS    $result, primask
     cpsid  i
     [[clobber(memory)]]
 endfunc
 
-function McuInterrupts_Restore(prevstate : uint32)  [[inline, asm]]:
+func McuInterrupts_Restore(prevstate : uint32)  [[inline, asm]]:
     MSR    primask, $prevstate
     [[clobber(memory)]]
 endfunc
@@ -30,32 +30,32 @@ endfunc
 //-----------------------------------------------------------------------------
 
 // No Operation does nothing. This instruction can be used for code alignment purposes.
-function __NOP()  [[inline, asm]]:
+func __NOP()  [[inline, asm]]:
     nop
 endfunc
 
 // Wait For Interrupt is a hint instruction that suspends execution until one of a number of events occurs.
-function __WFI()  [[inline, asm]]:
+func __WFI()  [[inline, asm]]:
     wfi
     [[clobber(memory)]]
 endfunc
 
 // Wait For Event is a hint instruction that permits the processor to enter
 // a low-power state until one of a number of events occurs.
-function __WFE()  [[inline, asm]]:
+func __WFE()  [[inline, asm]]:
     wfe
     [[clobber(memory)]]
 endfunc
 
 // Send Event is a hint instruction. It causes an event to be signaled to the CPU.
-function __SEV()  [[inline, asm]]:
+func __SEV()  [[inline, asm]]:
     sev
 endfunc
 
 // Data Synchronization Barrier
 // Acts as a special kind of Data Memory Barrier.
 // It completes when all explicit memory accesses before this instruction complete.
-function __DSB()  [[inline, asm]]:
+func __DSB()  [[inline, asm]]:
     dsb    0xF
     [[clobber(memory)]]
 endfunc
@@ -64,7 +64,7 @@ endfunc
 // Instruction Synchronization Barrier flushes the pipeline in the processor,
 // so that all instructions following the ISB are fetched from cache or memory,
 // after the instruction has been completed.
-function __ISB()  [[inline, asm]]:
+func __ISB()  [[inline, asm]]:
     isb    0xF
     [[clobber(memory)]]
 endfunc
@@ -72,23 +72,23 @@ endfunc
 // Data Memory Barrier
 // Ensures the apparent order of the explicit memory operations before
 // and after the instruction, without ensuring their completion.
-function __DMB()  [[inline, asm]]:
+func __DMB()  [[inline, asm]]:
     dmb    0xF
     [[clobber(memory)]]
 endfunc
 
 // Reverses the byte order in unsigned integer value. For example, 0x12345678 becomes 0x78563412.
-function __REV(value : uint32) -> uint32 [[inline, asm]]:
+func __REV(value : uint32) -> uint32 [[inline, asm]]:
     rev    $result, $value
 endfunc
 
 // Reverses the bit order of the given value.
-function __RBIT(value : uint32) -> uint32 [[inline, asm]]:
+func __RBIT(value : uint32) -> uint32 [[inline, asm]]:
     rbit   $result, $value
 endfunc
 
 // Counts the number of leading zeros of a data value.
-function __CLZ(value : uint32) -> uint32  [[inline, asm]]:
+func __CLZ(value : uint32) -> uint32  [[inline, asm]]:
     clz    $result, $value
 endfunc
 

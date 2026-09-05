@@ -2,13 +2,13 @@
 
 use ^/core/pre/hwclk_pre  reexport
 
-function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool
+func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool
 
 implementation
 
 use ^/platform
 
-function StartExcOscillator(aextspeed : uint):
+func StartExcOscillator(aextspeed : uint):
     var crreg : uint = RCC.CR
     #ifdef @.RCC_CR_HSEBYP
         if aextspeed & HWCLK_EXTCLK_BYPASS <> 0:
@@ -26,7 +26,7 @@ endfunc
 
 #if Defined(@.MCUSF_F0) or Defined(@.MCUSF_L0)
 
-function PrepareHiSpeed(acpuspeed : uint):
+func PrepareHiSpeed(acpuspeed : uint):
     // Enable Prefetch Buffer and set Flash Latency
     #ifdef @.FLASH_ACR_PRFTBE
         FLASH.ACR = FLASH_ACR_PRFTBE | FLASH_ACR_LATENCY
@@ -37,7 +37,7 @@ endfunc
 
 #elif Defined(@.MCUSF_F7)
 
-function PrepareHiSpeed(acpuspeed : uint):
+func PrepareHiSpeed(acpuspeed : uint):
     RCC.APB1ENR |= RCC_APB1ENR_PWREN  // Enable Power Control clock
 
     // The voltage scaling allows optimizing the power consumption when the
@@ -68,7 +68,7 @@ endfunc
     #error "PrepareHiSpeed() is not implmented for this MCU sub-family"
 #endif
 
-function IsDivisble(anum : uint, adivisor : uint) -> bool:
+func IsDivisble(anum : uint, adivisor : uint) -> bool:
     var res : uint = anum div adivisor
     return res * adivisor == anum
 endfunc
@@ -77,7 +77,7 @@ endfunc
 #if Defined(@.MCUSF_F7)
 //---------------------------------------------------------------------------------------------------------------------------
 
-function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
+func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
 
     // select the HSI as clock source (required if this is called more times)
 
@@ -179,7 +179,7 @@ endfunc
 #elif Defined(@.MCUSF_F0) or Defined(@.MCUSF_L0)
 //---------------------------------------------------------------------------------------------------------------------------
 
-function HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
+func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
 
     // select the HSI as clock source (required if this is called more times)
 

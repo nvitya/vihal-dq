@@ -1,101 +1,101 @@
 use ^/platform
 
-type FVectorTableEntry = function()
+type FVectorTableEntry = func()
 
 var __stack : uint  [[external('__stack')]]  // from the linker script
 
-function soft_entry()  [[external('soft_entry')]]
-function cold_entry()  [[external('cold_entry')]]
+func soft_entry()  [[external('soft_entry')]]
+func cold_entry()  [[external('cold_entry')]]
 
-function NMI_Handler() [[cexport, weak]]:
+func NMI_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function HardFault_Handler() [[cexport, weak]]:
+func HardFault_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function MemManage_Handler() [[cexport, weak]]:
+func MemManage_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function BusFault_Handler() [[cexport, weak]]:
+func BusFault_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function UsageFault_Handler() [[cexport, weak]]:
+func UsageFault_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function SVC_Handler() [[cexport, weak]]:
+func SVC_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function DebugMon_Handler() [[cexport, weak]]:
+func DebugMon_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function PendSV_Handler() [[cexport, weak]]:
+func PendSV_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function SysTick_Handler() [[cexport, weak]]:
+func SysTick_Handler() [[cexport, weak]]:
     while true:
       // nop
     endwhile
 endfunc
 
-function IRQ_Handler_00()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_01()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_02()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_03()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_04()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_05()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_06()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_07()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_08()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_09()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_00()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_01()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_02()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_03()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_04()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_05()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_06()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_07()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_08()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_09()  [[cexport, weak]]:  while true: endwhile  endfunc
 
-function IRQ_Handler_10()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_11()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_12()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_13()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_14()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_15()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_16()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_17()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_18()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_19()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_10()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_11()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_12()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_13()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_14()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_15()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_16()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_17()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_18()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_19()  [[cexport, weak]]:  while true: endwhile  endfunc
 
-function IRQ_Handler_20()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_21()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_22()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_23()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_24()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_25()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_26()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_27()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_28()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_29()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_20()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_21()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_22()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_23()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_24()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_25()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_26()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_27()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_28()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_29()  [[cexport, weak]]:  while true: endwhile  endfunc
 
-function IRQ_Handler_30()  [[cexport, weak]]:  while true: endwhile  endfunc
-function IRQ_Handler_31()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_30()  [[cexport, weak]]:  while true: endwhile  endfunc
+func IRQ_Handler_31()  [[cexport, weak]]:  while true: endwhile  endfunc
 
 [[cexport, section('.isr_vector'), align(1024)]]
 const armm_vector_table : [16 + 32] FVectorTableEntry =
@@ -109,13 +109,13 @@ const armm_vector_table : [16 + 32] FVectorTableEntry =
     MemManage_Handler,             // offset = 0x10
     BusFault_Handler,
     UsageFault_Handler,
-    null,                          // offset = 0x1C, Valid user code checksum for NXP
-    null,                          // offset = 0x20, Reserved
-    null,                          // offset = 0x24, NXP boot marker
-    null,                          // offset = 0x28, NXP boot block offset
+    nil,                          // offset = 0x1C, Valid user code checksum for NXP
+    nil,                          // offset = 0x20, Reserved
+    nil,                          // offset = 0x24, NXP boot marker
+    nil,                          // offset = 0x28, NXP boot block offset
     SVC_Handler,
     DebugMon_Handler,
-    null,                          // reserved
+    nil,                          // reserved
     PendSV_Handler,
     SysTick_Handler,
 
@@ -157,7 +157,7 @@ const armm_vector_table : [16 + 32] FVectorTableEntry =
     IRQ_Handler_31
 ]
 
-function ArmmVectorTableInit()  [[inline]]:
+func ArmmVectorTableInit()  [[inline]]:
     #if not FirstBool(SCB_NO_VTOR, false)
         SCB.VTOR = uint(%armm_vector_table[0])
     #endif

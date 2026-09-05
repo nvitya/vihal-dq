@@ -11,4 +11,4 @@ object OHwUart_pre:
 
 	//THwDmaChannel *      txdma = nullptr;
 	//THwDmaChannel *      rxdma = nullptr;
-endobj
+endobject

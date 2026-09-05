@@ -2,44 +2,44 @@ use ^/core/pre/hwuart_pre  reexport
 
 object OHwUart_impl:
 
-	function Init(adevnum : int) -> bool:
+	func Init(adevnum : int) -> bool:
         return false
     endfunc
 
-	function TrySendChar(ach : byte) -> bool:
+	func TrySendChar(ach : byte) -> bool:
         return false
     endfunc
 
-	function TryRecvChar(rch : refout byte):
+	func TryRecvChar(rch : refout byte):
         return false
     endfunc
 
-	function SendFinished() -> bool:
+	func SendFinished() -> bool:
         return true
     endfunc
 
-	function SetTransmit(atransmit : bool):  // for single wire mode only
+	func SetTransmit(atransmit : bool):  // for single wire mode only
     endfunc
 
     // Dma
 /*
-	function DmaAssign(istx : bool, admach : ^OHwDmaChannel):
+	func DmaAssign(istx : bool, admach : ^OHwDmaChannel):
     endfunc
 
-	function DmaStartSend(THwDmaTransfer * axfer) -> bool:
+	func DmaStartSend(THwDmaTransfer * axfer) -> bool:
         return false
     endfunc
 
-	function DmaStartRecv(THwDmaTransfer * axfer) -> bool:
+	func DmaStartRecv(THwDmaTransfer * axfer) -> bool:
         return false
     endfunc
 
-	function DmaSendCompleted() -> bool:
+	func DmaSendCompleted() -> bool:
         return true
     endfunc
 
-	function DmaRecvCompleted() -> bool:
+	func DmaRecvCompleted() -> bool:
         return false
     endfunc
 */
-endobj
+endobject

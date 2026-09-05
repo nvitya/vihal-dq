@@ -1,11 +1,11 @@
 use ^/platform
 
-function ClockCntInit()
+func ClockCntInit()
 
 #ifdef @.CPU_ARMM
 	#if __CORTEX_M >= 3
 
-		function ClockCnt() -> uint32  [[inline]]:
+		func ClockCnt() -> uint32  [[inline]]:
 			return DWT.CYCCNT
 		endfunc
 	#else
@@ -14,7 +14,7 @@ function ClockCntInit()
 		var clockcnt32_high : uint32
 		var last_clockcnt16 : uint16
 
-		function ClockCnt() -> uint32  [[inline]]:
+		func ClockCnt() -> uint32  [[inline]]:
 			var t0 : uint16 = #{ifdef @.TIM14} TIM14.CNT #{else} TIM21.CNT #{endif}
 			if t0 < last_clockcnt16:
 				clockcnt32_high += 0x10000
@@ -30,7 +30,7 @@ implementation
 
 #if __CORTEX_M >= 3
 
-	function ClockCntInit():
+	func ClockCntInit():
 		CoreDebug.DEMCR |= CoreDebug_DEMCR_TRCENA_Msk
 		#ifdef @.CPU_ARM_M7F
 			DWT.LAR  = 0xC5ACCE55	// this is requied for Cortex M7
@@ -40,7 +40,7 @@ implementation
 
 #else  // Cortex-M0
 
-	function ClockCntInit():
+	func ClockCntInit():
 
 		#ifdef @.TIM14
 			#ifdef @.RCC_APBENR2_TIM14EN

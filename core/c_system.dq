@@ -1,20 +1,20 @@
 
-function _sbrk(incr : int) -> uint                                [[cexport, weak]]
+func _sbrk(incr : int) -> uint                                [[cexport, weak, used]]
 
-function _getpid() -> int                                         [[cexport, weak]]
-function _kill(pid : int, sig : int) -> int                       [[cexport, weak]]
-function _exit(status : int)                                      [[cexport, weak]]
-function _open(name : ^char, flags : int, mode : int) -> int      [[cexport, weak]]
-function _lseek(file : int, offset : int, whence : int) -> int    [[cexport, weak]]
-function _lseek_r(file : int, offset : int, whence : int) -> int  [[cexport, weak]]
-function _read(file : int, ptr : ^byte, len : int) -> int         [[cexport, weak]]
-function _read_r(file : int, ptr : ^byte, len : int) -> int       [[cexport, weak]]
-function _write(file : int, buf : ^byte, nbytes : int) -> int     [[cexport, weak]]
-function _write_r(file : int, buf : ^byte, nbytes : int) -> int   [[cexport, weak]]
-function _close() -> int                                          [[cexport, weak]]
-function _close_r() -> int                                        [[cexport, weak]]
-function _wait(status : ^int) -> int                              [[cexport, weak]]
-function __throw_out_of_range_fmt(fmt : ^char, arg1 : int)        [[export('_ZSt24__throw_out_of_range_fmtPKcz'), weak]]
+func _getpid() -> int                                         [[cexport, weak, used]]
+func _kill(pid : int, sig : int) -> int                       [[cexport, weak, used]]
+func _exit(status : int)                                      [[cexport, weak, used]]
+func _open(name : ^char, flags : int, mode : int) -> int      [[cexport, weak]]
+func _lseek(file : int, offset : int, whence : int) -> int    [[cexport, weak]]
+func _lseek_r(file : int, offset : int, whence : int) -> int  [[cexport, weak]]
+func _read(file : int, ptr : ^byte, len : int) -> int         [[cexport, weak]]
+func _read_r(file : int, ptr : ^byte, len : int) -> int       [[cexport, weak]]
+func _write(file : int, buf : ^byte, nbytes : int) -> int     [[cexport, weak]]
+func _write_r(file : int, buf : ^byte, nbytes : int) -> int   [[cexport, weak]]
+func _close() -> int                                          [[cexport, weak]]
+func _close_r() -> int                                        [[cexport, weak]]
+func _wait(status : ^int) -> int                              [[cexport, weak]]
+func __throw_out_of_range_fmt(fmt : ^char, arg1 : int)        [[export('_ZSt24__throw_out_of_range_fmtPKcz'), weak]]
 
 implementation
 
@@ -25,13 +25,13 @@ var __stack     : byte  [[external]]  // end of the RAM (where the zero size sta
 var _Heap_Limit : byte  [[external]]  // end of the RAM available for heap (where the maximal size stack begins), defined in the linker script
 
 var system_heap_size    : uint = 0
-var system_heap_end_ptr : ^byte = null  // actual end of the RAM used as heap
+var system_heap_end_ptr : ^byte = nil  // actual end of the RAM used as heap
 
-function _sbrk(incr : int) -> uint  [[cexport, weak]]:
+func _sbrk(incr : int) -> uint  [[cexport, weak]]:
     var sys_heap_limit : ^byte = %_Heap_Limit
 
     var chunk_begin : ^byte = system_heap_end_ptr
-    if chunk_begin == null:
+    if chunk_begin == nil:
         chunk_begin = %__end
     endif
 
@@ -47,62 +47,62 @@ function _sbrk(incr : int) -> uint  [[cexport, weak]]:
     return uint(chunk_begin)
 endfunc
 
-function __throw_out_of_range_fmt(fmt : ^char, arg1 : int) [[export('_ZSt24__throw_out_of_range_fmtPKcz'), weak]]:
+func __throw_out_of_range_fmt(fmt : ^char, arg1 : int) [[export('_ZSt24__throw_out_of_range_fmtPKcz'), weak]]:
     while true: // this C++ exception helper must not return
     endwhile
 endfunc
 
-function _getpid() -> int  [[cexport, weak]]:
+func _getpid() -> int  [[cexport, weak, used]]:
     return 1
 endfunc
 
-function _kill(pid : int, sig : int) -> int  [[cexport, weak]]:
+func _kill(pid : int, sig : int) -> int  [[cexport, weak, used]]:
     errno = 22   // EINVAL
     return -1
 endfunc
 
-function _exit(status : int)  [[cexport, weak]]:
+func _exit(status : int)  [[cexport, weak, used]]:
     while true: // stop here
     endwhile
 endfunc
 
-function _open(name : ^char, flags : int, mode : int) -> int  [[cexport, weak]]:
+func _open(name : ^char, flags : int, mode : int) -> int  [[cexport, weak]]:
     return -1
 endfunc
 
-function _lseek(file : int, offset : int, whence : int) -> int  [[cexport, weak]]:
+func _lseek(file : int, offset : int, whence : int) -> int  [[cexport, weak]]:
     return -1
 endfunc
 
-function _lseek_r(file : int, offset : int, whence : int) -> int  [[cexport, weak]]:
+func _lseek_r(file : int, offset : int, whence : int) -> int  [[cexport, weak]]:
     return -1
 endfunc
 
-function _read(file : int, ptr : ^byte, len : int) -> int  [[cexport, weak]]:
+func _read(file : int, ptr : ^byte, len : int) -> int  [[cexport, weak]]:
     return 0
 endfunc
 
-function _read_r(file : int, ptr : ^byte, len : int) -> int  [[cexport, weak]]:
+func _read_r(file : int, ptr : ^byte, len : int) -> int  [[cexport, weak]]:
     return 0
 endfunc
 
-function _write(file : int, buf : ^byte, nbytes : int) -> int  [[cexport, weak]]:
+func _write(file : int, buf : ^byte, nbytes : int) -> int  [[cexport, weak]]:
     return 0
 endfunc
 
-function _write_r(file : int, buf : ^byte, nbytes : int) -> int  [[cexport, weak]]:
+func _write_r(file : int, buf : ^byte, nbytes : int) -> int  [[cexport, weak]]:
     return 0
 endfunc
 
-function _close() -> int  [[cexport, weak]]:
+func _close() -> int  [[cexport, weak]]:
     return -1
 endfunc
 
-function _close_r() -> int  [[cexport, weak]]:
+func _close_r() -> int  [[cexport, weak]]:
     return -1
 endfunc
 
-function _wait(status : ^int) -> int  [[cexport, weak]]:
+func _wait(status : ^int) -> int  [[cexport, weak]]:
     return -1
 endfunc
 
