@@ -13,7 +13,7 @@ use board      reexport  // the project must define this !
     use ^/armm/core/core_cm33            reexport
   #elifdef CPU_ARM_M4
     use ^/armm/core/core_cm4             reexport
-  #elifdef @.CPU_ARM_M3
+  #elifdef CPU_ARM_M3
     use ^/armm/core/core_cm3             reexport
   #elifdef CPU_ARM_M0PLUS
     use ^/armm/core/core_cm0p            reexport

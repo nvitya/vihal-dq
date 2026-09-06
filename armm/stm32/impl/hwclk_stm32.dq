@@ -10,7 +10,7 @@ use ^/platform
 
 func StartExcOscillator(aextspeed : uint):
     var crreg : uint = RCC.CR
-    #ifdef @.RCC_CR_HSEBYP
+    #ifdef RCC_CR_HSEBYP
         if aextspeed & HWCLK_EXTCLK_BYPASS <> 0:
             crreg |= RCC_CR_HSEBYP
             RCC.CR = crreg
@@ -28,7 +28,7 @@ endfunc
 
 func PrepareHiSpeed(acpuspeed : uint):
     // Enable Prefetch Buffer and set Flash Latency
-    #ifdef @.FLASH_ACR_PRFTBE
+    #ifdef FLASH_ACR_PRFTBE
         FLASH.ACR = FLASH_ACR_PRFTBE | FLASH_ACR_LATENCY
     #else
         FLASH.ACR = FLASH_ACR_LATENCY | FLASH_ACR_PRFTEN
@@ -166,7 +166,7 @@ func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
         // wait until it is set
     endwhile
 
-    #ifdef @.MCUSF_F7
+    #ifdef MCUSF_F7
         RCC.DCKCFGR2 &= ~ (RCC_DCKCFGR2_CK48MSEL) // select the 48 MHz from the PLL
     #endif
 
@@ -261,7 +261,7 @@ func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
         if external_clock_hz <> 0:
             cfgr |= (RCC_CFGR_PLLSRC_HSE_PREDIV | RCC_CFGR_PLLXTPRE_HSE_PREDIV_DIV1)
         else:
-            #ifdef @.RCC_CFGR_PLLSRC_HSI_DIV2
+            #ifdef RCC_CFGR_PLLSRC_HSI_DIV2
                 cfgr |= RCC_CFGR_PLLSRC_HSI_DIV2
             #else
                 cfgr |= RCC_CFGR_PLLSRC_HSI_PREDIV

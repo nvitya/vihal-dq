@@ -15,7 +15,7 @@ func ClockCntInit()
 		var last_clockcnt16 : uint16
 
 		func ClockCnt() -> uint32  [[inline]]:
-			var t0 : uint16 = #{ifdef @.TIM14} TIM14.CNT #{else} TIM21.CNT #{endif}
+			var t0 : uint16 = #{ifdef TIM14} TIM14.CNT #{else} TIM21.CNT #{endif}
 			if t0 < last_clockcnt16:
 				clockcnt32_high += 0x10000
 			endif
@@ -34,12 +34,12 @@ func ClockCntInit()
 
 implementation
 
-#ifdef CPU_ARM
+#ifdef CPU_ARMM
   #if __CORTEX_M >= 3
 
 	func ClockCntInit():
 		CoreDebug.DEMCR |= CoreDebug_DEMCR_TRCENA_Msk
-		#ifdef @.CPU_ARM_M7F
+		#ifdef CPU_ARM_M7F
 			DWT.LAR  = 0xC5ACCE55	// this is requied for Cortex M7
 		#endif
 		DWT.CTRL |= 1
@@ -49,8 +49,8 @@ implementation
 
 	func ClockCntInit():
 
-		#ifdef @.TIM14
-			#ifdef @.RCC_APBENR2_TIM14EN
+		#ifdef TIM14
+			#ifdef RCC_APBENR2_TIM14EN
 				RCC.APBENR2 |= RCC_APBENR2_TIM14EN
 			#else
 				RCC.APB1ENR |= RCC_APB1ENR_TIM14EN

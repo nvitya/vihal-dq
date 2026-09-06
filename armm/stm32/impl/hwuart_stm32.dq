@@ -29,19 +29,19 @@ implementation
 use ./stm32_utils
 
 const(uint):
-  #ifdef @.RCC_APB1ENR1_USART2EN
+  #ifdef RCC_APB1ENR1_USART2EN
     RCC_APB1ENR_USART2EN = RCC_APB1ENR1_USART2EN
     RCC_APB1ENR_USART3EN = RCC_APB1ENR1_USART3EN
     RCC_APB1ENR_UART4EN  = RCC_APB1ENR1_UART4EN
     RCC_APB1ENR_UART5EN  = RCC_APB1ENR1_UART5EN
-  #elifdef @.RCC_APBENR1_USART2EN
+  #elifdef RCC_APBENR1_USART2EN
     RCC_APB2ENR_USART1EN  = RCC_APBENR2_USART1EN
     RCC_APB1ENR_USART2EN  = RCC_APBENR1_USART2EN
     RCC_APB1ENR_USART3EN  = RCC_APBENR1_USART3EN
     RCC_APB1ENR_USART5EN  = RCC_APBENR1_USART5EN
     RCC_APB1ENR_USART6EN  = RCC_APBENR1_USART6EN
     RCC_APB1ENR_LPUART1EN = RCC_APBENR1_LPUART1EN
-  #elifdef @.RCC_APB1LENR_USART2EN
+  #elifdef RCC_APB1LENR_USART2EN
     RCC_APB1ENR_USART2EN  = RCC_APB1LENR_USART2EN
     RCC_APB1ENR_USART3EN  = RCC_APB1LENR_USART3EN
     RCC_APB1ENR_UART4EN   = RCC_APB1LENR_UART4EN
@@ -60,53 +60,53 @@ func OHwUart_impl.Init(adevnum : int) -> bool:
 	regs = nil
 
 	if 0x101 == devnum  #{ifndef @.USART1_BASE}  or 1 == devnum  #{endif} :
-	#ifdef @.LPUART1_BASE
+	#ifdef LPUART1_BASE
     	regs = ^USART_TypeDef(LPUART1_BASE)
-	  #ifdef @.RCC_APB1ENR2_LPUART1EN
+	  #ifdef RCC_APB1ENR2_LPUART1EN
 		RCC.APB1ENR2 |= RCC_APB1ENR2_LPUART1EN
 	  #else
-       #ifdef @.RCC_APB4ENR_LPUART1EN
+       #ifdef RCC_APB4ENR_LPUART1EN
         RCC.APB4ENR |= RCC_APB4ENR_LPUART1EN
        #else
         APB1ENR_REGISTER |= RCC_APB1ENR_LPUART1EN
        #endif
 	  #endif
 	#endif // LPUART1 defined
-  #ifdef @.USART1_BASE
+  #ifdef USART1_BASE
 	elif 1 == devnum:
         regs = ^USART_TypeDef(USART1_BASE)
         APB2ENR_REGISTER^ |= RCC_APB2ENR_USART1EN
         busid = STM32_BUSID_APB2
   #endif
-  #ifdef @.USART2_BASE
+  #ifdef USART2_BASE
 	elif 2 == devnum:
 		regs = ^USART_TypeDef(USART2_BASE)
 		APB1ENR_REGISTER^ |= RCC_APB1ENR_USART2EN
   #endif
-  #ifdef @.USART3_BASE
+  #ifdef USART3_BASE
 	elif 3 == devnum:
 		regs = ^USART_TypeDef(USART3_BASE)
 		APB1ENR_REGISTER^ |= RCC_APB1ENR_USART3EN
   #endif
-  #ifdef @.UART4_BASE
+  #ifdef UART4_BASE
 	elif 4 == devnum:
 		regs = ^USART_TypeDef(UART4_BASE)
 		APB1ENR_REGISTER^ |= RCC_APB1ENR_UART4EN
   #endif
-  #ifdef @.UART5_BASE
+  #ifdef UART5_BASE
 	elif 5 == devnum:
 		regs = ^USART_TypeDef(UART5_BASE)
 		APB1ENR_REGISTER^ |= RCC_APB1ENR_UART5EN
   #endif
-  #ifdef @.USART5_BASE
+  #ifdef USART5_BASE
 	elif 5 == devnum:
 		regs = ^USART_TypeDef(USART5_BASE)
 		APB1ENR_REGISTER^ |= RCC_APB1ENR_USART5EN
   #endif
-  #ifdef @.USART6_BASE
+  #ifdef USART6_BASE
 	elif 6 == devnum:
 		regs = ^USART_TypeDef(USART6_BASE)
-      #ifdef @.RCC_APBENR1_USART6EN
+      #ifdef RCC_APBENR1_USART6EN
 	    APB1ENR_REGISTER^ |= RCC_APBENR1_USART6EN
 	  #else
 		RCC.APB2ENR |= RCC_APB2ENR_USART6EN
@@ -156,7 +156,7 @@ func OHwUart_impl.Init(adevnum : int) -> bool:
 	cr1 &= ~((1 << 28) | (1 << 12))
 	cr1 |= ((code & 1) << 12) | (((code >> 1) & 1) << 28)
 
-  #ifdef @.USART_CR1_FIFOEN
+  #ifdef USART_CR1_FIFOEN
     cr1 |= USART_CR1_FIFOEN
   #endif
 
@@ -164,7 +164,7 @@ func OHwUart_impl.Init(adevnum : int) -> bool:
 	cr1 |= USART_CR1_TE | USART_CR1_RE
 
 	// disable LIN and CLK out
-  #ifdef @.USART_CR2_LINEN
+  #ifdef USART_CR2_LINEN
     cr2 &= ~(USART_CR2_LINEN | USART_CR2_CLKEN)
     // disable hadware flow control and others:
     regs.CR3 &= ~(USART_CR3_RTSE | USART_CR3_CTSE | USART_CR3_SCEN | USART_CR3_HDSEL | USART_CR3_IREN)
@@ -174,7 +174,7 @@ func OHwUart_impl.Init(adevnum : int) -> bool:
     regs.CR3 &= ~(USART_CR3_RTSE | USART_CR3_CTSE | USART_CR3_HDSEL)
   #endif
 
-    #ifdef @.USART_PRESC_PRESCALER
+    #ifdef USART_PRESC_PRESCALER
         regs.PRESC = 0 // do not divide the input clock
     #endif
 
@@ -227,12 +227,12 @@ endfunc
 
 func OHwUart_impl.TrySendByte(ach : byte) -> bool:
 	use *
-  #ifdef @.USART_ISR_TXE
+  #ifdef USART_ISR_TXE
 	if regs.ISR & USART_ISR_TXE == 0:
 		return false
 	endif
 	regs.TDR = ach
-  #elifdef @.USART_ISR_TXE_TXFNF
+  #elifdef USART_ISR_TXE_TXFNF
 	if regs.ISR & USART_ISR_TXE_TXFNF == 0:
 		return false
 	endif
@@ -248,14 +248,14 @@ endfunc
 
 func OHwUart_impl.TryRecvByte(rch : refout byte) -> bool:
 	use *
-  #ifdef @.USART_ISR_RXNE
+  #ifdef USART_ISR_RXNE
 	if regs.ISR & USART_ISR_RXNE <> 0:
 		rch = regs.RDR
 		return true
 	else:
 		return false
 	endif
-  #elifdef @.USART_ISR_RXNE_RXFNE
+  #elifdef USART_ISR_RXNE_RXFNE
 	if regs.ISR & USART_ISR_RXNE_RXFNE <> 0:
 		rch = regs.RDR
 		return true
@@ -274,7 +274,7 @@ endfunc
 
 func OHwUart_impl.SendFinished() -> bool:
 	use *
-  #ifdef @.USART_ISR_TC
+  #ifdef USART_ISR_TC
     // clear transfer complete flag, the flag is immediately set again if uart is idle
     regs.ICR = USART_ICR_CTSCF
 
