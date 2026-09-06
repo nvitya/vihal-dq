@@ -171,7 +171,7 @@ func OGpioPin.*Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload
 endfunc
 
 func OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
-    use .
+    use *
     portnum  = aportnum
     pinnum   = apinnum
     inverted = ainvert
@@ -201,9 +201,9 @@ func OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
 endfunc
 
 func OGpioPin.Setup(flags : uint) -> bool:
-    use .
-	if inverted:
-	  flags |= @.PINCFG_GPIO_INVERT
+    use *
+	  if inverted:
+	      flags |= PINCFG_GPIO_INVERT
     endif
-	return PinSetup(portnum, pinnum, flags)
+	  return PinSetup(portnum, pinnum, flags)
 endfunc

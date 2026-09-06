@@ -1,0 +1,205 @@
+use ^/core/pre/hwpins_pre  reexport
+
+func GpioPortEnable(aportnum : int) -> bool
+func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool
+func PadSetup(apadnum : uint, iomuxidx : uint, flags : uint) -> bool
+func PadInput(apadnum : int, in_iomuxidx : uint) -> bool
+
+object OGpioPin(OGpioPin_common):
+
+    func *Create()  [[overload]]
+    func *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]
+
+    func Assign(aportnum : int, apinnum : int, ainvert : bool)
+    func Setup(flags : uint) -> bool
+
+    func Toggle()
+    func SwitchDirection(adirection : int)
+
+endobject
+
+implementation
+
+use ^/platform
+
+func PadSetup(apadnum : uint, iomuxidx : uint, flags : uint) -> bool:
+
+    if apadnum < 0  or apadnum >= ESP_GPIO_COUNT:
+      return false
+    endif
+
+    // port power control is not necessary ?
+
+    // 1. prepare pad configuration
+
+    var padcfg : uint = (0
+      | (1  << 15)  // FILTER_EN: 1 = enable filter for the input signals
+      | (0  << 12)  // MCU_SEL(3): function select
+      | (0  << 10)  // FUN_DRV(2): drive strength
+      | (1  <<  9)  // FUN_IE: 1 = input enable
+      | (0  <<  8)  // FUN_WPU: 1 = internal pull-up
+      | (0  <<  7)  // FUN_WPD: 1 = internal pull-down
+      | (0  <<  4)  // MCU_IE: 1 = input enable in sleep mode
+      | (0  <<  3)  // MCU_WPU: 1 = pull-up in sleep mode
+      | (0  <<  2)  // MCU_WPD: 1 = pull-down in sleep mode
+      | (0  <<  1)  // SLP_SEL: 1 = put the pad in sleep mode
+      | (0  <<  0)  // MCU_OE: 1 = enable output in sleep mode
+    )
+
+    if flags & (PINCFG_DRIVE_STRONG | PINCFG_SPEED_FAST) <> 0:
+        padcfg |= (3 << 10)
+    elif flags & PINCFG_DRIVE_WEAK <> 0:
+        padcfg |= (0 << 10)
+    else:
+        padcfg |= (2 << 10)
+    endif
+
+    if flags & PINCFG_PULLUP <> 0:
+        padcfg |= (1 << 8)
+    endif
+
+    if flags & PINCFG_PULLDOWN <> 0:
+        padcfg |= (1 << 7)
+    endif
+
+    if flags & PINCFG_AF_MASK <> 0:
+        padcfg |= (((flags >> PINCFG_AF_SHIFT) & 7) << 12)  // only 7 functions are supported here !
+    else:
+        padcfg |= (1 << 12)  // 1 = GPIO function
+
+        if 0 == (flags & PINCFG_OUTPUT)  and iomuxidx <= 127:
+            PadInput(apadnum, iomuxidx)
+        endif
+    endif
+
+    IO_MUX.CFG[apadnum] = padcfg
+
+    // 2. GPIO PIN configuration (open-drain)
+
+    var pincfg : uint = GPIO.PIN[apadnum]
+    if flags & PINCFG_OPENDRAIN <> 0:
+        pincfg |= (1 << 2) // PAD_DRIVER = 1: open drain
+    else:
+        pincfg &= ~(1 << 2) // 0 = normal
+    endif
+    GPIO.PIN[apadnum] = pincfg
+
+    // route the GPIO output regs to the output PAD
+
+    if flags & PINCFG_OUTPUT <> 0:
+        GPIO.FUNC_OUT_SEL_CFG[apadnum] = (0
+          | (iomuxidx <<  0)  // OUT_SEL(8)
+          | (0    <<  8)  // INV_SEL
+          | (1    <<  9)  // OEN_SEL
+          | (0    << 10)  // OEN_INV_SEL
+        )
+    endif
+
+    // 3. GPIO configuration
+
+    var gpio_bit  : uint = apadnum & 0x1F
+    var gpio_mask : uint = 1 << gpio_bit
+
+    if flags & PINCFG_OUTPUT <> 0:
+        // set the output before enabling
+        if flags & PINCFG_GPIO_INIT_1 <> 0:
+            GPIO.OUT.SET = gpio_mask
+        else:
+            GPIO.OUT.CLR = gpio_mask
+        endif
+        GPIO.ENABLE.SET = gpio_mask
+    else:
+        GPIO.ENABLE.CLR = gpio_mask
+    endif
+
+    return true
+endfunc
+
+func PadInput(apadnum : int, in_iomuxidx : uint) -> bool:
+    if in_iomuxidx > 127:
+      return false
+    endif
+
+    var sel : uint
+    var sig_sel : uint
+    if apadnum < 0  or apadnum >= ESP_GPIO_COUNT:
+        sel = 0
+        sig_sel = 0
+    else:
+        sel = apadnum
+        sig_sel = 1
+    endif
+
+    GPIO.FUNC_IN_SEL_CFG[in_iomuxidx] = (0
+      | (sel     <<  0)  // IN_SEL(5)
+      | (0       <<  5)  // INV_SEL
+      | (sig_sel <<  6)  // SIG_IN_SEL
+    )
+
+    return true
+endfunc
+
+func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:  // pinnum = pad number, portnum is ignored
+    return PadSetup(apinnum, 0x80, flags)
+endfunc
+
+// GPIO Pin
+
+func OGpioPin.*Create()  [[overload]]:
+    inherited Create()
+endfunc
+
+func OGpioPin.*Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]:
+    inherited Create()
+    Assign(aportnum, apinnum, ainvert)
+endfunc
+
+func OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
+    use *
+    portnum  = aportnum
+    pinnum   = apinnum
+    inverted = ainvert
+
+    var regs :? = %(GPIO.OUT)
+
+    var gpio_mask : uint = (1 << (apinnum & 0x1F))
+
+    setbitvalue  = gpio_mask
+    clrbitvalue  = gpio_mask
+    getbitptr    = %(GPIO.IN)
+    getoutbitptr = %(regs.REG)
+    getbitshift  = pinnum
+
+    if ainvert:
+        setbitptr = %(regs.CLR);
+        clrbitptr = %(regs.SET);
+    else:
+        setbitptr = %(regs.SET);
+        clrbitptr = %(regs.CLR);
+    endif
+endfunc
+
+func OGpioPin.Setup(flags : uint) -> bool:
+    use *
+    if inverted:
+        flags |= PINCFG_GPIO_INVERT
+    endif
+    return PinSetup(portnum, pinnum, flags)
+endfunc
+
+
+func OGpioPin.Toggle()
+    if *getoutbitptr & setbitvalue <> 0:
+        Set0()
+    else:
+        Set1()
+    endif
+endfunc
+
+func OGpioPin.SwitchDirection(adirection : int)
+    if adirection <> 0:
+        GPIO.ENABLE.SET = setbitvalue
+    else:
+        GPIO.ENABLE.CLR = setbitvalue
+    endif
+endfunc

@@ -3,8 +3,8 @@
 const(bool):
     CPU_RV32I    = true
     CPU_RV32IMAC = true
-    MCUF_ESP     = true
-    MCUSF_32C6   = true
+    MCUF_ESP32   = true
+    MCUSF_C6     = true
 endconst
 
 const(uint):

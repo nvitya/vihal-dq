@@ -1,6 +1,6 @@
 use ^/platform
 
-#ifdef @.MCUF_STM32
+#ifdef MCUF_STM32
     use ^/armm/stm32/impl/hwuart_stm32   reexport
 #else
     use ^/core/noimpl/hwuart_noimpl  reexport

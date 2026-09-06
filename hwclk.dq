@@ -1,7 +1,9 @@
 use ^/platform
 
-#ifdef @.MCUF_STM32
+#ifdef MCUF_STM32
     use ^/armm/stm32/impl/hwclk_stm32   reexport
+#elifdef MCUF_ESP32
+    use ^/rv32i/esp32/impl/hwclk_esp   reexport
 #else
     use ^/core/noimpl/hwclk_noimpl  reexport
 #endif

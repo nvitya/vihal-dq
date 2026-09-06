@@ -1,11 +1,11 @@
 use vihal/platform
 
-#ifdef @.CPU_ARMM
+#ifdef CPU_ARMM
 
     use vihal/armm/core/armm_startup        reexport
     use vihal/armm/core/armm_vector_table   reexport
 
-#elifdef @.CPU_RV32I
+#elifdef CPU_RV32I
 
     use vihal/rv32i/core/rv32i_startup       reexport
     use vihal/rv32i/core/rv32i_vector_table  reexport
