@@ -2,7 +2,7 @@ use ^/platform
 
 func ClockCntInit()
 
-#ifdef @.CPU_ARMM
+#ifdef CPU_ARMM
 	#if __CORTEX_M >= 3
 
 		func ClockCnt() -> uint32  [[inline]]:
@@ -26,9 +26,16 @@ func ClockCntInit()
 	#endif
 #endif
 
+#ifdef CPU_RV32I
+	func ClockCnt() -> uint32  [[inline]]:
+		return cpu_csr_read(0x7E2)  // use the mpccr instead of the mtime
+	endfunc
+#endif
+
 implementation
 
-#if __CORTEX_M >= 3
+#ifdef CPU_ARM
+  #if __CORTEX_M >= 3
 
 	func ClockCntInit():
 		CoreDebug.DEMCR |= CoreDebug_DEMCR_TRCENA_Msk
@@ -38,7 +45,7 @@ implementation
 		DWT.CTRL |= 1
 	endfunc
 
-#else  // Cortex-M0
+  #else  // Cortex-M0
 
 	func ClockCntInit():
 
@@ -58,6 +65,16 @@ implementation
 		CCTIMER.PSC = 0 // count every clock
 		CCTIMER.CR1 = 1
 		CCTIMER.EGR = 1 // reinit, start the timer
+	endfunc
+
+  #endif
+#endif
+
+#ifdef CPU_RV32I
+
+	func ClockCntInit():
+		cpu_csr_write(0x7E0, 1)  // = mpcer[0] = count clock cycles
+		cpu_csr_write(0x7E1, 1)  // = mpcmer[0] = enable counting
 	endfunc
 
 #endif

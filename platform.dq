@@ -4,7 +4,9 @@
 use ^/core/mcu_defs   reexport  // board module used and reexported inside
 
 #ifdef CPU_ARMM
-    use ^/armm/core/armm_utils   reexport
+    use ^/armm/core/armm_utils     reexport
+#elifdef CPU_RV32I
+    use ^/rv32i/core/rv32i_utils   reexport
 #endif
 
 // Common variables

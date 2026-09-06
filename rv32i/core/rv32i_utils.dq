@@ -1,0 +1,11 @@
+func Mcu_EnableFpu()  [[inline]]:
+endfunc
+
+func Mcu_EnableICache()  [[inline]]:
+endfunc
+
+func Mcu_DisableICache()  [[inline]]:
+endfunc
+
+func Mcu_InvalidateICache()  [[inline]]:
+endfunc

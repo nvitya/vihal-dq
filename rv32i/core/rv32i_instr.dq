@@ -1,0 +1,66 @@
+// RV32I instructions
+
+const(uint):
+    MSTATUS_MIE     = 0x00000008
+endconst
+
+const(uint):
+    CSR_MSTATUS     = 0x300
+    CSR_MIE         = 0x304
+    CSR_MTVEC       = 0x305
+    CSR_MTVT        = 0x307
+    CSR_MEPC        = 0x341
+    CSR_MCAUSE      = 0x342
+endconst
+
+func cpu_csr_read(csr_id : int) -> uint32  [[inline, asm]]:
+    csrr    $result, $csr_id
+    [[immediate(csr_id)]]
+endfunc
+
+func cpu_csr_write(csr_id : int, data : uint32)  [[inline, asm]]:
+    csrw    $csr_id, $data
+    [[immediate(csr_id)]]
+endfunc
+
+func cpu_csr_setbits(csr_id : int, abits : uint32) -> uint32  [[inline, asm]]:
+    csrrs   $result, $csr_id, $abits
+    [[immediate(csr_id)]]
+endfunc
+
+func cpu_csr_clrbits(csr_id : int, abits : uint32) -> uint32  [[inline, asm]]:
+    csrrc   $result, $csr_id, $abits
+    [[immediate(csr_id)]]
+endfunc
+
+// No Operation does nothing. This instruction can be used for code alignment purposes.
+func __NOP()  [[inline, asm]]:
+    nop
+endfunc
+
+func __DSB()  [[inline]]:
+endfunc
+
+func __ISB()  [[inline]]:
+endfunc
+
+//-----------------------------------------------------------------------------
+// VIHAL Definitions
+//-----------------------------------------------------------------------------
+
+func McuInterrupts_Disable()  [[inline]]:
+    cpu_csr_clrbits(CSR_MSTATUS, MSTATUS_MIE)  // clear machine interrupt enable bit
+endfunc
+
+func McuInterrupts_Enable()  [[inline]]:
+    cpu_csr_setbits(CSR_MSTATUS, MSTATUS_MIE)  // set machine interrupt enable bit
+endfunc
+
+func McuInterrupts_SaveAndDisable() -> uint32  [[inline]]:
+    result = cpu_csr_read(CSR_MSTATUS)
+    cpu_csr_clrbits(CSR_MSTATUS, MSTATUS_MIE)  // clear machine interrupt enable bit
+endfunc
+
+func McuInterrupts_Restore(prevstate : uint32)  [[inline]]:
+    cpu_csr_write(CSR_MSTATUS, prevstate);
+endfunc

@@ -1,6 +1,5 @@
 use ^/core/pre/hwpins_pre  reexport
 
-func GpioPortEnable(aportnum : int) -> bool
 func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool
 func PadSetup(apadnum : uint, iomuxidx : uint, flags : uint) -> bool
 func PadInput(apadnum : int, in_iomuxidx : uint) -> bool
@@ -166,7 +165,7 @@ func OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
 
     setbitvalue  = gpio_mask
     clrbitvalue  = gpio_mask
-    getbitptr    = %(GPIO.IN)
+    getbitptr    = %(GPIO.IN[0])
     getoutbitptr = %(regs.REG)
     getbitshift  = pinnum
 
@@ -188,15 +187,16 @@ func OGpioPin.Setup(flags : uint) -> bool:
 endfunc
 
 
-func OGpioPin.Toggle()
-    if *getoutbitptr & setbitvalue <> 0:
+func OGpioPin.Toggle():
+    if getoutbitptr^ & setbitvalue <> 0:
         Set0()
     else:
         Set1()
     endif
 endfunc
 
-func OGpioPin.SwitchDirection(adirection : int)
+func OGpioPin.SwitchDirection(adirection : int):
+    use *
     if adirection <> 0:
         GPIO.ENABLE.SET = setbitvalue
     else:

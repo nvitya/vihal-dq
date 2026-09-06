@@ -47,7 +47,7 @@ func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
     else:
         // use the divided crystal
         tmp &= ~(0x3FF) // clear the divider
-        uint32_t clkdiv = external_clock_hz div target_speed_hz
+        var clkdiv : uint = external_clock_hz div target_speed_hz
         if clkdiv > 0:
             clkdiv -= 1
         endif
