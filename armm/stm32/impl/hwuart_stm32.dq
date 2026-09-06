@@ -217,7 +217,7 @@ func OHwUart_impl.SetBaudRate(abaudrate : int) -> bool:
 	else:
 		tmp &= ~USART_CR1_OVER8
 	endif
-	regs->CR1 = tmp & ~USART_CR1_UE
+	regs.CR1 = tmp & ~USART_CR1_UE
   #endif
 
 	regs.BRR = divider
