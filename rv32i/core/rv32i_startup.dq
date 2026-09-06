@@ -41,13 +41,13 @@ _start0800:
     j      rv32i_init_c
 endfunc
 
-func _soft_entry()  [[cexport, section('.startup'), asm]]:
+func soft_entry()  [[cexport, section('.startup'), asm]]:
     nop
     li     a0, 1
     j      rv32i_init_asm
 endfunc
 
-func _cold_entry()  [[cexport, section('.startup'), asm]]:
+func cold_entry()  [[cexport, section('.startup'), asm]]:
     nop
     li     a0, 0
     j      rv32i_init_asm

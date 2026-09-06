@@ -23,7 +23,7 @@ OUTPUT_ARCH(aarch64)
 
 INCLUDE vihal_stack_predef.ld
 
-ENTRY(_soft_entry)
+ENTRY(soft_entry)
 
 SECTIONS
 {

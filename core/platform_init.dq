@@ -7,7 +7,8 @@ use vihal/platform
 
 #elifdef @.CPU_RV32I
 
-    use vihal/rv32i/core/rv32i_startup      reexport
+    use vihal/rv32i/core/rv32i_startup       reexport
+    use vihal/rv32i/core/rv32i_vector_table  reexport
 
 #else
     #error "Unhandled CPU architecture"

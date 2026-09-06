@@ -158,7 +158,7 @@ const armm_vector_table : [16 + 32] FVectorTableEntry =
     IRQ_Handler_31
 ]
 
-func ArmmVectorTableInit()  [[inline]]:
+func McuVectorTableInit()  [[inline]]:
     #if not FirstBool(SCB_NO_VTOR, false)
         SCB.VTOR = uint(%armm_vector_table[0])
     #endif

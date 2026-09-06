@@ -22,7 +22,7 @@ __Main_Stack_Size = 4096;
 PROVIDE ( _Heap_Begin = _end_noinit ) ;
 PROVIDE ( _Heap_Limit = ORIGIN(RAM)+LENGTH(RAM)-__Main_Stack_Size ) ;
 
-ENTRY(_soft_entry)
+ENTRY(soft_entry)
 
 SECTIONS
 {
@@ -199,7 +199,7 @@ SECTIONS
     KEEP (*(.reserved_memory_address))
     soc_reserved_memory_region_end = ABSOLUTE(.);
     _rodata_end = ABSOLUTE(.);
-    
+
     *(.gnu.linkonce.lit4.*)
     _lit4_end = ABSOLUTE(.);
 

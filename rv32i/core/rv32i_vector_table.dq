@@ -1,0 +1,4 @@
+
+func McuVectorTableInit()  [[inline]]:
+    // empty so far
+endfunc

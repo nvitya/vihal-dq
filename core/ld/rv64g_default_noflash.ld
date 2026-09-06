@@ -22,7 +22,7 @@ OUTPUT_ARCH(riscv)
 
 INCLUDE vihal_stack_predef.ld
 
-ENTRY(_soft_entry)
+ENTRY(soft_entry)
 
 SECTIONS
 {
