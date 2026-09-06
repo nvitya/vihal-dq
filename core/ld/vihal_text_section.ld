@@ -25,9 +25,6 @@ KEEP(*(SORT(.fini_array.*)))
 KEEP(*(.fini_array))
 PROVIDE_HIDDEN (__fini_array_end = .);
 
-*(.rela.iplt)
-*(.rela.plt)
-
 *(.text .text.* )
 
 *(.text.unlikely .text.*_unlikely .text.unlikely.*)

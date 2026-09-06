@@ -77,6 +77,9 @@ SECTIONS
 
   } > TEXT
 
+  /* LLD emits .rela.iplt as SHT_RELA; it cannot share the PROGBITS .text section. */
+  .rela.iplt : ALIGN(4) { *(.rela.iplt) *(.rela.plt) } > TEXT
+
   /* Resource table for remote processors */
   .resource_table :
   {
