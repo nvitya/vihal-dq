@@ -1,3 +1,37 @@
+// VIHAL configuration
+
+const(bool):
+    CPU_RV32I    = true
+    CPU_RV32IMAC = true
+    MCUF_ESP     = true
+    MCUSF_32C3   = true
+endconst
+
+const(uint):
+    MCU_INTERNAL_RC_SPEED =  40000000  // using the crystal directly
+    MAX_CLOCK_SPEED       = 160000000
+endconst
+
+struct vihal_esp_image_header:
+    magic          : uint8
+    segment_count  : uint8
+    spi_mode       : uint8
+    spi_speed_size : uint8
+    entry_addr     : uint32
+    wp_pin         : uint8
+    spi_pin_drv    : [3] uint8
+    chip_id        : uint16
+    min_chip_rev   : uint8
+    reserved       : [8] uint8
+    hash_appended  : uint8
+    load_addr      : uint32
+    data_len       : uint32
+endstruct
+
+//---------------------------------------------------------------------
+// PAD NAMES
+//---------------------------------------------------------------------
+
 const(uint32):
     ESP_GPIO_COUNT       = 22
     ESP_PAD_COUNT        = 22
@@ -43,180 +77,179 @@ const(uint32):
     PAD_U0TXD            = 21
 endconst
 
+//---------------------------------------------------------------------
+// Peripheral structs
+//---------------------------------------------------------------------
+
 struct esp_gpio_out:
-    REG          : [[regrw]]  uint32  
-    SET          : [[regrw]]  uint32  
-    CLR          : [[regrw]]  uint32  
+    REG          : [[regrw]]  uint32
+    SET          : [[regrw]]  uint32
+    CLR          : [[regrw]]  uint32
 endstruct
 
 struct esp_gpio_enable:
-    REG          : [[regrw]]  uint32  
-    SET          : [[regrw]]  uint32  
-    CLR          : [[regrw]]  uint32  
+    REG          : [[regrw]]  uint32
+    SET          : [[regrw]]  uint32
+    CLR          : [[regrw]]  uint32
 endstruct
 
 struct esp_gpio_irqstat:
-    REG          : [[regrw]]  uint32  
-    SET          : [[regrw]]  uint32  
-    CLR          : [[regrw]]  uint32  
+    REG          : [[regrw]]  uint32
+    SET          : [[regrw]]  uint32
+    CLR          : [[regrw]]  uint32
 endstruct
 
 struct esp_gpio:
-    BT_SELECT    : [[regrw]]  uint32  
+    BT_SELECT    : [[regrw]]  uint32
     OUT          :            esp_gpio_out
     _pad_010     :            [4] uint32
     ENABLE       :            esp_gpio_enable
     _pad_02C     :            [3] uint32
-    STRAP        : [[regrw]]  uint32  
+    STRAP        : [[regrw]]  uint32
     IN           : [[regrw]]  [1] uint32
-    _pad_040     :            uint32  
+    _pad_040     :            uint32
     STATUS       :            esp_gpio_irqstat
     _pad_050     :            [3] uint32
-    PCPU_INT     : [[regrw]]  uint32  
-    PCPU_NMI_INT : [[regrw]]  uint32  
+    PCPU_INT     : [[regrw]]  uint32
+    PCPU_NMI_INT : [[regrw]]  uint32
     _pad_064     :            [4] uint32
     PIN          : [[regrw]]  [22] uint32
     _pad_0CC     :            [32] uint32
-    STATUS_NEXT  : [[regrw]]  uint32  
-    _pad_150     :            uint32  
+    STATUS_NEXT  : [[regrw]]  uint32
+    _pad_150     :            uint32
     FUNC_IN_SEL_CFG : [[regrw]]  [128] uint32
     _pad_354     :            [128] uint32
     FUNC_OUT_SEL_CFG : [[regrw]]  [22] uint32
     _pad_5AC     :            [32] uint32
-    CLOCK_GATE   : [[regrw]]  uint32  
+    CLOCK_GATE   : [[regrw]]  uint32
     _pad_630     :            [51] uint32
-    DATE         : [[regrw]]  uint32  
+    DATE         : [[regrw]]  uint32
 endstruct
 
 struct esp_io_mux:
-    PIN_CTRL     : [[regrw]]  uint32  
+    PIN_CTRL     : [[regrw]]  uint32
     CFG          : [[regrw]]  [22] uint32
 endstruct
 
-const GPIO         :? = ^esp_gpio((0x60004000))
-const IO_MUX       :? = ^esp_io_mux((0x60009000))
 struct esp_sysreg:
-    CPU_PERI_CLK_EN : [[regrw]]  uint32  
-    CPU_PERI_RST_EN : [[regrw]]  uint32  
-    CPU_PER_CONF : [[regrw]]  uint32  
-    _pad_000C    :            uint32  
-    PERIP_CLK_EN0 : [[regrw]]  uint32  
-    PERIP_CLK_EN1 : [[regrw]]  uint32  
-    PERIP_RST_EN0 : [[regrw]]  uint32  
-    PERIP_RST_EN1 : [[regrw]]  uint32  
-    _pad_0020    :            uint32  
-    BT_LPCK_DIV_FRAC : [[regrw]]  uint32  
-    CPU_INTR_FROM_CPU_0 : [[regrw]]  uint32  
-    CPU_INTR_FROM_CPU_1 : [[regrw]]  uint32  
-    CPU_INTR_FROM_CPU_2 : [[regrw]]  uint32  
-    CPU_INTR_FROM_CPU_3 : [[regrw]]  uint32  
-    RSA_PD_CTRL  : [[regrw]]  uint32  
-    _pad_003C    :            uint32  
-    CACHE_CONTROL : [[regrw]]  uint32  
-    EXTERNAL_DEVICE_ENCRYPT_DECRYPT_CONTROLLER : [[regrw]]  uint32  
-    RTC_FASTMEM_CONFIG : [[regrw]]  uint32  
-    RTC_FASTMEM_CRC : [[regrw]]  uint32  
-    _pad_0050    :            uint32  
-    CLOCK_GATE   : [[regrw]]  uint32  
-    SYSCLK_CONF  : [[regrw]]  uint32  
+    CPU_PERI_CLK_EN : [[regrw]]  uint32
+    CPU_PERI_RST_EN : [[regrw]]  uint32
+    CPU_PER_CONF : [[regrw]]  uint32
+    _pad_000C    :            uint32
+    PERIP_CLK_EN0 : [[regrw]]  uint32
+    PERIP_CLK_EN1 : [[regrw]]  uint32
+    PERIP_RST_EN0 : [[regrw]]  uint32
+    PERIP_RST_EN1 : [[regrw]]  uint32
+    _pad_0020    :            uint32
+    BT_LPCK_DIV_FRAC : [[regrw]]  uint32
+    CPU_INTR_FROM_CPU_0 : [[regrw]]  uint32
+    CPU_INTR_FROM_CPU_1 : [[regrw]]  uint32
+    CPU_INTR_FROM_CPU_2 : [[regrw]]  uint32
+    CPU_INTR_FROM_CPU_3 : [[regrw]]  uint32
+    RSA_PD_CTRL  : [[regrw]]  uint32
+    _pad_003C    :            uint32
+    CACHE_CONTROL : [[regrw]]  uint32
+    EXTERNAL_DEVICE_ENCRYPT_DECRYPT_CONTROLLER : [[regrw]]  uint32
+    RTC_FASTMEM_CONFIG : [[regrw]]  uint32
+    RTC_FASTMEM_CRC : [[regrw]]  uint32
+    _pad_0050    :            uint32
+    CLOCK_GATE   : [[regrw]]  uint32
+    SYSCLK_CONF  : [[regrw]]  uint32
 endstruct
 
 struct esp_apb_ctrl:
     _pad_0000    :            [41] uint32
-    CLKGATE_FORCE_ON : [[regrw]]  uint32  
-    MEM_POWER_DOWN : [[regrw]]  uint32  
-    MEM_POWER_UP : [[regrw]]  uint32  
+    CLKGATE_FORCE_ON : [[regrw]]  uint32
+    MEM_POWER_DOWN : [[regrw]]  uint32
+    MEM_POWER_UP : [[regrw]]  uint32
 endstruct
 
-const SYSTEM       :? = ^esp_sysreg((0x600C0000))
-const APB_CTRL     :? = ^esp_apb_ctrl((0x60026000))
 struct esp_rtc_cntl:
-    OPTIONS0     : [[regrw]]  uint32  
-    SLP_TIMER0   : [[regrw]]  uint32  
-    SLP_TIMER1   : [[regrw]]  uint32  
-    TIME_UPDATE  : [[regrw]]  uint32  
-    TIME_LOW0    : [[regrw]]  uint32  
-    TIME_HIGH0   : [[regrw]]  uint32  
-    STATE0       : [[regrw]]  uint32  
-    TIMER1       : [[regrw]]  uint32  
-    TIMER2       : [[regrw]]  uint32  
-    TIMER3       : [[regrw]]  uint32  
-    TIMER4       : [[regrw]]  uint32  
-    TIMER5       : [[regrw]]  uint32  
-    TIMER6       : [[regrw]]  uint32  
-    ANA_CONF     : [[regrw]]  uint32  
-    RESET_STATE  : [[regrw]]  uint32  
-    WAKEUP_STATE : [[regrw]]  uint32  
-    INT_ENA      : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_ST       : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    STORE0       : [[regrw]]  uint32  
-    STORE1       : [[regrw]]  uint32  
-    STORE2       : [[regrw]]  uint32  
-    STORE3       : [[regrw]]  uint32  
-    EXT_XTL_CONF : [[regrw]]  uint32  
-    EXT_WAKEUP_CONF : [[regrw]]  uint32  
-    SLP_REJECT_CONF : [[regrw]]  uint32  
-    CPU_PERIOD_CONF : [[regrw]]  uint32  
-    CLK_CONF     : [[regrw]]  uint32  
-    SLOW_CLK_CONF : [[regrw]]  uint32  
-    SDIO_CONF    : [[regrw]]  uint32  
-    BIAS_CONF    : [[regrw]]  uint32  
-    REG          : [[regrw]]  uint32  
-    PWC          : [[regrw]]  uint32  
-    DIG_PWC      : [[regrw]]  uint32  
-    DIG_ISO      : [[regrw]]  uint32  
-    WDTCONFIG0   : [[regrw]]  uint32  
-    WDTCONFIG1   : [[regrw]]  uint32  
-    WDTCONFIG2   : [[regrw]]  uint32  
-    WDTCONFIG3   : [[regrw]]  uint32  
-    WDTCONFIG4   : [[regrw]]  uint32  
-    WDTFEED      : [[regrw]]  uint32  
-    WDTWPROTECT  : [[regrw]]  uint32  
-    SWD_CONF     : [[regrw]]  uint32  
-    SWD_WPROTECT : [[regrw]]  uint32  
-    SW_CPU_STALL : [[regrw]]  uint32  
-    STORE4       : [[regrw]]  uint32  
-    STORE5       : [[regrw]]  uint32  
-    STORE6       : [[regrw]]  uint32  
-    STORE7       : [[regrw]]  uint32  
-    LOW_POWER_ST : [[regrw]]  uint32  
-    DIAG0        : [[regrw]]  uint32  
-    PAD_HOLD     : [[regrw]]  uint32  
-    DIG_PAD_HOLD : [[regrw]]  uint32  
-    BROWN_OUT    : [[regrw]]  uint32  
-    TIME_LOW1    : [[regrw]]  uint32  
-    TIME_HIGH1   : [[regrw]]  uint32  
-    XTAL32K_CLK_FACTOR : [[regrw]]  uint32  
-    XTAL32K_CONF : [[regrw]]  uint32  
-    USB_CONF     : [[regrw]]  uint32  
-    SLP_REJECT_CAUSE : [[regrw]]  uint32  
-    OPTION1      : [[regrw]]  uint32  
-    SLP_WAKEUP_CAUSE : [[regrw]]  uint32  
-    ULP_CP_TIMER_1 : [[regrw]]  uint32  
-    INT_ENA_W1TS : [[regrw]]  uint32  
-    INT_ENA_W1TC : [[regrw]]  uint32  
-    RETENTION_CTRL : [[regrw]]  uint32  
-    FIB_SEL      : [[regrw]]  uint32  
-    GPIO_WAKEUP  : [[regrw]]  uint32  
-    DBG_SEL      : [[regrw]]  uint32  
-    DBG_MAP      : [[regrw]]  uint32  
-    SENSOR_CTRL  : [[regrw]]  uint32  
-    DBG_SAR_SEL  : [[regrw]]  uint32  
-    PG_CTRL      : [[regrw]]  uint32  
+    OPTIONS0     : [[regrw]]  uint32
+    SLP_TIMER0   : [[regrw]]  uint32
+    SLP_TIMER1   : [[regrw]]  uint32
+    TIME_UPDATE  : [[regrw]]  uint32
+    TIME_LOW0    : [[regrw]]  uint32
+    TIME_HIGH0   : [[regrw]]  uint32
+    STATE0       : [[regrw]]  uint32
+    TIMER1       : [[regrw]]  uint32
+    TIMER2       : [[regrw]]  uint32
+    TIMER3       : [[regrw]]  uint32
+    TIMER4       : [[regrw]]  uint32
+    TIMER5       : [[regrw]]  uint32
+    TIMER6       : [[regrw]]  uint32
+    ANA_CONF     : [[regrw]]  uint32
+    RESET_STATE  : [[regrw]]  uint32
+    WAKEUP_STATE : [[regrw]]  uint32
+    INT_ENA      : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_ST       : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    STORE0       : [[regrw]]  uint32
+    STORE1       : [[regrw]]  uint32
+    STORE2       : [[regrw]]  uint32
+    STORE3       : [[regrw]]  uint32
+    EXT_XTL_CONF : [[regrw]]  uint32
+    EXT_WAKEUP_CONF : [[regrw]]  uint32
+    SLP_REJECT_CONF : [[regrw]]  uint32
+    CPU_PERIOD_CONF : [[regrw]]  uint32
+    CLK_CONF     : [[regrw]]  uint32
+    SLOW_CLK_CONF : [[regrw]]  uint32
+    SDIO_CONF    : [[regrw]]  uint32
+    BIAS_CONF    : [[regrw]]  uint32
+    REG          : [[regrw]]  uint32
+    PWC          : [[regrw]]  uint32
+    DIG_PWC      : [[regrw]]  uint32
+    DIG_ISO      : [[regrw]]  uint32
+    WDTCONFIG0   : [[regrw]]  uint32
+    WDTCONFIG1   : [[regrw]]  uint32
+    WDTCONFIG2   : [[regrw]]  uint32
+    WDTCONFIG3   : [[regrw]]  uint32
+    WDTCONFIG4   : [[regrw]]  uint32
+    WDTFEED      : [[regrw]]  uint32
+    WDTWPROTECT  : [[regrw]]  uint32
+    SWD_CONF     : [[regrw]]  uint32
+    SWD_WPROTECT : [[regrw]]  uint32
+    SW_CPU_STALL : [[regrw]]  uint32
+    STORE4       : [[regrw]]  uint32
+    STORE5       : [[regrw]]  uint32
+    STORE6       : [[regrw]]  uint32
+    STORE7       : [[regrw]]  uint32
+    LOW_POWER_ST : [[regrw]]  uint32
+    DIAG0        : [[regrw]]  uint32
+    PAD_HOLD     : [[regrw]]  uint32
+    DIG_PAD_HOLD : [[regrw]]  uint32
+    BROWN_OUT    : [[regrw]]  uint32
+    TIME_LOW1    : [[regrw]]  uint32
+    TIME_HIGH1   : [[regrw]]  uint32
+    XTAL32K_CLK_FACTOR : [[regrw]]  uint32
+    XTAL32K_CONF : [[regrw]]  uint32
+    USB_CONF     : [[regrw]]  uint32
+    SLP_REJECT_CAUSE : [[regrw]]  uint32
+    OPTION1      : [[regrw]]  uint32
+    SLP_WAKEUP_CAUSE : [[regrw]]  uint32
+    ULP_CP_TIMER_1 : [[regrw]]  uint32
+    INT_ENA_W1TS : [[regrw]]  uint32
+    INT_ENA_W1TC : [[regrw]]  uint32
+    RETENTION_CTRL : [[regrw]]  uint32
+    FIB_SEL      : [[regrw]]  uint32
+    GPIO_WAKEUP  : [[regrw]]  uint32
+    DBG_SEL      : [[regrw]]  uint32
+    DBG_MAP      : [[regrw]]  uint32
+    SENSOR_CTRL  : [[regrw]]  uint32
+    DBG_SAR_SEL  : [[regrw]]  uint32
+    PG_CTRL      : [[regrw]]  uint32
     _pad_128     :            [53] uint32
-    DATE         : [[regrw]]  uint32  
+    DATE         : [[regrw]]  uint32
 endstruct
 
-const RTC_CNTL     :? = ^esp_rtc_cntl((0x60008000))
 struct esp_systimer_reg64:
-    HI           : [[regrw]]  uint32  
-    LO           : [[regrw]]  uint32  
+    HI           : [[regrw]]  uint32
+    LO           : [[regrw]]  uint32
 endstruct
 
 struct esp_systimer:
-    CONF         : [[regrw]]  uint32  
+    CONF         : [[regrw]]  uint32
     OP           : [[regrw]]  [2] uint32
     LOAD_VAL     :            [2] esp_systimer_reg64
     TARGET_VAL   :            [3] esp_systimer_reg64
@@ -224,82 +257,79 @@ struct esp_systimer:
     UNIT_VALUE   :            [2] esp_systimer_reg64
     COMP_LOAD    : [[regrw]]  [3] uint32
     UNIT_LOAD    : [[regrw]]  [2] uint32
-    INT_ENA      : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    INT_ST       : [[regrw]]  uint32  
+    INT_ENA      : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    INT_ST       : [[regrw]]  uint32
     _pad_074     :            [34] uint32
-    DATE         : [[regrw]]  uint32  
+    DATE         : [[regrw]]  uint32
 endstruct
 
-const SYS_TIMER    :? = ^esp_systimer((0x60023000))
 struct espimg:
-    T0CONFIG     : [[regrw]]  uint32  
-    T0LO         : [[regrw]]  uint32  
-    T0HI         : [[regrw]]  uint32  
-    T0UPDATE     : [[regrw]]  uint32  
-    T0ALARMLO    : [[regrw]]  uint32  
-    T0ALARMHI    : [[regrw]]  uint32  
-    T0LOADLO     : [[regrw]]  uint32  
-    T0LOADHI     : [[regrw]]  uint32  
-    T0LOAD       : [[regrw]]  uint32  
+    T0CONFIG     : [[regrw]]  uint32
+    T0LO         : [[regrw]]  uint32
+    T0HI         : [[regrw]]  uint32
+    T0UPDATE     : [[regrw]]  uint32
+    T0ALARMLO    : [[regrw]]  uint32
+    T0ALARMHI    : [[regrw]]  uint32
+    T0LOADLO     : [[regrw]]  uint32
+    T0LOADHI     : [[regrw]]  uint32
+    T0LOAD       : [[regrw]]  uint32
     _pad_0024    :            [9] uint32
-    WDTCONFIG0   : [[regrw]]  uint32  
-    WDTCONFIG1   : [[regrw]]  uint32  
-    WDTCONFIG2   : [[regrw]]  uint32  
-    WDTCONFIG3   : [[regrw]]  uint32  
-    WDTCONFIG4   : [[regrw]]  uint32  
-    WDTCONFIG5   : [[regrw]]  uint32  
-    WDTFEED      : [[regrw]]  uint32  
-    WDTWPROTECT  : [[regrw]]  uint32  
-    RTCCALICFG   : [[regrw]]  uint32  
-    RTCCALICFG1  : [[regrw]]  uint32  
-    INT_ENA_TIMERS : [[regrw]]  uint32  
-    INT_RAW_TIMERS : [[regrw]]  uint32  
-    INT_ST_TIMERS : [[regrw]]  uint32  
-    INT_CLR_TIMERS : [[regrw]]  uint32  
-    RTCCALICFG2  : [[regrw]]  uint32  
+    WDTCONFIG0   : [[regrw]]  uint32
+    WDTCONFIG1   : [[regrw]]  uint32
+    WDTCONFIG2   : [[regrw]]  uint32
+    WDTCONFIG3   : [[regrw]]  uint32
+    WDTCONFIG4   : [[regrw]]  uint32
+    WDTCONFIG5   : [[regrw]]  uint32
+    WDTFEED      : [[regrw]]  uint32
+    WDTWPROTECT  : [[regrw]]  uint32
+    RTCCALICFG   : [[regrw]]  uint32
+    RTCCALICFG1  : [[regrw]]  uint32
+    INT_ENA_TIMERS : [[regrw]]  uint32
+    INT_RAW_TIMERS : [[regrw]]  uint32
+    INT_ST_TIMERS : [[regrw]]  uint32
+    INT_CLR_TIMERS : [[regrw]]  uint32
+    RTCCALICFG2  : [[regrw]]  uint32
     _pad_0084    :            [29] uint32
-    NTIMERS_DATE : [[regrw]]  uint32  
-    CLK          : [[regrw]]  uint32  
+    NTIMERS_DATE : [[regrw]]  uint32
+    CLK          : [[regrw]]  uint32
 endstruct
 
-const TIMG0        :? = ^espimg((0x6001F000))
-const TIMG1        :? = ^espimg((0x60020000))
 struct esp_uart:
-    FIFO         : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_ST       : [[regrw]]  uint32  
-    INT_ENA      : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    CLKDIV       : [[regrw]]  uint32  
-    RX_FILT      : [[regrw]]  uint32  
-    STATUS       : [[regrw]]  uint32  
-    CONF0        : [[regrw]]  uint32  
-    CONF1        : [[regrw]]  uint32  
-    LOWPULSE     : [[regrw]]  uint32  
-    HIGHPULSE    : [[regrw]]  uint32  
-    RXD_CNT      : [[regrw]]  uint32  
-    FLOW_CONF    : [[regrw]]  uint32  
-    SLEEP_CONF   : [[regrw]]  uint32  
-    SWFC_CONF0   : [[regrw]]  uint32  
-    SWFC_CONF1   : [[regrw]]  uint32  
-    TXBRK_CONF   : [[regrw]]  uint32  
-    IDLE_CONF    : [[regrw]]  uint32  
-    RS485_CONF   : [[regrw]]  uint32  
-    AT_CMD_PRECNT : [[regrw]]  uint32  
-    AT_CMD_POSTCNT : [[regrw]]  uint32  
-    AT_CMD_GAPTOUT : [[regrw]]  uint32  
-    AT_CMD_CHAR  : [[regrw]]  uint32  
-    MEM_CONF     : [[regrw]]  uint32  
-    MEM_TX_STATUS : [[regrw]]  uint32  
-    MEM_RX_STATUS : [[regrw]]  uint32  
-    FSM_STATUS   : [[regrw]]  uint32  
-    POSPULSE     : [[regrw]]  uint32  
-    NEGPULSE     : [[regrw]]  uint32  
-    CLK_CONF     : [[regrw]]  uint32  
-    DATE         : [[regrw]]  uint32  
-    ID           : [[regrw]]  uint32  
+    FIFO         : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_ST       : [[regrw]]  uint32
+    INT_ENA      : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    CLKDIV       : [[regrw]]  uint32
+    RX_FILT      : [[regrw]]  uint32
+    STATUS       : [[regrw]]  uint32
+    CONF0        : [[regrw]]  uint32
+    CONF1        : [[regrw]]  uint32
+    LOWPULSE     : [[regrw]]  uint32
+    HIGHPULSE    : [[regrw]]  uint32
+    RXD_CNT      : [[regrw]]  uint32
+    FLOW_CONF    : [[regrw]]  uint32
+    SLEEP_CONF   : [[regrw]]  uint32
+    SWFC_CONF0   : [[regrw]]  uint32
+    SWFC_CONF1   : [[regrw]]  uint32
+    TXBRK_CONF   : [[regrw]]  uint32
+    IDLE_CONF    : [[regrw]]  uint32
+    RS485_CONF   : [[regrw]]  uint32
+    AT_CMD_PRECNT : [[regrw]]  uint32
+    AT_CMD_POSTCNT : [[regrw]]  uint32
+    AT_CMD_GAPTOUT : [[regrw]]  uint32
+    AT_CMD_CHAR  : [[regrw]]  uint32
+    MEM_CONF     : [[regrw]]  uint32
+    MEM_TX_STATUS : [[regrw]]  uint32
+    MEM_RX_STATUS : [[regrw]]  uint32
+    FSM_STATUS   : [[regrw]]  uint32
+    POSPULSE     : [[regrw]]  uint32
+    NEGPULSE     : [[regrw]]  uint32
+    CLK_CONF     : [[regrw]]  uint32
+    DATE         : [[regrw]]  uint32
+    ID           : [[regrw]]  uint32
 endstruct
 
 struct esp_uhci_reg_q:
@@ -307,146 +337,139 @@ struct esp_uhci_reg_q:
 endstruct
 
 struct esp_uhci:
-    CONF0        : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_ST       : [[regrw]]  uint32  
-    INT_ENA      : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    CONF1        : [[regrw]]  uint32  
-    STATE0       : [[regrw]]  uint32  
-    STATE1       : [[regrw]]  uint32  
-    ESCAPE_CONF  : [[regrw]]  uint32  
-    HUNG_CONF    : [[regrw]]  uint32  
-    ACK_NUM      : [[regrw]]  uint32  
-    RX_HEAD      : [[regrw]]  uint32  
-    QUICK_SENT   : [[regrw]]  uint32  
+    CONF0        : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_ST       : [[regrw]]  uint32
+    INT_ENA      : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    CONF1        : [[regrw]]  uint32
+    STATE0       : [[regrw]]  uint32
+    STATE1       : [[regrw]]  uint32
+    ESCAPE_CONF  : [[regrw]]  uint32
+    HUNG_CONF    : [[regrw]]  uint32
+    ACK_NUM      : [[regrw]]  uint32
+    RX_HEAD      : [[regrw]]  uint32
+    QUICK_SENT   : [[regrw]]  uint32
     REG_Q        :            [6] esp_uhci_reg_q
     ESC_CONF     : [[regrw]]  [4] uint32
-    PKT_THRES    : [[regrw]]  uint32  
-    DATE         : [[regrw]]  uint32  
+    PKT_THRES    : [[regrw]]  uint32
+    DATE         : [[regrw]]  uint32
 endstruct
 
-const UART0        :? = ^esp_uart((0x60000000))
-const UART1        :? = ^esp_uart((0x60010000))
-const UHCI0        :? = ^esp_uhci((0x60014000))
 struct esp_spi:
-    CMD          : [[regrw]]  uint32  
-    ADDR         : [[regrw]]  uint32  
-    CTRL         : [[regrw]]  uint32  
-    CLOCK        : [[regrw]]  uint32  
-    USER         : [[regrw]]  uint32  
-    USER1        : [[regrw]]  uint32  
-    USER2        : [[regrw]]  uint32  
-    MS_DLEN      : [[regrw]]  uint32  
-    MISC         : [[regrw]]  uint32  
-    DIN_MODE     : [[regrw]]  uint32  
-    DIN_NUM      : [[regrw]]  uint32  
-    DOUT_MODE    : [[regrw]]  uint32  
-    DMA_CONF     : [[regrw]]  uint32  
-    DMA_INT_ENA  : [[regrw]]  uint32  
-    DMA_INT_CLR  : [[regrw]]  uint32  
-    DMA_INT_RAW  : [[regrw]]  uint32  
-    DMA_INT_ST   : [[regrw]]  uint32  
+    CMD          : [[regrw]]  uint32
+    ADDR         : [[regrw]]  uint32
+    CTRL         : [[regrw]]  uint32
+    CLOCK        : [[regrw]]  uint32
+    USER         : [[regrw]]  uint32
+    USER1        : [[regrw]]  uint32
+    USER2        : [[regrw]]  uint32
+    MS_DLEN      : [[regrw]]  uint32
+    MISC         : [[regrw]]  uint32
+    DIN_MODE     : [[regrw]]  uint32
+    DIN_NUM      : [[regrw]]  uint32
+    DOUT_MODE    : [[regrw]]  uint32
+    DMA_CONF     : [[regrw]]  uint32
+    DMA_INT_ENA  : [[regrw]]  uint32
+    DMA_INT_CLR  : [[regrw]]  uint32
+    DMA_INT_RAW  : [[regrw]]  uint32
+    DMA_INT_ST   : [[regrw]]  uint32
     _pad_44      :            [(0x98-0x44)  div  4] uint32
     W            : [[regrw]]  [16] uint32
-    _pad_D8      :            uint32  
-    _pad_DC      :            uint32  
-    SLAVE        : [[regrw]]  uint32  
-    SLAVE1       : [[regrw]]  uint32  
-    CLK_GATE     : [[regrw]]  uint32  
-    _pad_EC      :            uint32  
-    DATE         : [[regrw]]  uint32  
+    _pad_D8      :            uint32
+    _pad_DC      :            uint32
+    SLAVE        : [[regrw]]  uint32
+    SLAVE1       : [[regrw]]  uint32
+    CLK_GATE     : [[regrw]]  uint32
+    _pad_EC      :            uint32
+    DATE         : [[regrw]]  uint32
 endstruct
 
-const SPI2         :? = ^esp_spi((0x60024000))
 struct esp_spi_mem:
-    CMD          : [[regrw]]  uint32  
-    ADDR         : [[regrw]]  uint32  
-    CTRL         : [[regrw]]  uint32  
-    CTRL1        : [[regrw]]  uint32  
-    CTRL2        : [[regrw]]  uint32  
-    CLOCK        : [[regrw]]  uint32  
-    USER         : [[regrw]]  uint32  
-    USER1        : [[regrw]]  uint32  
-    USER2        : [[regrw]]  uint32  
-    MOSI_DLEN    : [[regrw]]  uint32  
-    MISO_DLEN    : [[regrw]]  uint32  
-    RD_STATUS    : [[regrw]]  uint32  
-    _pad_030     :            uint32  
-    MISC         : [[regrw]]  uint32  
-    TX_CRC       : [[regrw]]  uint32  
-    CACHE_FCTRL  : [[regrw]]  uint32  
+    CMD          : [[regrw]]  uint32
+    ADDR         : [[regrw]]  uint32
+    CTRL         : [[regrw]]  uint32
+    CTRL1        : [[regrw]]  uint32
+    CTRL2        : [[regrw]]  uint32
+    CLOCK        : [[regrw]]  uint32
+    USER         : [[regrw]]  uint32
+    USER1        : [[regrw]]  uint32
+    USER2        : [[regrw]]  uint32
+    MOSI_DLEN    : [[regrw]]  uint32
+    MISO_DLEN    : [[regrw]]  uint32
+    RD_STATUS    : [[regrw]]  uint32
+    _pad_030     :            uint32
+    MISC         : [[regrw]]  uint32
+    TX_CRC       : [[regrw]]  uint32
+    CACHE_FCTRL  : [[regrw]]  uint32
     _pad_040     :            [(0x54-0x40)  div  4] uint32
-    FSM          : [[regrw]]  uint32  
+    FSM          : [[regrw]]  uint32
     W            : [[regrw]]  [16] uint32
-    FLASH_WAITI_CTRL : [[regrw]]  uint32  
-    FLASH_SUS_CTRL : [[regrw]]  uint32  
-    FLASH_SUS_CMD : [[regrw]]  uint32  
-    SUS_STATUS   : [[regrw]]  uint32  
-    TIMING_CALI  : [[regrw]]  uint32  
-    DIN_MODE     : [[regrw]]  uint32  
-    DIN_NUM      : [[regrw]]  uint32  
-    DOUT_MODE    : [[regrw]]  uint32  
+    FLASH_WAITI_CTRL : [[regrw]]  uint32
+    FLASH_SUS_CTRL : [[regrw]]  uint32
+    FLASH_SUS_CMD : [[regrw]]  uint32
+    SUS_STATUS   : [[regrw]]  uint32
+    TIMING_CALI  : [[regrw]]  uint32
+    DIN_MODE     : [[regrw]]  uint32
+    DIN_NUM      : [[regrw]]  uint32
+    DOUT_MODE    : [[regrw]]  uint32
     _pad_0B8     :            [2] uint32
-    INT_ENA      : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_ST       : [[regrw]]  uint32  
+    INT_ENA      : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_ST       : [[regrw]]  uint32
     _pad_0D0     :            [3] uint32
-    CLOCK_GATE   : [[regrw]]  uint32  
-    CORE_CLK_SEL : [[regrw]]  uint32  
+    CLOCK_GATE   : [[regrw]]  uint32
+    CORE_CLK_SEL : [[regrw]]  uint32
     _pad_0E4     :            [(0x3FC-0x0E4)  div  4] uint32
-    DATE         : [[regrw]]  uint32  
+    DATE         : [[regrw]]  uint32
 endstruct
 
-const SPIMEM0      :? = ^esp_spi_mem((0x60003000))
-const SPIMEM1      :? = ^esp_spi_mem((0x60002000))
 struct esp_usb_serial_jtag:
-    EP1          : [[regrw]]  uint32  
-    EP1_CONF     : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_ST       : [[regrw]]  uint32  
-    INT_ENA      : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    CONF0        : [[regrw]]  uint32  
-    TEST         : [[regrw]]  uint32  
-    JFIFO_ST     : [[regrw]]  uint32  
-    FRAM_NUM     : [[regrw]]  uint32  
-    IN_EP0_ST    : [[regrw]]  uint32  
-    IN_EP1_ST    : [[regrw]]  uint32  
-    IN_EP2_ST    : [[regrw]]  uint32  
-    IN_EP3_ST    : [[regrw]]  uint32  
-    OUT_EP0_ST   : [[regrw]]  uint32  
-    OUT_EP1_ST   : [[regrw]]  uint32  
-    OUT_EP2_ST   : [[regrw]]  uint32  
-    MISC_CONF    : [[regrw]]  uint32  
-    MEM_CONF     : [[regrw]]  uint32  
+    EP1          : [[regrw]]  uint32
+    EP1_CONF     : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_ST       : [[regrw]]  uint32
+    INT_ENA      : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    CONF0        : [[regrw]]  uint32
+    TEST         : [[regrw]]  uint32
+    JFIFO_ST     : [[regrw]]  uint32
+    FRAM_NUM     : [[regrw]]  uint32
+    IN_EP0_ST    : [[regrw]]  uint32
+    IN_EP1_ST    : [[regrw]]  uint32
+    IN_EP2_ST    : [[regrw]]  uint32
+    IN_EP3_ST    : [[regrw]]  uint32
+    OUT_EP0_ST   : [[regrw]]  uint32
+    OUT_EP1_ST   : [[regrw]]  uint32
+    OUT_EP2_ST   : [[regrw]]  uint32
+    MISC_CONF    : [[regrw]]  uint32
+    MEM_CONF     : [[regrw]]  uint32
     _pad         :            [(0x80 - 0x4C)  div  4] uint32
-    DATE         : [[regrw]]  uint32  
+    DATE         : [[regrw]]  uint32
 endstruct
 
-const USB_SERIAL_JTAG :? = ^esp_usb_serial_jtag((0x60043000))
 struct esp_dmach_intr:
-    RAW          : [[regrw]]  uint32  
-    ST           : [[regrw]]  uint32  
-    ENA          : [[regrw]]  uint32  
-    CLR          : [[regrw]]  uint32  
+    RAW          : [[regrw]]  uint32
+    ST           : [[regrw]]  uint32
+    ENA          : [[regrw]]  uint32
+    CLR          : [[regrw]]  uint32
 endstruct
 
 struct esp_dmainout:
-    CONF0        : [[regrw]]  uint32  
-    CONF1        : [[regrw]]  uint32  
-    FIFO_STATUS  : [[regrw]]  uint32  
-    POP_PUSH     : [[regrw]]  uint32  
-    LINK         : [[regrw]]  uint32  
-    STATE        : [[regrw]]  uint32  
-    SUC_EOF_DES_ADDR : [[regrw]]  uint32  
-    ERR_EOF_DES_ADDR : [[regrw]]  uint32  
-    DSCR         : [[regrw]]  uint32  
-    DSCR_BF0     : [[regrw]]  uint32  
-    DSCR_BF1     : [[regrw]]  uint32  
-    PRI          : [[regrw]]  uint32  
-    PERI_SEL     : [[regrw]]  uint32  
+    CONF0        : [[regrw]]  uint32
+    CONF1        : [[regrw]]  uint32
+    FIFO_STATUS  : [[regrw]]  uint32
+    POP_PUSH     : [[regrw]]  uint32
+    LINK         : [[regrw]]  uint32
+    STATE        : [[regrw]]  uint32
+    SUC_EOF_DES_ADDR : [[regrw]]  uint32
+    ERR_EOF_DES_ADDR : [[regrw]]  uint32
+    DSCR         : [[regrw]]  uint32
+    DSCR_BF0     : [[regrw]]  uint32
+    DSCR_BF1     : [[regrw]]  uint32
+    PRI          : [[regrw]]  uint32
+    PERI_SEL     : [[regrw]]  uint32
     _pad         :            [11] uint32
 endstruct
 
@@ -458,14 +481,13 @@ endstruct
 struct esp_gdma:
     INTR         :            [3] esp_dmach_intr
     _pad_030     :            [(0x40 - 0x30)  div  4] uint32
-    AHB_TEST     : [[regrw]]  uint32  
-    MISC_CONF    : [[regrw]]  uint32  
-    DATE         : [[regrw]]  uint32  
+    AHB_TEST     : [[regrw]]  uint32
+    MISC_CONF    : [[regrw]]  uint32
+    DATE         : [[regrw]]  uint32
     _pad_04C     :            [(0x70 - 0x4C)  div  4] uint32
     CH           :            [3] esp_dmach
 endstruct
 
-const GDMA         :? = ^esp_gdma((0x6003F000))
 const(uint32):
     GDMA_PERI_SEL_SPI2   = 0
     GDMA_PERI_SEL_UHCI0  = 2
@@ -477,9 +499,9 @@ const(uint32):
 endconst
 
 struct esp_dmadesc:
-    size_len_flags :            uint32  
-    bufaddr      :            uint32  
-    next_desc    :            uint32  
+    size_len_flags :            uint32
+    bufaddr      :            uint32
+    next_desc    :            uint32
 endstruct
 
 const(uint32):
@@ -491,159 +513,143 @@ const(uint32):
 endconst
 
 struct esp_i2c_regs:
-    SCL_LOW_PERIOD : [[regrw]]  uint32  
-    CTR          : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    TO           : [[regrw]]  uint32  
-    SLAVE_ADDR   : [[regrw]]  uint32  
-    FIFO_ST      : [[regrw]]  uint32  
-    FIFO_CONF    : [[regrw]]  uint32  
-    DATA         : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    INT_ENA      : [[regrw]]  uint32  
-    INT_STATUS   : [[regrw]]  uint32  
-    SDA_HOLD     : [[regrw]]  uint32  
-    SDA_SAMPLE   : [[regrw]]  uint32  
-    SCL_HIGH_PERIOD : [[regrw]]  uint32  
-    _pad_3C      :            uint32  
-    SCL_START_HOLD : [[regrw]]  uint32  
-    SCL_RSTART_SETUP : [[regrw]]  uint32  
-    SCL_STOP_HOLD : [[regrw]]  uint32  
-    SCL_STOP_SETUP : [[regrw]]  uint32  
-    FILTER_CFG   : [[regrw]]  uint32  
-    CLK_CONF     : [[regrw]]  uint32  
+    SCL_LOW_PERIOD : [[regrw]]  uint32
+    CTR          : [[regrw]]  uint32
+    SR           : [[regrw]]  uint32
+    TO           : [[regrw]]  uint32
+    SLAVE_ADDR   : [[regrw]]  uint32
+    FIFO_ST      : [[regrw]]  uint32
+    FIFO_CONF    : [[regrw]]  uint32
+    DATA         : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    INT_ENA      : [[regrw]]  uint32
+    INT_STATUS   : [[regrw]]  uint32
+    SDA_HOLD     : [[regrw]]  uint32
+    SDA_SAMPLE   : [[regrw]]  uint32
+    SCL_HIGH_PERIOD : [[regrw]]  uint32
+    _pad_3C      :            uint32
+    SCL_START_HOLD : [[regrw]]  uint32
+    SCL_RSTART_SETUP : [[regrw]]  uint32
+    SCL_STOP_HOLD : [[regrw]]  uint32
+    SCL_STOP_SETUP : [[regrw]]  uint32
+    FILTER_CFG   : [[regrw]]  uint32
+    CLK_CONF     : [[regrw]]  uint32
     COMD         : [[regrw]]  [8] uint32
-    SCL_ST_TIME_OUT : [[regrw]]  uint32  
-    SCL_MAIN_ST_TIME_OUT : [[regrw]]  uint32  
-    SCL_SP_CONF  : [[regrw]]  uint32  
-    SCL_STRETCH_CONF : [[regrw]]  uint32  
+    SCL_ST_TIME_OUT : [[regrw]]  uint32
+    SCL_MAIN_ST_TIME_OUT : [[regrw]]  uint32
+    SCL_SP_CONF  : [[regrw]]  uint32
+    SCL_STRETCH_CONF : [[regrw]]  uint32
     _pad_88      :            [(0xF8-0x88) div 4] uint32
-    DATE         : [[regrw]]  uint32  
-    _pad_FC      :            uint32  
+    DATE         : [[regrw]]  uint32
+    _pad_FC      :            uint32
     TXFIFO_START_ADDR : [[regrw]]  [32] uint32
     RXFIFO_START_ADDR : [[regrw]]  [32] uint32
 endstruct
 
-const I2C0         :? = ^esp_i2c_regs((0x60013000))
 struct espwai_regs:
-    MODE         : [[regrw]]  uint32  
-    CMD          : [[regrw]]  uint32  
-    STATUS       : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_ENA      : [[regrw]]  uint32  
-    _pad_14      : [[regrw]]  uint32  
-    BUS_TIMING_0 : [[regrw]]  uint32  
-    BUS_TIMING_1 : [[regrw]]  uint32  
+    MODE         : [[regrw]]  uint32
+    CMD          : [[regrw]]  uint32
+    STATUS       : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_ENA      : [[regrw]]  uint32
+    _pad_14      : [[regrw]]  uint32
+    BUS_TIMING_0 : [[regrw]]  uint32
+    BUS_TIMING_1 : [[regrw]]  uint32
     _pad_20      :            [(0x2C-0x20) div 4] uint32
-    ARB_LOST_CAP : [[regrw]]  uint32  
-    ERR_CODE_CAP : [[regrw]]  uint32  
-    ERR_WARNING_LIMIT : [[regrw]]  uint32  
-    RX_ERR_CNT   : [[regrw]]  uint32  
-    TX_ERR_CNT   : [[regrw]]  uint32  
+    ARB_LOST_CAP : [[regrw]]  uint32
+    ERR_CODE_CAP : [[regrw]]  uint32
+    ERR_WARNING_LIMIT : [[regrw]]  uint32
+    RX_ERR_CNT   : [[regrw]]  uint32
+    TX_ERR_CNT   : [[regrw]]  uint32
     DATA         : [[regrw]]  [13] uint32
-    RX_MESSAGE_CNT : [[regrw]]  uint32  
-    _pad_78      :            uint32  
-    CLOCK_DIVIDER : [[regrw]]  uint32  
+    RX_MESSAGE_CNT : [[regrw]]  uint32
+    _pad_78      :            uint32
+    CLOCK_DIVIDER : [[regrw]]  uint32
 endstruct
 
-const TWAI         :? = ^espwai_regs((0x6002B000))
 struct esp_saradc_regs:
-    CTRL         : [[regrw]]  uint32  
-    CTRL2        : [[regrw]]  uint32  
-    FILTER_CTRL1 : [[regrw]]  uint32  
-    FSM_WAIT     : [[regrw]]  uint32  
-    SAR1_STATUS  : [[regrw]]  uint32  
-    SAR2_STATUS  : [[regrw]]  uint32  
-    SAR_PATT_TAB1 : [[regrw]]  uint32  
-    SAR_PATT_TAB2 : [[regrw]]  uint32  
-    ONETIME_SAMPLE : [[regrw]]  uint32  
-    APB_ADC_ARB_CTRL : [[regrw]]  uint32  
-    FILTER_CTRL0 : [[regrw]]  uint32  
-    DATA_STATUS_1 : [[regrw]]  uint32  
-    DATA_STATUS_2 : [[regrw]]  uint32  
-    THRES0_CTRL  : [[regrw]]  uint32  
-    THRES1_CTRL  : [[regrw]]  uint32  
-    THRES_CTRL   : [[regrw]]  uint32  
-    INT_ENA      : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_ST       : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    DMA_CONF     : [[regrw]]  uint32  
-    APB_ADC_CLKM_CONF : [[regrw]]  uint32  
-    APB_TSENS_CTRL : [[regrw]]  uint32  
-    APB_TSENS_CTRL2 : [[regrw]]  uint32  
-    CALI         : [[regrw]]  uint32  
+    CTRL         : [[regrw]]  uint32
+    CTRL2        : [[regrw]]  uint32
+    FILTER_CTRL1 : [[regrw]]  uint32
+    FSM_WAIT     : [[regrw]]  uint32
+    SAR1_STATUS  : [[regrw]]  uint32
+    SAR2_STATUS  : [[regrw]]  uint32
+    SAR_PATT_TAB1 : [[regrw]]  uint32
+    SAR_PATT_TAB2 : [[regrw]]  uint32
+    ONETIME_SAMPLE : [[regrw]]  uint32
+    APB_ADC_ARB_CTRL : [[regrw]]  uint32
+    FILTER_CTRL0 : [[regrw]]  uint32
+    DATA_STATUS_1 : [[regrw]]  uint32
+    DATA_STATUS_2 : [[regrw]]  uint32
+    THRES0_CTRL  : [[regrw]]  uint32
+    THRES1_CTRL  : [[regrw]]  uint32
+    THRES_CTRL   : [[regrw]]  uint32
+    INT_ENA      : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_ST       : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    DMA_CONF     : [[regrw]]  uint32
+    APB_ADC_CLKM_CONF : [[regrw]]  uint32
+    APB_TSENS_CTRL : [[regrw]]  uint32
+    APB_TSENS_CTRL2 : [[regrw]]  uint32
+    CALI         : [[regrw]]  uint32
     _pad_064     :            [(0x3FC-0x64) div 4] uint32
-    APB_CTRL_DATE : [[regrw]]  uint32  
+    APB_CTRL_DATE : [[regrw]]  uint32
 endstruct
 
-const SARADC       :? = ^esp_saradc_regs((0x60040000))
 struct esp_ledc_regs:
-    LSCH0_CONF0  : [[regrw]]  uint32  
-    LSCH0_HPOINT : [[regrw]]  uint32  
-    LSCH0_DUTY   : [[regrw]]  uint32  
-    LSCH0_CONF1  : [[regrw]]  uint32  
-    LSCH0_DUTY_R : [[regrw]]  uint32  
-    LSCH1_CONF0  : [[regrw]]  uint32  
-    LSCH1_HPOINT : [[regrw]]  uint32  
-    LSCH1_DUTY   : [[regrw]]  uint32  
-    LSCH1_CONF1  : [[regrw]]  uint32  
-    LSCH1_DUTY_R : [[regrw]]  uint32  
-    LSCH2_CONF0  : [[regrw]]  uint32  
-    LSCH2_HPOINT : [[regrw]]  uint32  
-    LSCH2_DUTY   : [[regrw]]  uint32  
-    LSCH2_CONF1  : [[regrw]]  uint32  
-    LSCH2_DUTY_R : [[regrw]]  uint32  
-    LSCH3_CONF0  : [[regrw]]  uint32  
-    LSCH3_HPOINT : [[regrw]]  uint32  
-    LSCH3_DUTY   : [[regrw]]  uint32  
-    LSCH3_CONF1  : [[regrw]]  uint32  
-    LSCH3_DUTY_R : [[regrw]]  uint32  
-    LSCH4_CONF0  : [[regrw]]  uint32  
-    LSCH4_HPOINT : [[regrw]]  uint32  
-    LSCH4_DUTY   : [[regrw]]  uint32  
-    LSCH4_CONF1  : [[regrw]]  uint32  
-    LSCH4_DUTY_R : [[regrw]]  uint32  
-    LSCH5_CONF0  : [[regrw]]  uint32  
-    LSCH5_HPOINT : [[regrw]]  uint32  
-    LSCH5_DUTY   : [[regrw]]  uint32  
-    LSCH5_CONF1  : [[regrw]]  uint32  
-    LSCH5_DUTY_R : [[regrw]]  uint32  
+    LSCH0_CONF0  : [[regrw]]  uint32
+    LSCH0_HPOINT : [[regrw]]  uint32
+    LSCH0_DUTY   : [[regrw]]  uint32
+    LSCH0_CONF1  : [[regrw]]  uint32
+    LSCH0_DUTY_R : [[regrw]]  uint32
+    LSCH1_CONF0  : [[regrw]]  uint32
+    LSCH1_HPOINT : [[regrw]]  uint32
+    LSCH1_DUTY   : [[regrw]]  uint32
+    LSCH1_CONF1  : [[regrw]]  uint32
+    LSCH1_DUTY_R : [[regrw]]  uint32
+    LSCH2_CONF0  : [[regrw]]  uint32
+    LSCH2_HPOINT : [[regrw]]  uint32
+    LSCH2_DUTY   : [[regrw]]  uint32
+    LSCH2_CONF1  : [[regrw]]  uint32
+    LSCH2_DUTY_R : [[regrw]]  uint32
+    LSCH3_CONF0  : [[regrw]]  uint32
+    LSCH3_HPOINT : [[regrw]]  uint32
+    LSCH3_DUTY   : [[regrw]]  uint32
+    LSCH3_CONF1  : [[regrw]]  uint32
+    LSCH3_DUTY_R : [[regrw]]  uint32
+    LSCH4_CONF0  : [[regrw]]  uint32
+    LSCH4_HPOINT : [[regrw]]  uint32
+    LSCH4_DUTY   : [[regrw]]  uint32
+    LSCH4_CONF1  : [[regrw]]  uint32
+    LSCH4_DUTY_R : [[regrw]]  uint32
+    LSCH5_CONF0  : [[regrw]]  uint32
+    LSCH5_HPOINT : [[regrw]]  uint32
+    LSCH5_DUTY   : [[regrw]]  uint32
+    LSCH5_CONF1  : [[regrw]]  uint32
+    LSCH5_DUTY_R : [[regrw]]  uint32
     _pad_78      :            [(0xA0-0x78) div 4] uint32
-    LSTIMER0_CONF : [[regrw]]  uint32  
-    LSTIMER0_VALUE : [[regrw]]  uint32  
-    LSTIMER1_CONF : [[regrw]]  uint32  
-    LSTIMER1_VALUE : [[regrw]]  uint32  
-    LSTIMER2_CONF : [[regrw]]  uint32  
-    LSTIMER2_VALUE : [[regrw]]  uint32  
-    LSTIMER3_CONF : [[regrw]]  uint32  
-    LSTIMER3_VALUE : [[regrw]]  uint32  
-    INT_RAW      : [[regrw]]  uint32  
-    INT_ST       : [[regrw]]  uint32  
-    INT_ENA      : [[regrw]]  uint32  
-    INT_CLR      : [[regrw]]  uint32  
-    CONF         : [[regrw]]  uint32  
+    LSTIMER0_CONF : [[regrw]]  uint32
+    LSTIMER0_VALUE : [[regrw]]  uint32
+    LSTIMER1_CONF : [[regrw]]  uint32
+    LSTIMER1_VALUE : [[regrw]]  uint32
+    LSTIMER2_CONF : [[regrw]]  uint32
+    LSTIMER2_VALUE : [[regrw]]  uint32
+    LSTIMER3_CONF : [[regrw]]  uint32
+    LSTIMER3_VALUE : [[regrw]]  uint32
+    INT_RAW      : [[regrw]]  uint32
+    INT_ST       : [[regrw]]  uint32
+    INT_ENA      : [[regrw]]  uint32
+    INT_CLR      : [[regrw]]  uint32
+    CONF         : [[regrw]]  uint32
     _pad_D4      :            [(0xFC-0xD4) div 4] uint32
-    DATE         : [[regrw]]  uint32  
+    DATE         : [[regrw]]  uint32
 endstruct
 
-const LEDC         :? = ^esp_ledc_regs((0x60019000))
-struct vihal_esp_image_header:
-    magic        :            uint8   
-    segment_count :            uint8   
-    spi_mode     :            uint8   
-    spi_speed_size :            uint8   
-    entry_addr   :            uint32  
-    wp_pin       :            uint8   
-    spi_pin_drv  :            [3] uint8
-    chip_id      :            uint16  
-    min_chip_rev :            uint8   
-    reserved     :            [8] uint8
-    hash_appended :            uint8   
-    load_addr    :            uint32  
-    data_len     :            uint32  
-endstruct
+//-----------------------------------------------------------------------------
+// Perpipheral addresses
+//-----------------------------------------------------------------------------
 
 const(uint32):
     PRO_CPU_NUM          = 0
@@ -749,6 +755,31 @@ const(uint32):
     SOC_DEBUG_HIGH       = 0x28000000
     SOC_ROM_STACK_START  = 0x3fcebf10
 endconst
+
+const GPIO         :? = ^esp_gpio((0x60004000))
+const IO_MUX       :? = ^esp_io_mux((0x60009000))
+const SYSTEM       :? = ^esp_sysreg((0x600C0000))
+const APB_CTRL     :? = ^esp_apb_ctrl((0x60026000))
+const RTC_CNTL     :? = ^esp_rtc_cntl((0x60008000))
+const SYS_TIMER    :? = ^esp_systimer((0x60023000))
+const TIMG0        :? = ^espimg((0x6001F000))
+const TIMG1        :? = ^espimg((0x60020000))
+const UART0        :? = ^esp_uart((0x60000000))
+const UART1        :? = ^esp_uart((0x60010000))
+const UHCI0        :? = ^esp_uhci((0x60014000))
+const SPI2         :? = ^esp_spi((0x60024000))
+const SPIMEM0      :? = ^esp_spi_mem((0x60003000))
+const SPIMEM1      :? = ^esp_spi_mem((0x60002000))
+const USB_SERIAL_JTAG :? = ^esp_usb_serial_jtag((0x60043000))
+const GDMA         :? = ^esp_gdma((0x6003F000))
+const I2C0         :? = ^esp_i2c_regs((0x60013000))
+const TWAI         :? = ^espwai_regs((0x6002B000))
+const SARADC       :? = ^esp_saradc_regs((0x60040000))
+const LEDC         :? = ^esp_ledc_regs((0x60019000))
+
+//-----------------------------------------------------------------------------
+// Perpipheral Bits
+//-----------------------------------------------------------------------------
 
 const(uint32):
     ETS_WMAC_INUM        = 1

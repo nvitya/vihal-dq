@@ -97,7 +97,7 @@ SECTIONS
 
   __app_image_end = LOADADDR(.data) + SIZEOF(.data);
 
-  __global_pointer$ = ADDR(.data) + 0x800;
+  __rv_global_pointer = ADDR(.data) + 0x800;
 
   .bss_DTCRAM (NOLOAD) : ALIGN(4) { *(.bss_DTCRAM) } > DTCRAM
   .bss_ITCRAM (NOLOAD) : ALIGN(4) { *(.bss_ITCRAM) } > ITCRAM

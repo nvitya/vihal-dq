@@ -1,0 +1,55 @@
+
+var __stack : uint  [[external('__stack')]]
+
+func _start(self_flash : int)  [[external('_start')]]
+
+func rv32i_init_c(self_flash : int)  [[cexport, section('.startup')]]:
+    // early entry, stack is working, GP is working, IRQs disabled
+
+    // setup interrupt controller, device specific
+    //mcu_interrupt_controller_init();
+
+    //mcu_preinit_code();
+
+    _start(self_flash);
+endfunc
+
+func rv32i_init_asm(self_flash : int)  [[cexport, section('.startup'), asm]]:
+
+    li     t0, (3 << 11)    // set mpp=11 => machine-mode, clear all remaining bits,
+    csrw   mstatus, t0      // also disables IRQs globally (MIE)
+
+    // The GD32V MCU starts at address 0x00000000 while the code was targeted to 0x08000000.
+    // This leads false immediates for instructions that use the PC partially (like luipc)
+
+    // This jump ensures that the execution continues there where the original code was targeted:
+    lui    t0, %hi(_start0800)
+    addi   t0, t0, %lo(_start0800)
+    jr     t0
+_start0800:
+
+    la     sp, __stack  // stack pointer
+
+    // the GP is used for "relaxed" global data access, when the data is within -0x800 ... +0x800 range
+    // safely set the global pointer, without using itself
+    lui    gp, %hi(__rv_global_pointer)
+    addi   gp, gp, %lo(__rv_global_pointer)
+
+    //la     t0, riscv_setup_irq     // setup interrupts, this is interrupt controlled dependent
+    //jalr   x1, t0                  // call the function
+
+    j      rv32i_init_c
+endfunc
+
+func _soft_entry()  [[cexport, section('.startup'), asm]]:
+    nop
+    li     a0, 1
+    j      rv32i_init_asm
+endfunc
+
+func _cold_entry()  [[cexport, section('.startup'), asm]]:
+    nop
+    li     a0, 0
+    j      rv32i_init_asm
+endfunc
+
