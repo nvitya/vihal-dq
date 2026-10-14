@@ -2,7 +2,7 @@
 
 use ^/core/pre/hwclk_pre  reexport
 
-func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool
+func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool ..
 
 implementation
 

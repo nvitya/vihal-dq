@@ -1,0 +1,17 @@
+
+use vihal/core/pre/hwclk_pre  reexport
+
+func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool ..
+
+implementation
+
+use vihal/platform
+
+func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool:
+      // This is set fixed by the Linux
+
+    SystemCoreClock = 93750000;  // = GPLL / 8 / 2
+
+    return true;
+endfunc
+

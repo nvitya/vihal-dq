@@ -17,7 +17,9 @@ use ^/core/mcu_defs   reexport  // board module used and reexported inside
 
 var SystemCoreClock : uint  [[section('.noinit')]]
 
-use ^/core/c_system
+#ifdef BARE
+  use ^/core/c_system
+#endif
 
 //-----------------------------------------------------------------------------
 

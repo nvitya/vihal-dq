@@ -4,6 +4,8 @@ use ^/platform
     use ^/armm/stm32/impl/hwpins_stm32   reexport
 #elifdef MCUF_ESP32
     use ^/rv32i/esp32/impl/hwpins_esp   reexport
+#elifdef MCUF_RK
+    use ^/arma/rk/impl/hwpins_rk   reexport
 #else
     use ^/core/noimpl/hwpins_noimpl  reexport
 #endif

@@ -1,21 +1,21 @@
-use ^/core/pre/hwpins_pre  reexport
+use vihal/core/pre/hwpins_pre  reexport
 
-func GpioPortEnable(aportnum : int) -> bool
-func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool
+func GpioPortEnable(aportnum : int) -> bool ..
+func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool ..
 
 object OGpioPin(OGpioPin_common):
 
-    func *Create()  [[overload]]
-    func *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]
+    func *Create()  [[overload]] ..
+    func *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]] ..
 
-    func Assign(aportnum : int, apinnum : int, ainvert : bool)
-    func Setup(flags : uint) -> bool
+    func Assign(aportnum : int, apinnum : int, ainvert : bool) ..
+    func Setup(flags : uint) -> bool ..
 
 endobject
 
 implementation
 
-use ^/platform
+use vihal/platform
 
 #ifdef   GPIOP_BASE
   const MAX_PORT_NUMBER : int = 16

@@ -103,7 +103,7 @@ object OGpioPin_common(OGpioPin_pre):
     clrbitvalue  : uint32
     getbitshift  : uint32
 
-    func InitDummy()
+    func InitDummy() ..
 
     func *Create():
         InitDummy()

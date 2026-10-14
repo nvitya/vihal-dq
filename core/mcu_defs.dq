@@ -28,6 +28,11 @@ use board      reexport  // the project must define this !
 #endif
 
 
+#ifdef CPU_ARMA
+
+#endif
+
+
 #ifdef CPU_RV32I
 
     use ^/rv32i/core/rv32i_instr  reexport

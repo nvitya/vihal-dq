@@ -1,0 +1,59 @@
+/*
+ *  file:     hw_utils_linux.dq
+ *  brief:    Special System Utilities for direct HW Access
+ *  date:     2026-10-14
+ *  authors:  nvitya
+*/
+
+const MEM_PAGE_SIZE : uint = 4 * 1024
+
+func hw_memmap(aaddr : uint, asize : uint) -> pointer ..
+
+
+implementation
+
+const O_RDWR     : int32 = 0x00000002
+const O_SYNC     : int32 = 0x00101000
+const PROT_READ  : int32 = 0x01
+const PROT_WRITE : int32 = 0x02
+const MAP_SHARED : int32 = 0x01
+const MAP_FAILED : pointer = pointer(-1)
+
+func libc_open(pathname : ^char, flags : int32, ...) -> int32 [[external('open')]] ..
+func libc_close(fd : int32) -> int32 [[external('close')]] ..
+
+// Use a 64-bit file offset so 32-bit Linux can map physical addresses above 2 GiB.
+#ifdef TARGET_32BIT
+func libc_mmap(addr : pointer, length : uint, prot : int32, flags : int32, fd : int32, offset : int64) -> pointer [[external('mmap64')]] ..
+#else
+func libc_mmap(addr : pointer, length : uint, prot : int32, flags : int32, fd : int32, offset : int64) -> pointer [[external('mmap')]] ..
+#endif
+
+
+func hw_memmap(aaddr : uint, asize : uint) -> pointer:
+    var mem_fd : int32 = libc_open("/dev/mem", O_RDWR | O_SYNC)
+    if mem_fd < 0:
+        return nil
+    endif
+
+    var pageoffset : uint = aaddr & (MEM_PAGE_SIZE - 1)
+    var startaddr  : uint = aaddr & ~(MEM_PAGE_SIZE - 1)
+    var memblksize : uint = (pageoffset + asize + (MEM_PAGE_SIZE - 1)) & ~(MEM_PAGE_SIZE - 1)
+
+    var mmapresult : ^byte = libc_mmap(
+        nil,                     // target address within our address space, nullptr = selected by the system
+        memblksize,              // map length
+        PROT_READ | PROT_WRITE,  // Enable reading & writing to mapped memory
+        MAP_SHARED,              // shared with other processes
+        mem_fd,                  // file to map
+        startaddr                // offset
+    ) as ^byte
+
+    libc_close(mem_fd) // not required anymore
+
+    if mmapresult == MAP_FAILED:
+        return nil
+    endif
+
+    return mmapresult + pageoffset
+endfunc
