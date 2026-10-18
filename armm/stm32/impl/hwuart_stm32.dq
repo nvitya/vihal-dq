@@ -5,22 +5,22 @@ object OHwUart_impl(OHwUart_pre):
 
 	regs : ^USART_TypeDef
 
-	func Init(adevnum : int) -> bool
+	func Init(adevnum : int) -> bool ..
 
-	func SetPeriphClock(aclk : uint) -> bool
-	func SetBaudRate(abaudrate : int = 0) -> bool
+	func SetPeriphClock(aclk : uint) -> bool ..
+	func SetBaudRate(abaudrate : int = 0) -> bool ..
 
-	func TrySendByte(ach : byte) -> bool
-	func TryRecvByte(rch : refout byte) -> bool
-	func SendFinished() -> bool
+	func TrySendByte(ach : byte) -> bool ..
+	func TryRecvByte(rch : refout byte) -> bool ..
+	func SendFinished() -> bool ..
 
     // Dma
 /*
-	func DmaAssign(istx : bool, admach : ^OHwDmaChannel)
-	func DmaStartSend(THwDmaTransfer * axfer) -> bool
-	func DmaStartRecv(THwDmaTransfer * axfer) -> bool
-	func DmaSendCompleted() -> bool
-	func DmaRecvCompleted() -> bool
+	func DmaAssign(istx : bool, admach : ^OHwDmaChannel) ..
+	func DmaStartSend(THwDmaTransfer * axfer) -> bool ..
+	func DmaStartRecv(THwDmaTransfer * axfer) -> bool ..
+	func DmaSendCompleted() -> bool ..
+	func DmaRecvCompleted() -> bool ..
 */
 endobject
 

@@ -5,8 +5,8 @@ type FVectorTableEntry = func()
 
 var __stack : uint  [[external('__stack')]]  // from the linker script
 
-func soft_entry()  [[external('soft_entry')]]
-func cold_entry()  [[external('cold_entry')]]
+func soft_entry()  [[external('soft_entry')]] ..
+func cold_entry()  [[external('cold_entry')]] ..
 
 func NMI_Handler() [[cexport, weak]]:
     while true:

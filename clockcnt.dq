@@ -1,6 +1,6 @@
 use ^/platform
 
-func ClockCntInit()
+func ClockCntInit() ..
 
 #ifdef CPU_ARMM
 	#if __CORTEX_M >= 3

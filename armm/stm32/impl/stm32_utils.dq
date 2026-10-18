@@ -26,8 +26,8 @@ const(byte):
     STM32_BUSID_APB4 = 4
 endconst
 
-func Stm32BusSpeed(abusid : byte) -> uint
-func Stm32StartInternalHsRcOsc()
+func Stm32BusSpeed(abusid : byte) -> uint ..
+func Stm32StartInternalHsRcOsc() ..
 
 implementation
 

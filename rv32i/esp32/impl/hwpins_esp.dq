@@ -1,19 +1,19 @@
 use ^/core/pre/hwpins_pre  reexport
 
-func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool
-func PadSetup(apadnum : uint, iomuxidx : uint, flags : uint) -> bool
-func PadInput(apadnum : int, in_iomuxidx : uint) -> bool
+func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool ..
+func PadSetup(apadnum : uint, iomuxidx : uint, flags : uint) -> bool ..
+func PadInput(apadnum : int, in_iomuxidx : uint) -> bool ..
 
 object OGpioPin(OGpioPin_common):
 
-    func *Create()  [[overload]]
-    func *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]
+    func *Create()  [[overload]] ..
+    func *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]] ..
 
-    func Assign(aportnum : int, apinnum : int, ainvert : bool)
-    func Setup(flags : uint) -> bool
+    func Assign(aportnum : int, apinnum : int, ainvert : bool) ..
+    func Setup(flags : uint) -> bool ..
 
-    func Toggle()
-    func SwitchDirection(adirection : int)
+    func Toggle() ..
+    func SwitchDirection(adirection : int) ..
 
 endobject
 

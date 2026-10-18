@@ -1,7 +1,7 @@
 
 var __stack : uint  [[external('__stack')]]
 
-func _start(self_flash : int)  [[external('_start')]]
+func _start(self_flash : int)  [[external('_start')]] ..
 
 func rv32i_init_c(self_flash : int)  [[cexport, section('.startup')]]:
     // early entry, stack is working, GP is working, IRQs disabled
