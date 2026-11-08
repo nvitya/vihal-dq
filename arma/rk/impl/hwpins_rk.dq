@@ -140,8 +140,6 @@ const(byte):
     RMIO_RMII1_MCGPST_TRI  = 0x62
 endconst
 
-func GpioPortEnable(aportnum : int) -> bool ..
-
 func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool ..
 
 // platform specific
@@ -152,6 +150,8 @@ func RmioByPortPin(aportnum : int, apinnum : int) -> int ..
 
 
 object OGpioPin(OGpioPin_common):
+	pindirptr     : ^uint32
+    getbitshift16 : byte
 
     func *Create()  [[overload]] ..
     func *Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]] ..
@@ -159,6 +159,8 @@ object OGpioPin(OGpioPin_common):
     func Assign(aportnum : int, apinnum : int, ainvert : bool) ..
     func Setup(flags : uint) -> bool ..
 
+    func Toggle() ..
+    func SwitchDirection(adirection : int) ..
 endobject
 
 
@@ -166,41 +168,312 @@ implementation
 
 
 use vihal/platform
+use ./rk_utils
 
+var	mapped_gpio_regs : [5]^GPIO_REG = [nil, nil, nil, nil, nil]
+var mapped_ioc_regs  : [5]^byte     = [nil, nil, nil, nil, nil]  // using ^byte for byte offsets from the TRM
+var mapped_rm_io     : ^byte        = nil
 
-func GpioPortEnable(aportnum : int) -> bool:
-    return false
-endfunc
+const GPIO_BASE_ADDRESSES : [5]uint32 = [GPIO0_BASE, GPIO1_BASE, GPIO2_BASE, GPIO3_BASE, GPIO4_BASE]
+const IOC_BASE_ADDRESSES  : [5]uint32 = [GPIO0_IOC_BASE, GPIO1_IOC_BASE, GPIO2_IOC_BASE, GPIO3_IOC_BASE, GPIO4_IOC_BASE]
 
-func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
-    return false
+const rk3506_rmio_lookup : [32]uint8 = [
+    // from GPIO0_A0 -> GPIO0_C7 it is linear
+    /*  0 */ 0x00, // 0.A0
+    /*  1 */ 0x01,
+    /*  2 */ 0x02,
+    /*  3 */ 0x03,
+    /*  4 */ 0x04,
+    /*  5 */ 0x05,
+    /*  6 */ 0x06,
+    /*  7 */ 0x07,
+    /*  8 */ 0x08, // 0.B0
+    /*  9 */ 0x09,
+    /* 10 */ 0x0A,
+    /* 11 */ 0x0B,
+    /* 12 */ 0x0C,
+    /* 13 */ 0x0D,
+    /* 14 */ 0x0E,
+    /* 15 */ 0x0F,
+    /* 16 */ 0x10, // 0.C0
+    /* 17 */ 0x11,
+    /* 18 */ 0x12,
+    /* 19 */ 0x13,
+    /* 20 */ 0x14,
+    /* 21 */ 0x15,
+    /* 22 */ 0x16,
+    /* 23 */ 0x17,
+    // from now it is non-linear
+    /* 24 */ 0x29, // 1.B1
+    /* 25 */ 0x2A, // 1.B2
+    /* 26 */ 0x2B, // 1.B3
+    /* 27 */ 0x32, // 1.C2
+    /* 28 */ 0x33, // 1.C3
+    /* 29 */ 0x39, // 1.D1
+    /* 30 */ 0x3A, // 1.D2
+    /* 31 */ 0x3B  // 1.D3
+]
+
+func RmioByPortPin(aportnum : int, apinnum : int) -> int:
+    var gpio_code : uint8 = (aportnum << 5) | apinnum
+    var rmio_num : int = 0
+    while rmio_num < rk3506_rmio_lookup.length:
+        if rk3506_rmio_lookup[rmio_num] == gpio_code:
+            return rmio_num
+        endif
+        ++rmio_num
+    endwhile
+    return -1
 endfunc
 
 func PinSetupRmio(aportnum : int, apinnum : int, rmio_func : int, flags : uint) -> bool:
-    return false
+    var rmionum : int = RmioByPortPin(aportnum, apinnum)
+    if rmionum < 0:
+        return false
+    endif
+    if not PinSetup(aportnum, apinnum, (flags & ~PINCFG_AF_MASK) | PINCFG_AF_RM_IO):
+        return false
+    endif
+    return RmioSetup(rmionum, rmio_func)
 endfunc
 
 func RmioSetup(rmionum : int, funcnum : int) -> bool:
-    return false
+    if not 0 <= rmionum <= 31:
+        return false
+    endif
+    if map_hw_addr(RM_IO_BASE, 4096, ^pointer(%mapped_rm_io)) == nil:
+        return false
+    endif
+    funcnum &= 0x7F
+    var reg_sel :? = ^uint32(mapped_rm_io[0x80 + (rmionum << 2)])
+    reg_sel^ = (0x7F << 16) | funcnum
+    return true
 endfunc
 
-func RmioByPortPin(aportnum : int, apinnum : int) -> int:
-    return 0
+
+func GetGpioRegs(aportnum : int) -> ^GPIO_REG:
+    if not 0 <= aportnum < 4:
+        return nil
+    endif
+    var regs : ^GPIO_REG = mapped_gpio_regs[aportnum]
+    if regs == nil:
+        regs = ^GPIO_REG(map_hw_addr(GPIO_BASE_ADDRESSES[aportnum], SizeOf(GPIO_REG), ^pointer(%mapped_gpio_regs[aportnum])))
+    endif
+    return regs
 endfunc
 
+func GetIocRegs(aportnum : int) -> ^uint8:
+    if not 0 <= aportnum < 4:
+        return nil
+    endif
+    var regs : ^uint8 = mapped_ioc_regs[aportnum]
+    if regs == nil:
+        regs = ^uint8(map_hw_addr(IOC_BASE_ADDRESSES[aportnum], 4096, ^pointer(%mapped_ioc_regs[aportnum])))
+    endif
+    return regs
+endfunc
+
+func GpioSet(aportnum : int, apinnum : int, value : int):
+    var regs : ^GPIO_REG = GetGpioRegs(aportnum)
+    if regs <> nil:
+        var setbitptr : ^uint32
+        if apinnum >= 16:
+            setbitptr = ^uint32(%regs.SWPORT_DR_H)
+        else:
+            setbitptr = ^uint32(%regs.SWPORT_DR_L)
+        endif
+
+        var bitmask : uint32 = (1 << (apinnum & 0xF))
+        if value <> 0:
+            setbitptr^ = (bitmask << 16) | bitmask
+        else:
+            setbitptr^ = (bitmask << 16)
+        endif
+    endif
+endfunc
+
+func GpioDir(aportnum : int, apinnum : int, value : int):
+    var regs : ^GPIO_REG = GetGpioRegs(aportnum)
+    if regs <> nil:
+        var setbitptr : ^uint32
+        if apinnum >= 16:
+            setbitptr = ^uint32(%regs.SWPORT_DDR_H)
+        else:
+            setbitptr = ^uint32(%regs.SWPORT_DDR_L)
+        endif
+
+        var bitmask : uint32 = (1 << (apinnum & 0xF))
+        if value <> 0:
+            setbitptr^ = (bitmask << 16) | bitmask
+        else:
+            setbitptr^ = (bitmask << 16)
+        endif
+    endif
+endfunc
+
+
+func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
+    if not 0 <= aportnum < 4:
+        return false
+    endif
+    var ioc_regs : ^uint8 = GetIocRegs(aportnum)
+    if ioc_regs == nil:
+        return false
+    endif
+
+    apinnum &= 0x1F
+
+    var pinpos : uint32
+    var value  : uint32
+
+    // Open-Drain
+    if flags & PINCFG_OPENDRAIN <> 0:
+        value = 1
+    else:
+        value = 0
+    endif
+    var reg_od :? = ^uint32(ioc_regs[0x700 + (aportnum << 4) + 4 * (apinnum >> 3)])
+    pinpos = apinnum & 0x7
+    reg_od^ = (7 << (16 + pinpos)) | (value << pinpos)
+
+    // Pull-Up/Down
+    if flags & PINCFG_PULLUP <> 0:
+        value = 1
+    elif flags & PINCFG_PULLDOWN <> 0:
+        value = 2
+    else:
+        value = 0
+    endif
+    pinpos = ((apinnum & 0xF) << 1)
+    var reg_pupd :? = ^uint32(ioc_regs[0x200 + (aportnum << 4) + 4 * (apinnum >> 3)])
+    reg_pupd^ = (3 << (16 + pinpos)) | (value << pinpos)
+
+    // Slew Rate
+    if PINCFG_SPEED_SLOW == flags & PINCFG_SPEED_MASK:
+        value = 0
+    else:
+        value = 3
+    endif
+    var reg_sl :? = ^uint32(ioc_regs[0x600 + (aportnum << 4) + 4 * (apinnum >> 3)])
+    pinpos = ((apinnum & 0x7) << 1)
+    reg_sl^ = (3 << (16 + pinpos)) | (value << pinpos)
+
+    // Drive Strength
+    if PINCFG_DRIVE_WEAK == flags & PINCFG_DRIVE_MASK:
+        value = 1
+    elif PINCFG_DRIVE_STRONG == flags & PINCFG_DRIVE_MASK:
+        value = 31
+    else:
+        value = 7
+    endif
+    var reg_ds :? = ^uint32(ioc_regs[0x100 + (aportnum << 6) + 4 * (apinnum >> 1)])
+    pinpos = ((apinnum & 0x1) << 8)
+    reg_ds^ = (63 << (16 + pinpos)) | (value << pinpos)
+
+    // Disable Schmitt trigger for the analogue
+    if 0 == flags & PINCFG_ANALOGUE:
+        value = 0  // disable Schmitt trigger
+    else:
+        value = 1  // enable the Schmitt trigger
+    endif
+    var reg_smt :? = ^uint32(ioc_regs[0x400 + (aportnum << 4) + 4 * (apinnum >> 3)])
+    pinpos = (apinnum & 0x7)
+    reg_smt^ = (1 << (16 + pinpos)) | (value << pinpos)
+
+    // IO MUX + GPIO
+    if flags & PINCFG_AF_MASK <> 0:
+        value = ((flags & PINCFG_AF_MASK) >> PINCFG_AF_SHIFT)
+    else:
+        value = 0
+        // uint32_t pinmask16 = (1 << (apinnum & 0x0F));
+        if flags & PINCFG_OUTPUT <> 0:
+            if flags & PINCFG_GPIO_INIT_1 <> 0:
+                GpioSet(aportnum, apinnum, 1)
+            else:
+                GpioSet(aportnum, apinnum, 0)
+            endif
+            GpioDir(aportnum, apinnum, 1)
+        else:
+            GpioDir(aportnum, apinnum, 0)
+        endif
+    endif
+    var reg_iomux :? = ^uint32(ioc_regs[(aportnum << 5) | (apinnum & 0x1C)])
+    pinpos = ((apinnum & 3) << 2)
+    reg_iomux^ = (0xF << (16 + pinpos)) | (value << pinpos)
+
+    return true
+endfunc
+
+// GPIO Pin
+
+var g_rk_dummy_u32 : uint32 = 0
 
 func OGpioPin.*Create()  [[overload]]:
-
+    InitDummy()
+    pindirptr = %@.g_rk_dummy_u32
 endfunc
 
 func OGpioPin.*Create(aportnum : int, apinnum : int, ainvert : bool)  [[overload]]:
-
+    inherited Create()
+    Assign(aportnum, apinnum, ainvert);
 endfunc
 
 func OGpioPin.Assign(aportnum : int, apinnum : int, ainvert : bool):
+    apinnum &= 0x1F
 
+    portnum = aportnum
+    pinnum = apinnum
+    inverted = ainvert
+
+    getbitshift = apinnum
+    getbitshift16 = (apinnum & 0xF)
+
+    if ainvert:
+        clrbitvalue = (1 << (16 + getbitshift16)) | (1 << getbitshift16)
+        setbitvalue = (1 << (16 + getbitshift16)) | 0
+    else:
+        setbitvalue = (1 << (16 + getbitshift16)) | (1 << getbitshift16)
+        clrbitvalue = (1 << (16 + getbitshift16)) | 0
+    endif
+
+    var regs :? = @.GetGpioRegs(aportnum)
+    if regs <> nil:
+        if apinnum >= 16:
+            setbitptr    = ^uint32(%regs.SWPORT_DR_H)
+            pindirptr    = ^uint32(%regs.SWPORT_DDR_H)
+            getoutbitptr = ^uint32(%regs.SWPORT_DR_H)
+        else:
+            setbitptr    = ^uint32(%regs.SWPORT_DR_L)
+            pindirptr    = ^uint32(%regs.SWPORT_DDR_L)
+            getoutbitptr = ^uint32(%regs.SWPORT_DR_L)
+        endif
+        clrbitptr = setbitptr
+        getbitptr = ^uint32(%regs.EXT_PORT)
+    else:
+        InitDummy()
+    endif
 endfunc
 
 func OGpioPin.Setup(flags : uint) -> bool:
-    return false
+    use *
+	if inverted:
+	    flags |= PINCFG_GPIO_INVERT
+    endif
+    return PinSetup(portnum, pinnum, flags)
+endfunc
+
+func OGpioPin.Toggle():
+    if OutValue() <> 0:
+        Set0()
+    else:
+        Set1()
+    endif
+endfunc
+
+func OGpioPin.SwitchDirection(adirection : int):
+    if adirection <> 0:
+        pindirptr^ = (1 << (16 + getbitshift16)) | (1 << getbitshift16)
+    else:
+        pindirptr^ = (1 << (16 + getbitshift16)) | 0
+    endif
 endfunc

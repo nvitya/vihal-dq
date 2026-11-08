@@ -1,0 +1,80 @@
+/*
+ *  file:     rk_utils.dq
+ *  brief:    Rockchip Utilities
+ *  created:  2025-07-29
+ *  authors:  nvitya
+*/
+
+func rk_bus_speed(abusid : uint8) -> uint32 ..
+func map_hw_addr(aaddr : uint, asize : uint, aptrvar : ^pointer) -> pointer ..
+
+func unit_regwm16_set_field(regbase : pointer, regoffs : uint32, bitoffs : uint32, bitlen : uint32, avalue : uint32) ..
+func cru_reg_set_field(regoffs : uint32, bitoffs : uint32, bitlen : uint32, avalue : uint32) ..
+func cru_pmu_reg_set_field(regoffs : uint32, bitoffs : uint32, bitlen : uint32, avalue : uint32) ..
+
+
+implementation
+
+
+use vihal/platform
+
+var mapped_cru_regs     : ^CRU_REG = nil
+var mapped_cru_pmu_regs : ^CRU_PMU_REG = nil
+
+func rk_bus_speed(abusid : uint8) -> uint32:
+    return (SystemCoreClock >> 2)
+endfunc
+
+#ifdef LINUX
+
+use ^/core/linux/hw_utils_linux
+
+func map_hw_addr(aaddr : uint, asize : uint, aptrvar : ^pointer) -> pointer:
+    if aptrvar == nil:
+        return hw_memmap(aaddr, asize)
+    endif
+
+    if aptrvar^ <> nil:  // is already set ?
+        return aptrvar^
+    endif
+
+    aptrvar^ = hw_memmap(aaddr, asize)
+    return aptrvar^
+endfunc
+
+#else
+
+func map_hw_addr(aaddr : uint, asize : uint, aptrvar : ^pointer) -> pointer:
+    if aptrvar == nil:
+        return pointer(aaddr)
+    endif
+
+    if aptrvar^ <> nil:  // is already set ?
+        return aptrvar^
+    endif
+
+    aptrvar^ = pointer(aaddr)
+    return aptrvar^
+endfunc
+
+#endif
+
+func unit_regwm16_set_field(regbase : pointer, regoffs : uint32, bitoffs : uint32, bitlen : uint32, avalue : uint32):
+    var reg : ^uint32 = ^uint32((^uint8(regbase)) + regoffs)
+
+    var msk : uint32 = ((1 << bitlen) - 1)
+    var tmp : uint32 = (((avalue & msk) << bitoffs) | (msk << (bitoffs + 16)))
+    reg^ = tmp
+endfunc
+
+func cru_reg_set_field(regoffs : uint32, bitoffs : uint32, bitlen : uint32, avalue : uint32):
+    map_hw_addr(CRU_BASE, SizeOf(CRU_REG), ^pointer(%mapped_cru_regs))
+
+    unit_regwm16_set_field(mapped_cru_regs, regoffs, bitoffs, bitlen, avalue)
+endfunc
+
+func cru_pmu_reg_set_field(regoffs : uint32, bitoffs : uint32, bitlen : uint32, avalue : uint32):
+    map_hw_addr(CRU_PMU_BASE, SizeOf(CRU_PMU_REG), ^pointer(%mapped_cru_pmu_regs))
+
+    unit_regwm16_set_field(mapped_cru_pmu_regs, regoffs, bitoffs, bitlen, avalue)
+endfunc
