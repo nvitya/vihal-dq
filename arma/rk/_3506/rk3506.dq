@@ -92,16 +92,16 @@ struct I2C_REG:
 endstruct
 
 struct UART_REG:
-    union u_RBR:
+    union:
         RBR          : [[regro]]  uint32
         DLL          : [[regrw]]  uint32
         THR          : [[regwo]]  uint32
     endunion
-    union u_DLH:
+    union:
         DLH          : [[regrw]]  uint32
         IER          : [[regrw]]  uint32
     endunion
-    union u_FCR:
+    union:
         FCR          : [[regwo]]  uint32
         IIR          : [[regro]]  uint32
     endunion
@@ -111,7 +111,7 @@ struct UART_REG:
     MSR          : [[regro]]  uint32
     SCR          : [[regrw]]  uint32
     RESERVED0020 :            [4] uint32
-    union u_SRBR:
+    union:
         SRBR         : [[regro]]  uint32
         STHR         : [[regwo]]  uint32
     endunion

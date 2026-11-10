@@ -85,8 +85,7 @@ func OHwUart_impl.Init(adevnum : int) -> bool:
         | (0 << 4) // TX_FIFO_TRIG(2): 0 = 8 bytes
         | (0 << 6) // RX_FIFO_TRIG(2): 0 = 8 bytes
         )
-    if regs.FCR:
-    endif
+    if regs.IIR <> 0: endif  // FCR is write only, the IIR has the same address
 
     SetBaudRate(baudrate)
 
