@@ -177,7 +177,7 @@ var mapped_rm_io     : ^byte        = nil
 const GPIO_BASE_ADDRESSES : [5]uint32 = [GPIO0_BASE, GPIO1_BASE, GPIO2_BASE, GPIO3_BASE, GPIO4_BASE]
 const IOC_BASE_ADDRESSES  : [5]uint32 = [GPIO0_IOC_BASE, GPIO1_IOC_BASE, GPIO2_IOC_BASE, GPIO3_IOC_BASE, GPIO4_IOC_BASE]
 
-const rk3506_rmio_lookup : [32]uint8 = [
+const rk3506_rmio_lookup : [?]uint8 = [
     // from GPIO0_A0 -> GPIO0_C7 it is linear
     /*  0 */ 0x00, // 0.A0
     /*  1 */ 0x01,

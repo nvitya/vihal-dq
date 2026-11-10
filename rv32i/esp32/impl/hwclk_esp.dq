@@ -1,12 +1,12 @@
 // STM32 implementation of CPU clock setup
 
-use ^/core/pre/hwclk_pre  reexport
+use vihal/core/pre/hwclk_pre  reexport
 
 func HwClkInit(external_clock_hz : uint, target_speed_hz : uint) -> bool ..
 
 implementation
 
-use ^/platform
+use vihal/platform
 
 #ifdef MCUSF_C3
 

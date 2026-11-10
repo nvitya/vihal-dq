@@ -1,9 +1,11 @@
-use ^/platform
+use ./platform
 
 #ifdef MCUF_STM32
-    use ^/armm/stm32/impl/hwuart_stm32   reexport
+    use ./armm/stm32/impl/hwuart_stm32   reexport
+#elifdef MCUF_RK
+    use ./arma/rk/impl/hwuart_rk   reexport
 #else
-    use ^/core/noimpl/hwuart_noimpl  reexport
+    use ./core/noimpl/hwuart_noimpl  reexport
 #endif
 
 object OHwUart(OHwUart_impl):

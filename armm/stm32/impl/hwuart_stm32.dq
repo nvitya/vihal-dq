@@ -1,5 +1,5 @@
-use ^/platform
-use ^/core/pre/hwuart_pre  reexport
+use vihal/platform
+use vihal/core/pre/hwuart_pre  reexport
 
 object OHwUart_impl(OHwUart_pre):
 

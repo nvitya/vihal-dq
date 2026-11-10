@@ -1,4 +1,4 @@
-use ^/platform
+use vihal/platform
 
 func ClockCntInit() ..
 
@@ -68,6 +68,11 @@ implementation
 	endfunc
 
   #endif
+#endif
+
+#ifdef CPU_ARMA
+	func ClockCntInit():
+	endfunc
 #endif
 
 #ifdef CPU_RV32I

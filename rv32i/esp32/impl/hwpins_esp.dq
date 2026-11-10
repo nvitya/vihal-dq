@@ -1,4 +1,4 @@
-use ^/core/pre/hwpins_pre  reexport
+use vihal/core/pre/hwpins_pre  reexport
 
 func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool ..
 func PadSetup(apadnum : uint, iomuxidx : uint, flags : uint) -> bool ..
@@ -19,7 +19,7 @@ endobject
 
 implementation
 
-use ^/platform
+use vihal/platform
 
 func PadSetup(apadnum : uint, iomuxidx : uint, flags : uint) -> bool:
 

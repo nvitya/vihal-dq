@@ -1,12 +1,12 @@
 
 // the user project must provide the "board" module, which should define the MCU registers and MCU defines !
 
-use ^/core/mcu_defs   reexport  // board module used and reexported inside
+use ./core/mcu_defs   reexport  // board module used and reexported inside
 
 #ifdef CPU_ARMM
-    use ^/armm/core/armm_utils     reexport
+    use ./armm/core/armm_utils     reexport
 #elifdef CPU_RV32I
-    use ^/rv32i/core/rv32i_utils   reexport
+    use ./rv32i/core/rv32i_utils   reexport
 #endif
 
 // Common variables
@@ -18,7 +18,7 @@ use ^/core/mcu_defs   reexport  // board module used and reexported inside
 var SystemCoreClock : uint  [[section('.noinit')]]
 
 #ifdef BARE
-  use ^/core/c_system
+  use ./core/c_system
 #endif
 
 //-----------------------------------------------------------------------------

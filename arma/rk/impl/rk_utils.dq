@@ -27,7 +27,7 @@ endfunc
 
 #ifdef LINUX
 
-use ^/core/linux/hw_utils_linux
+use vihal/core/linux/hw_utils_linux
 
 func map_hw_addr(aaddr : uint, asize : uint, aptrvar : ^pointer) -> pointer:
     if aptrvar == nil:

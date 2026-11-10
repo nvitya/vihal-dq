@@ -1,5 +1,5 @@
 
-use ^/platform
+use vihal/platform
 
 type FVectorTableEntry = func()
 

@@ -1,4 +1,4 @@
-use ^/platform
+use vihal/platform
 
 #if Defined(MCUSF_G4) or Defined(MCUSF_WB)
     const APB1ENR_REGISTER :? = %RCC.APB1ENR1

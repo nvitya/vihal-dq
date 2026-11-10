@@ -1,4 +1,4 @@
-use ^/core/mcu_defs
+use vihal/core/mcu_defs
 
 func Mcu_EnableFpu()  [[inline]]:
   #if FirstInt(__FPU_PRESENT, 0) <> 0
