@@ -1,4 +1,4 @@
-use vihal/core/pre/hwpins_pre  reexport
+use ^/core/pre/hwpins_pre  reexport
 
 const(uint32):
     PINNUM_A0  =  0
@@ -167,7 +167,7 @@ endobject
 implementation
 
 
-use vihal/platform
+use ^/platform
 use ./rk_utils
 
 var	mapped_gpio_regs : [5]^GPIO_REG = [nil, nil, nil, nil, nil]

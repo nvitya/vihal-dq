@@ -1,14 +1,14 @@
-use vihal/platform
+use ^/platform
 
 #ifdef CPU_ARMM
 
-    use vihal/armm/core/armm_startup        reexport
-    use vihal/armm/core/armm_vector_table   reexport
+    use ^/armm/core/armm_startup        reexport
+    use ^/armm/core/armm_vector_table   reexport
 
 #elifdef CPU_RV32I
 
-    use vihal/rv32i/core/rv32i_startup       reexport
-    use vihal/rv32i/core/rv32i_vector_table  reexport
+    use ^/rv32i/core/rv32i_startup       reexport
+    use ^/rv32i/core/rv32i_vector_table  reexport
 
 #else
     #error "Unhandled CPU architecture"

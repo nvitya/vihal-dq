@@ -1,4 +1,4 @@
-use vihal/platform
+use ^/platform
 
 func ClockCntInit() ..
 

@@ -1,5 +1,5 @@
 
-use vihal/core/pre/hwpins_pre  reexport
+use ^/core/pre/hwpins_pre  reexport
 
 object OGpioPin(OGpioPin_pre):
 

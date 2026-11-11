@@ -1,4 +1,4 @@
-use vihal/core/pre/hwuart_pre  reexport
+use ^/core/pre/hwuart_pre  reexport
 
 object OHwUart_impl:
 

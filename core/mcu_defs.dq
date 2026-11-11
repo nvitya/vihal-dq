@@ -8,22 +8,22 @@ use board      reexport  // the project must define this !
 #ifdef CPU_ARMM
 
   #ifdef CPU_ARM_M7F
-    use vihal/armm/core/core_cm7             reexport
+    use ^/armm/core/core_cm7             reexport
   #elifdef CPU_ARM_M33
-    use vihal/armm/core/core_cm33            reexport
+    use ^/armm/core/core_cm33            reexport
   #elifdef CPU_ARM_M4
-    use vihal/armm/core/core_cm4             reexport
+    use ^/armm/core/core_cm4             reexport
   #elifdef CPU_ARM_M3
-    use vihal/armm/core/core_cm3             reexport
+    use ^/armm/core/core_cm3             reexport
   #elifdef CPU_ARM_M0PLUS
-    use vihal/armm/core/core_cm0p            reexport
+    use ^/armm/core/core_cm0p            reexport
   #elifdef CPU_ARM_M0
-    use vihal/armm/core/core_cm0             reexport
+    use ^/armm/core/core_cm0             reexport
   #else
     #error "Unknown ARM CPU"
   #endif
 
-    use vihal/armm/core/armm_instr  reexport
+    use ^/armm/core/armm_instr  reexport
 
 #endif
 
@@ -35,7 +35,7 @@ use board      reexport  // the project must define this !
 
 #ifdef CPU_RV32I
 
-    use vihal/rv32i/core/rv32i_instr  reexport
+    use ^/rv32i/core/rv32i_instr  reexport
 
 #endif
 

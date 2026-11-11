@@ -1,4 +1,4 @@
-use vihal/core/pre/hwpins_pre  reexport
+use ^/core/pre/hwpins_pre  reexport
 
 func GpioPortEnable(aportnum : int) -> bool ..
 func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool ..
@@ -15,7 +15,7 @@ endobject
 
 implementation
 
-use vihal/platform
+use ^/platform
 
 #ifdef   GPIOP_BASE
   const MAX_PORT_NUMBER : int = 16

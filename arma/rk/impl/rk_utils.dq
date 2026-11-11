@@ -16,7 +16,7 @@ func cru_pmu_reg_set_field(regoffs : uint32, bitoffs : uint32, bitlen : uint32, 
 implementation
 
 
-use vihal/platform
+use ^/platform
 
 var mapped_cru_regs     : ^CRU_REG = nil
 var mapped_cru_pmu_regs : ^CRU_PMU_REG = nil
@@ -27,7 +27,7 @@ endfunc
 
 #ifdef LINUX
 
-use vihal/core/linux/hw_utils_linux
+use ^/core/linux/hw_utils_linux
 
 func map_hw_addr(aaddr : uint, asize : uint, aptrvar : ^pointer) -> pointer:
     if aptrvar == nil:
