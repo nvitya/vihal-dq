@@ -1,9 +1,7 @@
 use ^/platform
 
-#ifdef MCUF_STM32
-    use ^/armm/stm32/impl/hwuart_stm32   reexport
-#elifdef MCUF_RK
-    use ^/arma/rk/impl/hwuart_rk   reexport
+#ifdef HWUART_IMPL
+    use ${HWUART_IMPL}   reexport
 #else
     use ^/core/noimpl/hwuart_noimpl  reexport
 #endif

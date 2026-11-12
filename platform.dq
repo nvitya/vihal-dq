@@ -1,25 +1,10 @@
 
 // the user project must provide the "board" module, which should define the MCU registers and MCU defines !
 
-use ./core/mcu_defs   reexport  // board module used and reexported inside
+use board      reexport  // the project must define this !
 
-#ifdef CPU_ARMM
-    use ./armm/core/armm_utils     reexport
-#elifdef CPU_RV32I
-    use ./rv32i/core/rv32i_utils   reexport
-#endif
-
-// Common variables
-
-#ifndef MCU_INTERNAL_RC_SPEED
-    const MCU_INTERNAL_RC_SPEED : uint = 4000000
-#endif
-
-var SystemCoreClock : uint  [[section('.noinit')]]
-
-#ifdef BARE
-  use ./core/c_system
-#endif
+// use incude to be able to process the settings made by board:
+#include "./core/platform_config.dqi"
 
 //-----------------------------------------------------------------------------
 
