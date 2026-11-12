@@ -1,7 +1,7 @@
 
-// the user project must provide the "board" module, which should define the MCU registers and MCU defines !
+// the user project must provide the "vihal_board" module, which should define the MCU registers and MCU defines !
 
-use board      reexport  // the project must define this !
+use vihal_board      reexport  // the project must define this !
 
 // use incude to be able to process the settings made by board:
 #include "./core/platform_config.dqi"
