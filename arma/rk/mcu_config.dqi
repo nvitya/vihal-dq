@@ -1,0 +1,16 @@
+// MCU configuration selector
+
+const HWUART_IMPL : rostr = "\$THISPKG/arma/rk/impl/hwuart_rk"
+
+#ifdef MCU_RK3506
+
+  use ./_3506/rk3506   reexport
+
+  #define MCUSF_35
+  #define MAX_CLOCK_SPEED  200000000
+
+#else
+
+  #error "Unknown RK MCU"
+
+#endif
