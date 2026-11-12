@@ -1,6 +1,6 @@
 // MCU configuration selector
 
-const HWUART_IMPL : rostr = "\$THISPKG/arma/rk/impl/hwuart_rk"
+const HWUART_IMPL : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwuart_rk"
 
 #ifdef MCU_RK3506
 
