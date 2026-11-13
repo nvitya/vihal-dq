@@ -1,11 +1,5 @@
 // MCU configuration selector
 
-const HWIMPL_ROOT : rostr = "\{DQ.PKGNAME}/arma/rk/impl"
-
-const HWCLK_IMPL  : rostr = "\{HWIMPL_ROOT}/hwclk_rk"
-const HWPINS_IMPL : rostr = "\{HWIMPL_ROOT}/hwpins_rk"
-const HWUART_IMPL : rostr = "\{HWIMPL_ROOT}/hwuart_rk"
-
 #ifdef MCU_RK3506
 
   use ./_3506/rk3506   reexport
@@ -18,5 +12,9 @@ const HWUART_IMPL : rostr = "\{HWIMPL_ROOT}/hwuart_rk"
   #error "Unknown RK MCU"
 
 #endif
+
+const HWCLK_IMPL  : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwclk_rk"
+const HWPINS_IMPL : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwpins_rk"
+const HWUART_IMPL : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwuart_rk"
 
 #include "../platform_config_arma.dqi"

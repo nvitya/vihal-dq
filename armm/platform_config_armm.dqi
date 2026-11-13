@@ -1,4 +1,5 @@
 
+#define CPU_ARMM
 
 #ifdef CPU_ARM_M7F
     use ^/armm/core/core_cm7             reexport
