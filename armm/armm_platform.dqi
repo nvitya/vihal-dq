@@ -20,3 +20,4 @@
 use ^/armm/core/armm_instr   reexport
 use ./armm/core/armm_utils   reexport
 
+#define PLATFORM_CONFIGURED

@@ -1,0 +1,17 @@
+// vihal/boards_builtin.dqi
+
+#ifdef ARM_M
+    #include "./armm/armm_boards.dqi"
+#elifdef ARM_A
+    #include "./arma/arma_boards.dqi"
+#elifdef RV32
+    #include "./rv32i/rv32i_boards.dqi"
+#elifdef RV64
+    #include "./rv64g/rv64g_boards.dqi"
+#else
+    #error "Unsupported architecture for VIHAL built-in boards"
+#endif
+
+#ifndef PLATFORM_CONFIGURED
+    #error "Unknown VIHAL built-in board for the selected architecture"
+#endif

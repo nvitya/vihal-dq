@@ -1,0 +1,39 @@
+// arma/rk/boards_builtin_rk.dqi
+
+#ifdef BOARD_LUCKFOX_LYRA
+
+    #define MCU_RK3506
+    #include "./rk_mcus.dqi"
+    const EXTERNAL_XTAL_HZ : uint = 24000000
+    const BOARD_NAME : rostr = "Luckfox Lyra"
+
+#elifdef BOARD_LUCKFOX_LYRA_PLUS
+
+    #define MCU_RK3506
+    #include "./rk_mcus.dqi"
+    const EXTERNAL_XTAL_HZ : uint = 24000000
+    const BOARD_NAME : rostr = "Luckfox Lyra Plus"
+
+#elifdef BOARD_LUCKFOX_LYRA_ULTRA
+
+    #define MCU_RK3506
+    #include "./rk_mcus.dqi"
+    const EXTERNAL_XTAL_HZ : uint = 24000000
+    const BOARD_NAME : rostr = "Luckfox Lyra Ultra"
+
+#elifdef BOARD_LUCKFOX_LYRA_PI
+
+    #define MCU_RK3506
+    #include "./rk_mcus.dqi"
+    const EXTERNAL_XTAL_HZ : uint = 24000000
+    const BOARD_NAME : rostr = "Luckfox Lyra PI"
+
+#elifdef BOARD_LUCKFOX_LYRA_ZERO
+
+    #define MCU_RK3506
+    #include "./rk_mcus.dqi"
+    const EXTERNAL_XTAL_HZ : uint = 24000000
+    const BOARD_NAME : rostr = "Luckfox Lyra Zero-W"
+
+#endif
+

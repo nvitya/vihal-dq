@@ -1,11 +1,11 @@
-// MCU configuration selector
+// arma/rk/rk_mcus.dqi
 
 #ifdef MCU_RK3506
 
   use ./_3506/rk3506   reexport
 
   #define MCUSF_35
-  #define MAX_CLOCK_SPEED  200000000
+  const MAX_CLOCK_SPEED : uint = 200000000
 
 #else
 
@@ -13,8 +13,17 @@
 
 #endif
 
+//-------------------------------------------------------------------
+
+#define MCUF_RK
+
 const HWCLK_IMPL  : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwclk_rk"
 const HWPINS_IMPL : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwpins_rk"
 const HWUART_IMPL : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwuart_rk"
 
-#include "../platform_config_arma.dqi"
+// warning this supports ARM_A and ARM_M too !
+#ifdef ARM_A
+    #include "../arma_platform.dqi"
+#else
+    #include "../../armm/armm_platform.dqi"
+#endif

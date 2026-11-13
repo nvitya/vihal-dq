@@ -1,0 +1,6 @@
+// arma/arma_boards.dqi
+
+#ifndef PLATFORM_CONFIGURED
+    #include "./rk/rk_boards.dqi"
+#endif
+

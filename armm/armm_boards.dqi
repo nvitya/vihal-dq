@@ -1,0 +1,14 @@
+// armm/board_builtin_armm.dqi
+
+#ifndef PLATFORM_CONFIGURED
+    #include "./stm32/stm32_boards.dqi"
+#endif
+
+#ifndef PLATFORM_CONFIGURED
+    #include "./rp/rp_boards.dqi"
+#endif
+
+// Special case for the RK3506
+#ifndef PLATFORM_CONFIGURED
+    #include "../arma/rk/rk_boards.dqi"
+#endif

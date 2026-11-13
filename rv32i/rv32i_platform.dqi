@@ -2,3 +2,4 @@
 use ^/rv32i/core/rv32i_instr   reexport
 use ./rv32i/core/rv32i_utils   reexport
 
+#define PLATFORM_CONFIGURED

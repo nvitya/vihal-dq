@@ -1,2 +1,3 @@
 // ARM_A specific vihal configurations
 
+#define PLATFORM_CONFIGURED

@@ -1,0 +1,28 @@
+// rv32i/esp32/esp_mcus.dqi
+
+#if Defined(MCU_ESP32C3) or Defined(MCU_ESP8685)
+
+  #define MCUSF_C3
+  use ./c3/esp32c3   reexport
+  const MAX_CLOCK_SPEED : uint = 160000000
+
+#elifdef MCU_ESP32C6
+
+  #define MCUSF_C6
+  use ./c6/esp32c6   reexport
+
+#else
+
+  #error "Unknown RV32I-ESP32 MCU"
+
+#endif
+
+//-------------------------------------------------------------------
+
+#define MCUF_ESP
+
+const HWCLK_IMPL  : rostr = "\{DQ.PKGNAME}/rv32i/esp32/impl/hwclk_esp"
+const HWPINS_IMPL : rostr = "\{DQ.PKGNAME}/rv32i/esp32/impl/hwpins_esp"
+
+// finish the vihal configuration with the platform
+#include "../rv32i_platform.dqi"
