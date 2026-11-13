@@ -18,3 +18,5 @@ const HWUART_IMPL : rostr = "\{HWIMPL_ROOT}/hwuart_rk"
   #error "Unknown RK MCU"
 
 #endif
+
+#include "../platform_config_arma.dqi"
