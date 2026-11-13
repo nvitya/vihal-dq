@@ -1,5 +1,5 @@
 
-use ^/rv32i/core/rv32i_instr   reexport
-use ./rv32i/core/rv32i_utils   reexport
+#include "./core/rv32i_instr.dqi"
+#include "./core/rv32i_utils.dqi"
 
 #define PLATFORM_CONFIGURED

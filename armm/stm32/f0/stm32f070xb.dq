@@ -1,305 +1,338 @@
+// DQ Register Definitions for the STM32F070xB
+
+// CMSIS Configuration
+
 const(uint32):
+    __CORTEX_M           = 0
     __CM0_REV            = 0
     __MPU_PRESENT        = 0
     __NVIC_PRIO_BITS     = 2
     __Vendor_SysTickConfig = 0
 endconst
 
-const(int):
-    NonMaskableInt_IRQn  = -14
-    HardFault_IRQn       = -13
-    SVC_IRQn             = -5
-    PendSV_IRQn          = -2
-    SysTick_IRQn         = -1
-    WWDG_IRQn            = 0
-    RTC_IRQn             = 2
-    FLASH_IRQn           = 3
-    RCC_IRQn             = 4
-    EXTI0_1_IRQn         = 5
-    EXTI2_3_IRQn         = 6
-    EXTI4_15_IRQn        = 7
-    DMA1_Channel1_IRQn   = 9
-    DMA1_Channel2_3_IRQn = 10
-    DMA1_Channel4_5_IRQn = 11
-    ADC1_IRQn            = 12
-    TIM1_BRK_UP_TRG_COM_IRQn = 13
-    TIM1_CC_IRQn         = 14
-    TIM3_IRQn            = 16
-    TIM6_IRQn            = 17
-    TIM7_IRQn            = 18
-    TIM14_IRQn           = 19
-    TIM15_IRQn           = 20
-    TIM16_IRQn           = 21
-    TIM17_IRQn           = 22
-    I2C1_IRQn            = 23
-    I2C2_IRQn            = 24
-    SPI1_IRQn            = 25
-    SPI2_IRQn            = 26
-    USART1_IRQn          = 27
-    USART2_IRQn          = 28
-    USART3_4_IRQn        = 29
-endconst
+//-------------------------------------------------------------------------------------------------
+// INTERRUPTS
+//-------------------------------------------------------------------------------------------------
+
+// Standard Cortex-M interrupts
 
 const(int):
-    USB_IRQn             = 31
+    NonMaskableInt_IRQn  = -14  // 2 Non Maskable Interrupt
+    HardFault_IRQn       = -13  // 3 Cortex-M0 Hard Fault Interrupt
+    SVC_IRQn             = -5  // 11 Cortex-M0 SV Call Interrupt
+    PendSV_IRQn          = -2  // 14 Cortex-M0 Pend SV Interrupt
+    SysTick_IRQn         = -1  // 15 Cortex-M0 System Tick Interrupt
 endconst
+
+// Peripheral Interrupts
+
+const(int):
+    WWDG_IRQn            = 0  // Window WatchDog Interrupt
+    RTC_IRQn             = 2  // RTC Interrupt through EXTI Lines 17, 19 and 20
+    FLASH_IRQn           = 3  // FLASH global Interrupt
+    RCC_IRQn             = 4  // RCC global Interrupt
+    EXTI0_1_IRQn         = 5  // EXTI Line 0 and 1 Interrupt
+    EXTI2_3_IRQn         = 6  // EXTI Line 2 and 3 Interrupt
+    EXTI4_15_IRQn        = 7  // EXTI Line 4 to 15 Interrupt
+    DMA1_Channel1_IRQn   = 9  // DMA1 Channel 1 Interrupt
+    DMA1_Channel2_3_IRQn = 10  // DMA1 Channel 2 and Channel 3 Interrupt
+    DMA1_Channel4_5_IRQn = 11  // DMA1 Channel 4 and Channel 5 Interrupt
+    ADC1_IRQn            = 12  // ADC1 Interrupt
+    TIM1_BRK_UP_TRG_COM_IRQn = 13  // TIM1 Break, Update, Trigger and Commutation Interrupt
+    TIM1_CC_IRQn         = 14  // TIM1 Capture Compare Interrupt
+    TIM3_IRQn            = 16  // TIM3 global Interrupt
+    TIM6_IRQn            = 17  // TIM6 global Interrupt
+    TIM7_IRQn            = 18  // TIM7 global Interrupt
+    TIM14_IRQn           = 19  // TIM14 global Interrupt
+    TIM15_IRQn           = 20  // TIM15 global Interrupt
+    TIM16_IRQn           = 21  // TIM16 global Interrupt
+    TIM17_IRQn           = 22  // TIM17 global Interrupt
+    I2C1_IRQn            = 23  // I2C1 Event Interrupt & EXTI Line23 Interrupt (I2C1 wakeup)
+    I2C2_IRQn            = 24  // I2C2 Event Interrupt
+    SPI1_IRQn            = 25  // SPI1 global Interrupt
+    SPI2_IRQn            = 26  // SPI2 global Interrupt
+    USART1_IRQn          = 27  // USART1 global Interrupt
+    USART2_IRQn          = 28  // USART2 global Interrupt
+    USART3_4_IRQn        = 29  // USART3 and USART4 global Interrupt
+    USB_IRQn             = 31  // USB global Interrupt  & EXTI Line18 Interrupt
+endconst
+
+const(uint32):
+    ADC1_COMP_IRQn       = ADC1_IRQn
+    DMA1_Ch1_IRQn        = DMA1_Channel1_IRQn
+    DMA1_Ch2_3_DMA2_Ch1_2_IRQn = DMA1_Channel2_3_IRQn
+    DMA1_Channel4_5_6_7_IRQn = DMA1_Channel4_5_IRQn
+    DMA1_Ch4_7_DMA2_Ch3_5_IRQn = DMA1_Channel4_5_IRQn
+    RCC_CRS_IRQn         = RCC_IRQn
+    TIM6_DAC_IRQn        = TIM6_IRQn
+    USART3_6_IRQn        = USART3_4_IRQn
+    USART3_8_IRQn        = USART3_4_IRQn
+endconst
+
+//-------------------------------------------------------------------------------------------------
+// Peripheral structureas
+//-------------------------------------------------------------------------------------------------
 
 struct ADC_TypeDef:
-    ISR          : [[regrw]]  uint32  
-    IER          : [[regrw]]  uint32  
-    CR           : [[regrw]]  uint32  
-    CFGR1        : [[regrw]]  uint32  
-    CFGR2        : [[regrw]]  uint32  
-    SMPR         : [[regrw]]  uint32  
-    RESERVED1    :            uint32  
-    RESERVED2    :            uint32  
-    TR           : [[regrw]]  uint32  
-    RESERVED3    :            uint32  
-    CHSELR       : [[regrw]]  uint32  
-    RESERVED4    :            [5] uint32
-    DR           : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32    // ADC interrupt and status register,             Address offset: 0x00
+    IER          : [[regrw]]  uint32    // ADC interrupt enable register,                 Address offset: 0x04
+    CR           : [[regrw]]  uint32    // ADC control register,                          Address offset: 0x08
+    CFGR1        : [[regrw]]  uint32    // ADC configuration register 1,                  Address offset: 0x0C
+    CFGR2        : [[regrw]]  uint32    // ADC configuration register 2,                  Address offset: 0x10
+    SMPR         : [[regrw]]  uint32    // ADC sampling time register,                    Address offset: 0x14
+    RESERVED1    :            uint32    // Reserved,                                                      0x18
+    RESERVED2    :            uint32    // Reserved,                                                      0x1C
+    TR           : [[regrw]]  uint32    // ADC analog watchdog 1 threshold register,      Address offset: 0x20
+    RESERVED3    :            uint32    // Reserved,                                                      0x24
+    CHSELR       : [[regrw]]  uint32    // ADC group regular sequencer register,          Address offset: 0x28
+    RESERVED4    :            [5] uint32  // Reserved,                                                      0x2C
+    DR           : [[regrw]]  uint32    // ADC group regular data register,               Address offset: 0x40
 endstruct
 
 struct ADC_Common_TypeDef:
-    CCR          : [[regrw]]  uint32  
+    CCR          : [[regrw]]  uint32    // ADC common configuration register,             Address offset: ADC1 base address + 0x308
 endstruct
 
 struct CRC_TypeDef:
-    DR           : [[regrw]]  uint32  
-    IDR          : [[regrw]]  uint8   
-    RESERVED0    :            uint8   
-    RESERVED1    :            uint16  
-    CR           : [[regrw]]  uint32  
-    RESERVED2    :            uint32  
-    INIT         : [[regrw]]  uint32  
-    RESERVED3    : [[regrw]]  uint32  
+    DR           : [[regrw]]  uint32    // CRC Data register,                           Address offset: 0x00
+    IDR          : [[regrw]]  uint8     // CRC Independent data register,               Address offset: 0x04
+    RESERVED0    :            uint8     // Reserved,                                                    0x05
+    RESERVED1    :            uint16    // Reserved,                                                    0x06
+    CR           : [[regrw]]  uint32    // CRC Control register,                        Address offset: 0x08
+    RESERVED2    :            uint32    // Reserved,                                                    0x0C
+    INIT         : [[regrw]]  uint32    // Initial CRC value register,                  Address offset: 0x10
+    RESERVED3    : [[regrw]]  uint32    // Reserved,                                                    0x14
 endstruct
 
 struct DBGMCU_TypeDef:
-    IDCODE       : [[regrw]]  uint32  
-    CR           : [[regrw]]  uint32  
-    APB1FZ       : [[regrw]]  uint32  
-    APB2FZ       : [[regrw]]  uint32  
+    IDCODE       : [[regrw]]  uint32    // MCU device ID code,                          Address offset: 0x00
+    CR           : [[regrw]]  uint32    // Debug MCU configuration register,            Address offset: 0x04
+    APB1FZ       : [[regrw]]  uint32    // Debug MCU APB1 freeze register,              Address offset: 0x08
+    APB2FZ       : [[regrw]]  uint32    // Debug MCU APB2 freeze register,              Address offset: 0x0C
 endstruct
 
 struct DMA_Channel_TypeDef:
-    CCR          : [[regrw]]  uint32  
-    CNDTR        : [[regrw]]  uint32  
-    CPAR         : [[regrw]]  uint32  
-    CMAR         : [[regrw]]  uint32  
+    CCR          : [[regrw]]  uint32    // DMA channel x configuration register
+    CNDTR        : [[regrw]]  uint32    // DMA channel x number of data register
+    CPAR         : [[regrw]]  uint32    // DMA channel x peripheral address register
+    CMAR         : [[regrw]]  uint32    // DMA channel x memory address register
 endstruct
 
 struct DMA_TypeDef:
-    ISR          : [[regrw]]  uint32  
-    IFCR         : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32    // DMA interrupt status register,               Address offset: 0x00
+    IFCR         : [[regrw]]  uint32    // DMA interrupt flag clear register,           Address offset: 0x04
 endstruct
 
 struct EXTI_TypeDef:
-    IMR          : [[regrw]]  uint32  
-    EMR          : [[regrw]]  uint32  
-    RTSR         : [[regrw]]  uint32  
-    FTSR         : [[regrw]]  uint32  
-    SWIER        : [[regrw]]  uint32  
-    PR           : [[regrw]]  uint32  
+    IMR          : [[regrw]]  uint32    // EXTI Interrupt mask register,                 Address offset: 0x00
+    EMR          : [[regrw]]  uint32    // EXTI Event mask register,                     Address offset: 0x04
+    RTSR         : [[regrw]]  uint32    // EXTI Rising trigger selection register ,      Address offset: 0x08
+    FTSR         : [[regrw]]  uint32    // EXTI Falling trigger selection register,      Address offset: 0x0C
+    SWIER        : [[regrw]]  uint32    // EXTI Software interrupt event register,       Address offset: 0x10
+    PR           : [[regrw]]  uint32    // EXTI Pending register,                        Address offset: 0x14
 endstruct
 
 struct FLASH_TypeDef:
-    ACR          : [[regrw]]  uint32  
-    KEYR         : [[regrw]]  uint32  
-    OPTKEYR      : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    CR           : [[regrw]]  uint32  
-    AR           : [[regrw]]  uint32  
-    RESERVED     : [[regrw]]  uint32  
-    OBR          : [[regrw]]  uint32  
-    WRPR         : [[regrw]]  uint32  
+    ACR          : [[regrw]]  uint32    // FLASH access control register,                 Address offset: 0x00
+    KEYR         : [[regrw]]  uint32    // FLASH key register,                            Address offset: 0x04
+    OPTKEYR      : [[regrw]]  uint32    // FLASH OPT key register,                        Address offset: 0x08
+    SR           : [[regrw]]  uint32    // FLASH status register,                         Address offset: 0x0C
+    CR           : [[regrw]]  uint32    // FLASH control register,                        Address offset: 0x10
+    AR           : [[regrw]]  uint32    // FLASH address register,                        Address offset: 0x14
+    RESERVED     : [[regrw]]  uint32    // Reserved,                                                     0x18
+    OBR          : [[regrw]]  uint32    // FLASH option bytes register,                   Address offset: 0x1C
+    WRPR         : [[regrw]]  uint32    // FLASH option bytes register,                   Address offset: 0x20
 endstruct
 
 struct OB_TypeDef:
-    RDP          : [[regrw]]  uint16  
-    USER         : [[regrw]]  uint16  
-    DATA0        : [[regrw]]  uint16  
-    DATA1        : [[regrw]]  uint16  
-    WRP0         : [[regrw]]  uint16  
-    WRP1         : [[regrw]]  uint16  
-    WRP2         : [[regrw]]  uint16  
-    WRP3         : [[regrw]]  uint16  
+    RDP          : [[regrw]]  uint16    // FLASH option byte Read protection,             Address offset: 0x00
+    USER         : [[regrw]]  uint16    // FLASH option byte user options,                Address offset: 0x02
+    DATA0        : [[regrw]]  uint16    // User data byte 0 (stored in FLASH_OBR[23:16]), Address offset: 0x04
+    DATA1        : [[regrw]]  uint16    // User data byte 1 (stored in FLASH_OBR[31:24]), Address offset: 0x06
+    WRP0         : [[regrw]]  uint16    // FLASH option byte write protection 0,          Address offset: 0x08
+    WRP1         : [[regrw]]  uint16    // FLASH option byte write protection 1,          Address offset: 0x0A
+    WRP2         : [[regrw]]  uint16    // FLASH option byte write protection 2,          Address offset: 0x0C
+    WRP3         : [[regrw]]  uint16    // FLASH option byte write protection 3,          Address offset: 0x0E
 endstruct
 
 struct GPIO_TypeDef:
-    MODER        : [[regrw]]  uint32  
-    OTYPER       : [[regrw]]  uint32  
-    OSPEEDR      : [[regrw]]  uint32  
-    PUPDR        : [[regrw]]  uint32  
-    IDR          : [[regrw]]  uint32  
-    ODR          : [[regrw]]  uint32  
-    BSRR         : [[regrw]]  uint32  
-    LCKR         : [[regrw]]  uint32  
-    AFR          : [[regrw]]  [2] uint32
-    BRR          : [[regrw]]  uint32  
+    MODER        : [[regrw]]  uint32    // GPIO port mode register,                     Address offset: 0x00
+    OTYPER       : [[regrw]]  uint32    // GPIO port output type register,              Address offset: 0x04
+    OSPEEDR      : [[regrw]]  uint32    // GPIO port output speed register,             Address offset: 0x08
+    PUPDR        : [[regrw]]  uint32    // GPIO port pull-up/pull-down register,        Address offset: 0x0C
+    IDR          : [[regrw]]  uint32    // GPIO port input data register,               Address offset: 0x10
+    ODR          : [[regrw]]  uint32    // GPIO port output data register,              Address offset: 0x14
+    BSRR         : [[regrw]]  uint32    // GPIO port bit set/reset register,      Address offset: 0x1A
+    LCKR         : [[regrw]]  uint32    // GPIO port configuration lock register,       Address offset: 0x1C
+    AFR          : [[regrw]]  [2] uint32  // GPIO alternate function low register,  Address offset: 0x20-0x24
+    BRR          : [[regrw]]  uint32    // GPIO bit reset register,                     Address offset: 0x28
 endstruct
 
 struct SYSCFG_TypeDef:
-    CFGR1        : [[regrw]]  uint32  
-    RESERVED     :            uint32  
-    EXTICR       : [[regrw]]  [4] uint32
-    CFGR2        : [[regrw]]  uint32  
+    CFGR1        : [[regrw]]  uint32    // SYSCFG configuration register 1,                           Address offset: 0x00
+    RESERVED     :            uint32    // Reserved,                                                                  0x04
+    EXTICR       : [[regrw]]  [4] uint32  // SYSCFG external interrupt configuration register,     Address offset: 0x14-0x08
+    CFGR2        : [[regrw]]  uint32    // SYSCFG configuration register 2,                           Address offset: 0x18
 endstruct
 
 struct I2C_TypeDef:
-    CR1          : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
-    OAR1         : [[regrw]]  uint32  
-    OAR2         : [[regrw]]  uint32  
-    TIMINGR      : [[regrw]]  uint32  
-    TIMEOUTR     : [[regrw]]  uint32  
-    ISR          : [[regrw]]  uint32  
-    ICR          : [[regrw]]  uint32  
-    PECR         : [[regrw]]  uint32  
-    RXDR         : [[regrw]]  uint32  
-    TXDR         : [[regrw]]  uint32  
+    CR1          : [[regrw]]  uint32    // I2C Control register 1,                      Address offset: 0x00
+    CR2          : [[regrw]]  uint32    // I2C Control register 2,                      Address offset: 0x04
+    OAR1         : [[regrw]]  uint32    // I2C Own address 1 register,        Address offset: 0x08
+    OAR2         : [[regrw]]  uint32    // I2C Own address 2 register,        Address offset: 0x0C
+    TIMINGR      : [[regrw]]  uint32    // I2C Timing register,               Address offset: 0x10
+    TIMEOUTR     : [[regrw]]  uint32    // I2C Timeout register,              Address offset: 0x14
+    ISR          : [[regrw]]  uint32    // I2C Interrupt and status register, Address offset: 0x18
+    ICR          : [[regrw]]  uint32    // I2C Interrupt clear register,      Address offset: 0x1C
+    PECR         : [[regrw]]  uint32    // I2C PEC register,                  Address offset: 0x20
+    RXDR         : [[regrw]]  uint32    // I2C Receive data register,         Address offset: 0x24
+    TXDR         : [[regrw]]  uint32    // I2C Transmit data register,        Address offset: 0x28
 endstruct
 
 struct IWDG_TypeDef:
-    KR           : [[regrw]]  uint32  
-    PR           : [[regrw]]  uint32  
-    RLR          : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    WINR         : [[regrw]]  uint32  
+    KR           : [[regrw]]  uint32    // IWDG Key register,       Address offset: 0x00
+    PR           : [[regrw]]  uint32    // IWDG Prescaler register, Address offset: 0x04
+    RLR          : [[regrw]]  uint32    // IWDG Reload register,    Address offset: 0x08
+    SR           : [[regrw]]  uint32    // IWDG Status register,    Address offset: 0x0C
+    WINR         : [[regrw]]  uint32    // IWDG Window register,    Address offset: 0x10
 endstruct
 
 struct PWR_TypeDef:
-    CR           : [[regrw]]  uint32  
-    CSR          : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32    // PWR power control register,                          Address offset: 0x00
+    CSR          : [[regrw]]  uint32    // PWR power control/status register,                   Address offset: 0x04
 endstruct
 
 struct RCC_TypeDef:
-    CR           : [[regrw]]  uint32  
-    CFGR         : [[regrw]]  uint32  
-    CIR          : [[regrw]]  uint32  
-    APB2RSTR     : [[regrw]]  uint32  
-    APB1RSTR     : [[regrw]]  uint32  
-    AHBENR       : [[regrw]]  uint32  
-    APB2ENR      : [[regrw]]  uint32  
-    APB1ENR      : [[regrw]]  uint32  
-    BDCR         : [[regrw]]  uint32  
-    CSR          : [[regrw]]  uint32  
-    AHBRSTR      : [[regrw]]  uint32  
-    CFGR2        : [[regrw]]  uint32  
-    CFGR3        : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32    // RCC clock control register,                                   Address offset: 0x00
+    CFGR         : [[regrw]]  uint32    // RCC clock configuration register,                            Address offset: 0x04
+    CIR          : [[regrw]]  uint32    // RCC clock interrupt register,                                Address offset: 0x08
+    APB2RSTR     : [[regrw]]  uint32    // RCC APB2 peripheral reset register,                          Address offset: 0x0C
+    APB1RSTR     : [[regrw]]  uint32    // RCC APB1 peripheral reset register,                          Address offset: 0x10
+    AHBENR       : [[regrw]]  uint32    // RCC AHB peripheral clock register,                           Address offset: 0x14
+    APB2ENR      : [[regrw]]  uint32    // RCC APB2 peripheral clock enable register,                   Address offset: 0x18
+    APB1ENR      : [[regrw]]  uint32    // RCC APB1 peripheral clock enable register,                   Address offset: 0x1C
+    BDCR         : [[regrw]]  uint32    // RCC Backup domain control register,                          Address offset: 0x20
+    CSR          : [[regrw]]  uint32    // RCC clock control & status register,                         Address offset: 0x24
+    AHBRSTR      : [[regrw]]  uint32    // RCC AHB peripheral reset register,                           Address offset: 0x28
+    CFGR2        : [[regrw]]  uint32    // RCC clock configuration register 2,                          Address offset: 0x2C
+    CFGR3        : [[regrw]]  uint32    // RCC clock configuration register 3,                          Address offset: 0x30
+    CR2          : [[regrw]]  uint32    // RCC clock control register 2,                                Address offset: 0x34
 endstruct
 
 struct RTC_TypeDef:
-    TR           : [[regrw]]  uint32  
-    DR           : [[regrw]]  uint32  
-    CR           : [[regrw]]  uint32  
-    ISR          : [[regrw]]  uint32  
-    PRER         : [[regrw]]  uint32  
-    WUTR         : [[regrw]]  uint32  
-    RESERVED1    :            uint32  
-    ALRMAR       : [[regrw]]  uint32  
-    RESERVED2    :            uint32  
-    WPR          : [[regrw]]  uint32  
-    SSR          : [[regrw]]  uint32  
-    SHIFTR       : [[regrw]]  uint32  
-    TSTR         : [[regrw]]  uint32  
-    TSDR         : [[regrw]]  uint32  
-    TSSSR        : [[regrw]]  uint32  
-    CALR         : [[regrw]]  uint32  
-    TAFCR        : [[regrw]]  uint32  
-    ALRMASSR     : [[regrw]]  uint32  
+    TR           : [[regrw]]  uint32    // RTC time register,                                         Address offset: 0x00
+    DR           : [[regrw]]  uint32    // RTC date register,                                         Address offset: 0x04
+    CR           : [[regrw]]  uint32    // RTC control register,                                      Address offset: 0x08
+    ISR          : [[regrw]]  uint32    // RTC initialization and status register,                    Address offset: 0x0C
+    PRER         : [[regrw]]  uint32    // RTC prescaler register,                                    Address offset: 0x10
+    WUTR         : [[regrw]]  uint32    // RTC wakeup timer register,                                 Address offset: 0x14
+    RESERVED1    :            uint32    // Reserved,                                                  Address offset: 0x18
+    ALRMAR       : [[regrw]]  uint32    // RTC alarm A register,                                      Address offset: 0x1C
+    RESERVED2    :            uint32    // Reserved,                                                  Address offset: 0x20
+    WPR          : [[regrw]]  uint32    // RTC write protection register,                             Address offset: 0x24
+    SSR          : [[regrw]]  uint32    // RTC sub second register,                                   Address offset: 0x28
+    SHIFTR       : [[regrw]]  uint32    // RTC shift control register,                                Address offset: 0x2C
+    TSTR         : [[regrw]]  uint32    // RTC time stamp time register,                              Address offset: 0x30
+    TSDR         : [[regrw]]  uint32    // RTC time stamp date register,                              Address offset: 0x34
+    TSSSR        : [[regrw]]  uint32    // RTC time-stamp sub second register,                        Address offset: 0x38
+    CALR         : [[regrw]]  uint32    // RTC calibration register,                                  Address offset: 0x3C
+    TAFCR        : [[regrw]]  uint32    // RTC tamper and alternate function configuration register,  Address offset: 0x40
+    ALRMASSR     : [[regrw]]  uint32    // RTC alarm A sub second register,                           Address offset: 0x44
 endstruct
 
 struct SPI_TypeDef:
-    CR1          : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    DR           : [[regrw]]  uint32  
-    CRCPR        : [[regrw]]  uint32  
-    RXCRCR       : [[regrw]]  uint32  
-    TXCRCR       : [[regrw]]  uint32  
-    I2SCFGR      : [[regrw]]  uint32  
+    CR1          : [[regrw]]  uint32    // SPI Control register 1 (not used in I2S mode),      Address offset: 0x00
+    CR2          : [[regrw]]  uint32    // SPI Control register 2,                             Address offset: 0x04
+    SR           : [[regrw]]  uint32    // SPI Status register,                                Address offset: 0x08
+    DR           : [[regrw]]  uint32    // SPI data register,                                  Address offset: 0x0C
+    CRCPR        : [[regrw]]  uint32    // SPI CRC polynomial register (not used in I2S mode), Address offset: 0x10
+    RXCRCR       : [[regrw]]  uint32    // SPI Rx CRC register (not used in I2S mode),         Address offset: 0x14
+    TXCRCR       : [[regrw]]  uint32    // SPI Tx CRC register (not used in I2S mode),         Address offset: 0x18
+    I2SCFGR      : [[regrw]]  uint32    // SPI_I2S configuration register,                     Address offset: 0x1C
 endstruct
 
 struct TIM_TypeDef:
-    CR1          : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
-    SMCR         : [[regrw]]  uint32  
-    DIER         : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    EGR          : [[regrw]]  uint32  
-    CCMR1        : [[regrw]]  uint32  
-    CCMR2        : [[regrw]]  uint32  
-    CCER         : [[regrw]]  uint32  
-    CNT          : [[regrw]]  uint32  
-    PSC          : [[regrw]]  uint32  
-    ARR          : [[regrw]]  uint32  
-    RCR          : [[regrw]]  uint32  
-    CCR1         : [[regrw]]  uint32  
-    CCR2         : [[regrw]]  uint32  
-    CCR3         : [[regrw]]  uint32  
-    CCR4         : [[regrw]]  uint32  
-    BDTR         : [[regrw]]  uint32  
-    DCR          : [[regrw]]  uint32  
-    DMAR         : [[regrw]]  uint32  
-    |           : [[regrw]]  uint32  
+    CR1          : [[regrw]]  uint32    // TIM control register 1,              Address offset: 0x00
+    CR2          : [[regrw]]  uint32    // TIM control register 2,              Address offset: 0x04
+    SMCR         : [[regrw]]  uint32    // TIM slave Mode Control register,     Address offset: 0x08
+    DIER         : [[regrw]]  uint32    // TIM DMA/interrupt enable register,   Address offset: 0x0C
+    SR           : [[regrw]]  uint32    // TIM status register,                 Address offset: 0x10
+    EGR          : [[regrw]]  uint32    // TIM event generation register,       Address offset: 0x14
+    CCMR1        : [[regrw]]  uint32    // TIM capture/compare mode register 1, Address offset: 0x18
+    CCMR2        : [[regrw]]  uint32    // TIM capture/compare mode register 2, Address offset: 0x1C
+    CCER         : [[regrw]]  uint32    // TIM capture/compare enable register, Address offset: 0x20
+    CNT          : [[regrw]]  uint32    // TIM counter register,                Address offset: 0x24
+    PSC          : [[regrw]]  uint32    // TIM prescaler register,              Address offset: 0x28
+    ARR          : [[regrw]]  uint32    // TIM auto-reload register,            Address offset: 0x2C
+    RCR          : [[regrw]]  uint32    // TIM  repetition counter register,            Address offset: 0x30
+    CCR1         : [[regrw]]  uint32    // TIM capture/compare register 1,      Address offset: 0x34
+    CCR2         : [[regrw]]  uint32    // TIM capture/compare register 2,      Address offset: 0x38
+    CCR3         : [[regrw]]  uint32    // TIM capture/compare register 3,      Address offset: 0x3C
+    CCR4         : [[regrw]]  uint32    // TIM capture/compare register 4,      Address offset: 0x40
+    BDTR         : [[regrw]]  uint32    // TIM break and dead-time register,            Address offset: 0x44
+    DCR          : [[regrw]]  uint32    // TIM DMA control register,            Address offset: 0x48
+    DMAR         : [[regrw]]  uint32    // TIM DMA address for full transfer register,  Address offset: 0x4C
+    OR           : [[regrw]]  uint32    // TIM option register,                 Address offset: 0x50
 endstruct
 
 struct USART_TypeDef:
-    CR1          : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
-    CR3          : [[regrw]]  uint32  
-    BRR          : [[regrw]]  uint32  
-    GTPR         : [[regrw]]  uint32  
-    RTOR         : [[regrw]]  uint32  
-    RQR          : [[regrw]]  uint32  
-    ISR          : [[regrw]]  uint32  
-    ICR          : [[regrw]]  uint32  
-    RDR          : [[regrw]]  uint16  
-    RESERVED1    :            uint16  
-    TDR          : [[regrw]]  uint16  
-    RESERVED2    :            uint16  
+    CR1          : [[regrw]]  uint32    // USART Control register 1,                 Address offset: 0x00
+    CR2          : [[regrw]]  uint32    // USART Control register 2,                 Address offset: 0x04
+    CR3          : [[regrw]]  uint32    // USART Control register 3,                 Address offset: 0x08
+    BRR          : [[regrw]]  uint32    // USART Baud rate register,                 Address offset: 0x0C
+    GTPR         : [[regrw]]  uint32    // USART Guard time and prescaler register,  Address offset: 0x10
+    RTOR         : [[regrw]]  uint32    // USART Receiver Time Out register,         Address offset: 0x14
+    RQR          : [[regrw]]  uint32    // USART Request register,                   Address offset: 0x18
+    ISR          : [[regrw]]  uint32    // USART Interrupt and status register,      Address offset: 0x1C
+    ICR          : [[regrw]]  uint32    // USART Interrupt flag Clear register,      Address offset: 0x20
+    RDR          : [[regrw]]  uint16    // USART Receive Data register,              Address offset: 0x24
+    RESERVED1    :            uint16    // Reserved, 0x26
+    TDR          : [[regrw]]  uint16    // USART Transmit Data register,             Address offset: 0x28
+    RESERVED2    :            uint16    // Reserved, 0x2A
 endstruct
 
 struct USB_TypeDef:
-    EP0R         : [[regrw]]  uint16  
-    RESERVED0    : [[regrw]]  uint16  
-    EP1R         : [[regrw]]  uint16  
-    RESERVED1    : [[regrw]]  uint16  
-    EP2R         : [[regrw]]  uint16  
-    RESERVED2    : [[regrw]]  uint16  
-    EP3R         : [[regrw]]  uint16  
-    RESERVED3    : [[regrw]]  uint16  
-    EP4R         : [[regrw]]  uint16  
-    RESERVED4    : [[regrw]]  uint16  
-    EP5R         : [[regrw]]  uint16  
-    RESERVED5    : [[regrw]]  uint16  
-    EP6R         : [[regrw]]  uint16  
-    RESERVED6    : [[regrw]]  uint16  
-    EP7R         : [[regrw]]  uint16  
-    RESERVED7    : [[regrw]]  [17] uint16
-    CNTR         : [[regrw]]  uint16  
-    RESERVED8    : [[regrw]]  uint16  
-    ISTR         : [[regrw]]  uint16  
-    RESERVED9    : [[regrw]]  uint16  
-    FNR          : [[regrw]]  uint16  
-    RESERVEDA    : [[regrw]]  uint16  
-    DADDR        : [[regrw]]  uint16  
-    RESERVEDB    : [[regrw]]  uint16  
-    BTABLE       : [[regrw]]  uint16  
-    RESERVEDC    : [[regrw]]  uint16  
-    LPMCSR       : [[regrw]]  uint16  
-    RESERVEDD    : [[regrw]]  uint16  
-    BCDR         : [[regrw]]  uint16  
-    RESERVEDE    : [[regrw]]  uint16  
+    EP0R         : [[regrw]]  uint16    // USB Endpoint 0 register,                Address offset: 0x00
+    RESERVED0    : [[regrw]]  uint16    // Reserved
+    EP1R         : [[regrw]]  uint16    // USB Endpoint 1 register,                Address offset: 0x04
+    RESERVED1    : [[regrw]]  uint16    // Reserved
+    EP2R         : [[regrw]]  uint16    // USB Endpoint 2 register,                Address offset: 0x08
+    RESERVED2    : [[regrw]]  uint16    // Reserved
+    EP3R         : [[regrw]]  uint16    // USB Endpoint 3 register,                Address offset: 0x0C
+    RESERVED3    : [[regrw]]  uint16    // Reserved
+    EP4R         : [[regrw]]  uint16    // USB Endpoint 4 register,                Address offset: 0x10
+    RESERVED4    : [[regrw]]  uint16    // Reserved
+    EP5R         : [[regrw]]  uint16    // USB Endpoint 5 register,                Address offset: 0x14
+    RESERVED5    : [[regrw]]  uint16    // Reserved
+    EP6R         : [[regrw]]  uint16    // USB Endpoint 6 register,                Address offset: 0x18
+    RESERVED6    : [[regrw]]  uint16    // Reserved
+    EP7R         : [[regrw]]  uint16    // USB Endpoint 7 register,                Address offset: 0x1C
+    RESERVED7    : [[regrw]]  [17] uint16  // Reserved
+    CNTR         : [[regrw]]  uint16    // Control register,                       Address offset: 0x40
+    RESERVED8    : [[regrw]]  uint16    // Reserved
+    ISTR         : [[regrw]]  uint16    // Interrupt status register,              Address offset: 0x44
+    RESERVED9    : [[regrw]]  uint16    // Reserved
+    FNR          : [[regrw]]  uint16    // Frame number register,                  Address offset: 0x48
+    RESERVEDA    : [[regrw]]  uint16    // Reserved
+    DADDR        : [[regrw]]  uint16    // Device address register,                Address offset: 0x4C
+    RESERVEDB    : [[regrw]]  uint16    // Reserved
+    BTABLE       : [[regrw]]  uint16    // Buffer Table address register,          Address offset: 0x50
+    RESERVEDC    : [[regrw]]  uint16    // Reserved
+    LPMCSR       : [[regrw]]  uint16    // LPM Control and Status register,        Address offset: 0x54
+    RESERVEDD    : [[regrw]]  uint16    // Reserved
+    BCDR         : [[regrw]]  uint16    // Battery Charging detector register,     Address offset: 0x58
+    RESERVEDE    : [[regrw]]  uint16    // Reserved
 endstruct
 
 struct WWDG_TypeDef:
-    CR           : [[regrw]]  uint32  
-    CFR          : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32    // WWDG Control register,       Address offset: 0x00
+    CFR          : [[regrw]]  uint32    // WWDG Configuration register, Address offset: 0x04
+    SR           : [[regrw]]  uint32    // WWDG Status register,        Address offset: 0x08
 endstruct
+
+//-------------------------------------------------------------------------------------------------
+// Peripheral addresses
+//-------------------------------------------------------------------------------------------------
 
 const(uint32):
     FLASH_BASE           = 0x08000000
@@ -400,6 +433,11 @@ const GPIOC        :? = ^GPIO_TypeDef(GPIOC_BASE)
 const GPIOD        :? = ^GPIO_TypeDef(GPIOD_BASE)
 const GPIOF        :? = ^GPIO_TypeDef(GPIOF_BASE)
 const USB          :? = ^USB_TypeDef(USB_BASE)
+
+//-------------------------------------------------------------------------------------------------
+// Register bits
+//-------------------------------------------------------------------------------------------------
+
 const(uint32):
     ADC_ISR_ADRDY_Pos    = 0
     ADC_ISR_ADRDY_Msk    = (0x1 << ADC_ISR_ADRDY_Pos)
@@ -1515,7 +1553,7 @@ const(uint32):
     FLASH_KEY1           = FLASH_KEY1_Msk
     FLASH_KEY2_Pos       = 0
     FLASH_KEY2_Msk       = (0xCDEF89AB << FLASH_KEY2_Pos)
-    FLASH_KEY2           = FLASH_KEY2_Msk
+    FLASH_KEY2           = FLASH_KEY2_Msk                       /*!< Flash program erase key2: used with FLASH_PEKEY1 */
     FLASH_OPTKEY1_Pos    = 0
     FLASH_OPTKEY1_Msk    = (0x45670123 << FLASH_OPTKEY1_Pos)
 endconst
@@ -1524,7 +1562,7 @@ const(uint32):
     FLASH_OPTKEY1        = FLASH_OPTKEY1_Msk
     FLASH_OPTKEY2_Pos    = 0
     FLASH_OPTKEY2_Msk    = (0xCDEF89AB << FLASH_OPTKEY2_Pos)
-    FLASH_OPTKEY2        = FLASH_OPTKEY2_Msk
+    FLASH_OPTKEY2        = FLASH_OPTKEY2_Msk                    /*!< Flash option key2: used with FLASH_OPTKEY1 to */
     FLASH_SR_BSY_Pos     = 0
     FLASH_SR_BSY_Msk     = (0x1 << FLASH_SR_BSY_Pos)
     FLASH_SR_BSY         = FLASH_SR_BSY_Msk
@@ -4813,15 +4851,15 @@ endconst
 const(uint32):
     USB_ISTR_DIR         = 0x0010
     USB_ISTR_EP_ID       = 0x000F
-    USB_CLR_CTR          =  ~ USB_ISTR_CTR
-    USB_CLR_PMAOVR       =  ~ USB_ISTR_PMAOVR
-    USB_CLR_ERR          =  ~ USB_ISTR_ERR
-    USB_CLR_WKUP         =  ~ USB_ISTR_WKUP
-    USB_CLR_SUSP         =  ~ USB_ISTR_SUSP
-    USB_CLR_RESET        =  ~ USB_ISTR_RESET
-    USB_CLR_SOF          =  ~ USB_ISTR_SOF
-    USB_CLR_ESOF         =  ~ USB_ISTR_ESOF
-    USB_CLR_L1REQ        =  ~ USB_ISTR_L1REQ
+    USB_CLR_CTR          = ~ USB_ISTR_CTR
+    USB_CLR_PMAOVR       = ~ USB_ISTR_PMAOVR
+    USB_CLR_ERR          = ~ USB_ISTR_ERR
+    USB_CLR_WKUP         = ~ USB_ISTR_WKUP
+    USB_CLR_SUSP         = ~ USB_ISTR_SUSP
+    USB_CLR_RESET        = ~ USB_ISTR_RESET
+    USB_CLR_SOF          = ~ USB_ISTR_SOF
+    USB_CLR_ESOF         = ~ USB_ISTR_ESOF
+    USB_CLR_L1REQ        = ~ USB_ISTR_L1REQ
     USB_CNTR_CTRM        = 0x8000
     USB_CNTR_PMAOVRM     = 0x4000
     USB_CNTR_ERRM        = 0x2000
@@ -4887,8 +4925,8 @@ const(uint32):
     USB_EP_CONTROL       = 0x0200
     USB_EP_ISOCHRONOUS   = 0x0400
     USB_EP_INTERRUPT     = 0x0600
-    USB_EP_T_MASK        = ((( ~ USB_EP_T_FIELD))  &  USB_EPREG_MASK)
-    USB_EPKIND_MASK      = ( ~ USB_EP_KIND  &  USB_EPREG_MASK)
+    USB_EP_T_MASK        = (~ USB_EP_T_FIELD) & USB_EPREG_MASK
+    USB_EPKIND_MASK      = ~ USB_EP_KIND & USB_EPREG_MASK
     USB_EP_TX_DIS        = 0x0000
     USB_EP_TX_STALL      = 0x0010
     USB_EP_TX_NAK        = 0x0020
@@ -4948,9 +4986,6 @@ const(uint32):
     WWDG_CFR_WDGTB       = WWDG_CFR_WDGTB_Msk
     WWDG_CFR_WDGTB_0     = (0x1 << WWDG_CFR_WDGTB_Pos)
     WWDG_CFR_WDGTB_1     = (0x2 << WWDG_CFR_WDGTB_Pos)
-endconst
-
-const(uint32):
     WWDG_CFR_WDGTB0      = WWDG_CFR_WDGTB_0
     WWDG_CFR_WDGTB1      = WWDG_CFR_WDGTB_1
     WWDG_CFR_EWI_Pos     = 9
@@ -4959,14 +4994,5 @@ const(uint32):
     WWDG_SR_EWIF_Pos     = 0
     WWDG_SR_EWIF_Msk     = (0x1 << WWDG_SR_EWIF_Pos)
     WWDG_SR_EWIF         = WWDG_SR_EWIF_Msk
-    ADC1_COMP_IRQn       = ADC1_IRQn
-    DMA1_Ch1_IRQn        = DMA1_Channel1_IRQn
-    DMA1_Ch2_3_DMA2_Ch1_2_IRQn = DMA1_Channel2_3_IRQn
-    DMA1_Channel4_5_6_7_IRQn = DMA1_Channel4_5_IRQn
-    DMA1_Ch4_7_DMA2_Ch3_5_IRQn = DMA1_Channel4_5_IRQn
-    RCC_CRS_IRQn         = RCC_IRQn
-    TIM6_DAC_IRQn        = TIM6_IRQn
-    USART3_6_IRQn        = USART3_4_IRQn
-    USART3_8_IRQn        = USART3_4_IRQn
 endconst
 

@@ -10,6 +10,7 @@
 
   #define MCUSF_C6
   use ./c6/esp32c6   reexport
+  const MAX_CLOCK_SPEED : uint = 160000000
 
 #else
 

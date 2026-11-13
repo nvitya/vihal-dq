@@ -17,7 +17,9 @@
     #error "Unknown ARM CPU"
 #endif
 
-use ^/armm/core/armm_instr   reexport
-use ./armm/core/armm_utils   reexport
+// include is required to use the previously declared symbols:
+
+#include "./core/armm_instr.dqi"
+#include "./core/armm_utils.dqi"
 
 #define PLATFORM_CONFIGURED

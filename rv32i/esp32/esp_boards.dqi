@@ -1,0 +1,36 @@
+#ifdef Defined(BOARD_ESP32C3_DEVKIT) or Defined(BOARD_NANO_ESP32C3)
+
+  #define MCU_ESP32C3
+  #include "./esp_mcus.dqi"
+  const EXTERNAL_XTAL_HZ : uint = 40000000
+  const BOARD_NAME       : rostr = "ESP32C3 Development Kit"
+
+#elifdef BOARD_MIBOW_ESP32C3
+
+  #define MCU_ESP32C3
+  #include "./esp_mcus.dqi"
+  const EXTERNAL_XTAL_HZ : uint = 400000000
+  const BOARD_NAME       : rostr = "MIBOW-ESP32-C3 by nvitya"
+
+#elifdef BOARD_MIBOW_ESP32C6
+
+  #define MCU_ESP32C6
+  #include "./esp_mcus.dqi"
+  const EXTERNAL_XTAL_HZ : uint = 400000000
+  const BOARD_NAME       : rostr = "MIBOW-ESP32-C6 by nvitya"
+
+#elifdef BOARD_NODEMCU_ESP32C3
+
+  #define MCU_ESP32C3
+  #include "./esp_mcus.dqi"
+  const EXTERNAL_XTAL_HZ : uint = 40000000
+  const BOARD_NAME       : rostr = "NodeMCU ESP32C3 Development Kit"
+
+#elifdef BOARD_WEMOS_C3MINI
+
+  #define MCU_ESP32C3
+  #include "./esp_mcus.dqi"
+  const EXTERNAL_XTAL_HZ : uint = 40000000
+  const BOARD_NAME       : rostr = "Wemos ESP32-C3 Mini"
+
+#endif

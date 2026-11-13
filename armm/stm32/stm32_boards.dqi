@@ -6,7 +6,7 @@
 #ifdef BOARD_MIN_F103
 
   #define MCU_STM32F103C8
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F103C8 Minimum Develompent Board"
   // aka. Blue Pill
@@ -14,7 +14,7 @@
 #elifdef BOARD_MIN_F401
 
   #define MCU_STM32F401CC
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 25000000
   const BOARD_NAME : rostr = "STM32F401CC Minimum Develompent Board"
   // aka. Black Pill
@@ -22,7 +22,7 @@
 #elifdef BOARD_MIN_F411
 
   #define MCU_STM32F411CE
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 25000000
   const BOARD_NAME : rostr = "STM32F411CE Minimum Develompent Board"
   // aka. Black Pill
@@ -30,14 +30,14 @@
 #elifdef BOARD_MIBO48_STM32F303
 
   #define MCU_STM32F303CB
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F303Cx 48-pin Develompent Board by nvitya"
 
 #elifdef BOARD_MIBO48_STM32G473
 
   #define MCU_STM32G473CB
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   #ifndef EXTERNAL_XTAL_HZ
   const EXTERNAL_XTAL_HZ : uint = 25000000
   #endif
@@ -46,70 +46,70 @@
 #elifdef BOARD_MIBO20_STM32F070
 
   #define MCU_STM32F070F6
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F070F6 20-pin Develompent Board by WF"
 
 #elifdef BOARD_MIBO20_STM32F030
 
   #define MCU_STM32F030F4
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 0
   const BOARD_NAME : rostr = "STM32F030F4 20-pin Develompent Board by WF"
 
 #elifdef BOARD_MIBO64_STM32F070
 
   #define MCU_STM32F070RB
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F070RB 64-pin Develompent Board by nvitya"
 
 #elifdef BOARD_MIBO64_STM32F405
 
   #define MCU_STM32F405RG
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F405RG 64-pin Develompent Board by nvitya"
 
 #elifdef BOARD_DISCOVERY_F072
 
   #define MCU_STM32F072RB
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 0
   const BOARD_NAME : rostr = "STM32F072 Discovery"
 
 #elifdef BOARD_DEV_STM32F407VG
 
   #define MCU_STM32F407VG
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F407VG Minimal Board"
 
 #elifdef BOARD_DEV_STM32F407ZE
 
   #define MCU_STM32F407ZE
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F407ZE Development Board"
 
 #elifdef BOARD_NUCLEO_F446
 
   #define MCU_STM32F446ZE
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F446 Nucleo-144"
 
 #elifdef BOARD_NUCLEO_G474RE
 
   #define MCU_STM32G474RE
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 24000000
   const BOARD_NAME : rostr = "STM32G474RE Nucleo-64"
 
 #elifdef BOARD_NUCLEO_G431KB
 
   #define MCU_STM32G431KB
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   // the external crystal is not connected by default
   const EXTERNAL_XTAL_HZ : uint = 0
   //#define EXTERNAL_XTAL_HZ   24000000
@@ -118,21 +118,21 @@
 #elifdef BOARD_DISCOVERY_WB5M
 
   #define MCU_STM32WB55VG
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 32000000
   const BOARD_NAME : rostr = "STM32WB5M Discovery"
 
 #elifdef BOARD_NUCLEO_F746
 
-  #define MCU_STM32F746ZG
-  #include "./mcu_config_stm32.dqi"
+  #define MCU_STM32F746
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = (8000000 | 0x80000000)
   const BOARD_NAME : rostr = "STM32F746 Nucleo-144"
 
 #elifdef BOARD_DISCOVERY_F746
 
-  #define MCU_STM32F746NG
-  #include "./mcu_config_stm32.dqi"
+  #define MCU_STM32F746
+  #include "./stm32_mcus.dqi"
   const MAX_CLOCK_SPEED  : uint = 200000000
   const EXTERNAL_XTAL_HZ : uint =  25000000
   const BOARD_NAME : rostr = "STM32F746 Discovery"
@@ -140,7 +140,7 @@
 #elifdef BOARD_DISCOVERY_F750
 
   #define MCU_STM32F750N8
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const MAX_CLOCK_SPEED : uint = 200000000
   const EXTERNAL_XTAL_HZ : uint = 25000000
   const BOARD_NAME : rostr = "STM32F750 Discovery"
@@ -148,7 +148,7 @@
 #elifdef BOARD_DISCOVERY_H747
 
   #define MCU_STM32H747XI
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   //#define MAX_CLOCK_SPEED = 480000000
   const EXTERNAL_XTAL_HZ : uint = 25000000
   const BOARD_NAME : rostr = "STM32H747 Discovery"
@@ -156,28 +156,28 @@
 #elifdef BOARD_DISCOVERY_F429
 
   #define MCU_STM32F429ZI
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 8000000
   const BOARD_NAME : rostr = "STM32F429 Discovery"
 
 #elifdef BOARD_NUCLEO_H723
 
   #define MCU_STM32H723ZG
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = (8000000 | 0x80000000)
   const BOARD_NAME : rostr = "STM32H723 Nucleo-144"
 
 #elifdef BOARD_NUCLEO_H743
 
   #define MCU_STM32H743ZI
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = (8000000 | 0x80000000)
   const BOARD_NAME : rostr = "STM32H743 Nucleo-144"
 
 #elifdef BOARD_NUCLEO_H7S3
 
   #define MCU_STM32H7S3L8
-  #include "./mcu_config_stm32.dqi"
+  #include "./stm32_mcus.dqi"
   const EXTERNAL_XTAL_HZ : uint = 24000000
   const BOARD_NAME : rostr = "STM32H7S3 Nucleo-144"
 
