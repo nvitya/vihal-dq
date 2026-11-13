@@ -1,2 +1,31 @@
 
+#ifdef MCU_RP2040
+
+  #define CPU_ARM_M0
+  #define MCUSF_20
+  use ./_20/rp2040  reexport
+  const MAX_CLOCK_SPEED : uint = 132000000
+
+#elifdef MCU_RP2350
+
+  #define CPU_ARM_M33
+  #define MCUSF_23
+  use ./_23/rp2350  reexport
+  const MAX_CLOCK_SPEED : uint = 150000000
+
+#else
+
+  #error "Unknown ARMM-RP MCU"
+
+#endif
+
 //-------------------------------------------------------------------
+
+#define MCUF_RP
+
+//const HWCLK_IMPL  : rostr = "\{DQ.PKGNAME}/armm/rp/impl/hwclk_rp"
+//const HWPINS_IMPL : rostr = "\{DQ.PKGNAME}/armm/rp/impl/hwpins_rp"
+//const HWUART_IMPL : rostr = "\{DQ.PKGNAME}/armm/rp/impl/hwuart_rp"
+
+// finish the vihal configuration with the platform
+#include "../armm_platform.dqi"

@@ -1,0 +1,26 @@
+//-------------------------------------------------------------------------------------------------
+// RP (Raspberry Pi)
+//-------------------------------------------------------------------------------------------------
+
+#ifdef BOARD_RPI_PICO
+
+  #define MCU_RP2040
+  #include "./rp_mcus.dqi"
+  const EXTERNAL_XTAL_HZ : uint = 12000000
+  const BOARD_NAME : rostr      = "Raspberry Pi Pico with RP2040"
+
+#elifdef BOARD_RPI_PICOW
+
+  #define MCU_RP2040
+  #include "./rp_mcus.dqi"
+  const EXTERNAL_XTAL_HZ : uint = 12000000
+  const BOARD_NAME : rostr      = "Raspberry Pi Pico-W with RP2040"
+
+#elifdef BOARD_RPI_PICO2
+
+  #define MCU_RP2350
+  #include "./rp_mcus.dqi"
+  const EXTERNAL_XTAL_HZ : uint = 12000000
+  const BOARD_NAME : rostr      = "Raspberry Pi Pico-2 with RP2350"
+
+#endif
