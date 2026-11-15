@@ -1,0 +1,21 @@
+use ^/platform
+
+#ifdef HWSPI_IMPL
+    use {HWSPI_IMPL}   reexport
+#else
+    use ^/core/noimpl/hwspi_noimpl  reexport
+#endif
+
+object OHwSpi(OHwSpi_impl):
+
+    func SendData(adata : uint16):
+        while not TrySendData(adata):
+        endwhile
+    endfunc
+
+    func WaitSendFinish():
+        while not SendFinished():
+        endwhile
+    endfunc
+
+endobject

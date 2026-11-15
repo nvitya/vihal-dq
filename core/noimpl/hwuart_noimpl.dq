@@ -1,6 +1,6 @@
 use ^/core/pre/hwuart_pre  reexport
 
-object OHwUart_impl:
+object OHwUart_impl(OHwUart_pre):
 
 	func Init(adevnum : int) -> bool:
         return false
@@ -10,7 +10,7 @@ object OHwUart_impl:
         return false
     endfunc
 
-	func TryRecvChar(rch : refout byte):
+	func TryRecvChar(rch : refout byte) -> bool:
         return false
     endfunc
 

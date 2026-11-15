@@ -19,6 +19,7 @@
 const HWCLK_IMPL  : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwclk_rk"
 const HWPINS_IMPL : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwpins_rk"
 const HWUART_IMPL : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwuart_rk"
+const HWSPI_IMPL  : rostr = "\{DQ.PKGNAME}/arma/rk/impl/hwspi_rk"
 
 // warning this supports ARM_A and ARM_M too !
 #ifdef ARM_A

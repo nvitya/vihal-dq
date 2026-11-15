@@ -1,0 +1,42 @@
+use ^/core/pre/hwspi_pre  reexport
+
+object THwSpi_noimpl(OHwSpi_pre):
+public  // mandatory
+    func Init(adevnum : int) -> bool:
+        return false
+    endfunc
+    func SetSpeed(aspeed : uint):
+    endfunc
+
+    func TrySendData(adata : uint8) -> bool:
+        return false
+    endfunc
+    func TryRecvData(dstptr : ^uint8) -> bool:
+        return false
+    endfunc
+    func SendFinished() -> bool:
+        return true
+    endfunc
+
+    // void Run() { } // runs the prepared transaction
+    func SetCs(avalue : uint):
+    endfunc
+
+/*
+    func DmaAssign(istx : bool, admach : ^THwDmaChannel):
+    endfunc
+
+    func DmaStartSend(axfer : ^THwDmaTransfer) -> bool:
+        return false
+    endfunc
+    func DmaStartRecv(axfer : ^THwDmaTransfer) -> bool:
+        return false
+    endfunc
+    func DmaSendCompleted() -> bool:
+        return true
+    endfunc
+    func DmaRecvCompleted() -> bool:
+        return false
+    endfunc
+*/
+endobject

@@ -1,0 +1,27 @@
+use vihal/platform
+use vihal/hwpins
+
+object OHwSpi_pre:
+public
+    devnum           : int = -1
+    initialized      : bool = false
+
+    speed            : uint = 1000000  // default speed = 1MHz
+    databits         : byte = 8  // frame length
+    lsb_first        : bool = false
+    idleclk_high     : bool = false
+    datasample_late  : bool = false
+    tx_only          : bool = false
+    inter_frame_pulse : bool = false  // CS pulse between frames
+    cs_number        : byte = 0  // if multiple CS lines are supported
+    bigendian_addr   : bool = true  // the "address" block will be sent in big-endian byte order
+
+    state            : byte = 0  // state machine
+    fifo_size        : byte = 1
+
+    manualcspin      : OGpioPin = nil
+
+    //txdma            : ^THwDmaChannel = nil
+    //rxdma            : ^THwDmaChannel = nil
+
+endobject
