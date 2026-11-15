@@ -2,29 +2,210 @@
 
 // MCU configuration selector for STM32
 
-#ifdef MCU_STM32F746
+#if false
+
+// STM32F0: Cortex-M0
+
+#elif Defined(MCU_STM32F030) or Defined(MCU_STM32F030F4)
+
+  #define MCUSF_F0
+  #include "./f0/stm32f030x6.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =   8000000
+  const MAX_CLOCK_SPEED       : uint =  48000000
+
+#elif Defined(MCU_STM32F072) or Defined(MCU_STM32F072RB)
+
+  #define MCUSF_F0
+  #include "./f0/stm32f072xb.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =   8000000
+  const MAX_CLOCK_SPEED       : uint =  48000000
+
+#elifdef MCU_STM32F070F6
+
+  #define MCUSF_F0
+  #include "./f0/stm32f070x6.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =   8000000
+  const MAX_CLOCK_SPEED       : uint =  48000000
+
+#elif Defined(MCU_STM32F070) or Defined(MCU_STM32F070RB)
+
+  #define MCUSF_F0
+  #include "./f0/stm32f070xb.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =   8000000
+  const MAX_CLOCK_SPEED       : uint =  48000000
+
+// STM32G0: Cortex-M0+
+
+#elif Defined(MCU_STM32G030) or Defined(MCU_STM32G030F6)
+
+  #define MCUSF_G0
+  #include "./g0/stm32g030xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint =  64000000
+
+#elif Defined(MCU_STM32G0B1) or Defined(MCU_STM32G0B1RE) or Defined(MCU_STM32G0B1CB)
+
+  #define MCUSF_G0
+  #include "./g0/stm32g0b1xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint =  64000000
+
+// STM32F1: Cortex-M3
+
+#elif Defined(MCU_STM32F103) or Defined(MCU_STM32F103C8)
+
+  #define MCUSF_F1
+  #include "./f1/stm32f103xb.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =   8000000
+  const MAX_CLOCK_SPEED       : uint =  72000000
+
+// STM32F3: Cortex-M4F
+
+#elif Defined(MCU_STM32F301) or Defined(MCU_STM32F301C8) or Defined(MCU_STM32F301K6)
+
+  #define MCUSF_F3
+  #include "./f3/stm32f301x8.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =   8000000
+  const MAX_CLOCK_SPEED       : uint =  72000000
+
+#elif Defined(MCU_STM32F303) or Defined(MCU_STM32F303CB) or Defined(MCU_STM32F303CC)
+
+  #define MCUSF_F3
+  #include "./f3/stm32f303xc.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =   8000000
+  const MAX_CLOCK_SPEED       : uint =  72000000
+
+// STM32F4: Cortex-M4F
+
+#elif Defined(MCU_STM32F446) or Defined(MCU_STM32F446ZE)
+
+  #define MCUSF_F4
+  #include "./f4/stm32f446xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint = 180000000
+
+#elif Defined(MCU_STM32F429) or Defined(MCU_STM32F429ZI)
+
+  #define MCUSF_F4
+  #include "./f4/stm32f429xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint = 180000000
+
+#{elif Defined(MCU_STM32F401) or Defined(MCU_STM32F401CC) or Defined(MCU_STM32F401BC)
+       or Defined(MCU_STM32F401VC) or Defined(MCU_STM32F401VB)
+}
+  #define MCUSF_F4
+  #include "./f4/stm32f401xc.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint =  84000000
+
+#{elif Defined(MCU_STM32F411) or Defined(MCU_STM32F411CE) or Defined(MCU_STM32F411VE)
+       or Defined(MCU_STM32F411CC) or Defined(MCU_STM32F411VC)
+}
+  #define MCUSF_F4
+  #include "./f4/stm32f411xe.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint =  96000000 // actually 100 MHz, but the USB works only with this
+
+#{elif Defined(MCU_STM32F405) or Defined(MCU_STM32F405RG) or Defined(MCU_STM32F405VE)
+       or Defined(MCU_STM32F405VG) or Defined(MCU_STM32F405ZE) or Defined(MCU_STM32F405ZG)
+}
+  #define MCUSF_F4
+  #include "./f4/stm32f405xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint = 168000000
+
+#{elif Defined(MCU_STM32F407) or Defined(MCU_STM32F407VE) or Defined(MCU_STM32F407VG)
+       or Defined(MCU_STM32F407ZE) or Defined(MCU_STM32F407ZG)
+}
+  #define MCUSF_F4
+  #include "./f4/stm32f407xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint = 168000000
+
+// STM32G4: Cortex-M4F
+
+#{elif Defined(MCU_STM32G474) or Defined(MCU_STM32G473) or Defined(MCU_STM32G474RE)
+       or Defined(MCU_STM32G473RE) or Defined(MCU_STM32G473CB) or Defined(MCU_STM32G473CE)
+}
+  #define MCUSF_G4
+  #include "./g4/stm32g474xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint = 170000000
+
+#elif Defined(MCU_STM32G431) or Defined(MCU_STM32G431CB) or Defined(MCU_STM32G431KB)
+
+  #define MCUSF_G4
+  #include "./g4/stm32g431xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint = 170000000
+
+// STM32WB: Cortex-M4F
+
+#elif Defined(MCU_STM32WB55) or Defined(MCU_STM32WB5M) or Defined(MCU_STM32WB55VG) or Defined(MCU_STM32WB5MMG)
+
+  #define MCUSF_WB
+  #include "./wb/stm32wb55xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint =  64000000
+
+// STM32F7: Cortex-M7
+
+#elif Defined(MCU_STM32F746) or Defined(MCU_STM32F746ZG) or Defined(MCU_STM32F746NG)
 
   #define MCUSF_F7
-  #define CPU_ARM_M7F
   #include "./f7/stm32f746xx.dqi"
   const MCU_INTERNAL_RC_SPEED : uint =  16000000
   const MAX_CLOCK_SPEED       : uint = 216000000
 
-#elif Defined(MCU_STM32F070RB) or Defined(MCU_STM32F070)
+#elif Defined(MCU_STM32F750) or Defined(MCU_STM32F750N8)
 
-  #define MCUSF_F0
-  #define CPU_ARM_M0
-  #include "./f0/stm32f070xb.dqi"
-  const MCU_INTERNAL_RC_SPEED : uint =  8000000
-  const MAX_CLOCK_SPEED       : uint = 48000000
+  #define MCUSF_F7
+  #include "./f7/stm32f750xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  16000000
+  const MAX_CLOCK_SPEED       : uint = 216000000
 
-#elif Defined(MCU_STM32F072RB)
+// STM32H7: Cortex-M7 (400 MHz +)
 
-  #define MCUSF_F0
-  #define CPU_ARM_M0
-  #include "./f0/stm32f072xb.dqi"
-  const MCU_INTERNAL_RC_SPEED : uint =  8000000
-  const MAX_CLOCK_SPEED       : uint = 48000000
+#elif Defined(MCU_STM32H743) or Defined(MCU_STM32H743ZI)
+
+  #define MCUSF_H7
+  #include "./h7/stm32h743xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  64000000
+  const MAX_CLOCK_SPEED       : uint = 400000000
+
+#elif Defined(MCU_STM32H747) or Defined(MCU_STM32H747XI)
+
+  #define MCUSF_H7
+  #include "./h7/stm32h747xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  64000000
+  const MAX_CLOCK_SPEED       : uint = 480000000
+
+#elif Defined(MCU_STM32H750) or Defined(MCU_STM32H750VB)
+
+  #define MCUSF_H7
+  #include "./h7/stm32h750xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  64000000
+  const MAX_CLOCK_SPEED       : uint = 400000000
+
+// STM32H7 v2: Cortex-M7 (520/550 MHz)
+
+#elif Defined(MCU_STM32H723) or Defined(MCU_STM32H723ZG)
+
+  #define MCUSF_H7
+  #define MCUSF_H7_V2
+  #include "./h7/stm32h723xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  64000000
+  const MAX_CLOCK_SPEED       : uint = 520000000  // actually 550 MHz with FREQ_BOOST
+
+// STM32H7RS: Cortex-M7
+
+#elif Defined(MCU_STM32H7S3) or Defined(MCU_STM32H7S3L8)
+
+  #define MCUSF_H7RS
+  #include "./h7rs/stm32h7s3xx.dqi"
+  const MCU_INTERNAL_RC_SPEED : uint =  64000000
+  const MAX_CLOCK_SPEED       : uint = 600000000
 
 #else
 

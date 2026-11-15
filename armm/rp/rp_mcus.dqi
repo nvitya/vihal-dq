@@ -3,14 +3,14 @@
 
   #define CPU_ARM_M0
   #define MCUSF_20
-  use ./_20/rp2040  reexport
+  #include "./_20/rp2040.dqi"
   const MAX_CLOCK_SPEED : uint = 132000000
 
 #elifdef MCU_RP2350
 
   #define CPU_ARM_M33
   #define MCUSF_23
-  use ./_23/rp2350  reexport
+  #include "./_23/rp2350.dqi"
   const MAX_CLOCK_SPEED : uint = 150000000
 
 #else
