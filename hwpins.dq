@@ -1,7 +1,7 @@
 use ^/platform
 
 #ifdef HWPINS_IMPL
-    use ${HWPINS_IMPL}   reexport
+    use {HWPINS_IMPL}   reexport
 #else
     use ^/core/noimpl/hwpins_noimpl  reexport
 #endif

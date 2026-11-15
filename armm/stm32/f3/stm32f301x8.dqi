@@ -6,6 +6,8 @@ const(uint32):
     __FPU_PRESENT        = 1
 endconst
 
+#include "vihal/armm/core/core_cm4.dqi"
+
 const(int):
     NonMaskableInt_IRQn  = -14
     MemoryManagement_IRQn = -12
@@ -63,329 +65,329 @@ const(int):
 endconst
 
 struct ADC_TypeDef:
-    ISR          : [[regrw]]  uint32  
-    IER          : [[regrw]]  uint32  
-    CR           : [[regrw]]  uint32  
-    CFGR         : [[regrw]]  uint32  
-    RESERVED0    :            uint32  
-    SMPR1        : [[regrw]]  uint32  
-    SMPR2        : [[regrw]]  uint32  
-    RESERVED1    :            uint32  
-    TR1          : [[regrw]]  uint32  
-    TR2          : [[regrw]]  uint32  
-    TR3          : [[regrw]]  uint32  
-    RESERVED2    :            uint32  
-    SQR1         : [[regrw]]  uint32  
-    SQR2         : [[regrw]]  uint32  
-    SQR3         : [[regrw]]  uint32  
-    SQR4         : [[regrw]]  uint32  
-    DR           : [[regrw]]  uint32  
-    RESERVED3    :            uint32  
-    RESERVED4    :            uint32  
-    JSQR         : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32
+    IER          : [[regrw]]  uint32
+    CR           : [[regrw]]  uint32
+    CFGR         : [[regrw]]  uint32
+    RESERVED0    :            uint32
+    SMPR1        : [[regrw]]  uint32
+    SMPR2        : [[regrw]]  uint32
+    RESERVED1    :            uint32
+    TR1          : [[regrw]]  uint32
+    TR2          : [[regrw]]  uint32
+    TR3          : [[regrw]]  uint32
+    RESERVED2    :            uint32
+    SQR1         : [[regrw]]  uint32
+    SQR2         : [[regrw]]  uint32
+    SQR3         : [[regrw]]  uint32
+    SQR4         : [[regrw]]  uint32
+    DR           : [[regrw]]  uint32
+    RESERVED3    :            uint32
+    RESERVED4    :            uint32
+    JSQR         : [[regrw]]  uint32
     RESERVED5    :            [4] uint32
-    OFR1         : [[regrw]]  uint32  
-    OFR2         : [[regrw]]  uint32  
-    OFR3         : [[regrw]]  uint32  
-    OFR4         : [[regrw]]  uint32  
+    OFR1         : [[regrw]]  uint32
+    OFR2         : [[regrw]]  uint32
+    OFR3         : [[regrw]]  uint32
+    OFR4         : [[regrw]]  uint32
     RESERVED6    :            [4] uint32
-    JDR1         : [[regrw]]  uint32  
-    JDR2         : [[regrw]]  uint32  
-    JDR3         : [[regrw]]  uint32  
-    JDR4         : [[regrw]]  uint32  
+    JDR1         : [[regrw]]  uint32
+    JDR2         : [[regrw]]  uint32
+    JDR3         : [[regrw]]  uint32
+    JDR4         : [[regrw]]  uint32
     RESERVED7    :            [4] uint32
-    AWD2CR       : [[regrw]]  uint32  
-    AWD3CR       : [[regrw]]  uint32  
-    RESERVED8    :            uint32  
-    RESERVED9    :            uint32  
-    DIFSEL       : [[regrw]]  uint32  
-    CALFACT      : [[regrw]]  uint32  
+    AWD2CR       : [[regrw]]  uint32
+    AWD3CR       : [[regrw]]  uint32
+    RESERVED8    :            uint32
+    RESERVED9    :            uint32
+    DIFSEL       : [[regrw]]  uint32
+    CALFACT      : [[regrw]]  uint32
 endstruct
 
 struct ADC_Common_TypeDef:
-    CSR          : [[regrw]]  uint32  
-    RESERVED     :            uint32  
-    CCR          : [[regrw]]  uint32  
-    CDR          : [[regrw]]  uint32  
+    CSR          : [[regrw]]  uint32
+    RESERVED     :            uint32
+    CCR          : [[regrw]]  uint32
+    CDR          : [[regrw]]  uint32
 endstruct
 
 struct COMP_TypeDef:
-    CSR          : [[regrw]]  uint32  
+    CSR          : [[regrw]]  uint32
 endstruct
 
 struct CRC_TypeDef:
-    DR           : [[regrw]]  uint32  
-    IDR          : [[regrw]]  uint8   
-    RESERVED0    :            uint8   
-    RESERVED1    :            uint16  
-    CR           : [[regrw]]  uint32  
-    RESERVED2    :            uint32  
-    INIT         : [[regrw]]  uint32  
-    POL          : [[regrw]]  uint32  
+    DR           : [[regrw]]  uint32
+    IDR          : [[regrw]]  uint8
+    RESERVED0    :            uint8
+    RESERVED1    :            uint16
+    CR           : [[regrw]]  uint32
+    RESERVED2    :            uint32
+    INIT         : [[regrw]]  uint32
+    POL          : [[regrw]]  uint32
 endstruct
 
 struct DAC_TypeDef:
-    CR           : [[regrw]]  uint32  
-    SWTRIGR      : [[regrw]]  uint32  
-    DHR12R1      : [[regrw]]  uint32  
-    DHR12L1      : [[regrw]]  uint32  
-    DHR8R1       : [[regrw]]  uint32  
-    RESERVED0    : [[regrw]]  uint32  
-    RESERVED1    : [[regrw]]  uint32  
-    RESERVED2    : [[regrw]]  uint32  
-    DHR12RD      : [[regrw]]  uint32  
-    DHR12LD      : [[regrw]]  uint32  
-    DHR8RD       : [[regrw]]  uint32  
-    DOR1         : [[regrw]]  uint32  
-    RESERVED3    : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32
+    SWTRIGR      : [[regrw]]  uint32
+    DHR12R1      : [[regrw]]  uint32
+    DHR12L1      : [[regrw]]  uint32
+    DHR8R1       : [[regrw]]  uint32
+    RESERVED0    : [[regrw]]  uint32
+    RESERVED1    : [[regrw]]  uint32
+    RESERVED2    : [[regrw]]  uint32
+    DHR12RD      : [[regrw]]  uint32
+    DHR12LD      : [[regrw]]  uint32
+    DHR8RD       : [[regrw]]  uint32
+    DOR1         : [[regrw]]  uint32
+    RESERVED3    : [[regrw]]  uint32
+    SR           : [[regrw]]  uint32
 endstruct
 
 struct DBGMCU_TypeDef:
-    IDCODE       : [[regrw]]  uint32  
-    CR           : [[regrw]]  uint32  
-    APB1FZ       : [[regrw]]  uint32  
-    APB2FZ       : [[regrw]]  uint32  
+    IDCODE       : [[regrw]]  uint32
+    CR           : [[regrw]]  uint32
+    APB1FZ       : [[regrw]]  uint32
+    APB2FZ       : [[regrw]]  uint32
 endstruct
 
 struct DMA_Channel_TypeDef:
-    CCR          : [[regrw]]  uint32  
-    CNDTR        : [[regrw]]  uint32  
-    CPAR         : [[regrw]]  uint32  
-    CMAR         : [[regrw]]  uint32  
+    CCR          : [[regrw]]  uint32
+    CNDTR        : [[regrw]]  uint32
+    CPAR         : [[regrw]]  uint32
+    CMAR         : [[regrw]]  uint32
 endstruct
 
 struct DMA_TypeDef:
-    ISR          : [[regrw]]  uint32  
-    IFCR         : [[regrw]]  uint32  
+    ISR          : [[regrw]]  uint32
+    IFCR         : [[regrw]]  uint32
 endstruct
 
 struct EXTI_TypeDef:
-    IMR          : [[regrw]]  uint32  
-    EMR          : [[regrw]]  uint32  
-    RTSR         : [[regrw]]  uint32  
-    FTSR         : [[regrw]]  uint32  
-    SWIER        : [[regrw]]  uint32  
-    PR           : [[regrw]]  uint32  
-    RESERVED1    :            uint32  
-    RESERVED2    :            uint32  
-    IMR2         : [[regrw]]  uint32  
-    EMR2         : [[regrw]]  uint32  
-    RTSR2        : [[regrw]]  uint32  
-    FTSR2        : [[regrw]]  uint32  
-    SWIER2       : [[regrw]]  uint32  
-    PR2          : [[regrw]]  uint32  
+    IMR          : [[regrw]]  uint32
+    EMR          : [[regrw]]  uint32
+    RTSR         : [[regrw]]  uint32
+    FTSR         : [[regrw]]  uint32
+    SWIER        : [[regrw]]  uint32
+    PR           : [[regrw]]  uint32
+    RESERVED1    :            uint32
+    RESERVED2    :            uint32
+    IMR2         : [[regrw]]  uint32
+    EMR2         : [[regrw]]  uint32
+    RTSR2        : [[regrw]]  uint32
+    FTSR2        : [[regrw]]  uint32
+    SWIER2       : [[regrw]]  uint32
+    PR2          : [[regrw]]  uint32
 endstruct
 
 struct FLASH_TypeDef:
-    ACR          : [[regrw]]  uint32  
-    KEYR         : [[regrw]]  uint32  
-    OPTKEYR      : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    CR           : [[regrw]]  uint32  
-    AR           : [[regrw]]  uint32  
-    RESERVED     :            uint32  
-    OBR          : [[regrw]]  uint32  
-    WRPR         : [[regrw]]  uint32  
+    ACR          : [[regrw]]  uint32
+    KEYR         : [[regrw]]  uint32
+    OPTKEYR      : [[regrw]]  uint32
+    SR           : [[regrw]]  uint32
+    CR           : [[regrw]]  uint32
+    AR           : [[regrw]]  uint32
+    RESERVED     :            uint32
+    OBR          : [[regrw]]  uint32
+    WRPR         : [[regrw]]  uint32
 endstruct
 
 struct OB_TypeDef:
-    RDP          : [[regrw]]  uint16  
-    USER         : [[regrw]]  uint16  
-    RESERVED0    :            uint16  
-    RESERVED1    :            uint16  
-    WRP0         : [[regrw]]  uint16  
-    WRP1         : [[regrw]]  uint16  
-    WRP2         : [[regrw]]  uint16  
-    WRP3         : [[regrw]]  uint16  
+    RDP          : [[regrw]]  uint16
+    USER         : [[regrw]]  uint16
+    RESERVED0    :            uint16
+    RESERVED1    :            uint16
+    WRP0         : [[regrw]]  uint16
+    WRP1         : [[regrw]]  uint16
+    WRP2         : [[regrw]]  uint16
+    WRP3         : [[regrw]]  uint16
 endstruct
 
 struct GPIO_TypeDef:
-    MODER        : [[regrw]]  uint32  
-    OTYPER       : [[regrw]]  uint32  
-    OSPEEDR      : [[regrw]]  uint32  
-    PUPDR        : [[regrw]]  uint32  
-    IDR          : [[regrw]]  uint32  
-    ODR          : [[regrw]]  uint32  
-    BSRR         : [[regrw]]  uint32  
-    LCKR         : [[regrw]]  uint32  
+    MODER        : [[regrw]]  uint32
+    OTYPER       : [[regrw]]  uint32
+    OSPEEDR      : [[regrw]]  uint32
+    PUPDR        : [[regrw]]  uint32
+    IDR          : [[regrw]]  uint32
+    ODR          : [[regrw]]  uint32
+    BSRR         : [[regrw]]  uint32
+    LCKR         : [[regrw]]  uint32
     AFR          : [[regrw]]  [2] uint32
-    BRR          : [[regrw]]  uint32  
+    BRR          : [[regrw]]  uint32
 endstruct
 
 struct OPAMP_TypeDef:
-    CSR          : [[regrw]]  uint32  
+    CSR          : [[regrw]]  uint32
 endstruct
 
 struct SYSCFG_TypeDef:
-    CFGR1        : [[regrw]]  uint32  
-    RESERVED     :            uint32  
+    CFGR1        : [[regrw]]  uint32
+    RESERVED     :            uint32
     EXTICR       : [[regrw]]  [4] uint32
-    CFGR2        : [[regrw]]  uint32  
+    CFGR2        : [[regrw]]  uint32
 endstruct
 
 struct I2C_TypeDef:
-    CR1          : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
-    OAR1         : [[regrw]]  uint32  
-    OAR2         : [[regrw]]  uint32  
-    TIMINGR      : [[regrw]]  uint32  
-    TIMEOUTR     : [[regrw]]  uint32  
-    ISR          : [[regrw]]  uint32  
-    ICR          : [[regrw]]  uint32  
-    PECR         : [[regrw]]  uint32  
-    RXDR         : [[regrw]]  uint32  
-    TXDR         : [[regrw]]  uint32  
+    CR1          : [[regrw]]  uint32
+    CR2          : [[regrw]]  uint32
+    OAR1         : [[regrw]]  uint32
+    OAR2         : [[regrw]]  uint32
+    TIMINGR      : [[regrw]]  uint32
+    TIMEOUTR     : [[regrw]]  uint32
+    ISR          : [[regrw]]  uint32
+    ICR          : [[regrw]]  uint32
+    PECR         : [[regrw]]  uint32
+    RXDR         : [[regrw]]  uint32
+    TXDR         : [[regrw]]  uint32
 endstruct
 
 struct IWDG_TypeDef:
-    KR           : [[regrw]]  uint32  
-    PR           : [[regrw]]  uint32  
-    RLR          : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    WINR         : [[regrw]]  uint32  
+    KR           : [[regrw]]  uint32
+    PR           : [[regrw]]  uint32
+    RLR          : [[regrw]]  uint32
+    SR           : [[regrw]]  uint32
+    WINR         : [[regrw]]  uint32
 endstruct
 
 struct PWR_TypeDef:
-    CR           : [[regrw]]  uint32  
-    CSR          : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32
+    CSR          : [[regrw]]  uint32
 endstruct
 
 struct RCC_TypeDef:
-    CR           : [[regrw]]  uint32  
-    CFGR         : [[regrw]]  uint32  
-    CIR          : [[regrw]]  uint32  
-    APB2RSTR     : [[regrw]]  uint32  
-    APB1RSTR     : [[regrw]]  uint32  
-    AHBENR       : [[regrw]]  uint32  
-    APB2ENR      : [[regrw]]  uint32  
-    APB1ENR      : [[regrw]]  uint32  
-    BDCR         : [[regrw]]  uint32  
-    CSR          : [[regrw]]  uint32  
-    AHBRSTR      : [[regrw]]  uint32  
-    CFGR2        : [[regrw]]  uint32  
-    CFGR3        : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32
+    CFGR         : [[regrw]]  uint32
+    CIR          : [[regrw]]  uint32
+    APB2RSTR     : [[regrw]]  uint32
+    APB1RSTR     : [[regrw]]  uint32
+    AHBENR       : [[regrw]]  uint32
+    APB2ENR      : [[regrw]]  uint32
+    APB1ENR      : [[regrw]]  uint32
+    BDCR         : [[regrw]]  uint32
+    CSR          : [[regrw]]  uint32
+    AHBRSTR      : [[regrw]]  uint32
+    CFGR2        : [[regrw]]  uint32
+    CFGR3        : [[regrw]]  uint32
 endstruct
 
 struct RTC_TypeDef:
-    TR           : [[regrw]]  uint32  
-    DR           : [[regrw]]  uint32  
-    CR           : [[regrw]]  uint32  
-    ISR          : [[regrw]]  uint32  
-    PRER         : [[regrw]]  uint32  
-    WUTR         : [[regrw]]  uint32  
-    RESERVED0    :            uint32  
-    ALRMAR       : [[regrw]]  uint32  
-    ALRMBR       : [[regrw]]  uint32  
-    WPR          : [[regrw]]  uint32  
-    SSR          : [[regrw]]  uint32  
-    SHIFTR       : [[regrw]]  uint32  
-    TSTR         : [[regrw]]  uint32  
-    TSDR         : [[regrw]]  uint32  
-    TSSSR        : [[regrw]]  uint32  
-    CALR         : [[regrw]]  uint32  
-    TAFCR        : [[regrw]]  uint32  
-    ALRMASSR     : [[regrw]]  uint32  
-    ALRMBSSR     : [[regrw]]  uint32  
-    RESERVED7    :            uint32  
-    BKP0R        : [[regrw]]  uint32  
-    BKP1R        : [[regrw]]  uint32  
-    BKP2R        : [[regrw]]  uint32  
-    BKP3R        : [[regrw]]  uint32  
-    BKP4R        : [[regrw]]  uint32  
-    BKP5R        : [[regrw]]  uint32  
-    BKP6R        : [[regrw]]  uint32  
-    BKP7R        : [[regrw]]  uint32  
-    BKP8R        : [[regrw]]  uint32  
-    BKP9R        : [[regrw]]  uint32  
-    BKP10R       : [[regrw]]  uint32  
-    BKP11R       : [[regrw]]  uint32  
-    BKP12R       : [[regrw]]  uint32  
-    BKP13R       : [[regrw]]  uint32  
-    BKP14R       : [[regrw]]  uint32  
-    BKP15R       : [[regrw]]  uint32  
-    BKP16R       : [[regrw]]  uint32  
-    BKP17R       : [[regrw]]  uint32  
-    BKP18R       : [[regrw]]  uint32  
-    BKP19R       : [[regrw]]  uint32  
+    TR           : [[regrw]]  uint32
+    DR           : [[regrw]]  uint32
+    CR           : [[regrw]]  uint32
+    ISR          : [[regrw]]  uint32
+    PRER         : [[regrw]]  uint32
+    WUTR         : [[regrw]]  uint32
+    RESERVED0    :            uint32
+    ALRMAR       : [[regrw]]  uint32
+    ALRMBR       : [[regrw]]  uint32
+    WPR          : [[regrw]]  uint32
+    SSR          : [[regrw]]  uint32
+    SHIFTR       : [[regrw]]  uint32
+    TSTR         : [[regrw]]  uint32
+    TSDR         : [[regrw]]  uint32
+    TSSSR        : [[regrw]]  uint32
+    CALR         : [[regrw]]  uint32
+    TAFCR        : [[regrw]]  uint32
+    ALRMASSR     : [[regrw]]  uint32
+    ALRMBSSR     : [[regrw]]  uint32
+    RESERVED7    :            uint32
+    BKP0R        : [[regrw]]  uint32
+    BKP1R        : [[regrw]]  uint32
+    BKP2R        : [[regrw]]  uint32
+    BKP3R        : [[regrw]]  uint32
+    BKP4R        : [[regrw]]  uint32
+    BKP5R        : [[regrw]]  uint32
+    BKP6R        : [[regrw]]  uint32
+    BKP7R        : [[regrw]]  uint32
+    BKP8R        : [[regrw]]  uint32
+    BKP9R        : [[regrw]]  uint32
+    BKP10R       : [[regrw]]  uint32
+    BKP11R       : [[regrw]]  uint32
+    BKP12R       : [[regrw]]  uint32
+    BKP13R       : [[regrw]]  uint32
+    BKP14R       : [[regrw]]  uint32
+    BKP15R       : [[regrw]]  uint32
+    BKP16R       : [[regrw]]  uint32
+    BKP17R       : [[regrw]]  uint32
+    BKP18R       : [[regrw]]  uint32
+    BKP19R       : [[regrw]]  uint32
 endstruct
 
 struct SPI_TypeDef:
-    CR1          : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    DR           : [[regrw]]  uint32  
-    CRCPR        : [[regrw]]  uint32  
-    RXCRCR       : [[regrw]]  uint32  
-    TXCRCR       : [[regrw]]  uint32  
-    I2SCFGR      : [[regrw]]  uint32  
-    I2SPR        : [[regrw]]  uint32  
+    CR1          : [[regrw]]  uint32
+    CR2          : [[regrw]]  uint32
+    SR           : [[regrw]]  uint32
+    DR           : [[regrw]]  uint32
+    CRCPR        : [[regrw]]  uint32
+    RXCRCR       : [[regrw]]  uint32
+    TXCRCR       : [[regrw]]  uint32
+    I2SCFGR      : [[regrw]]  uint32
+    I2SPR        : [[regrw]]  uint32
 endstruct
 
 struct TIM_TypeDef:
-    CR1          : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
-    SMCR         : [[regrw]]  uint32  
-    DIER         : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
-    EGR          : [[regrw]]  uint32  
-    CCMR1        : [[regrw]]  uint32  
-    CCMR2        : [[regrw]]  uint32  
-    CCER         : [[regrw]]  uint32  
-    CNT          : [[regrw]]  uint32  
-    PSC          : [[regrw]]  uint32  
-    ARR          : [[regrw]]  uint32  
-    RCR          : [[regrw]]  uint32  
-    CCR1         : [[regrw]]  uint32  
-    CCR2         : [[regrw]]  uint32  
-    CCR3         : [[regrw]]  uint32  
-    CCR4         : [[regrw]]  uint32  
-    BDTR         : [[regrw]]  uint32  
-    DCR          : [[regrw]]  uint32  
-    DMAR         : [[regrw]]  uint32  
-    |           : [[regrw]]  uint32  
-    CCMR3        : [[regrw]]  uint32  
-    CCR5         : [[regrw]]  uint32  
-    CCR6         : [[regrw]]  uint32  
+    CR1          : [[regrw]]  uint32
+    CR2          : [[regrw]]  uint32
+    SMCR         : [[regrw]]  uint32
+    DIER         : [[regrw]]  uint32
+    SR           : [[regrw]]  uint32
+    EGR          : [[regrw]]  uint32
+    CCMR1        : [[regrw]]  uint32
+    CCMR2        : [[regrw]]  uint32
+    CCER         : [[regrw]]  uint32
+    CNT          : [[regrw]]  uint32
+    PSC          : [[regrw]]  uint32
+    ARR          : [[regrw]]  uint32
+    RCR          : [[regrw]]  uint32
+    CCR1         : [[regrw]]  uint32
+    CCR2         : [[regrw]]  uint32
+    CCR3         : [[regrw]]  uint32
+    CCR4         : [[regrw]]  uint32
+    BDTR         : [[regrw]]  uint32
+    DCR          : [[regrw]]  uint32
+    DMAR         : [[regrw]]  uint32
+    |           : [[regrw]]  uint32
+    CCMR3        : [[regrw]]  uint32
+    CCR5         : [[regrw]]  uint32
+    CCR6         : [[regrw]]  uint32
 endstruct
 
 struct TSC_TypeDef:
-    CR           : [[regrw]]  uint32  
-    IER          : [[regrw]]  uint32  
-    ICR          : [[regrw]]  uint32  
-    ISR          : [[regrw]]  uint32  
-    IOHCR        : [[regrw]]  uint32  
-    RESERVED1    :            uint32  
-    IOASCR       : [[regrw]]  uint32  
-    RESERVED2    :            uint32  
-    IOSCR        : [[regrw]]  uint32  
-    RESERVED3    :            uint32  
-    IOCCR        : [[regrw]]  uint32  
-    RESERVED4    :            uint32  
-    IOGCSR       : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32
+    IER          : [[regrw]]  uint32
+    ICR          : [[regrw]]  uint32
+    ISR          : [[regrw]]  uint32
+    IOHCR        : [[regrw]]  uint32
+    RESERVED1    :            uint32
+    IOASCR       : [[regrw]]  uint32
+    RESERVED2    :            uint32
+    IOSCR        : [[regrw]]  uint32
+    RESERVED3    :            uint32
+    IOCCR        : [[regrw]]  uint32
+    RESERVED4    :            uint32
+    IOGCSR       : [[regrw]]  uint32
     IOGXCR       : [[regrw]]  [8] uint32
 endstruct
 
 struct USART_TypeDef:
-    CR1          : [[regrw]]  uint32  
-    CR2          : [[regrw]]  uint32  
-    CR3          : [[regrw]]  uint32  
-    BRR          : [[regrw]]  uint32  
-    GTPR         : [[regrw]]  uint32  
-    RTOR         : [[regrw]]  uint32  
-    RQR          : [[regrw]]  uint32  
-    ISR          : [[regrw]]  uint32  
-    ICR          : [[regrw]]  uint32  
-    RDR          : [[regrw]]  uint16  
-    RESERVED1    :            uint16  
-    TDR          : [[regrw]]  uint16  
-    RESERVED2    :            uint16  
+    CR1          : [[regrw]]  uint32
+    CR2          : [[regrw]]  uint32
+    CR3          : [[regrw]]  uint32
+    BRR          : [[regrw]]  uint32
+    GTPR         : [[regrw]]  uint32
+    RTOR         : [[regrw]]  uint32
+    RQR          : [[regrw]]  uint32
+    ISR          : [[regrw]]  uint32
+    ICR          : [[regrw]]  uint32
+    RDR          : [[regrw]]  uint16
+    RESERVED1    :            uint16
+    TDR          : [[regrw]]  uint16
+    RESERVED2    :            uint16
 endstruct
 
 struct WWDG_TypeDef:
-    CR           : [[regrw]]  uint32  
-    CFR          : [[regrw]]  uint32  
-    SR           : [[regrw]]  uint32  
+    CR           : [[regrw]]  uint32
+    CFR          : [[regrw]]  uint32
+    SR           : [[regrw]]  uint32
 endstruct
 
 const(uint32):

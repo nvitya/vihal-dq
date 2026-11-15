@@ -632,8 +632,8 @@ const(uint32):
     TPI_ITFTTD0_ATB_IF1_bytecount_Pos = 24
     TPI_ITFTTD0_ATB_IF1_bytecount_Msk = (0x3 << TPI_ITFTTD0_ATB_IF1_bytecount_Pos)
     TPI_ITFTTD0_ATB_IF1_data2_Pos = 16
-    TPI_ITFTTD0_ATB_IF1_data2_Msk = (0xFF << TPI_ITFTTD0_ATB_IF1_data1_Pos)
     TPI_ITFTTD0_ATB_IF1_data1_Pos = 8
+    TPI_ITFTTD0_ATB_IF1_data2_Msk = (0xFF << TPI_ITFTTD0_ATB_IF1_data1_Pos)
     TPI_ITFTTD0_ATB_IF1_data1_Msk = (0xFF << TPI_ITFTTD0_ATB_IF1_data1_Pos)
 endconst
 
@@ -656,10 +656,10 @@ const(uint32):
     TPI_ITFTTD1_ATB_IF1_ATVALID_Msk = (0x3 << TPI_ITFTTD1_ATB_IF1_ATVALID_Pos)
     TPI_ITFTTD1_ATB_IF1_bytecount_Pos = 24
     TPI_ITFTTD1_ATB_IF1_bytecount_Msk = (0x3 << TPI_ITFTTD1_ATB_IF1_bytecount_Pos)
-    TPI_ITFTTD1_ATB_IF2_data2_Pos = 16
-    TPI_ITFTTD1_ATB_IF2_data2_Msk = (0xFF << TPI_ITFTTD1_ATB_IF2_data1_Pos)
     TPI_ITFTTD1_ATB_IF2_data1_Pos = 8
     TPI_ITFTTD1_ATB_IF2_data1_Msk = (0xFF << TPI_ITFTTD1_ATB_IF2_data1_Pos)
+    TPI_ITFTTD1_ATB_IF2_data2_Pos = 16
+    TPI_ITFTTD1_ATB_IF2_data2_Msk = (0xFF << TPI_ITFTTD1_ATB_IF2_data1_Pos)
     TPI_ITFTTD1_ATB_IF2_data0_Pos = 0
     TPI_ITFTTD1_ATB_IF2_data0_Msk = 0xFF
     TPI_ITATBCTR0_AFVALID2S_Pos = 1
@@ -1192,8 +1192,11 @@ const(uint32):
     EXC_RETURN_MODE      = 0x00000008
     EXC_RETURN_SPSEL     = 0x00000004
     EXC_RETURN_ES        = 0x00000001
+#if FirstInt(__FPU_PRESENT, 0) <> 0
     EXC_INTEGRITY_SIGNATURE = 0xFEFA125A
+#else
     EXC_INTEGRITY_SIGNATURE = 0xFEFA125B
+#endif
     ITM_RXBUFFER_EMPTY   = 0x5AA55AA5
 endconst
 

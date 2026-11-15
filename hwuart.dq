@@ -1,7 +1,7 @@
 use ^/platform
 
 #ifdef HWUART_IMPL
-    use ${HWUART_IMPL}   reexport
+    use {HWUART_IMPL}   reexport
 #else
     use ^/core/noimpl/hwuart_noimpl  reexport
 #endif

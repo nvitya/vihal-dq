@@ -3,7 +3,7 @@ use ^/platform
 func ClockCntInit() ..
 
 #ifdef CPU_ARMM
-	#if __CORTEX_M >= 3
+	#ifdef CoreDebug_DEMCR_TRCENA_Msk
 
 		func ClockCnt() -> uint32  [[inline]]:
 			return DWT.CYCCNT
@@ -35,7 +35,7 @@ func ClockCntInit() ..
 implementation
 
 #ifdef CPU_ARMM
-  #if __CORTEX_M >= 3
+  #ifdef CoreDebug_DEMCR_TRCENA_Msk
 
 	func ClockCntInit():
 		CoreDebug.DEMCR |= CoreDebug_DEMCR_TRCENA_Msk

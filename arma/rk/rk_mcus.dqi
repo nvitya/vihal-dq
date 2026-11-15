@@ -2,9 +2,8 @@
 
 #ifdef MCU_RK3506
 
-  use ./_3506/rk3506   reexport
-
   #define MCUSF_35
+  #include "./_3506/rk3506.dqi"
   const MAX_CLOCK_SPEED : uint = 200000000
 
 #else

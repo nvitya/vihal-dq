@@ -6,6 +6,8 @@ const(uint32):
     __Vendor_SysTickConfig = 0
 endconst
 
+#include "vihal/armm/core/core_cm0.dqi"
+
 const(int):
     NonMaskableInt_IRQn  = -14
     HardFault_IRQn       = -13

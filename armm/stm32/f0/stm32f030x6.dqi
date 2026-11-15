@@ -6,6 +6,8 @@ const(uint32):
     __Vendor_SysTickConfig = 0
 endconst
 
+#include "vihal/armm/core/core_cm0.dqi"
+
 const(int):
     NonMaskableInt_IRQn  = -14
     HardFault_IRQn       = -13
@@ -32,8 +34,6 @@ const(int):
     I2C1_IRQn            = 23
     SPI1_IRQn            = 25
     USART1_IRQn          = 27
-    USART2_IRQn          = 28
-    USB_IRQn             = 31
 endconst
 
 struct ADC_TypeDef:
@@ -251,39 +251,6 @@ struct USART_TypeDef:
     RESERVED2    :            uint16
 endstruct
 
-struct USB_TypeDef:
-    EP0R         : [[regrw]]  uint16
-    RESERVED0    : [[regrw]]  uint16
-    EP1R         : [[regrw]]  uint16
-    RESERVED1    : [[regrw]]  uint16
-    EP2R         : [[regrw]]  uint16
-    RESERVED2    : [[regrw]]  uint16
-    EP3R         : [[regrw]]  uint16
-    RESERVED3    : [[regrw]]  uint16
-    EP4R         : [[regrw]]  uint16
-    RESERVED4    : [[regrw]]  uint16
-    EP5R         : [[regrw]]  uint16
-    RESERVED5    : [[regrw]]  uint16
-    EP6R         : [[regrw]]  uint16
-    RESERVED6    : [[regrw]]  uint16
-    EP7R         : [[regrw]]  uint16
-    RESERVED7    : [[regrw]]  [17] uint16
-    CNTR         : [[regrw]]  uint16
-    RESERVED8    : [[regrw]]  uint16
-    ISTR         : [[regrw]]  uint16
-    RESERVED9    : [[regrw]]  uint16
-    FNR          : [[regrw]]  uint16
-    RESERVEDA    : [[regrw]]  uint16
-    DADDR        : [[regrw]]  uint16
-    RESERVEDB    : [[regrw]]  uint16
-    BTABLE       : [[regrw]]  uint16
-    RESERVEDC    : [[regrw]]  uint16
-    LPMCSR       : [[regrw]]  uint16
-    RESERVEDD    : [[regrw]]  uint16
-    BCDR         : [[regrw]]  uint16
-    RESERVEDE    : [[regrw]]  uint16
-endstruct
-
 struct WWDG_TypeDef:
     CR           : [[regrw]]  uint32
     CFR          : [[regrw]]  uint32
@@ -303,10 +270,7 @@ const(uint32):
     RTC_BASE             = (APBPERIPH_BASE + 0x00002800)
     WWDG_BASE            = (APBPERIPH_BASE + 0x00002C00)
     IWDG_BASE            = (APBPERIPH_BASE + 0x00003000)
-    USART2_BASE          = (APBPERIPH_BASE + 0x00004400)
     I2C1_BASE            = (APBPERIPH_BASE + 0x00005400)
-    USB_BASE             = (APBPERIPH_BASE + 0x00005C00)
-    USB_PMAADDR          = (APBPERIPH_BASE + 0x00006000)
     PWR_BASE             = (APBPERIPH_BASE + 0x00007000)
     SYSCFG_BASE          = (APBPERIPH_BASE + 0x00010000)
     EXTI_BASE            = (APBPERIPH_BASE + 0x00010400)
@@ -323,12 +287,12 @@ const(uint32):
     DMA1_Channel2_BASE   = (DMA1_BASE + 0x0000001C)
     DMA1_Channel3_BASE   = (DMA1_BASE + 0x00000030)
     DMA1_Channel4_BASE   = (DMA1_BASE + 0x00000044)
-endconst
-
-const(uint32):
     DMA1_Channel5_BASE   = (DMA1_BASE + 0x00000058)
     RCC_BASE             = (AHBPERIPH_BASE + 0x00001000)
     FLASH_R_BASE         = (AHBPERIPH_BASE + 0x00002000)
+endconst
+
+const(uint32):
     OB_BASE              = 0x1FFFF800
     FLASHSIZE_BASE       = 0x1FFFF7CC
     UID_BASE             = 0x1FFFF7AC
@@ -345,7 +309,6 @@ const TIM14        :? = ^TIM_TypeDef(TIM14_BASE)
 const RTC          :? = ^RTC_TypeDef(RTC_BASE)
 const WWDG         :? = ^WWDG_TypeDef(WWDG_BASE)
 const IWDG         :? = ^IWDG_TypeDef(IWDG_BASE)
-const USART2       :? = ^USART_TypeDef(USART2_BASE)
 const I2C1         :? = ^I2C_TypeDef(I2C1_BASE)
 const PWR          :? = ^PWR_TypeDef(PWR_BASE)
 const SYSCFG       :? = ^SYSCFG_TypeDef(SYSCFG_BASE)
@@ -374,7 +337,6 @@ const GPIOB        :? = ^GPIO_TypeDef(GPIOB_BASE)
 const GPIOC        :? = ^GPIO_TypeDef(GPIOC_BASE)
 const GPIOD        :? = ^GPIO_TypeDef(GPIOD_BASE)
 const GPIOF        :? = ^GPIO_TypeDef(GPIOF_BASE)
-const USB          :? = ^USB_TypeDef(USB_BASE)
 const(uint32):
     ADC_ISR_ADRDY_Pos    = 0
     ADC_ISR_ADRDY_Msk    = (0x1 << ADC_ISR_ADRDY_Pos)
@@ -2599,11 +2561,10 @@ const(uint32):
     RCC_CFGR_ADCPRE      = RCC_CFGR_ADCPRE_Msk
     RCC_CFGR_ADCPRE_DIV2 = 0x00000000
     RCC_CFGR_ADCPRE_DIV4 = 0x00004000
-    RCC_CFGR_PLLSRC_Pos  = 15
-    RCC_CFGR_PLLSRC_Msk  = (0x3 << RCC_CFGR_PLLSRC_Pos)
+    RCC_CFGR_PLLSRC_Pos  = 16
+    RCC_CFGR_PLLSRC_Msk  = (0x1 << RCC_CFGR_PLLSRC_Pos)
     RCC_CFGR_PLLSRC      = RCC_CFGR_PLLSRC_Msk
     RCC_CFGR_PLLSRC_HSI_DIV2 = 0x00000000
-    RCC_CFGR_PLLSRC_HSI_PREDIV = 0x00008000
     RCC_CFGR_PLLSRC_HSE_PREDIV = 0x00010000
     RCC_CFGR_PLLXTPRE_Pos = 17
     RCC_CFGR_PLLXTPRE_Msk = (0x1 << RCC_CFGR_PLLXTPRE_Pos)
@@ -2613,10 +2574,10 @@ const(uint32):
     RCC_CFGR_PLLMUL_Pos  = 18
     RCC_CFGR_PLLMUL_Msk  = (0xF << RCC_CFGR_PLLMUL_Pos)
     RCC_CFGR_PLLMUL      = RCC_CFGR_PLLMUL_Msk
+    RCC_CFGR_PLLMUL_0    = (0x1 << RCC_CFGR_PLLMUL_Pos)
 endconst
 
 const(uint32):
-    RCC_CFGR_PLLMUL_0    = (0x1 << RCC_CFGR_PLLMUL_Pos)
     RCC_CFGR_PLLMUL_1    = (0x2 << RCC_CFGR_PLLMUL_Pos)
     RCC_CFGR_PLLMUL_2    = (0x4 << RCC_CFGR_PLLMUL_Pos)
     RCC_CFGR_PLLMUL_3    = (0x8 << RCC_CFGR_PLLMUL_Pos)
@@ -2635,9 +2596,6 @@ const(uint32):
     RCC_CFGR_PLLMUL14    = 0x00300000
     RCC_CFGR_PLLMUL15    = 0x00340000
     RCC_CFGR_PLLMUL16    = 0x00380000
-    RCC_CFGR_USBPRE_Pos  = 22
-    RCC_CFGR_USBPRE_Msk  = (0x1 << RCC_CFGR_USBPRE_Pos)
-    RCC_CFGR_USBPRE      = RCC_CFGR_USBPRE_Msk
     RCC_CFGR_MCO_Pos     = 24
     RCC_CFGR_MCO_Msk     = (0xF << RCC_CFGR_MCO_Pos)
     RCC_CFGR_MCO         = RCC_CFGR_MCO_Msk
@@ -2648,13 +2606,13 @@ const(uint32):
     RCC_CFGR_MCO_HSI14   = 0x01000000
     RCC_CFGR_MCO_LSI     = 0x02000000
     RCC_CFGR_MCO_LSE     = 0x03000000
-endconst
-
-const(uint32):
     RCC_CFGR_MCO_SYSCLK  = 0x04000000
     RCC_CFGR_MCO_HSI     = 0x05000000
     RCC_CFGR_MCO_HSE     = 0x06000000
     RCC_CFGR_MCO_PLL     = 0x07000000
+endconst
+
+const(uint32):
     RCC_CFGR_MCOPRE_Pos  = 28
     RCC_CFGR_MCOPRE_Msk  = (0x7 << RCC_CFGR_MCOPRE_Pos)
     RCC_CFGR_MCOPRE      = RCC_CFGR_MCOPRE_Msk
@@ -2683,13 +2641,13 @@ const(uint32):
     RCC_CFGR_MCOSEL_PLL_DIV2 = RCC_CFGR_MCO_PLL
     RCC_CIR_LSIRDYF_Pos  = 0
     RCC_CIR_LSIRDYF_Msk  = (0x1 << RCC_CIR_LSIRDYF_Pos)
-endconst
-
-const(uint32):
     RCC_CIR_LSIRDYF      = RCC_CIR_LSIRDYF_Msk
     RCC_CIR_LSERDYF_Pos  = 1
     RCC_CIR_LSERDYF_Msk  = (0x1 << RCC_CIR_LSERDYF_Pos)
     RCC_CIR_LSERDYF      = RCC_CIR_LSERDYF_Msk
+endconst
+
+const(uint32):
     RCC_CIR_HSIRDYF_Pos  = 2
     RCC_CIR_HSIRDYF_Msk  = (0x1 << RCC_CIR_HSIRDYF_Pos)
     RCC_CIR_HSIRDYF      = RCC_CIR_HSIRDYF_Msk
@@ -2718,13 +2676,13 @@ const(uint32):
     RCC_CIR_HSERDYIE_Msk = (0x1 << RCC_CIR_HSERDYIE_Pos)
     RCC_CIR_HSERDYIE     = RCC_CIR_HSERDYIE_Msk
     RCC_CIR_PLLRDYIE_Pos = 12
-endconst
-
-const(uint32):
     RCC_CIR_PLLRDYIE_Msk = (0x1 << RCC_CIR_PLLRDYIE_Pos)
     RCC_CIR_PLLRDYIE     = RCC_CIR_PLLRDYIE_Msk
     RCC_CIR_HSI14RDYIE_Pos = 13
     RCC_CIR_HSI14RDYIE_Msk = (0x1 << RCC_CIR_HSI14RDYIE_Pos)
+endconst
+
+const(uint32):
     RCC_CIR_HSI14RDYIE   = RCC_CIR_HSI14RDYIE_Msk
     RCC_CIR_LSIRDYC_Pos  = 16
     RCC_CIR_LSIRDYC_Msk  = (0x1 << RCC_CIR_LSIRDYC_Pos)
@@ -2753,13 +2711,13 @@ const(uint32):
     RCC_APB2RSTR_ADCRST_Pos = 9
     RCC_APB2RSTR_ADCRST_Msk = (0x1 << RCC_APB2RSTR_ADCRST_Pos)
     RCC_APB2RSTR_ADCRST  = RCC_APB2RSTR_ADCRST_Msk
-endconst
-
-const(uint32):
     RCC_APB2RSTR_TIM1RST_Pos = 11
     RCC_APB2RSTR_TIM1RST_Msk = (0x1 << RCC_APB2RSTR_TIM1RST_Pos)
     RCC_APB2RSTR_TIM1RST = RCC_APB2RSTR_TIM1RST_Msk
     RCC_APB2RSTR_SPI1RST_Pos = 12
+endconst
+
+const(uint32):
     RCC_APB2RSTR_SPI1RST_Msk = (0x1 << RCC_APB2RSTR_SPI1RST_Pos)
     RCC_APB2RSTR_SPI1RST = RCC_APB2RSTR_SPI1RST_Msk
     RCC_APB2RSTR_USART1RST_Pos = 14
@@ -2784,23 +2742,17 @@ const(uint32):
     RCC_APB1RSTR_WWDGRST_Pos = 11
     RCC_APB1RSTR_WWDGRST_Msk = (0x1 << RCC_APB1RSTR_WWDGRST_Pos)
     RCC_APB1RSTR_WWDGRST = RCC_APB1RSTR_WWDGRST_Msk
-    RCC_APB1RSTR_USART2RST_Pos = 17
-    RCC_APB1RSTR_USART2RST_Msk = (0x1 << RCC_APB1RSTR_USART2RST_Pos)
-    RCC_APB1RSTR_USART2RST = RCC_APB1RSTR_USART2RST_Msk
     RCC_APB1RSTR_I2C1RST_Pos = 21
-endconst
-
-const(uint32):
     RCC_APB1RSTR_I2C1RST_Msk = (0x1 << RCC_APB1RSTR_I2C1RST_Pos)
     RCC_APB1RSTR_I2C1RST = RCC_APB1RSTR_I2C1RST_Msk
-    RCC_APB1RSTR_USBRST_Pos = 23
-    RCC_APB1RSTR_USBRST_Msk = (0x1 << RCC_APB1RSTR_USBRST_Pos)
-    RCC_APB1RSTR_USBRST  = RCC_APB1RSTR_USBRST_Msk
     RCC_APB1RSTR_PWRRST_Pos = 28
     RCC_APB1RSTR_PWRRST_Msk = (0x1 << RCC_APB1RSTR_PWRRST_Pos)
     RCC_APB1RSTR_PWRRST  = RCC_APB1RSTR_PWRRST_Msk
     RCC_AHBENR_DMAEN_Pos = 0
     RCC_AHBENR_DMAEN_Msk = (0x1 << RCC_AHBENR_DMAEN_Pos)
+endconst
+
+const(uint32):
     RCC_AHBENR_DMAEN     = RCC_AHBENR_DMAEN_Msk
     RCC_AHBENR_SRAMEN_Pos = 2
     RCC_AHBENR_SRAMEN_Msk = (0x1 << RCC_AHBENR_SRAMEN_Pos)
@@ -2823,9 +2775,6 @@ const(uint32):
     RCC_AHBENR_GPIODEN_Pos = 20
     RCC_AHBENR_GPIODEN_Msk = (0x1 << RCC_AHBENR_GPIODEN_Pos)
     RCC_AHBENR_GPIODEN   = RCC_AHBENR_GPIODEN_Msk
-endconst
-
-const(uint32):
     RCC_AHBENR_GPIOFEN_Pos = 22
     RCC_AHBENR_GPIOFEN_Msk = (0x1 << RCC_AHBENR_GPIOFEN_Pos)
     RCC_AHBENR_GPIOFEN   = RCC_AHBENR_GPIOFEN_Msk
@@ -2836,6 +2785,9 @@ const(uint32):
     RCC_APB2ENR_ADCEN_Pos = 9
     RCC_APB2ENR_ADCEN_Msk = (0x1 << RCC_APB2ENR_ADCEN_Pos)
     RCC_APB2ENR_ADCEN    = RCC_APB2ENR_ADCEN_Msk
+endconst
+
+const(uint32):
     RCC_APB2ENR_TIM1EN_Pos = 11
     RCC_APB2ENR_TIM1EN_Msk = (0x1 << RCC_APB2ENR_TIM1EN_Pos)
     RCC_APB2ENR_TIM1EN   = RCC_APB2ENR_TIM1EN_Msk
@@ -2858,9 +2810,6 @@ const(uint32):
     RCC_APB2ENR_ADC1EN   = RCC_APB2ENR_ADCEN
     RCC_APB1ENR_TIM3EN_Pos = 1
     RCC_APB1ENR_TIM3EN_Msk = (0x1 << RCC_APB1ENR_TIM3EN_Pos)
-endconst
-
-const(uint32):
     RCC_APB1ENR_TIM3EN   = RCC_APB1ENR_TIM3EN_Msk
     RCC_APB1ENR_TIM14EN_Pos = 8
     RCC_APB1ENR_TIM14EN_Msk = (0x1 << RCC_APB1ENR_TIM14EN_Pos)
@@ -2868,15 +2817,12 @@ const(uint32):
     RCC_APB1ENR_WWDGEN_Pos = 11
     RCC_APB1ENR_WWDGEN_Msk = (0x1 << RCC_APB1ENR_WWDGEN_Pos)
     RCC_APB1ENR_WWDGEN   = RCC_APB1ENR_WWDGEN_Msk
-    RCC_APB1ENR_USART2EN_Pos = 17
-    RCC_APB1ENR_USART2EN_Msk = (0x1 << RCC_APB1ENR_USART2EN_Pos)
-    RCC_APB1ENR_USART2EN = RCC_APB1ENR_USART2EN_Msk
     RCC_APB1ENR_I2C1EN_Pos = 21
     RCC_APB1ENR_I2C1EN_Msk = (0x1 << RCC_APB1ENR_I2C1EN_Pos)
     RCC_APB1ENR_I2C1EN   = RCC_APB1ENR_I2C1EN_Msk
-    RCC_APB1ENR_USBEN_Pos = 23
-    RCC_APB1ENR_USBEN_Msk = (0x1 << RCC_APB1ENR_USBEN_Pos)
-    RCC_APB1ENR_USBEN    = RCC_APB1ENR_USBEN_Msk
+endconst
+
+const(uint32):
     RCC_APB1ENR_PWREN_Pos = 28
     RCC_APB1ENR_PWREN_Msk = (0x1 << RCC_APB1ENR_PWREN_Pos)
     RCC_APB1ENR_PWREN    = RCC_APB1ENR_PWREN_Msk
@@ -2893,9 +2839,6 @@ const(uint32):
     RCC_BDCR_LSEDRV_Msk  = (0x3 << RCC_BDCR_LSEDRV_Pos)
     RCC_BDCR_LSEDRV      = RCC_BDCR_LSEDRV_Msk
     RCC_BDCR_LSEDRV_0    = (0x1 << RCC_BDCR_LSEDRV_Pos)
-endconst
-
-const(uint32):
     RCC_BDCR_LSEDRV_1    = (0x2 << RCC_BDCR_LSEDRV_Pos)
     RCC_BDCR_RTCSEL_Pos  = 8
     RCC_BDCR_RTCSEL_Msk  = (0x3 << RCC_BDCR_RTCSEL_Pos)
@@ -2912,6 +2855,9 @@ const(uint32):
     RCC_BDCR_BDRST_Pos   = 16
     RCC_BDCR_BDRST_Msk   = (0x1 << RCC_BDCR_BDRST_Pos)
     RCC_BDCR_BDRST       = RCC_BDCR_BDRST_Msk
+endconst
+
+const(uint32):
     RCC_CSR_LSION_Pos    = 0
     RCC_CSR_LSION_Msk    = (0x1 << RCC_CSR_LSION_Pos)
     RCC_CSR_LSION        = RCC_CSR_LSION_Msk
@@ -2928,9 +2874,6 @@ const(uint32):
     RCC_CSR_OBLRSTF_Msk  = (0x1 << RCC_CSR_OBLRSTF_Pos)
     RCC_CSR_OBLRSTF      = RCC_CSR_OBLRSTF_Msk
     RCC_CSR_PINRSTF_Pos  = 26
-endconst
-
-const(uint32):
     RCC_CSR_PINRSTF_Msk  = (0x1 << RCC_CSR_PINRSTF_Pos)
     RCC_CSR_PINRSTF      = RCC_CSR_PINRSTF_Msk
     RCC_CSR_PORRSTF_Pos  = 27
@@ -2947,6 +2890,9 @@ const(uint32):
     RCC_CSR_WWDGRSTF     = RCC_CSR_WWDGRSTF_Msk
     RCC_CSR_LPWRRSTF_Pos = 31
     RCC_CSR_LPWRRSTF_Msk = (0x1 << RCC_CSR_LPWRRSTF_Pos)
+endconst
+
+const(uint32):
     RCC_CSR_LPWRRSTF     = RCC_CSR_LPWRRSTF_Msk
     RCC_CSR_OBL          = RCC_CSR_OBLRSTF
     RCC_AHBRSTR_GPIOARST_Pos = 17
@@ -2963,9 +2909,6 @@ const(uint32):
     RCC_AHBRSTR_GPIODRST = RCC_AHBRSTR_GPIODRST_Msk
     RCC_AHBRSTR_GPIOFRST_Pos = 22
     RCC_AHBRSTR_GPIOFRST_Msk = (0x1 << RCC_AHBRSTR_GPIOFRST_Pos)
-endconst
-
-const(uint32):
     RCC_AHBRSTR_GPIOFRST = RCC_AHBRSTR_GPIOFRST_Msk
     RCC_CFGR2_PREDIV_Pos = 0
     RCC_CFGR2_PREDIV_Msk = (0xF << RCC_CFGR2_PREDIV_Pos)
@@ -2982,6 +2925,9 @@ const(uint32):
     RCC_CFGR2_PREDIV_DIV6 = 0x00000005
     RCC_CFGR2_PREDIV_DIV7 = 0x00000006
     RCC_CFGR2_PREDIV_DIV8 = 0x00000007
+endconst
+
+const(uint32):
     RCC_CFGR2_PREDIV_DIV9 = 0x00000008
     RCC_CFGR2_PREDIV_DIV10 = 0x00000009
     RCC_CFGR2_PREDIV_DIV11 = 0x0000000A
@@ -2998,9 +2944,6 @@ const(uint32):
     RCC_CFGR3_USART1SW_PCLK = 0x00000000
     RCC_CFGR3_USART1SW_SYSCLK = 0x00000001
     RCC_CFGR3_USART1SW_LSE = 0x00000002
-endconst
-
-const(uint32):
     RCC_CFGR3_USART1SW_HSI = 0x00000003
     RCC_CFGR3_I2C1SW_Pos = 4
     RCC_CFGR3_I2C1SW_Msk = (0x1 << RCC_CFGR3_I2C1SW_Pos)
@@ -3009,12 +2952,6 @@ const(uint32):
     RCC_CFGR3_I2C1SW_SYSCLK_Pos = 4
     RCC_CFGR3_I2C1SW_SYSCLK_Msk = (0x1 << RCC_CFGR3_I2C1SW_SYSCLK_Pos)
     RCC_CFGR3_I2C1SW_SYSCLK = RCC_CFGR3_I2C1SW_SYSCLK_Msk
-    RCC_CFGR3_USBSW_Pos  = 7
-    RCC_CFGR3_USBSW_Msk  = (0x1 << RCC_CFGR3_USBSW_Pos)
-    RCC_CFGR3_USBSW      = RCC_CFGR3_USBSW_Msk
-    RCC_CFGR3_USBSW_PLLCLK_Pos = 7
-    RCC_CFGR3_USBSW_PLLCLK_Msk = (0x1 << RCC_CFGR3_USBSW_PLLCLK_Pos)
-    RCC_CFGR3_USBSW_PLLCLK = RCC_CFGR3_USBSW_PLLCLK_Msk
     RCC_CR2_HSI14ON_Pos  = 0
     RCC_CR2_HSI14ON_Msk  = (0x1 << RCC_CR2_HSI14ON_Pos)
     RCC_CR2_HSI14ON      = RCC_CR2_HSI14ON_Msk
@@ -3023,6 +2960,9 @@ const(uint32):
     RCC_CR2_HSI14RDY     = RCC_CR2_HSI14RDY_Msk
     RCC_CR2_HSI14DIS_Pos = 2
     RCC_CR2_HSI14DIS_Msk = (0x1 << RCC_CR2_HSI14DIS_Pos)
+endconst
+
+const(uint32):
     RCC_CR2_HSI14DIS     = RCC_CR2_HSI14DIS_Msk
     RCC_CR2_HSI14TRIM_Pos = 3
     RCC_CR2_HSI14TRIM_Msk = (0x1F << RCC_CR2_HSI14TRIM_Pos)
@@ -3033,9 +2973,6 @@ const(uint32):
     RTC_TR_PM_Pos        = 22
     RTC_TR_PM_Msk        = (0x1 << RTC_TR_PM_Pos)
     RTC_TR_PM            = RTC_TR_PM_Msk
-endconst
-
-const(uint32):
     RTC_TR_HT_Pos        = 20
     RTC_TR_HT_Msk        = (0x3 << RTC_TR_HT_Pos)
     RTC_TR_HT            = RTC_TR_HT_Msk
@@ -3058,6 +2995,9 @@ const(uint32):
     RTC_TR_MNU_Msk       = (0xF << RTC_TR_MNU_Pos)
     RTC_TR_MNU           = RTC_TR_MNU_Msk
     RTC_TR_MNU_0         = (0x1 << RTC_TR_MNU_Pos)
+endconst
+
+const(uint32):
     RTC_TR_MNU_1         = (0x2 << RTC_TR_MNU_Pos)
     RTC_TR_MNU_2         = (0x4 << RTC_TR_MNU_Pos)
     RTC_TR_MNU_3         = (0x8 << RTC_TR_MNU_Pos)
@@ -3068,9 +3008,6 @@ const(uint32):
     RTC_TR_ST_1          = (0x2 << RTC_TR_ST_Pos)
     RTC_TR_ST_2          = (0x4 << RTC_TR_ST_Pos)
     RTC_TR_SU_Pos        = 0
-endconst
-
-const(uint32):
     RTC_TR_SU_Msk        = (0xF << RTC_TR_SU_Pos)
     RTC_TR_SU            = RTC_TR_SU_Msk
     RTC_TR_SU_0          = (0x1 << RTC_TR_SU_Pos)
@@ -3093,6 +3030,9 @@ const(uint32):
     RTC_DR_YU_3          = (0x8 << RTC_DR_YU_Pos)
     RTC_DR_WDU_Pos       = 13
     RTC_DR_WDU_Msk       = (0x7 << RTC_DR_WDU_Pos)
+endconst
+
+const(uint32):
     RTC_DR_WDU           = RTC_DR_WDU_Msk
     RTC_DR_WDU_0         = (0x1 << RTC_DR_WDU_Pos)
     RTC_DR_WDU_1         = (0x2 << RTC_DR_WDU_Pos)
@@ -3103,9 +3043,6 @@ const(uint32):
     RTC_DR_MU_Pos        = 8
     RTC_DR_MU_Msk        = (0xF << RTC_DR_MU_Pos)
     RTC_DR_MU            = RTC_DR_MU_Msk
-endconst
-
-const(uint32):
     RTC_DR_MU_0          = (0x1 << RTC_DR_MU_Pos)
     RTC_DR_MU_1          = (0x2 << RTC_DR_MU_Pos)
     RTC_DR_MU_2          = (0x4 << RTC_DR_MU_Pos)
@@ -3128,6 +3065,9 @@ const(uint32):
     RTC_CR_OSEL_Pos      = 21
     RTC_CR_OSEL_Msk      = (0x3 << RTC_CR_OSEL_Pos)
     RTC_CR_OSEL          = RTC_CR_OSEL_Msk
+endconst
+
+const(uint32):
     RTC_CR_OSEL_0        = (0x1 << RTC_CR_OSEL_Pos)
     RTC_CR_OSEL_1        = (0x2 << RTC_CR_OSEL_Pos)
     RTC_CR_POL_Pos       = 20
@@ -3138,9 +3078,6 @@ const(uint32):
     RTC_CR_COSEL         = RTC_CR_COSEL_Msk
     RTC_CR_BKP_Pos       = 18
     RTC_CR_BKP_Msk       = (0x1 << RTC_CR_BKP_Pos)
-endconst
-
-const(uint32):
     RTC_CR_BKP           = RTC_CR_BKP_Msk
     RTC_CR_SUB1H_Pos     = 17
     RTC_CR_SUB1H_Msk     = (0x1 << RTC_CR_SUB1H_Pos)
@@ -3163,6 +3100,9 @@ const(uint32):
     RTC_CR_FMT_Pos       = 6
     RTC_CR_FMT_Msk       = (0x1 << RTC_CR_FMT_Pos)
     RTC_CR_FMT           = RTC_CR_FMT_Msk
+endconst
+
+const(uint32):
     RTC_CR_BYPSHAD_Pos   = 5
     RTC_CR_BYPSHAD_Msk   = (0x1 << RTC_CR_BYPSHAD_Pos)
     RTC_CR_BYPSHAD       = RTC_CR_BYPSHAD_Msk
@@ -3173,9 +3113,6 @@ const(uint32):
     RTC_CR_TSEDGE_Msk    = (0x1 << RTC_CR_TSEDGE_Pos)
     RTC_CR_TSEDGE        = RTC_CR_TSEDGE_Msk
     RTC_CR_BCK_Pos       = RTC_CR_BKP_Pos
-endconst
-
-const(uint32):
     RTC_CR_BCK_Msk       = RTC_CR_BKP_Msk
     RTC_CR_BCK           = RTC_CR_BKP
     RTC_ISR_RECALPF_Pos  = 16
@@ -3198,6 +3135,9 @@ const(uint32):
     RTC_ISR_ALRAF        = RTC_ISR_ALRAF_Msk
     RTC_ISR_INIT_Pos     = 7
     RTC_ISR_INIT_Msk     = (0x1 << RTC_ISR_INIT_Pos)
+endconst
+
+const(uint32):
     RTC_ISR_INIT         = RTC_ISR_INIT_Msk
     RTC_ISR_INITF_Pos    = 6
     RTC_ISR_INITF_Msk    = (0x1 << RTC_ISR_INITF_Pos)
@@ -3208,9 +3148,6 @@ const(uint32):
     RTC_ISR_INITS_Pos    = 4
     RTC_ISR_INITS_Msk    = (0x1 << RTC_ISR_INITS_Pos)
     RTC_ISR_INITS        = RTC_ISR_INITS_Msk
-endconst
-
-const(uint32):
     RTC_ISR_SHPF_Pos     = 3
     RTC_ISR_SHPF_Msk     = (0x1 << RTC_ISR_SHPF_Pos)
     RTC_ISR_SHPF         = RTC_ISR_SHPF_Msk
@@ -3233,6 +3170,9 @@ const(uint32):
     RTC_ALRMAR_DT_Msk    = (0x3 << RTC_ALRMAR_DT_Pos)
     RTC_ALRMAR_DT        = RTC_ALRMAR_DT_Msk
     RTC_ALRMAR_DT_0      = (0x1 << RTC_ALRMAR_DT_Pos)
+endconst
+
+const(uint32):
     RTC_ALRMAR_DT_1      = (0x2 << RTC_ALRMAR_DT_Pos)
     RTC_ALRMAR_DU_Pos    = 24
     RTC_ALRMAR_DU_Msk    = (0xF << RTC_ALRMAR_DU_Pos)
@@ -3243,9 +3183,6 @@ const(uint32):
     RTC_ALRMAR_DU_3      = (0x8 << RTC_ALRMAR_DU_Pos)
     RTC_ALRMAR_MSK3_Pos  = 23
     RTC_ALRMAR_MSK3_Msk  = (0x1 << RTC_ALRMAR_MSK3_Pos)
-endconst
-
-const(uint32):
     RTC_ALRMAR_MSK3      = RTC_ALRMAR_MSK3_Msk
     RTC_ALRMAR_PM_Pos    = 22
     RTC_ALRMAR_PM_Msk    = (0x1 << RTC_ALRMAR_PM_Pos)
@@ -3268,6 +3205,9 @@ const(uint32):
     RTC_ALRMAR_MNT_Pos   = 12
     RTC_ALRMAR_MNT_Msk   = (0x7 << RTC_ALRMAR_MNT_Pos)
     RTC_ALRMAR_MNT       = RTC_ALRMAR_MNT_Msk
+endconst
+
+const(uint32):
     RTC_ALRMAR_MNT_0     = (0x1 << RTC_ALRMAR_MNT_Pos)
     RTC_ALRMAR_MNT_1     = (0x2 << RTC_ALRMAR_MNT_Pos)
     RTC_ALRMAR_MNT_2     = (0x4 << RTC_ALRMAR_MNT_Pos)
@@ -3278,9 +3218,6 @@ const(uint32):
     RTC_ALRMAR_MNU_1     = (0x2 << RTC_ALRMAR_MNU_Pos)
     RTC_ALRMAR_MNU_2     = (0x4 << RTC_ALRMAR_MNU_Pos)
     RTC_ALRMAR_MNU_3     = (0x8 << RTC_ALRMAR_MNU_Pos)
-endconst
-
-const(uint32):
     RTC_ALRMAR_MSK1_Pos  = 7
     RTC_ALRMAR_MSK1_Msk  = (0x1 << RTC_ALRMAR_MSK1_Pos)
     RTC_ALRMAR_MSK1      = RTC_ALRMAR_MSK1_Msk
@@ -3303,6 +3240,9 @@ const(uint32):
     RTC_SSR_SS_Pos       = 0
     RTC_SSR_SS_Msk       = (0xFFFF << RTC_SSR_SS_Pos)
     RTC_SSR_SS           = RTC_SSR_SS_Msk
+endconst
+
+const(uint32):
     RTC_SHIFTR_SUBFS_Pos = 0
     RTC_SHIFTR_SUBFS_Msk = (0x7FFF << RTC_SHIFTR_SUBFS_Pos)
     RTC_SHIFTR_SUBFS     = RTC_SHIFTR_SUBFS_Msk
@@ -3313,9 +3253,6 @@ const(uint32):
     RTC_TSTR_PM_Msk      = (0x1 << RTC_TSTR_PM_Pos)
     RTC_TSTR_PM          = RTC_TSTR_PM_Msk
     RTC_TSTR_HT_Pos      = 20
-endconst
-
-const(uint32):
     RTC_TSTR_HT_Msk      = (0x3 << RTC_TSTR_HT_Pos)
     RTC_TSTR_HT          = RTC_TSTR_HT_Msk
     RTC_TSTR_HT_0        = (0x1 << RTC_TSTR_HT_Pos)
@@ -3338,6 +3275,9 @@ const(uint32):
     RTC_TSTR_MNU         = RTC_TSTR_MNU_Msk
     RTC_TSTR_MNU_0       = (0x1 << RTC_TSTR_MNU_Pos)
     RTC_TSTR_MNU_1       = (0x2 << RTC_TSTR_MNU_Pos)
+endconst
+
+const(uint32):
     RTC_TSTR_MNU_2       = (0x4 << RTC_TSTR_MNU_Pos)
     RTC_TSTR_MNU_3       = (0x8 << RTC_TSTR_MNU_Pos)
     RTC_TSTR_ST_Pos      = 4
@@ -3348,9 +3288,6 @@ const(uint32):
     RTC_TSTR_ST_2        = (0x4 << RTC_TSTR_ST_Pos)
     RTC_TSTR_SU_Pos      = 0
     RTC_TSTR_SU_Msk      = (0xF << RTC_TSTR_SU_Pos)
-endconst
-
-const(uint32):
     RTC_TSTR_SU          = RTC_TSTR_SU_Msk
     RTC_TSTR_SU_0        = (0x1 << RTC_TSTR_SU_Pos)
     RTC_TSTR_SU_1        = (0x2 << RTC_TSTR_SU_Pos)
@@ -3373,6 +3310,9 @@ const(uint32):
     RTC_TSDR_MU_2        = (0x4 << RTC_TSDR_MU_Pos)
     RTC_TSDR_MU_3        = (0x8 << RTC_TSDR_MU_Pos)
     RTC_TSDR_DT_Pos      = 4
+endconst
+
+const(uint32):
     RTC_TSDR_DT_Msk      = (0x3 << RTC_TSDR_DT_Pos)
     RTC_TSDR_DT          = RTC_TSDR_DT_Msk
     RTC_TSDR_DT_0        = (0x1 << RTC_TSDR_DT_Pos)
@@ -3383,9 +3323,6 @@ const(uint32):
     RTC_TSDR_DU_0        = (0x1 << RTC_TSDR_DU_Pos)
     RTC_TSDR_DU_1        = (0x2 << RTC_TSDR_DU_Pos)
     RTC_TSDR_DU_2        = (0x4 << RTC_TSDR_DU_Pos)
-endconst
-
-const(uint32):
     RTC_TSDR_DU_3        = (0x8 << RTC_TSDR_DU_Pos)
     RTC_TSSSR_SS_Pos     = 0
     RTC_TSSSR_SS_Msk     = (0xFFFF << RTC_TSSSR_SS_Pos)
@@ -3408,6 +3345,9 @@ const(uint32):
     RTC_CALR_CALM_3      = (0x008 << RTC_CALR_CALM_Pos)
     RTC_CALR_CALM_4      = (0x010 << RTC_CALR_CALM_Pos)
     RTC_CALR_CALM_5      = (0x020 << RTC_CALR_CALM_Pos)
+endconst
+
+const(uint32):
     RTC_CALR_CALM_6      = (0x040 << RTC_CALR_CALM_Pos)
     RTC_CALR_CALM_7      = (0x080 << RTC_CALR_CALM_Pos)
     RTC_CALR_CALM_8      = (0x100 << RTC_CALR_CALM_Pos)
@@ -3418,9 +3358,6 @@ const(uint32):
     RTC_TAFCR_PC15VALUE_Msk = (0x1 << RTC_TAFCR_PC15VALUE_Pos)
     RTC_TAFCR_PC15VALUE  = RTC_TAFCR_PC15VALUE_Msk
     RTC_TAFCR_PC14MODE_Pos = 21
-endconst
-
-const(uint32):
     RTC_TAFCR_PC14MODE_Msk = (0x1 << RTC_TAFCR_PC14MODE_Pos)
     RTC_TAFCR_PC14MODE   = RTC_TAFCR_PC14MODE_Msk
     RTC_TAFCR_PC14VALUE_Pos = 20
@@ -3443,6 +3380,9 @@ const(uint32):
     RTC_TAFCR_TAMPFLT_Pos = 11
     RTC_TAFCR_TAMPFLT_Msk = (0x3 << RTC_TAFCR_TAMPFLT_Pos)
     RTC_TAFCR_TAMPFLT    = RTC_TAFCR_TAMPFLT_Msk
+endconst
+
+const(uint32):
     RTC_TAFCR_TAMPFLT_0  = (0x1 << RTC_TAFCR_TAMPFLT_Pos)
     RTC_TAFCR_TAMPFLT_1  = (0x2 << RTC_TAFCR_TAMPFLT_Pos)
     RTC_TAFCR_TAMPFREQ_Pos = 8
@@ -3453,9 +3393,6 @@ const(uint32):
     RTC_TAFCR_TAMPFREQ_2 = (0x4 << RTC_TAFCR_TAMPFREQ_Pos)
     RTC_TAFCR_TAMPTS_Pos = 7
     RTC_TAFCR_TAMPTS_Msk = (0x1 << RTC_TAFCR_TAMPTS_Pos)
-endconst
-
-const(uint32):
     RTC_TAFCR_TAMPTS     = RTC_TAFCR_TAMPTS_Msk
     RTC_TAFCR_TAMP2TRG_Pos = 4
     RTC_TAFCR_TAMP2TRG_Msk = (0x1 << RTC_TAFCR_TAMP2TRG_Pos)
@@ -3478,6 +3415,9 @@ const(uint32):
     RTC_ALRMASSR_MASKSS  = RTC_ALRMASSR_MASKSS_Msk
     RTC_ALRMASSR_MASKSS_0 = (0x1 << RTC_ALRMASSR_MASKSS_Pos)
     RTC_ALRMASSR_MASKSS_1 = (0x2 << RTC_ALRMASSR_MASKSS_Pos)
+endconst
+
+const(uint32):
     RTC_ALRMASSR_MASKSS_2 = (0x4 << RTC_ALRMASSR_MASKSS_Pos)
     RTC_ALRMASSR_MASKSS_3 = (0x8 << RTC_ALRMASSR_MASKSS_Pos)
     RTC_ALRMASSR_SS_Pos  = 0
@@ -3488,9 +3428,6 @@ const(uint32):
     SPI_CR1_CPHA         = SPI_CR1_CPHA_Msk
     SPI_CR1_CPOL_Pos     = 1
     SPI_CR1_CPOL_Msk     = (0x1 << SPI_CR1_CPOL_Pos)
-endconst
-
-const(uint32):
     SPI_CR1_CPOL         = SPI_CR1_CPOL_Msk
     SPI_CR1_MSTR_Pos     = 2
     SPI_CR1_MSTR_Msk     = (0x1 << SPI_CR1_MSTR_Pos)
@@ -3513,6 +3450,9 @@ const(uint32):
     SPI_CR1_SSM_Pos      = 9
     SPI_CR1_SSM_Msk      = (0x1 << SPI_CR1_SSM_Pos)
     SPI_CR1_SSM          = SPI_CR1_SSM_Msk
+endconst
+
+const(uint32):
     SPI_CR1_RXONLY_Pos   = 10
     SPI_CR1_RXONLY_Msk   = (0x1 << SPI_CR1_RXONLY_Pos)
     SPI_CR1_RXONLY       = SPI_CR1_RXONLY_Msk
@@ -3523,9 +3463,6 @@ const(uint32):
     SPI_CR1_CRCNEXT_Msk  = (0x1 << SPI_CR1_CRCNEXT_Pos)
     SPI_CR1_CRCNEXT      = SPI_CR1_CRCNEXT_Msk
     SPI_CR1_CRCEN_Pos    = 13
-endconst
-
-const(uint32):
     SPI_CR1_CRCEN_Msk    = (0x1 << SPI_CR1_CRCEN_Pos)
     SPI_CR1_CRCEN        = SPI_CR1_CRCEN_Msk
     SPI_CR1_BIDIOE_Pos   = 14
@@ -3548,6 +3485,9 @@ const(uint32):
     SPI_CR2_NSSP         = SPI_CR2_NSSP_Msk
     SPI_CR2_FRF_Pos      = 4
     SPI_CR2_FRF_Msk      = (0x1 << SPI_CR2_FRF_Pos)
+endconst
+
+const(uint32):
     SPI_CR2_FRF          = SPI_CR2_FRF_Msk
     SPI_CR2_ERRIE_Pos    = 5
     SPI_CR2_ERRIE_Msk    = (0x1 << SPI_CR2_ERRIE_Pos)
@@ -3558,9 +3498,6 @@ const(uint32):
     SPI_CR2_TXEIE_Pos    = 7
     SPI_CR2_TXEIE_Msk    = (0x1 << SPI_CR2_TXEIE_Pos)
     SPI_CR2_TXEIE        = SPI_CR2_TXEIE_Msk
-endconst
-
-const(uint32):
     SPI_CR2_DS_Pos       = 8
     SPI_CR2_DS_Msk       = (0xF << SPI_CR2_DS_Pos)
     SPI_CR2_DS           = SPI_CR2_DS_Msk
@@ -3583,6 +3520,9 @@ const(uint32):
     SPI_SR_TXE_Pos       = 1
     SPI_SR_TXE_Msk       = (0x1 << SPI_SR_TXE_Pos)
     SPI_SR_TXE           = SPI_SR_TXE_Msk
+endconst
+
+const(uint32):
     SPI_SR_CRCERR_Pos    = 4
     SPI_SR_CRCERR_Msk    = (0x1 << SPI_SR_CRCERR_Pos)
     SPI_SR_CRCERR        = SPI_SR_CRCERR_Msk
@@ -3593,9 +3533,6 @@ const(uint32):
     SPI_SR_OVR_Msk       = (0x1 << SPI_SR_OVR_Pos)
     SPI_SR_OVR           = SPI_SR_OVR_Msk
     SPI_SR_BSY_Pos       = 7
-endconst
-
-const(uint32):
     SPI_SR_BSY_Msk       = (0x1 << SPI_SR_BSY_Pos)
     SPI_SR_BSY           = SPI_SR_BSY_Msk
     SPI_SR_FRE_Pos       = 8
@@ -3618,6 +3555,9 @@ const(uint32):
     SPI_CRCPR_CRCPOLY_Msk = (0xFFFFFFFF << SPI_CRCPR_CRCPOLY_Pos)
     SPI_CRCPR_CRCPOLY    = SPI_CRCPR_CRCPOLY_Msk
     SPI_RXCRCR_RXCRC_Pos = 0
+endconst
+
+const(uint32):
     SPI_RXCRCR_RXCRC_Msk = (0xFFFFFFFF << SPI_RXCRCR_RXCRC_Pos)
     SPI_RXCRCR_RXCRC     = SPI_RXCRCR_RXCRC_Msk
     SPI_TXCRCR_TXCRC_Pos = 0
@@ -3628,15 +3568,9 @@ const(uint32):
     SPI_I2SCFGR_I2SMOD   = SPI_I2SCFGR_I2SMOD_Msk
     SYSCFG_CFGR1_MEM_MODE_Pos = 0
     SYSCFG_CFGR1_MEM_MODE_Msk = (0x3 << SYSCFG_CFGR1_MEM_MODE_Pos)
-endconst
-
-const(uint32):
     SYSCFG_CFGR1_MEM_MODE = SYSCFG_CFGR1_MEM_MODE_Msk
     SYSCFG_CFGR1_MEM_MODE_0 = (0x1 << SYSCFG_CFGR1_MEM_MODE_Pos)
     SYSCFG_CFGR1_MEM_MODE_1 = (0x2 << SYSCFG_CFGR1_MEM_MODE_Pos)
-    SYSCFG_CFGR1_PA11_PA12_RMP_Pos = 4
-    SYSCFG_CFGR1_PA11_PA12_RMP_Msk = (0x1 << SYSCFG_CFGR1_PA11_PA12_RMP_Pos)
-    SYSCFG_CFGR1_PA11_PA12_RMP = SYSCFG_CFGR1_PA11_PA12_RMP_Msk
     SYSCFG_CFGR1_DMA_RMP_Pos = 8
     SYSCFG_CFGR1_DMA_RMP_Msk = (0x1F << SYSCFG_CFGR1_DMA_RMP_Pos)
     SYSCFG_CFGR1_DMA_RMP = SYSCFG_CFGR1_DMA_RMP_Msk
@@ -3656,6 +3590,9 @@ const(uint32):
     SYSCFG_CFGR1_TIM17_DMA_RMP_Msk = (0x1 << SYSCFG_CFGR1_TIM17_DMA_RMP_Pos)
     SYSCFG_CFGR1_TIM17_DMA_RMP = SYSCFG_CFGR1_TIM17_DMA_RMP_Msk
     SYSCFG_CFGR1_I2C_FMP_PB6_Pos = 16
+endconst
+
+const(uint32):
     SYSCFG_CFGR1_I2C_FMP_PB6_Msk = (0x1 << SYSCFG_CFGR1_I2C_FMP_PB6_Pos)
     SYSCFG_CFGR1_I2C_FMP_PB6 = SYSCFG_CFGR1_I2C_FMP_PB6_Msk
     SYSCFG_CFGR1_I2C_FMP_PB7_Pos = 17
@@ -3663,9 +3600,6 @@ const(uint32):
     SYSCFG_CFGR1_I2C_FMP_PB7 = SYSCFG_CFGR1_I2C_FMP_PB7_Msk
     SYSCFG_CFGR1_I2C_FMP_PB8_Pos = 18
     SYSCFG_CFGR1_I2C_FMP_PB8_Msk = (0x1 << SYSCFG_CFGR1_I2C_FMP_PB8_Pos)
-endconst
-
-const(uint32):
     SYSCFG_CFGR1_I2C_FMP_PB8 = SYSCFG_CFGR1_I2C_FMP_PB8_Msk
     SYSCFG_CFGR1_I2C_FMP_PB9_Pos = 19
     SYSCFG_CFGR1_I2C_FMP_PB9_Msk = (0x1 << SYSCFG_CFGR1_I2C_FMP_PB9_Pos)
@@ -3691,6 +3625,9 @@ const(uint32):
     SYSCFG_EXTICR1_EXTI3_Pos = 12
     SYSCFG_EXTICR1_EXTI3_Msk = (0xF << SYSCFG_EXTICR1_EXTI3_Pos)
     SYSCFG_EXTICR1_EXTI3 = SYSCFG_EXTICR1_EXTI3_Msk
+endconst
+
+const(uint32):
     SYSCFG_EXTICR1_EXTI0_PA = 0x00000000
     SYSCFG_EXTICR1_EXTI0_PB = 0x00000001
     SYSCFG_EXTICR1_EXTI0_PC = 0x00000002
@@ -3698,9 +3635,6 @@ const(uint32):
     SYSCFG_EXTICR1_EXTI0_PF = 0x00000005
     SYSCFG_EXTICR1_EXTI1_PA = 0x00000000
     SYSCFG_EXTICR1_EXTI1_PB = 0x00000010
-endconst
-
-const(uint32):
     SYSCFG_EXTICR1_EXTI1_PC = 0x00000020
     SYSCFG_EXTICR1_EXTI1_PD = 0x00000030
     SYSCFG_EXTICR1_EXTI1_PF = 0x00000050
@@ -3726,6 +3660,9 @@ const(uint32):
     SYSCFG_EXTICR2_EXTI7_Pos = 12
     SYSCFG_EXTICR2_EXTI7_Msk = (0xF << SYSCFG_EXTICR2_EXTI7_Pos)
     SYSCFG_EXTICR2_EXTI7 = SYSCFG_EXTICR2_EXTI7_Msk
+endconst
+
+const(uint32):
     SYSCFG_EXTICR2_EXTI4_PA = 0x00000000
     SYSCFG_EXTICR2_EXTI4_PB = 0x00000001
     SYSCFG_EXTICR2_EXTI4_PC = 0x00000002
@@ -3733,9 +3670,6 @@ const(uint32):
     SYSCFG_EXTICR2_EXTI4_PF = 0x00000005
     SYSCFG_EXTICR2_EXTI5_PA = 0x00000000
     SYSCFG_EXTICR2_EXTI5_PB = 0x00000010
-endconst
-
-const(uint32):
     SYSCFG_EXTICR2_EXTI5_PC = 0x00000020
     SYSCFG_EXTICR2_EXTI5_PD = 0x00000030
     SYSCFG_EXTICR2_EXTI5_PF = 0x00000050
@@ -3761,6 +3695,9 @@ const(uint32):
     SYSCFG_EXTICR3_EXTI11_Pos = 12
     SYSCFG_EXTICR3_EXTI11_Msk = (0xF << SYSCFG_EXTICR3_EXTI11_Pos)
     SYSCFG_EXTICR3_EXTI11 = SYSCFG_EXTICR3_EXTI11_Msk
+endconst
+
+const(uint32):
     SYSCFG_EXTICR3_EXTI8_PA = 0x00000000
     SYSCFG_EXTICR3_EXTI8_PB = 0x00000001
     SYSCFG_EXTICR3_EXTI8_PC = 0x00000002
@@ -3768,9 +3705,6 @@ const(uint32):
     SYSCFG_EXTICR3_EXTI8_PF = 0x00000005
     SYSCFG_EXTICR3_EXTI9_PA = 0x00000000
     SYSCFG_EXTICR3_EXTI9_PB = 0x00000010
-endconst
-
-const(uint32):
     SYSCFG_EXTICR3_EXTI9_PC = 0x00000020
     SYSCFG_EXTICR3_EXTI9_PD = 0x00000030
     SYSCFG_EXTICR3_EXTI9_PF = 0x00000050
@@ -3796,6 +3730,9 @@ const(uint32):
     SYSCFG_EXTICR4_EXTI15_Pos = 12
     SYSCFG_EXTICR4_EXTI15_Msk = (0xF << SYSCFG_EXTICR4_EXTI15_Pos)
     SYSCFG_EXTICR4_EXTI15 = SYSCFG_EXTICR4_EXTI15_Msk
+endconst
+
+const(uint32):
     SYSCFG_EXTICR4_EXTI12_PA = 0x00000000
     SYSCFG_EXTICR4_EXTI12_PB = 0x00000001
     SYSCFG_EXTICR4_EXTI12_PC = 0x00000002
@@ -3803,9 +3740,6 @@ const(uint32):
     SYSCFG_EXTICR4_EXTI12_PF = 0x00000005
     SYSCFG_EXTICR4_EXTI13_PA = 0x00000000
     SYSCFG_EXTICR4_EXTI13_PB = 0x00000010
-endconst
-
-const(uint32):
     SYSCFG_EXTICR4_EXTI13_PC = 0x00000020
     SYSCFG_EXTICR4_EXTI13_PD = 0x00000030
     SYSCFG_EXTICR4_EXTI13_PF = 0x00000050
@@ -3831,6 +3765,9 @@ const(uint32):
     SYSCFG_CFGR2_SRAM_PE = SYSCFG_CFGR2_SRAM_PEF
     TIM_CR1_CEN_Pos      = 0
     TIM_CR1_CEN_Msk      = (0x1 << TIM_CR1_CEN_Pos)
+endconst
+
+const(uint32):
     TIM_CR1_CEN          = TIM_CR1_CEN_Msk
     TIM_CR1_UDIS_Pos     = 1
     TIM_CR1_UDIS_Msk     = (0x1 << TIM_CR1_UDIS_Pos)
@@ -3838,9 +3775,6 @@ const(uint32):
     TIM_CR1_URS_Pos      = 2
     TIM_CR1_URS_Msk      = (0x1 << TIM_CR1_URS_Pos)
     TIM_CR1_URS          = TIM_CR1_URS_Msk
-endconst
-
-const(uint32):
     TIM_CR1_OPM_Pos      = 3
     TIM_CR1_OPM_Msk      = (0x1 << TIM_CR1_OPM_Pos)
     TIM_CR1_OPM          = TIM_CR1_OPM_Msk
@@ -3866,6 +3800,9 @@ const(uint32):
     TIM_CR2_CCUS_Pos     = 2
     TIM_CR2_CCUS_Msk     = (0x1 << TIM_CR2_CCUS_Pos)
     TIM_CR2_CCUS         = TIM_CR2_CCUS_Msk
+endconst
+
+const(uint32):
     TIM_CR2_CCDS_Pos     = 3
     TIM_CR2_CCDS_Msk     = (0x1 << TIM_CR2_CCDS_Pos)
     TIM_CR2_CCDS         = TIM_CR2_CCDS_Msk
@@ -3873,9 +3810,6 @@ const(uint32):
     TIM_CR2_MMS_Msk      = (0x7 << TIM_CR2_MMS_Pos)
     TIM_CR2_MMS          = TIM_CR2_MMS_Msk
     TIM_CR2_MMS_0        = (0x1 << TIM_CR2_MMS_Pos)
-endconst
-
-const(uint32):
     TIM_CR2_MMS_1        = (0x2 << TIM_CR2_MMS_Pos)
     TIM_CR2_MMS_2        = (0x4 << TIM_CR2_MMS_Pos)
     TIM_CR2_TI1S_Pos     = 7
@@ -3901,6 +3835,9 @@ const(uint32):
     TIM_CR2_OIS3N        = TIM_CR2_OIS3N_Msk
     TIM_CR2_OIS4_Pos     = 14
     TIM_CR2_OIS4_Msk     = (0x1 << TIM_CR2_OIS4_Pos)
+endconst
+
+const(uint32):
     TIM_CR2_OIS4         = TIM_CR2_OIS4_Msk
     TIM_SMCR_SMS_Pos     = 0
     TIM_SMCR_SMS_Msk     = (0x7 << TIM_SMCR_SMS_Pos)
@@ -3908,9 +3845,6 @@ const(uint32):
     TIM_SMCR_SMS_0       = (0x1 << TIM_SMCR_SMS_Pos)
     TIM_SMCR_SMS_1       = (0x2 << TIM_SMCR_SMS_Pos)
     TIM_SMCR_SMS_2       = (0x4 << TIM_SMCR_SMS_Pos)
-endconst
-
-const(uint32):
     TIM_SMCR_OCCS_Pos    = 3
     TIM_SMCR_OCCS_Msk    = (0x1 << TIM_SMCR_OCCS_Pos)
     TIM_SMCR_OCCS        = TIM_SMCR_OCCS_Msk
@@ -3936,6 +3870,9 @@ const(uint32):
     TIM_SMCR_ETPS_0      = (0x1 << TIM_SMCR_ETPS_Pos)
     TIM_SMCR_ETPS_1      = (0x2 << TIM_SMCR_ETPS_Pos)
     TIM_SMCR_ECE_Pos     = 14
+endconst
+
+const(uint32):
     TIM_SMCR_ECE_Msk     = (0x1 << TIM_SMCR_ECE_Pos)
     TIM_SMCR_ECE         = TIM_SMCR_ECE_Msk
     TIM_SMCR_ETP_Pos     = 15
@@ -3943,9 +3880,6 @@ const(uint32):
     TIM_SMCR_ETP         = TIM_SMCR_ETP_Msk
     TIM_DIER_UIE_Pos     = 0
     TIM_DIER_UIE_Msk     = (0x1 << TIM_DIER_UIE_Pos)
-endconst
-
-const(uint32):
     TIM_DIER_UIE         = TIM_DIER_UIE_Msk
     TIM_DIER_CC1IE_Pos   = 1
     TIM_DIER_CC1IE_Msk   = (0x1 << TIM_DIER_CC1IE_Pos)
@@ -3971,6 +3905,9 @@ const(uint32):
     TIM_DIER_UDE_Pos     = 8
     TIM_DIER_UDE_Msk     = (0x1 << TIM_DIER_UDE_Pos)
     TIM_DIER_UDE         = TIM_DIER_UDE_Msk
+endconst
+
+const(uint32):
     TIM_DIER_CC1DE_Pos   = 9
     TIM_DIER_CC1DE_Msk   = (0x1 << TIM_DIER_CC1DE_Pos)
     TIM_DIER_CC1DE       = TIM_DIER_CC1DE_Msk
@@ -3978,9 +3915,6 @@ const(uint32):
     TIM_DIER_CC2DE_Msk   = (0x1 << TIM_DIER_CC2DE_Pos)
     TIM_DIER_CC2DE       = TIM_DIER_CC2DE_Msk
     TIM_DIER_CC3DE_Pos   = 11
-endconst
-
-const(uint32):
     TIM_DIER_CC3DE_Msk   = (0x1 << TIM_DIER_CC3DE_Pos)
     TIM_DIER_CC3DE       = TIM_DIER_CC3DE_Msk
     TIM_DIER_CC4DE_Pos   = 12
@@ -4006,6 +3940,9 @@ const(uint32):
     TIM_SR_CC3IF         = TIM_SR_CC3IF_Msk
     TIM_SR_CC4IF_Pos     = 4
     TIM_SR_CC4IF_Msk     = (0x1 << TIM_SR_CC4IF_Pos)
+endconst
+
+const(uint32):
     TIM_SR_CC4IF         = TIM_SR_CC4IF_Msk
     TIM_SR_COMIF_Pos     = 5
     TIM_SR_COMIF_Msk     = (0x1 << TIM_SR_COMIF_Pos)
@@ -4013,9 +3950,6 @@ const(uint32):
     TIM_SR_TIF_Pos       = 6
     TIM_SR_TIF_Msk       = (0x1 << TIM_SR_TIF_Pos)
     TIM_SR_TIF           = TIM_SR_TIF_Msk
-endconst
-
-const(uint32):
     TIM_SR_BIF_Pos       = 7
     TIM_SR_BIF_Msk       = (0x1 << TIM_SR_BIF_Pos)
     TIM_SR_BIF           = TIM_SR_BIF_Msk
@@ -4041,6 +3975,9 @@ const(uint32):
     TIM_EGR_CC2G_Msk     = (0x1 << TIM_EGR_CC2G_Pos)
     TIM_EGR_CC2G         = TIM_EGR_CC2G_Msk
     TIM_EGR_CC3G_Pos     = 3
+endconst
+
+const(uint32):
     TIM_EGR_CC3G_Msk     = (0x1 << TIM_EGR_CC3G_Pos)
     TIM_EGR_CC3G         = TIM_EGR_CC3G_Msk
     TIM_EGR_CC4G_Pos     = 4
@@ -4048,9 +3985,6 @@ const(uint32):
     TIM_EGR_CC4G         = TIM_EGR_CC4G_Msk
     TIM_EGR_COMG_Pos     = 5
     TIM_EGR_COMG_Msk     = (0x1 << TIM_EGR_COMG_Pos)
-endconst
-
-const(uint32):
     TIM_EGR_COMG         = TIM_EGR_COMG_Msk
     TIM_EGR_TG_Pos       = 6
     TIM_EGR_TG_Msk       = (0x1 << TIM_EGR_TG_Pos)
@@ -4076,6 +4010,9 @@ const(uint32):
     TIM_CCMR1_OC1M_1     = (0x2 << TIM_CCMR1_OC1M_Pos)
     TIM_CCMR1_OC1M_2     = (0x4 << TIM_CCMR1_OC1M_Pos)
     TIM_CCMR1_OC1CE_Pos  = 7
+endconst
+
+const(uint32):
     TIM_CCMR1_OC1CE_Msk  = (0x1 << TIM_CCMR1_OC1CE_Pos)
     TIM_CCMR1_OC1CE      = TIM_CCMR1_OC1CE_Msk
     TIM_CCMR1_CC2S_Pos   = 8
@@ -4083,9 +4020,6 @@ const(uint32):
     TIM_CCMR1_CC2S       = TIM_CCMR1_CC2S_Msk
     TIM_CCMR1_CC2S_0     = (0x1 << TIM_CCMR1_CC2S_Pos)
     TIM_CCMR1_CC2S_1     = (0x2 << TIM_CCMR1_CC2S_Pos)
-endconst
-
-const(uint32):
     TIM_CCMR1_OC2FE_Pos  = 10
     TIM_CCMR1_OC2FE_Msk  = (0x1 << TIM_CCMR1_OC2FE_Pos)
     TIM_CCMR1_OC2FE      = TIM_CCMR1_OC2FE_Msk
@@ -4111,6 +4045,9 @@ const(uint32):
     TIM_CCMR1_IC1F       = TIM_CCMR1_IC1F_Msk
     TIM_CCMR1_IC1F_0     = (0x1 << TIM_CCMR1_IC1F_Pos)
     TIM_CCMR1_IC1F_1     = (0x2 << TIM_CCMR1_IC1F_Pos)
+endconst
+
+const(uint32):
     TIM_CCMR1_IC1F_2     = (0x4 << TIM_CCMR1_IC1F_Pos)
     TIM_CCMR1_IC1F_3     = (0x8 << TIM_CCMR1_IC1F_Pos)
     TIM_CCMR1_IC2PSC_Pos = 10
@@ -4118,9 +4055,6 @@ const(uint32):
     TIM_CCMR1_IC2PSC     = TIM_CCMR1_IC2PSC_Msk
     TIM_CCMR1_IC2PSC_0   = (0x1 << TIM_CCMR1_IC2PSC_Pos)
     TIM_CCMR1_IC2PSC_1   = (0x2 << TIM_CCMR1_IC2PSC_Pos)
-endconst
-
-const(uint32):
     TIM_CCMR1_IC2F_Pos   = 12
     TIM_CCMR1_IC2F_Msk   = (0xF << TIM_CCMR1_IC2F_Pos)
     TIM_CCMR1_IC2F       = TIM_CCMR1_IC2F_Msk
@@ -4146,6 +4080,9 @@ const(uint32):
     TIM_CCMR2_OC3M_1     = (0x2 << TIM_CCMR2_OC3M_Pos)
     TIM_CCMR2_OC3M_2     = (0x4 << TIM_CCMR2_OC3M_Pos)
     TIM_CCMR2_OC3CE_Pos  = 7
+endconst
+
+const(uint32):
     TIM_CCMR2_OC3CE_Msk  = (0x1 << TIM_CCMR2_OC3CE_Pos)
     TIM_CCMR2_OC3CE      = TIM_CCMR2_OC3CE_Msk
     TIM_CCMR2_CC4S_Pos   = 8
@@ -4153,9 +4090,6 @@ const(uint32):
     TIM_CCMR2_CC4S       = TIM_CCMR2_CC4S_Msk
     TIM_CCMR2_CC4S_0     = (0x1 << TIM_CCMR2_CC4S_Pos)
     TIM_CCMR2_CC4S_1     = (0x2 << TIM_CCMR2_CC4S_Pos)
-endconst
-
-const(uint32):
     TIM_CCMR2_OC4FE_Pos  = 10
     TIM_CCMR2_OC4FE_Msk  = (0x1 << TIM_CCMR2_OC4FE_Pos)
     TIM_CCMR2_OC4FE      = TIM_CCMR2_OC4FE_Msk
@@ -4181,6 +4115,9 @@ const(uint32):
     TIM_CCMR2_IC3F       = TIM_CCMR2_IC3F_Msk
     TIM_CCMR2_IC3F_0     = (0x1 << TIM_CCMR2_IC3F_Pos)
     TIM_CCMR2_IC3F_1     = (0x2 << TIM_CCMR2_IC3F_Pos)
+endconst
+
+const(uint32):
     TIM_CCMR2_IC3F_2     = (0x4 << TIM_CCMR2_IC3F_Pos)
     TIM_CCMR2_IC3F_3     = (0x8 << TIM_CCMR2_IC3F_Pos)
     TIM_CCMR2_IC4PSC_Pos = 10
@@ -4188,9 +4125,6 @@ const(uint32):
     TIM_CCMR2_IC4PSC     = TIM_CCMR2_IC4PSC_Msk
     TIM_CCMR2_IC4PSC_0   = (0x1 << TIM_CCMR2_IC4PSC_Pos)
     TIM_CCMR2_IC4PSC_1   = (0x2 << TIM_CCMR2_IC4PSC_Pos)
-endconst
-
-const(uint32):
     TIM_CCMR2_IC4F_Pos   = 12
     TIM_CCMR2_IC4F_Msk   = (0xF << TIM_CCMR2_IC4F_Pos)
     TIM_CCMR2_IC4F       = TIM_CCMR2_IC4F_Msk
@@ -4216,6 +4150,9 @@ const(uint32):
     TIM_CCER_CC2P_Pos    = 5
     TIM_CCER_CC2P_Msk    = (0x1 << TIM_CCER_CC2P_Pos)
     TIM_CCER_CC2P        = TIM_CCER_CC2P_Msk
+endconst
+
+const(uint32):
     TIM_CCER_CC2NE_Pos   = 6
     TIM_CCER_CC2NE_Msk   = (0x1 << TIM_CCER_CC2NE_Pos)
     TIM_CCER_CC2NE       = TIM_CCER_CC2NE_Msk
@@ -4223,9 +4160,6 @@ const(uint32):
     TIM_CCER_CC2NP_Msk   = (0x1 << TIM_CCER_CC2NP_Pos)
     TIM_CCER_CC2NP       = TIM_CCER_CC2NP_Msk
     TIM_CCER_CC3E_Pos    = 8
-endconst
-
-const(uint32):
     TIM_CCER_CC3E_Msk    = (0x1 << TIM_CCER_CC3E_Pos)
     TIM_CCER_CC3E        = TIM_CCER_CC3E_Msk
     TIM_CCER_CC3P_Pos    = 9
@@ -4251,6 +4185,9 @@ const(uint32):
     TIM_CNT_CNT          = TIM_CNT_CNT_Msk
     TIM_PSC_PSC_Pos      = 0
     TIM_PSC_PSC_Msk      = (0xFFFF << TIM_PSC_PSC_Pos)
+endconst
+
+const(uint32):
     TIM_PSC_PSC          = TIM_PSC_PSC_Msk
     TIM_ARR_ARR_Pos      = 0
     TIM_ARR_ARR_Msk      = (0xFFFFFFFF << TIM_ARR_ARR_Pos)
@@ -4258,9 +4195,6 @@ const(uint32):
     TIM_RCR_REP_Pos      = 0
     TIM_RCR_REP_Msk      = (0xFF << TIM_RCR_REP_Pos)
     TIM_RCR_REP          = TIM_RCR_REP_Msk
-endconst
-
-const(uint32):
     TIM_CCR1_CCR1_Pos    = 0
     TIM_CCR1_CCR1_Msk    = (0xFFFF << TIM_CCR1_CCR1_Pos)
     TIM_CCR1_CCR1        = TIM_CCR1_CCR1_Msk
@@ -4286,6 +4220,9 @@ const(uint32):
     TIM_BDTR_DTG_7       = (0x80 << TIM_BDTR_DTG_Pos)
     TIM_BDTR_LOCK_Pos    = 8
     TIM_BDTR_LOCK_Msk    = (0x3 << TIM_BDTR_LOCK_Pos)
+endconst
+
+const(uint32):
     TIM_BDTR_LOCK        = TIM_BDTR_LOCK_Msk
     TIM_BDTR_LOCK_0      = (0x1 << TIM_BDTR_LOCK_Pos)
     TIM_BDTR_LOCK_1      = (0x2 << TIM_BDTR_LOCK_Pos)
@@ -4293,9 +4230,6 @@ const(uint32):
     TIM_BDTR_OSSI_Msk    = (0x1 << TIM_BDTR_OSSI_Pos)
     TIM_BDTR_OSSI        = TIM_BDTR_OSSI_Msk
     TIM_BDTR_OSSR_Pos    = 11
-endconst
-
-const(uint32):
     TIM_BDTR_OSSR_Msk    = (0x1 << TIM_BDTR_OSSR_Pos)
     TIM_BDTR_OSSR        = TIM_BDTR_OSSR_Msk
     TIM_BDTR_BKE_Pos     = 12
@@ -4321,6 +4255,9 @@ const(uint32):
     TIM_DCR_DBL_Pos      = 8
     TIM_DCR_DBL_Msk      = (0x1F << TIM_DCR_DBL_Pos)
     TIM_DCR_DBL          = TIM_DCR_DBL_Msk
+endconst
+
+const(uint32):
     TIM_DCR_DBL_0        = (0x01 << TIM_DCR_DBL_Pos)
     TIM_DCR_DBL_1        = (0x02 << TIM_DCR_DBL_Pos)
     TIM_DCR_DBL_2        = (0x04 << TIM_DCR_DBL_Pos)
@@ -4328,9 +4265,6 @@ const(uint32):
     TIM_DCR_DBL_4        = (0x10 << TIM_DCR_DBL_Pos)
     TIM_DMAR_DMAB_Pos    = 0
     TIM_DMAR_DMAB_Msk    = (0xFFFF << TIM_DMAR_DMAB_Pos)
-endconst
-
-const(uint32):
     TIM_DMAR_DMAB        = TIM_DMAR_DMAB_Msk
     TIM14_OR_TI1_RMP_Pos = 0
     TIM14_OR_TI1_RMP_Msk = (0x3 << TIM14_OR_TI1_RMP_Pos)
@@ -4356,6 +4290,9 @@ const(uint32):
     USART_CR1_TCIE_Msk   = (0x1 << USART_CR1_TCIE_Pos)
     USART_CR1_TCIE       = USART_CR1_TCIE_Msk
     USART_CR1_TXEIE_Pos  = 7
+endconst
+
+const(uint32):
     USART_CR1_TXEIE_Msk  = (0x1 << USART_CR1_TXEIE_Pos)
     USART_CR1_TXEIE      = USART_CR1_TXEIE_Msk
     USART_CR1_PEIE_Pos   = 8
@@ -4363,9 +4300,6 @@ const(uint32):
     USART_CR1_PEIE       = USART_CR1_PEIE_Msk
     USART_CR1_PS_Pos     = 9
     USART_CR1_PS_Msk     = (0x1 << USART_CR1_PS_Pos)
-endconst
-
-const(uint32):
     USART_CR1_PS         = USART_CR1_PS_Msk
     USART_CR1_PCE_Pos    = 10
     USART_CR1_PCE_Msk    = (0x1 << USART_CR1_PCE_Pos)
@@ -4373,9 +4307,9 @@ const(uint32):
     USART_CR1_WAKE_Pos   = 11
     USART_CR1_WAKE_Msk   = (0x1 << USART_CR1_WAKE_Pos)
     USART_CR1_WAKE       = USART_CR1_WAKE_Msk
-    USART_CR1_M0_Pos     = 12
-    USART_CR1_M0_Msk     = (0x1 << USART_CR1_M0_Pos)
-    USART_CR1_M0         = USART_CR1_M0_Msk
+    USART_CR1_M_Pos      = 12
+    USART_CR1_M_Msk      = (0x1 << USART_CR1_M_Pos)
+    USART_CR1_M          = USART_CR1_M_Msk
     USART_CR1_MME_Pos    = 13
     USART_CR1_MME_Msk    = (0x1 << USART_CR1_MME_Pos)
     USART_CR1_MME        = USART_CR1_MME_Msk
@@ -4391,6 +4325,9 @@ const(uint32):
     USART_CR1_DEDT_0     = (0x01 << USART_CR1_DEDT_Pos)
     USART_CR1_DEDT_1     = (0x02 << USART_CR1_DEDT_Pos)
     USART_CR1_DEDT_2     = (0x04 << USART_CR1_DEDT_Pos)
+endconst
+
+const(uint32):
     USART_CR1_DEDT_3     = (0x08 << USART_CR1_DEDT_Pos)
     USART_CR1_DEDT_4     = (0x10 << USART_CR1_DEDT_Pos)
     USART_CR1_DEAT_Pos   = 21
@@ -4398,9 +4335,6 @@ const(uint32):
     USART_CR1_DEAT       = USART_CR1_DEAT_Msk
     USART_CR1_DEAT_0     = (0x01 << USART_CR1_DEAT_Pos)
     USART_CR1_DEAT_1     = (0x02 << USART_CR1_DEAT_Pos)
-endconst
-
-const(uint32):
     USART_CR1_DEAT_2     = (0x04 << USART_CR1_DEAT_Pos)
     USART_CR1_DEAT_3     = (0x08 << USART_CR1_DEAT_Pos)
     USART_CR1_DEAT_4     = (0x10 << USART_CR1_DEAT_Pos)
@@ -4410,12 +4344,6 @@ const(uint32):
     USART_CR1_EOBIE_Pos  = 27
     USART_CR1_EOBIE_Msk  = (0x1 << USART_CR1_EOBIE_Pos)
     USART_CR1_EOBIE      = USART_CR1_EOBIE_Msk
-    USART_CR1_M1_Pos     = 28
-    USART_CR1_M1_Msk     = (0x1 << USART_CR1_M1_Pos)
-    USART_CR1_M1         = USART_CR1_M1_Msk
-    USART_CR1_M_Pos      = 12
-    USART_CR1_M_Msk      = (0x10001 << USART_CR1_M_Pos)
-    USART_CR1_M          = USART_CR1_M_Msk
     USART_CR2_ADDM7_Pos  = 4
     USART_CR2_ADDM7_Msk  = (0x1 << USART_CR2_ADDM7_Pos)
     USART_CR2_ADDM7      = USART_CR2_ADDM7_Msk
@@ -4432,10 +4360,10 @@ const(uint32):
     USART_CR2_CLKEN_Msk  = (0x1 << USART_CR2_CLKEN_Pos)
     USART_CR2_CLKEN      = USART_CR2_CLKEN_Msk
     USART_CR2_STOP_Pos   = 12
-    USART_CR2_STOP_Msk   = (0x3 << USART_CR2_STOP_Pos)
 endconst
 
 const(uint32):
+    USART_CR2_STOP_Msk   = (0x3 << USART_CR2_STOP_Pos)
     USART_CR2_STOP       = USART_CR2_STOP_Msk
     USART_CR2_STOP_0     = (0x1 << USART_CR2_STOP_Pos)
     USART_CR2_STOP_1     = (0x2 << USART_CR2_STOP_Pos)
@@ -4467,10 +4395,10 @@ const(uint32):
     USART_CR2_RTOEN      = USART_CR2_RTOEN_Msk
     USART_CR2_ADD_Pos    = 24
     USART_CR2_ADD_Msk    = (0xFF << USART_CR2_ADD_Pos)
-    USART_CR2_ADD        = USART_CR2_ADD_Msk
 endconst
 
 const(uint32):
+    USART_CR2_ADD        = USART_CR2_ADD_Msk
     USART_CR3_EIE_Pos    = 0
     USART_CR3_EIE_Msk    = (0x1 << USART_CR3_EIE_Pos)
     USART_CR3_EIE        = USART_CR3_EIE_Msk
@@ -4502,10 +4430,10 @@ const(uint32):
     USART_CR3_DDRE_Msk   = (0x1 << USART_CR3_DDRE_Pos)
     USART_CR3_DDRE       = USART_CR3_DDRE_Msk
     USART_CR3_DEM_Pos    = 14
-    USART_CR3_DEM_Msk    = (0x1 << USART_CR3_DEM_Pos)
 endconst
 
 const(uint32):
+    USART_CR3_DEM_Msk    = (0x1 << USART_CR3_DEM_Pos)
     USART_CR3_DEM        = USART_CR3_DEM_Msk
     USART_CR3_DEP_Pos    = 15
     USART_CR3_DEP_Msk    = (0x1 << USART_CR3_DEP_Pos)
@@ -4537,10 +4465,10 @@ const(uint32):
     USART_RQR_MMRQ_Pos   = 2
     USART_RQR_MMRQ_Msk   = (0x1 << USART_RQR_MMRQ_Pos)
     USART_RQR_MMRQ       = USART_RQR_MMRQ_Msk
-    USART_RQR_RXFRQ_Pos  = 3
 endconst
 
 const(uint32):
+    USART_RQR_RXFRQ_Pos  = 3
     USART_RQR_RXFRQ_Msk  = (0x1 << USART_RQR_RXFRQ_Pos)
     USART_RQR_RXFRQ      = USART_RQR_RXFRQ_Msk
     USART_ISR_PE_Pos     = 0
@@ -4572,10 +4500,10 @@ const(uint32):
     USART_ISR_CTSIF      = USART_ISR_CTSIF_Msk
     USART_ISR_CTS_Pos    = 10
     USART_ISR_CTS_Msk    = (0x1 << USART_ISR_CTS_Pos)
-    USART_ISR_CTS        = USART_ISR_CTS_Msk
 endconst
 
 const(uint32):
+    USART_ISR_CTS        = USART_ISR_CTS_Msk
     USART_ISR_RTOF_Pos   = 11
     USART_ISR_RTOF_Msk   = (0x1 << USART_ISR_RTOF_Pos)
     USART_ISR_RTOF       = USART_ISR_RTOF_Msk
@@ -4607,10 +4535,10 @@ const(uint32):
     USART_ICR_PECF_Msk   = (0x1 << USART_ICR_PECF_Pos)
     USART_ICR_PECF       = USART_ICR_PECF_Msk
     USART_ICR_FECF_Pos   = 1
-    USART_ICR_FECF_Msk   = (0x1 << USART_ICR_FECF_Pos)
 endconst
 
 const(uint32):
+    USART_ICR_FECF_Msk   = (0x1 << USART_ICR_FECF_Pos)
     USART_ICR_FECF       = USART_ICR_FECF_Msk
     USART_ICR_NCF_Pos    = 2
     USART_ICR_NCF_Msk    = (0x1 << USART_ICR_NCF_Pos)
@@ -4635,127 +4563,16 @@ const(uint32):
     USART_ICR_CMCF       = USART_ICR_CMCF_Msk
     USART_RDR_RDR        = 0x01FF
     USART_TDR_TDR        = 0x01FF
-    USB_CNTR             = (USB_BASE + 0x40)
-    USB_ISTR             = (USB_BASE + 0x44)
-    USB_FNR              = (USB_BASE + 0x48)
-    USB_DADDR            = (USB_BASE + 0x4C)
-    USB_BTABLE           = (USB_BASE + 0x50)
-    USB_LPMCSR           = (USB_BASE + 0x54)
-    USB_BCDR             = (USB_BASE + 0x58)
-    USB_ISTR_CTR         = 0x8000
-endconst
-
-const(uint32):
-    USB_ISTR_PMAOVR      = 0x4000
-    USB_ISTR_ERR         = 0x2000
-    USB_ISTR_WKUP        = 0x1000
-    USB_ISTR_SUSP        = 0x0800
-    USB_ISTR_RESET       = 0x0400
-    USB_ISTR_SOF         = 0x0200
-    USB_ISTR_ESOF        = 0x0100
-    USB_ISTR_L1REQ       = 0x0080
-    USB_ISTR_DIR         = 0x0010
-    USB_ISTR_EP_ID       = 0x000F
-    USB_CLR_CTR          =  ~ USB_ISTR_CTR
-    USB_CLR_PMAOVR       =  ~ USB_ISTR_PMAOVR
-    USB_CLR_ERR          =  ~ USB_ISTR_ERR
-    USB_CLR_WKUP         =  ~ USB_ISTR_WKUP
-    USB_CLR_SUSP         =  ~ USB_ISTR_SUSP
-    USB_CLR_RESET        =  ~ USB_ISTR_RESET
-    USB_CLR_SOF          =  ~ USB_ISTR_SOF
-    USB_CLR_ESOF         =  ~ USB_ISTR_ESOF
-    USB_CLR_L1REQ        =  ~ USB_ISTR_L1REQ
-    USB_CNTR_CTRM        = 0x8000
-    USB_CNTR_PMAOVRM     = 0x4000
-    USB_CNTR_ERRM        = 0x2000
-    USB_CNTR_WKUPM       = 0x1000
-    USB_CNTR_SUSPM       = 0x0800
-    USB_CNTR_RESETM      = 0x0400
-    USB_CNTR_SOFM        = 0x0200
-    USB_CNTR_ESOFM       = 0x0100
-    USB_CNTR_L1REQM      = 0x0080
-    USB_CNTR_L1RESUME    = 0x0020
-    USB_CNTR_RESUME      = 0x0010
-    USB_CNTR_FSUSP       = 0x0008
-    USB_CNTR_LPMODE      = 0x0004
-endconst
-
-const(uint32):
-    USB_CNTR_PDWN        = 0x0002
-    USB_CNTR_FRES        = 0x0001
-    USB_BCDR_DPPU        = 0x8000
-    USB_BCDR_PS2DET      = 0x0080
-    USB_BCDR_SDET        = 0x0040
-    USB_BCDR_PDET        = 0x0020
-    USB_BCDR_DCDET       = 0x0010
-    USB_BCDR_SDEN        = 0x0008
-    USB_BCDR_PDEN        = 0x0004
-    USB_BCDR_DCDEN       = 0x0002
-    USB_BCDR_BCDEN       = 0x0001
-    USB_LPMCSR_BESL      = 0x00F0
-    USB_LPMCSR_REMWAKE   = 0x0008
-    USB_LPMCSR_LPMACK    = 0x0002
-    USB_LPMCSR_LMPEN     = 0x0001
-    USB_FNR_RXDP         = 0x8000
-    USB_FNR_RXDM         = 0x4000
-    USB_FNR_LCK          = 0x2000
-    USB_FNR_LSOF         = 0x1800
-    USB_FNR_FN           = 0x07FF
-    USB_DADDR_EF         = 0x80
-    USB_DADDR_ADD        = 0x7F
-    USB_EP0R             = USB_BASE
-    USB_EP1R             = (USB_BASE + 0x04)
-    USB_EP2R             = (USB_BASE + 0x08)
-    USB_EP3R             = (USB_BASE + 0x0C)
-    USB_EP4R             = (USB_BASE + 0x10)
-    USB_EP5R             = (USB_BASE + 0x14)
-    USB_EP6R             = (USB_BASE + 0x18)
-    USB_EP7R             = (USB_BASE + 0x1C)
-    USB_EP_CTR_RX        = 0x8000
-    USB_EP_DTOG_RX       = 0x4000
-endconst
-
-const(uint32):
-    USB_EPRX_STAT        = 0x3000
-    USB_EP_SETUP         = 0x0800
-    USB_EP_T_FIELD       = 0x0600
-    USB_EP_KIND          = 0x0100
-    USB_EP_CTR_TX        = 0x0080
-    USB_EP_DTOG_TX       = 0x0040
-    USB_EPTX_STAT        = 0x0030
-    USB_EPADDR_FIELD     = 0x000F
-    USB_EPREG_MASK       = USB_EP_CTR_RX | USB_EP_SETUP | USB_EP_T_FIELD | USB_EP_KIND | USB_EP_CTR_TX | USB_EPADDR_FIELD
-    USB_EP_TYPE_MASK     = 0x0600
-    USB_EP_BULK          = 0x0000
-    USB_EP_CONTROL       = 0x0200
-    USB_EP_ISOCHRONOUS   = 0x0400
-    USB_EP_INTERRUPT     = 0x0600
-    USB_EP_T_MASK        = ((( ~ USB_EP_T_FIELD))  &  USB_EPREG_MASK)
-    USB_EPKIND_MASK      = ( ~ USB_EP_KIND  &  USB_EPREG_MASK)
-    USB_EP_TX_DIS        = 0x0000
-    USB_EP_TX_STALL      = 0x0010
-    USB_EP_TX_NAK        = 0x0020
-    USB_EP_TX_VALID      = 0x0030
-    USB_EPTX_DTOG1       = 0x0010
-    USB_EPTX_DTOG2       = 0x0020
-    USB_EPTX_DTOGMASK    = USB_EPTX_STAT | USB_EPREG_MASK
-    USB_EP_RX_DIS        = 0x0000
-    USB_EP_RX_STALL      = 0x1000
-    USB_EP_RX_NAK        = 0x2000
-    USB_EP_RX_VALID      = 0x3000
-    USB_EPRX_DTOG1       = 0x1000
-    USB_EPRX_DTOG2       = 0x2000
-    USB_EPRX_DTOGMASK    = USB_EPRX_STAT | USB_EPREG_MASK
     WWDG_CR_T_Pos        = 0
     WWDG_CR_T_Msk        = (0x7F << WWDG_CR_T_Pos)
-endconst
-
-const(uint32):
     WWDG_CR_T            = WWDG_CR_T_Msk
     WWDG_CR_T_0          = (0x01 << WWDG_CR_T_Pos)
     WWDG_CR_T_1          = (0x02 << WWDG_CR_T_Pos)
     WWDG_CR_T_2          = (0x04 << WWDG_CR_T_Pos)
     WWDG_CR_T_3          = (0x08 << WWDG_CR_T_Pos)
+endconst
+
+const(uint32):
     WWDG_CR_T_4          = (0x10 << WWDG_CR_T_Pos)
     WWDG_CR_T_5          = (0x20 << WWDG_CR_T_Pos)
     WWDG_CR_T_6          = (0x40 << WWDG_CR_T_Pos)
@@ -4783,14 +4600,14 @@ const(uint32):
     WWDG_CFR_W1          = WWDG_CFR_W_1
     WWDG_CFR_W2          = WWDG_CFR_W_2
     WWDG_CFR_W3          = WWDG_CFR_W_3
-endconst
-
-const(uint32):
     WWDG_CFR_W4          = WWDG_CFR_W_4
     WWDG_CFR_W5          = WWDG_CFR_W_5
     WWDG_CFR_W6          = WWDG_CFR_W_6
     WWDG_CFR_WDGTB_Pos   = 7
     WWDG_CFR_WDGTB_Msk   = (0x3 << WWDG_CFR_WDGTB_Pos)
+endconst
+
+const(uint32):
     WWDG_CFR_WDGTB       = WWDG_CFR_WDGTB_Msk
     WWDG_CFR_WDGTB_0     = (0x1 << WWDG_CFR_WDGTB_Pos)
     WWDG_CFR_WDGTB_1     = (0x2 << WWDG_CFR_WDGTB_Pos)

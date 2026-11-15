@@ -1,7 +1,7 @@
 use ./platform
 
 #ifdef HWCLK_IMPL
-    use ${HWCLK_IMPL}   reexport
+    use {HWCLK_IMPL}   reexport
 #else
     use ./core/noimpl/hwclk_noimpl  reexport
 #endif
