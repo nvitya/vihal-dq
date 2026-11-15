@@ -74,15 +74,18 @@ const(uint32):
     SCB_ICSR_RETTOBASE_Msk = (1 << SCB_ICSR_RETTOBASE_Pos)
     SCB_ICSR_VECTACTIVE_Pos = 0
     SCB_ICSR_VECTACTIVE_Msk = 0x1FF
-    SCB_VTOR_TBLBASE_Pos = 29
-    SCB_VTOR_TBLBASE_Msk = (1 << SCB_VTOR_TBLBASE_Pos)
 endconst
 
 const(uint32):
+  #if Defined (__CM3_REV) and (__CM3_REV < 0x0201)                   /* core r2p1 */
+    SCB_VTOR_TBLBASE_Pos = 29
+    SCB_VTOR_TBLBASE_Msk = (1 << SCB_VTOR_TBLBASE_Pos)
     SCB_VTOR_TBLOFF_Pos  = 7
     SCB_VTOR_TBLOFF_Msk  = (0x3FFFFF << SCB_VTOR_TBLOFF_Pos)
+  #else
     SCB_VTOR_TBLOFF_Pos  = 7
     SCB_VTOR_TBLOFF_Msk  = (0x1FFFFFF << SCB_VTOR_TBLOFF_Pos)
+  #endif
     SCB_AIRCR_VECTKEY_Pos = 16
     SCB_AIRCR_VECTKEY_Msk = (0xFFFF << SCB_AIRCR_VECTKEY_Pos)
     SCB_AIRCR_VECTKEYSTAT_Pos = 16

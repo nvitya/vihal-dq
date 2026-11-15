@@ -76,12 +76,6 @@ func GpioPortEnable(aportnum : int) -> bool:
     return true
 endfunc
 
-#ifdef MCUSF_F1
-
-    #error "Pin setup for STM32F1 is not implemented yet"
-
-#else
-
 func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
 
     var regs : ^GPIO_TypeDef = GetGpioRegs(aportnum)
@@ -89,12 +83,62 @@ func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
 		return false
 	endif
 
-	if apinnum < 0  or  apinnum > 15:
+	if not 0 <= apinnum <= 15:
 		return false
 	endif
 
 	// 1. turn on port power
 	GpioPortEnable(aportnum)
+
+  #ifdef MCUSF_F1
+
+    var pinconf : uint = 0
+
+    if flags & PINCFG_AF_MASK <> 0:  // for alternate functions the pin must be configured as output
+        flags |= PINCFG_OUTPUT
+    endif
+
+    if flags & PINCFG_OUTPUT <> 0:
+        if (flags & PINCFG_SPEED_MASK) == PINCFG_SPEED_SLOW:
+            pinconf |= 2
+        elif (flags & PINCFG_SPEED_MASK) == PINCFG_SPEED_FAST:
+            pinconf |= 3
+        else:
+            pinconf |= 1
+        endif
+
+        if flags & PINCFG_OPENDRAIN <> 0:
+            pinconf |= 4
+        endif
+
+        if flags & PINCFG_AF_MASK <> 0:
+            pinconf |= 8
+        endif
+    else:
+        // leave the mode bits at 0 = input mode
+        if flags & PINCFG_ANALOGUE <> 0:
+            // pinconf |= 0;
+        elif flags & PINCFG_PULLUP <> 0:
+            pinconf |= 8
+            regs.BSRR = (1 << apinnum)
+        elif flags & PINCFG_PULLDOWN <> 0:
+            pinconf |= 8
+            regs.BSRR = (1 << apinnum) << 16
+        else:
+            pinconf |= 4  // floating input
+        endif
+    endif
+
+    // set the pinconf reg
+    if apinnum < 8:
+        regs.CRL &= ~(0xF << (apinnum * 4))
+        regs.CRL |= pinconf << (apinnum * 4)
+    else:
+        regs.CRH &= ~(0xF << ((apinnum-8) * 4))
+        regs.CRH |= pinconf << ((apinnum-8) * 4)
+    endif
+
+  #else
 
     var n : uint
     var pinx2 : int = apinnum * 2
@@ -155,11 +199,10 @@ func PinSetup(aportnum : int, apinnum : int, flags : uint) -> bool:
 			regs.AFR[1] |=  (n   << ((apinnum-8) * 4))
 		endif
 	endif
+  #endif
 
     return true
 endfunc
-
-#endif
 
 func OGpioPin.*Create()  [[overload]]:
     inherited Create()
