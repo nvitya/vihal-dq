@@ -217,9 +217,4 @@
 
 #define MCUF_STM32
 
-const HWCLK_IMPL  : rostr = "\{DQ.PKGNAME}/armm/stm32/impl/hwclk_stm32"
-const HWPINS_IMPL : rostr = "\{DQ.PKGNAME}/armm/stm32/impl/hwpins_stm32"
-const HWUART_IMPL : rostr = "\{DQ.PKGNAME}/armm/stm32/impl/hwuart_stm32"
-
-// finish the vihal configuration with the platform
-#include "../armm_platform.dqi"
+#include "./stm32_impl.dqi"

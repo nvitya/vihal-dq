@@ -10,8 +10,8 @@ public
 
 	func Init(adevnum : int) -> bool ..
 
-    func TrySendData(adata : uint8) -> bool ..
-    func TryRecvData(dstptr : ^uint8) -> bool ..
+    func TrySendData(adata : byte) -> bool ..
+    func TryRecvData(dstptr : ^byte) -> bool ..
     func SendFinished() -> bool ..
 
     // void Run();
@@ -151,7 +151,7 @@ func OHwSpi_impl.SetSpeed(aspeed : uint):
     regs.ENR = 1
 endfunc
 
-func OHwSpi_impl.TrySendData(adata : uint8) -> bool:
+func OHwSpi_impl.TrySendData(adata : byte) -> bool:
     if regs.SR & @.SPI_SR_TFF <> 0:
         return false
     else:
@@ -160,7 +160,7 @@ func OHwSpi_impl.TrySendData(adata : uint8) -> bool:
     endif
 endfunc
 
-func OHwSpi_impl.TryRecvData(dstptr : ^uint8) -> bool:
+func OHwSpi_impl.TryRecvData(dstptr : ^byte) -> bool:
     if regs.SR & @.SPI_SR_RFE <> 0:
         return false
     else:

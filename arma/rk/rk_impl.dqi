@@ -1,0 +1,15 @@
+// arma/rk/rk_impl.dqi
+
+const HWIMPL_ROOT : rostr = "\{DQ.PKGNAME}/arma/rk/impl"
+
+const HWCLK_IMPL  : rostr = "\{HWIMPL_ROOT}/hwclk_rk"
+const HWPINS_IMPL : rostr = "\{HWIMPL_ROOT}/hwpins_rk"
+const HWUART_IMPL : rostr = "\{HWIMPL_ROOT}/hwuart_rk"
+const HWSPI_IMPL  : rostr = "\{HWIMPL_ROOT}/hwspi_rk"
+
+// warning this supports ARM_A and ARM_M too !
+#ifdef ARM_A
+    #include "../arma_platform.dqi"
+#else
+    #include "../../armm/armm_platform.dqi"
+#endif
