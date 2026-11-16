@@ -1,0 +1,7 @@
+
+func ClockCnt() -> uint32  [[inline]]:
+    return 0
+endfunc
+
+func ClockCntInit():
+endfunc

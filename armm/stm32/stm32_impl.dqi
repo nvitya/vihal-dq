@@ -3,9 +3,11 @@
 // included from stm32_mcus.dqi
 
 const HWIMPL_ROOT : rostr = "\{DQ.PKGNAME}/armm/stm32/impl"
-const HWCLK_IMPL  : rostr = "\{HWIMPL_ROOT}/hwclk_stm32"
-const HWPINS_IMPL : rostr = "\{HWIMPL_ROOT}/hwpins_stm32"
-const HWUART_IMPL : rostr = "\{HWIMPL_ROOT}/hwuart_stm32"
+
+const HWCLK_IMPL    : rostr = "\{HWIMPL_ROOT}/hwclk_stm32"
+const HWCLKCNT_IMPL : rostr = "\{HWIMPL_ROOT}/hwclkcnt_stm32"
+const HWPINS_IMPL   : rostr = "\{HWIMPL_ROOT}/hwpins_stm32"
+const HWUART_IMPL   : rostr = "\{HWIMPL_ROOT}/hwuart_stm32"
 
 // finish the vihal configuration with the platform
 #include "../armm_platform.dqi"

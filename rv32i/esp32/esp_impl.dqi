@@ -1,0 +1,9 @@
+// rv32i/esp32/esp_impl.dqi
+
+const HWIMPL_ROOT   : rostr = "\{DQ.PKGNAME}/rv32i/esp32/impl"
+const HWCLK_IMPL    : rostr = "\{HWIMPL_ROOT}/hwclk_esp"
+const HWCLKCNT_IMPL : rostr = "\{HWIMPL_ROOT}/hwclkcnt_esp"
+const HWPINS_IMPL   : rostr = "\{HWIMPL_ROOT}/hwpins_esp"
+
+// finish the vihal configuration with the platform
+#include "../rv32i_platform.dqi"

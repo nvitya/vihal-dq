@@ -1,0 +1,32 @@
+// arma/rk/impl/hwclkcnt_rk.dq
+
+use ^/platform
+use ./rk_utils
+
+var g_clkcnt_timer : ^TIMER_REG = nil
+
+func ClockCnt() -> uint32  [[inline]]:
+    return g_clkcnt_timer.CURRENT_VALUE[0]
+endfunc
+
+func ClockCntInit():
+    map_hw_addr(TIMER5_BASE, SizeOf(TIMER_REG), ^pointer(%g_clkcnt_timer))
+
+    // enable the clk_gpll_div_100m = 100MHz clock
+    cru_reg_set_field(0x800, 6, 1, 0)  // 0x800 = CRU_GATE_CON00
+    // select the 100 MHz clock for the TIMER5:
+    cru_reg_set_field(0x35C, 6, 3, 1)  // 0x35C = CRU_CLKSEL_CON23
+
+    // enable the pclk_timer0:
+    cru_reg_set_field(0x818, 2, 1, 0)  // 0x818 = CRU_GATE_CON6
+    // enable the timer0_c5:
+    cru_reg_set_field(0x818, 8, 1, 0)  // 0x818 = CRU_GATE_CON6
+
+    // start this timer in free running mode
+    g_clkcnt_timer.CONTROLREG = 0
+    g_clkcnt_timer.LOAD_COUNT[0] = 0xFFFFFFFF
+    g_clkcnt_timer.LOAD_COUNT[1] = 0xFFFFFFFF
+    g_clkcnt_timer.CONTROLREG = 1
+
+    SystemCoreClock = 93750000  // probably GPLL / 16;
+endfunc

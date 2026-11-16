@@ -1,0 +1,23 @@
+use ^/platform
+
+#ifdef HWCLKCNT_IMPL
+    use {HWCLKCNT_IMPL}   reexport
+#else
+    use ^/core/noimpl/hwclkcnt_noimpl  reexport
+#endif
+
+func DelayClocks(aclocks : uint):
+	var remaining : uint = aclocks
+	var t0        : uint = ClockCnt()
+	while ClockCnt() - t0 < remaining:
+		// wait
+	endwhile
+endfunc
+
+func DelayMicros(aus : uint)  [[inline]]:
+	DelayClocks(aus * (SystemCoreClock div 1000000))
+endfunc
+
+func DelayMillis(ams : uint):
+	DelayClocks(ams * (SystemCoreClock div 1000))
+endfunc

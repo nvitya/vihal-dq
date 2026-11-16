@@ -1,0 +1,12 @@
+// rv32i/esp32/impl/clockcnt_esp.dq
+
+use ^/platform
+
+func ClockCnt() -> uint32  [[inline]]:
+    return cpu_csr_read(0x7E2)  // use the mpccr instead of the mtime
+endfunc
+
+func ClockCntInit():
+    cpu_csr_write(0x7E0, 1)  // = mpcer[0] = count clock cycles
+    cpu_csr_write(0x7E1, 1)  // = mpcmer[0] = enable counting
+endfunc

@@ -23,8 +23,4 @@
 #define MCUF_ESP
 #define MCUF_ESP32
 
-const HWCLK_IMPL  : rostr = "\{DQ.PKGNAME}/rv32i/esp32/impl/hwclk_esp"
-const HWPINS_IMPL : rostr = "\{DQ.PKGNAME}/rv32i/esp32/impl/hwpins_esp"
-
-// finish the vihal configuration with the platform
-#include "../rv32i_platform.dqi"
+#include "./esp_impl.dqi"
