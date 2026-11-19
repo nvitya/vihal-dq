@@ -1,11 +1,29 @@
-
-#ifndef LINUX
 // CMSIS Configuration
 
+#ifdef ARM_M
+
 const(uint):
-    __CORTEX_M             = 0
-    __MPU_PRESENT          = 0
-    __NVIC_PRIO_BITS       = 4
+    __CM0_REV            = 0x0000
+    __MPU_PRESENT        = 0
+    __VTOR_PRESENT       = 0
+    __NVIC_PRIO_BITS     = 2
+    __Vendor_SysTickConfig = 0
+
+    NVIC_PERIPH_IRQ_OFFSET = 16
+    MAX_INTERRUPT_VECTOR = 64
+endconst
+
+#include "vihal/armm/core/core_cm0.dqi"
+
+#else  // ARM_A
+
+const(uint):
+    HAL_GIC_V2           = 1
+    __CA_REV             = 0x0005
+    __CORTEX_A           = 7
+    __FPU_PRESENT        = 1
+    __TIM_PRESENT        = 1
+    __L2C_PRESENT        = 0
 endconst
 
 #endif
@@ -20652,19 +20670,6 @@ const(uint32):
     PLL_INPUT_OSC_RATE   = (24 * 1000 * 1000)
     GIC_DISTRIBUTOR_BASE = 0xFF581000
     GIC_CPU_INTERFACE_BASE = 0xFF582000
-    __CA_REV             = 0x0005
-    __CORTEX_A           = 7
-    __FPU_PRESENT        = 1
-    __TIM_PRESENT        = 1
-    __L2C_PRESENT        = 0
-    HAL_GIC_V2           = 1
-    __CM0_REV            = 0x0000
-    __MPU_PRESENT        = 0
-    __VTOR_PRESENT       = 0
-    __NVIC_PRIO_BITS     = 2
-    __Vendor_SysTickConfig = 0
-    NVIC_PERIPH_IRQ_OFFSET = 16
-    MAX_INTERRUPT_VECTOR = 64
     MPIDR_MT_MASK        = ((1) << 24)
     MPIDR_AFFLVL_MASK    = 0xFF
     MPIDR_AFF0_SHIFT     = 0
