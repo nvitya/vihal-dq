@@ -1,0 +1,31 @@
+// resource table definitions for remote processors
+
+struct SResourceTable:
+    ver       : uint32
+    num       : uint32
+    _reserved : [2] uint32
+endstruct
+
+struct SFwRscHdr:
+    htype : uint32
+endstruct
+
+struct SFwRscCarveout:
+    da       : uint32
+    pa       : uint32
+    len      : uint32
+    flags    : uint32
+    reserved : uint32
+    name     : embstr(32)
+endstruct
+
+const(uint):
+    RSC_CARVEOUT        = 0
+    RSC_DEVMEM          = 1
+    RSC_TRACE           = 2
+    RSC_VDEV            = 3
+    RSC_LAST            = 4
+    RSC_VENDOR_START    = 128
+    RSC_VENDOR_END      = 512
+endconst
+
